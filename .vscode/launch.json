@@ -11,8 +11,8 @@
             "program": "${workspaceFolder}/web_server/manage.py",
             "console": "integratedTerminal",
             "args": [
-             "runserver",
-             "0.0.0.0:8000"   
+                "runserver",
+                "0.0.0.0:8000"
             ]
         }
     ]

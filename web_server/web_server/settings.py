@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import pymysql
+
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -66,6 +69,8 @@ TEMPLATES = [
         },
     },
 ]
+MEDIA_URL='./media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'./media/')
 
 WSGI_APPLICATION = 'web_server.wsgi.application'
 
@@ -75,8 +80,12 @@ WSGI_APPLICATION = 'web_server.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'students',
+        'USER': 'root',         # 数据库用户名
+        'PASSWORD': 'lx15651697362',     # 密码
+        'HOST': 'localhost',    # 主机
+        'PORT': '3306',         # 数据库使用的端口
     }
 }
 
