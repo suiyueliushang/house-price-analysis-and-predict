@@ -19,5 +19,5 @@ from django.conf.urls import url
 from . import view
 
 urlpatterns = [
-    url('^$',view.main_page)
+    url('^$',view.main_page),
 ]
