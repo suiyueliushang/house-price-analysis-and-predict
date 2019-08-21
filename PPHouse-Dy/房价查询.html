@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PPHouse_房价查询</title>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <style>
+        a,
+        a:visited {
+            outline: none;
+            color: #389dc1;
+        }
+        
+        a:hover {
+            text-decoration: none;
+        }
+        
+        section,
+        footer,
+        header,
+        aside,
+        nav {
+            display: block;
+        }
+        
+        nav {
+            display: inline-block;
+            border-radius: 2px;
+        }
+        
+        nav a {
+            display: inline-block;
+            padding: 18px 30px;
+            color: rgb(10, 10, 10) !important;
+            font-size: 16px;
+            text-decoration: none !important;
+            line-height: 1;
+            text-transform: uppercase;
+            background-color: transparent;
+            -webkit-transition: background-color 0.25s;
+            -moz-transition: background-color 0.25s;
+            transition: background-color 0.25s;
+        }
+        
+        nav a:first-child {
+            border-radius: 2px 0 0 2px;
+        }
+        
+        nav a:last-child {
+            border-radius: 0 2px 2px 0;
+        }
+        
+        nav.南京 .南京,
+        nav.上海 .上海,
+        nav.北京 .北京,
+        nav.浙江 .浙江 {
+            background-color: #7d9098;
+        }
+        
+        nav.浦东 .浦东,
+        nav.徐汇 .徐汇,
+        nav.普陀 .普陀,
+        nav.宝山 .宝山 {
+            background-color: #7d9098;
+        }
+        
+        p {
+            font-size: 22px;
+            font-weight: bold;
+            color: #7d9098;
+            top: 800px;
+            left: 300px;
+            position: absolute;
+        }
+        
+        p b {
+            color: #ffffff;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #c4d7e0;
+            border-radius: 2px;
+            text-transform: uppercase;
+            font-size: 18px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Logo -->
+
+    <img src="Logo.jpg" alt="Logo" width="150" height="149" align="baseline" border="5" style="margin: 10px 10px" />
+    <!-- 横幅 -->
+    <img src="img01.png" width="1185" height="171" style="position: absolute; top: 10px; left: 300px;" />
+
+    <a href="PPHouse.html">
+        <button type="button" style="position: absolute; top: 300px; left: 10px; margin: 20px 10px; width: 150px; height: 50px">首页</button>
+    </a>
+
+    <a href="房价查询.html">
+        <button type="button" style="left: 10px; top: 400px; position: absolute; margin: 20px 10px; width: 150px; height: 50px">房价查询</button>
+    </a>
+    <button type="button" style="top: 500px; left: 10px; position: absolute; margin: 20px 10px; width: 150px; height: 50px">房价趋势</button>
+    <button type="button" style="top: 600px; left: 10px; position: absolute; margin: 20px 10px; width: 150px; height: 50px">房价预测</button>
+    <button type="button" style="top: 700px; left: 10px; position: absolute; margin: 20px 10px; width: 150px; height: 50px">房价对比</button>
+    <div style="top: 300px; left: 300px; position: absolute; margin: 20px 10px; width: 100px; height: 25px"> 选择城市：</div>
+
+
+    <div id="city" style="top :300px; left: 400px;position: absolute">
+
+        <!-- 激活的菜单样式为  active 类 -->
+        <!-- 为了阻止链接在点击时跳转，我们使用了 "prevent" 修饰符 (preventDefault 的简称)。 -->
+
+        <nav v-bind:class="active" v-on:click.prevent>
+
+            <!-- 当菜单上的链接被点击时，我们调用了 makeActive 方法, 该方法在 Vue 实例中创建。 -->
+            <!-- 城市 -->
+            <a href="#" class="南京" v-on:click="makeActive('南京')">南京</a>
+            <a href="#" class="上海" v-on:click="makeActive('上海')">上海</a>
+            <a href="#" class="北京" v-on:click="makeActive('北京')">北京</a>
+            <a href="#" class="浙江" v-on:click="makeActive('浙江')">浙江</a>
+
+        </nav>
+
+    </div>
+    <script>
+        LastCity = "北京";
+        // 创建一个新的 Vue 实例
+        var demo = new Vue({
+            // DOM 元素，挂载视图模型
+            el: '#city',
+
+            // 定义属性，并设置初始值
+            data: {
+                active: '南京'
+            },
+
+            // 点击菜单使用的函数
+            methods: {
+                makeActive: function(item) {
+                    // 模型改变，视图会自动更新
+                    document.getElementById(LastCity).style.display = "none";
+                    this.active = item;
+                    LastCity = item;
+                    document.getElementById(item).style.display = "";
+
+                }
+            }
+        });
+    </script>
+
+    <div style="top: 400px; left: 300px; position: absolute; margin: 20px 10px; width: 100px; height: 25px"> 选择区域：</div>
+    <!-- 区域 默认隐藏 -->
+
+    <!--南京-->
+    <div id="南京" style="top :400px; left: 400px;position: absolute;display: none;">
+
+        <!-- 激活的菜单样式为  active 类 -->
+        <!-- 为了阻止链接在点击时跳转，我们使用了 "prevent" 修饰符 (preventDefault 的简称)。 -->
+
+        <nav v-bind:class="active" v-on:click.prevent>
+
+            <!-- 当菜单上的链接被点击时，我们调用了 makeActive 方法, 该方法在 Vue 实例中创建。 -->
+            <!-- 城市 -->
+            <a href="#" class="江宁区" v-on:click="makeActive('江宁区')">江宁区</a>
+            <a href="#" class="新街口" v-on:click="makeActive('新街口')">新街口</a>
+            <a href="#" class="雨花台" v-on:click="makeActive('雨花台')">雨花台</a>
+            <a href="#" class="玄武区" v-on:click="makeActive('玄武区')">玄武区</a>
+
+
+
+        </nav>
+
+        <!-- 以下 "active " 变量会根据当前选中的值来自动变换 -->
+        <p>您选择了 <b>{{active}} </b></p>
+    </div>
+
+    <script>
+        // 创建一个新的 Vue 实例
+        var demo = new Vue({
+            // DOM 元素，挂载视图模型
+            el: '#南京',
+
+
+            // 定义属性，并设置初始值
+            data: {
+                active: '江宁区'
+            },
+
+            // 点击菜单使用的函数
+            methods: {
+                makeActive: function(item) {
+                    // 模型改变，视图会自动更新
+                    this.active = item;
+
+                }
+            }
+        });
+    </script>
+    <!--上海-->
+
+    <div id="上海" style="top :400px; left: 400px;position: absolute;display: none">
+
+        <!-- 激活的菜单样式为  active 类 -->
+        <!-- 为了阻止链接在点击时跳转，我们使用了 "prevent" 修饰符 (preventDefault 的简称)。 -->
+
+        <nav v-bind:class="active" v-on:click.prevent>
+
+            <!-- 当菜单上的链接被点击时，我们调用了 makeActive 方法, 该方法在 Vue 实例中创建。 -->
+            <!-- 城市 -->
+            <a href="#" class="浦东" v-on:click="makeActive('浦东')">浦东</a>
+            <a href="#" class="徐汇" v-on:click="makeActive('徐汇')">徐汇</a>
+            <a href="#" class="普陀" v-on:click="makeActive('普陀')">普陀</a>
+            <a href="#" class="宝山" v-on:click="makeActive('宝山')">宝山</a>
+
+
+
+        </nav>
+
+        <!-- 以下 "active " 变量会根据当前选中的值来自动变换 -->
+        <!--<p>您选择了 <b>{{active}} </b></p>-->
+    </div>
+
+    <script>
+        // 创建一个新的 Vue 实例
+        var demo = new Vue({
+            // DOM 元素，挂载视图模型
+            el: '#上海',
+
+
+            // 定义属性，并设置初始值
+            data: {
+                active: '浦东'
+            },
+
+            // 点击菜单使用的函数
+            methods: {
+                makeActive: function(item) {
+                    // 模型改变，视图会自动更新
+                    this.active = item;
+
+                }
+            }
+        });
+    </script>
+
+
+    <!--北京-->
+
+    <div id="北京" style="top :400px; left: 400px;position: absolute;display: none;;">
+
+        <!-- 激活的菜单样式为  active 类 -->
+        <!-- 为了阻止链接在点击时跳转，我们使用了 "prevent" 修饰符 (preventDefault 的简称)。 -->
+
+        <nav v-bind:class="active" v-on:click.prevent>
+
+            <!-- 当菜单上的链接被点击时，我们调用了 makeActive 方法, 该方法在 Vue 实例中创建。 -->
+            <!-- 城市 -->
+            <a href="#" class="朝阳" v-on:click="makeActive('朝阳')">朝阳</a>
+            <a href="#" class="海淀" v-on:click="makeActive('海淀')">海淀</a>
+            <a href="#" class="东城" v-on:click="makeActive('东城')">东城</a>
+            <a href="#" class="西城" v-on:click="makeActive('西城')">西城</a>
+
+
+
+        </nav>
+
+    </div>
+
+    <script>
+        // 创建一个新的 Vue 实例
+        var demo = new Vue({
+            // DOM 元素，挂载视图模型
+            el: '#北京',
+            // 定义属性，并设置初始值
+            data: {
+                active: '朝阳'
+            },
+
+            // 点击菜单使用的函数
+            methods: {
+                makeActive: function(item) {
+                    // 模型改变，视图会自动更新
+                    this.active = item;
+
+                }
+            }
+        });
+    </script>
+
+    <!--
+    <script>
+        document.getElementById("city").style.visibility = "hidden";
+    </script>
+-->
+
+</body>
+
+
+</html>
