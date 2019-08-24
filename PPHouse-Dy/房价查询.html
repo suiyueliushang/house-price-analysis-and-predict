@@ -54,8 +54,7 @@
         nav.南京 .南京,
         nav.上海 .上海,
         nav.北京 .北京,
-        nav.浙江 .浙江,
-        {
+        nav.浙江 .浙江 {
             background-color: #7d9098;
         }
         
@@ -70,7 +69,11 @@
         nav.朝阳 .朝阳,
         nav.海淀 .海淀,
         nav.东城 .东城,
-        nav.西城 .西城 {
+        nav.西城 .西城,
+        nav.杭州 .杭州,
+        nav.湖州 .湖州,
+        nav.温州 .温州,
+        nav.台州 .台州 {
             background-color: #7d9098;
         }
         
@@ -180,7 +183,7 @@
 
 
         </nav>
-
+        <img src="img_NJ.png" style="position: absolute; " />
         <!-- 以下 "active " 变量会根据当前选中的值来自动变换 -->
         <p>您选择了 <b>{{active}} </b></p>
     </div>
@@ -292,6 +295,53 @@
                 makeActive: function(item) {
                     // 模型改变，视图会自动更新
                     this.active = item;
+
+                }
+            }
+        });
+    </script>
+
+
+
+    <!--浙江-->
+
+    <div id="浙江" style="top :400px; left: 400px;position: absolute;display: none;;">
+
+        <!-- 激活的菜单样式为  active 类 -->
+        <!-- 为了阻止链接在点击时跳转，我们使用了 "prevent" 修饰符 (preventDefault 的简称)。 -->
+
+        <nav v-bind:class="active" v-on:click.prevent>
+
+            <!-- 当菜单上的链接被点击时，我们调用了 makeActive 方法, 该方法在 Vue 实例中创建。 -->
+            <!-- 城市 -->
+            <a href="#" class="杭州" v-on:click="makeActive('杭州')">杭州</a>
+            <a href="#" class="湖州" v-on:click="makeActive('湖州')">湖州</a>
+            <a href="#" class="温州" v-on:click="makeActive('温州')">温州</a>
+            <a href="#" class="台州" v-on:click="makeActive('台州')">台州</a>
+
+
+
+        </nav>
+
+        <img id="img_ZJ" src="img_ZJ.png" style="position: absolute;visibility:hidden; " />
+    </div>
+
+    <script>
+        // 创建一个新的 Vue 实例
+        var demo = new Vue({
+            // DOM 元素，挂载视图模型
+            el: '#浙江',
+            // 定义属性，并设置初始值
+            data: {
+                active: '杭州'
+            },
+
+            // 点击菜单使用的函数
+            methods: {
+                makeActive: function(item) {
+                    // 模型改变，视图会自动更新
+                    this.active = item;
+                    document.getElementById("img_ZJ").style.visibility = "visible";
 
                 }
             }

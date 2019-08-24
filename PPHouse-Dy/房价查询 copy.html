@@ -1,0 +1,478 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PPHouse_房价查询</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <!-- 引入组件库 -->
+    <script src="//unpkg.com/iview@1.0.1/dist/iview.min.js"></script>
+
+</head>
+
+
+
+<body>
+
+    <div id="app">
+
+        <!-- Logo -->
+
+        <img src="Logo.jpg" alt="Logo" width="150" height="149" align="baseline" border="5" style="margin: 10px 10px" />
+        <!-- 横幅 -->
+        <img src="img01.png" width="1185" height="171" style="position: absolute; top: 10px; left: 300px;" />
+
+
+        <a href="PPHouse.html">
+            <button type="button" style="position: absolute; top: 300px; left: 10px; margin: 20px 10px; width: 150px; height: 50px">首页</button>
+        </a>
+
+        <a href="房价查询 copy.html">
+            <button type="button" style="left: 10px; top: 400px; position: absolute; margin: 20px 10px; width: 150px; height: 50px">房价查询</button>
+        </a>
+        <button type="button" style="top: 500px; left: 10px; position: absolute; margin: 20px 10px; width: 150px; height: 50px">房价趋势</button>
+        <button type="button" style="top: 600px; left: 10px; position: absolute; margin: 20px 10px; width: 150px; height: 50px">房价预测</button>
+        <button type="button" style="top: 700px; left: 10px; position: absolute; margin: 20px 10px; width: 150px; height: 50px">房价对比</button>
+
+        <div class="block">
+            <span class="demonstration" style="top: 300px; left: 300px; position: absolute; margin: 20px 10px; width: 100px; height: 25px">选择城市:</span>
+            <el-button>默认按钮</el-button>
+            <el-cascader style="top: 300px; left: 350px; position: absolute; margin: 20px 10px; width: 100px; height: 25px" v-model="value" :options="options" @change="handleChange"></el-cascader>
+        </div>
+    </div>
+
+
+
+    <script>
+        new Vue({
+            el: "#app",
+            data() {
+                return {
+                    value: [],
+                    options: [{
+                        value: 'zhinan',
+                        label: '指南',
+                        children: [{
+                            value: 'shejiyuanze',
+                            label: '设计原则',
+                            children: [{
+                                value: 'yizhi',
+                                label: '一致'
+                            }, {
+                                value: 'fankui',
+                                label: '反馈'
+                            }, {
+                                value: 'xiaolv',
+                                label: '效率'
+                            }, {
+                                value: 'kekong',
+                                label: '可控'
+                            }]
+                        }, {
+                            value: 'daohang',
+                            label: '导航',
+                            children: [{
+                                value: 'cexiangdaohang',
+                                label: '侧向导航'
+                            }, {
+                                value: 'dingbudaohang',
+                                label: '顶部导航'
+                            }]
+                        }]
+                    }, {
+                        value: 'zujian',
+                        label: '组件',
+                        children: [{
+                            value: 'basic',
+                            label: 'Basic',
+                            children: [{
+                                value: 'layout',
+                                label: 'Layout 布局'
+                            }, {
+                                value: 'color',
+                                label: 'Color 色彩'
+                            }, {
+                                value: 'typography',
+                                label: 'Typography 字体'
+                            }, {
+                                value: 'icon',
+                                label: 'Icon 图标'
+                            }, {
+                                value: 'button',
+                                label: 'Button 按钮'
+                            }]
+                        }, {
+                            value: 'form',
+                            label: 'Form',
+                            children: [{
+                                value: 'radio',
+                                label: 'Radio 单选框'
+                            }, {
+                                value: 'checkbox',
+                                label: 'Checkbox 多选框'
+                            }, {
+                                value: 'input',
+                                label: 'Input 输入框'
+                            }, {
+                                value: 'input-number',
+                                label: 'InputNumber 计数器'
+                            }, {
+                                value: 'select',
+                                label: 'Select 选择器'
+                            }, {
+                                value: 'cascader',
+                                label: 'Cascader 级联选择器'
+                            }, {
+                                value: 'switch',
+                                label: 'Switch 开关'
+                            }, {
+                                value: 'slider',
+                                label: 'Slider 滑块'
+                            }, {
+                                value: 'time-picker',
+                                label: 'TimePicker 时间选择器'
+                            }, {
+                                value: 'date-picker',
+                                label: 'DatePicker 日期选择器'
+                            }, {
+                                value: 'datetime-picker',
+                                label: 'DateTimePicker 日期时间选择器'
+                            }, {
+                                value: 'upload',
+                                label: 'Upload 上传'
+                            }, {
+                                value: 'rate',
+                                label: 'Rate 评分'
+                            }, {
+                                value: 'form',
+                                label: 'Form 表单'
+                            }]
+                        }, {
+                            value: 'data',
+                            label: 'Data',
+                            children: [{
+                                value: 'table',
+                                label: 'Table 表格'
+                            }, {
+                                value: 'tag',
+                                label: 'Tag 标签'
+                            }, {
+                                value: 'progress',
+                                label: 'Progress 进度条'
+                            }, {
+                                value: 'tree',
+                                label: 'Tree 树形控件'
+                            }, {
+                                value: 'pagination',
+                                label: 'Pagination 分页'
+                            }, {
+                                value: 'badge',
+                                label: 'Badge 标记'
+                            }]
+                        }, {
+                            value: 'notice',
+                            label: 'Notice',
+                            children: [{
+                                value: 'alert',
+                                label: 'Alert 警告'
+                            }, {
+                                value: 'loading',
+                                label: 'Loading 加载'
+                            }, {
+                                value: 'message',
+                                label: 'Message 消息提示'
+                            }, {
+                                value: 'message-box',
+                                label: 'MessageBox 弹框'
+                            }, {
+                                value: 'notification',
+                                label: 'Notification 通知'
+                            }]
+                        }, {
+                            value: 'navigation',
+                            label: 'Navigation',
+                            children: [{
+                                value: 'menu',
+                                label: 'NavMenu 导航菜单'
+                            }, {
+                                value: 'tabs',
+                                label: 'Tabs 标签页'
+                            }, {
+                                value: 'breadcrumb',
+                                label: 'Breadcrumb 面包屑'
+                            }, {
+                                value: 'dropdown',
+                                label: 'Dropdown 下拉菜单'
+                            }, {
+                                value: 'steps',
+                                label: 'Steps 步骤条'
+                            }]
+                        }, {
+                            value: 'others',
+                            label: 'Others',
+                            children: [{
+                                value: 'dialog',
+                                label: 'Dialog 对话框'
+                            }, {
+                                value: 'tooltip',
+                                label: 'Tooltip 文字提示'
+                            }, {
+                                value: 'popover',
+                                label: 'Popover 弹出框'
+                            }, {
+                                value: 'card',
+                                label: 'Card 卡片'
+                            }, {
+                                value: 'carousel',
+                                label: 'Carousel 走马灯'
+                            }, {
+                                value: 'collapse',
+                                label: 'Collapse 折叠面板'
+                            }]
+                        }]
+                    }, {
+                        value: 'ziyuan',
+                        label: '资源',
+                        children: [{
+                            value: 'axure',
+                            label: 'Axure Components'
+                        }, {
+                            value: 'sketch',
+                            label: 'Sketch Templates'
+                        }, {
+                            value: 'jiaohu',
+                            label: '组件交互文档'
+                        }]
+                    }]
+                };
+            },
+            methods: {
+                handleChange(value) {
+                    console.log(value);
+                }
+            }
+        });
+    </script>
+
+
+
+    <template>
+    <div class="chooseCity">
+      <Select v-model="model1" style="min-width:150px;max-width: 160px;" @on-change="deleteModel(1)">
+        <Option v-for="item in firstFloorDatas" :value="item.id" :key="item.id">{{ item.name }}</Option>
+      </Select>
+      <Select v-model="model2" style="min-width:150px;max-width: 160px;" v-if="showSecond" @on-change="deleteModel(2)">
+        <Option v-for="item in secondFloorDatas" :value="item.id" :key="item.id">{{ item.name }}</Option>
+      </Select>
+      <Select v-model="model3" style="min-width:150px;max-width: 160px;" v-if="showThird" >
+        <Option v-for="item in thirdFloorDatas" :value="item.id" :key="item.id">{{ item.name }}</Option>
+      </Select>
+    </div>
+</template>
+
+    <script>
+        var cityDatas = require('./cityDatas')
+        export default {
+            name: "chooseCity",
+            data() {
+                return {
+                    model1: '',
+                    model2: '',
+                    model3: '',
+                    firstFloorDatas: [],
+                    secondFloorDatas: [],
+                    thirdFloorDatas: [],
+                    showSecond: false,
+                    showThird: false,
+                }
+            },
+            props: {
+                cityData: {
+                    default: ''
+                }
+            },
+            methods: {
+                handleFirstDatas() {
+                    console.log(cityDatas)
+                    this.firstFloorDatas = cityDatas.default.filter((item, index) => {
+                        return item.level == "1";
+                    })
+
+                },
+                handleSecondDatas() {
+                    let str = this.model1.toString()
+                    let strPreThree = str.substring(0, 3);
+
+                    let re = new RegExp("^(" + strPreThree + ")\\d{2}(00)$")
+
+                    this.secondFloorDatas = cityDatas.default.filter((item, index) => {
+                        let str1 = item.id.toString()
+
+                        return (re.test(str1) && str1 !== str)
+                    })
+                    if (this.secondFloorDatas.length != 0) {
+                        this.showSecond = true;
+                    }
+
+                },
+                handleThridDatas() {
+                    if (this.model2) {
+                        let str = this.model2.toString();
+                        let strPreFive = str.substring(0, 5)
+                        let re = new RegExp("^(" + strPreFive + ")\\d{2}$");
+                        this.thirdFloorDatas = cityDatas.default.filter((item, index) => {
+                            let str1 = item.id.toString()
+                            return (re.test(str1) && str1 !== str)
+                        })
+                        if (this.thirdFloorDatas.length != 0 && this.model2) {
+                            this.showThird = true;
+                        }
+                    }
+
+                },
+                //根据数据进行选择的城市的显示
+                showData() {
+                    let items = cityDatas.default.filter((item, index) => {
+                        return item.id == this.cityData
+                    })
+                    if (items.length != 0) {
+                        let level = items[0].level;
+                        let id = items[0].id.toString();
+                        switch (level) {
+                            case 1:
+                                this.model1 = parseInt(this.cityData);
+                                break;
+                            case 2:
+                                this.model1 = parseInt(id.substring(0, 3) + "0000");
+                                this.model2 = parseInt(this.cityData);
+                                break;
+                            case 3:
+                                this.model1 = parseInt(id.substring(0, 3) + "0000");
+                                this.model2 = parseInt(id.substring(0, 5) + "00");
+                                this.model3 = parseInt(this.cityData);
+                        }
+                    }
+
+                    // alert(this.model1,this.model2.this.model3)
+                },
+                getChoosedCity() {
+                    if (this.model3) {
+                        return this.model3
+                    } else if (this.model2) {
+                        return this.model2
+                    } else if (this.model1) {
+                        return this.model1
+                    } else {
+                        return ''
+                    }
+                },
+                deleteModel(id) {
+                    if (id === 1) {
+                        this.model2 = '';
+                        this.model3 = '';
+                        this.showThird = false;
+                    } else if (id === 2) {
+                        this.model3 = '';
+                    }
+                },
+            },
+            created() {
+                this.handleFirstDatas()
+                if (this.cityData) {
+                    this.showData();
+                }
+            },
+            watch: {
+                model1: {
+                    handler: function(newVal) {
+                        // alert(newVal)
+                        this.handleSecondDatas()
+                    }
+                },
+                model2: {
+                    handler: function(newVal) {
+
+                        this.handleThridDatas()
+                    }
+                },
+                cityData: {
+                    handler: function(newVal) {
+                        this.model2 = '';
+                        this.model3 = '';
+                        this.model1 = '';
+                        this.showSecond = false;
+                        this.showThird = false;
+                        this.showData();
+                        console.log(newVal)
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .chooseCity {
+            width: 100%;
+            height: 40px;
+        }
+    </style>
+
+    <template>
+  
+    <div class="chooseCityBox"> 
+      <div class="box">
+        <span>选择城市</span>
+        <choose-city></choose-city> 
+      </div>     
+    </div>
+  </template>
+
+    <script>
+        import chooseCity from './chooseCity'
+        export default {
+            name: 'HelloWorld',
+            data() {
+                return {
+
+                }
+            },
+            components: {
+                chooseCity
+            }
+        }
+    </script>
+
+    <!-- Add "scoped" attribute to limit CSS to this component only -->
+    <style>
+        .chooseCityBox {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .box {
+            width: 500px;
+            height: 600px;
+            box-sizing: border-box;
+            padding-top: 50px;
+            box-shadow: #ccc 0px 0px 50px 2px;
+        }
+    </style>
+    <!--
+    <script>
+        document.getElementById("city").style.visibility = "hidden";
+    </script>
+-->
+
+</body>
+
+
+</html>
