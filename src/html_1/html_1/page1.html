@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/style.css">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* 水平导航条 */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* 水平导航链接 */
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* 水平链接 - 修改颜色 */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  width: 25%;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.dropdown{
+  display: inline-block;
+}
+
+.dropdown:hover{
+  background-color:#111;
+}
+
+.dropbtn{
+  display: inline-block;
+  color:white;
+  text-align:center;
+  padding:14px 16px;
+  text-decoration:none;
+  background-color:#111;
+}
+
+.dropdown-content{
+  display:none;
+  position:absolute;
+  background-color:#f9f9f9;
+  min-width:160px;
+  box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a{
+  float:none;
+  color:black;
+  padding:12px 16px;
+  text-decoration:none;
+  display:block;
+  }
+  
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content{
+  display:block;
+}
+
+/* 垂直导航条 */
+.leftnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  width: 25%;
+  position: fixed;
+  height: 100%;
+  background-color: #f1f1f1;
+}
+
+/* 垂直导航链接 */
+.leftnav a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+/* 垂直链接 - 修改颜色 */
+.leftnav a:hover {
+  background-color: #555;
+  color: white;
+}
+
+/* 内容 */
+.content {
+  margin-left:25%;
+  padding:1px 16px;
+  float: left;
+  width: 75%;
+}
+ 
+/* 列后清除浮动 */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  
+  /* 底部 */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+}
+ 
+</style>
+</head>
+<body>
+
+
+<div class="topnav">
+  <a class="active" href="#">PPHouse</a>
+  <a href="#">链接</a>
+  <div class="dropdown">
+  	<a href="#" class="dropbtn">登录</a>
+  	<div class="dropdown-content">
+  		<a href="#">链接 1</a>
+        <a href="#">链接 2</a>
+        <a href="#">链接 3</a>
+  	</div>
+  </div>
+</div>
+
+<div class="leftnav">
+  <a href="#">房价查询</a>
+  <a href="#">房价</a>
+  <a href="#">链接</a>
+</div>
+
+<div class="row">
+	
+  <div class="content">
+    <fieldset>
+        <legend>请选择您的城市</legend>
+        <form action="#">
+            <label for="addr-show">您选择的是：
+            <input type="text" value="" id="addr-show">
+        </label>
+            <br/>
+
+            <!--省份选择-->
+            <select id="prov" onchange="showCity(this)">
+            <option>=请选择省份=</option>
+
+        </select>
+
+            <!--城市选择-->
+            <select id="city" onchange="showCountry(this)">
+            <option>=请选择城市=</option>
+        </select>
+
+            <!--县区选择-->
+            <select id="country" onchange="selecCountry(this)">
+            <option>=请选择县区=</option>
+        </select>
+            <button type="button" class="btn met1" onClick="showAddr()">确定</button>
+        </form>
+    </fieldset>
+</div>
+  
+</div>
+
+<div class="footer">
+  <h1>底部内容</h1>
+</div>
+
+<script src="js/city.js"></script>
+<script src="js/method.js"></script>
+
+</body>
+</html>
