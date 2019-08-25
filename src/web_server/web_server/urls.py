@@ -19,8 +19,9 @@ from django.urls import path
 from django.conf.urls import url
 from . import view
 from .import settings
-
+from .sign_in_up import sign_in_up_view
 urlpatterns = [
     url('^$', view.main_page),
-    url('^sign_up_by_password.*',view.sign_up_by_password)
+    url('^sign_up_by_password.*',sign_in_up_view.sign_up_by_password),
+    url('^sign_up_by_phone_number.*',sign_in_up_view.sign_up_by_phone_number),
 ]

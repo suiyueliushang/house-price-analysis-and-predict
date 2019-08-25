@@ -1,7 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render
-from ... import dbconnect
+from django.views.decorators.csrf import csrf_exempt
+from .. import dbconnect
 
+
+@csrf_exempt
 def sign_up_by_password(request):
     '''登录传输的用户名和密码
     @arg：str:request.post[user_name]
@@ -21,6 +24,7 @@ def is_resgistered_phone(request):
     @return bool手机号是否被注册过
     @date:2019.8.25
     '''
+    
 def is_resgistered_username(request):
     '''判断用户名是否被注册过
     @args：user_name

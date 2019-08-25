@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sign_in_up',
+    'web_server.sign_in_up',
 ]
 
 MIDDLEWARE = [
@@ -76,16 +76,15 @@ WSGI_APPLICATION = 'web_server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'HOUSE_INFO',
-         'USER': 'root',         # 数据库用户名
-         'PASSWORD': 'P1i2p3i4@house',     # 密码
-         'HOST': 'pipihouse.com',    # 主机
-         'PORT': '3306',         # 数据库使用的端口
-     }
- }
+#DATABASES = {
+ #    'default': {
+  ##      'NAME': 'HOUSE_INFO',
+ #        'USER': 'root',         # 数据库用户名
+  #       'PASSWORD': 'P1i2p3i4@house',     # 密码
+  #       'HOST': 'pipihouse.com',    # 主机
+  #       'PORT': '3306',         # 数据库使用的端口
+  #   }
+ #}
 
 
 # Password validation

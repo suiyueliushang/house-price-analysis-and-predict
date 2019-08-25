@@ -231,16 +231,16 @@
 
 <!--登录对话框-->
 <div id="id01" class="modal">
-	<form class="modal-content animate" action="/sign_up_by_password" method="POST">
+	 <form class="modal-content animate" action="/sign_up_by_password" method="POST">{% csrf_token %}
 		<div class="imgcontainer">
 			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 			<img src="img/logo.jpg" alt="PPHouse" class="avatar">
 		</div>
 		<div class="container">
 			<label><b>用户名</b></label>
-			<input type="text" class="log_input" placeholder="请输入用户名或手机号" name="uname" required>
+			<input type="text" class="log_input" placeholder="请输入用户名或手机号" name="user_name" required>
 			<label><b>密码</b></label>
-			<input type="password" class="log_input" placeholder="请输入密码" name="psw" required>
+			<input type="password" class="log_input" placeholder="请输入密码" name="password" required>
 			<form action="#">
 				<h1 style="font-size: 15px;">验证码</h1>
 			    <label for="codes">
@@ -250,7 +250,7 @@
 			    <span class="refresh"><img src="./img/refresh.png"></span><br/>
 			    <span class="wrong-show"></span><br>
 		    </form>
-			<center><button class="btn" type="submit" onclick="login_by_password(document.getElementsByName(uname),document.getElementsByName(psw))" >登录</button></center>
+			<center><button class="btn" type="submit" onclick="login_by_password(document.getElementsByName(user_name),document.getElementsByName(password))" >登录</button></center>
 			<span class="psw"><a onclick="document.getElementById('id03').style.display='block'" style="width:auto;" class="a" >忘记密码?</a></span>
 		</div>
 	</form>

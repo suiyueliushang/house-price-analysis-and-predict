@@ -1,3 +1,4 @@
+"""
 import pymysql
 import json
 
@@ -26,3 +27,4 @@ def request_usinfo_by_phone(phone_number):
     @author
     @date:
     '''
+"""
