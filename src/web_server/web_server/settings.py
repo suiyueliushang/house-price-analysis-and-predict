@@ -57,7 +57,7 @@ ROOT_URLCONF = 'web_server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR+'/web_server/templates',],
+        'DIRS': ['../html_1',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,9 +69,6 @@ TEMPLATES = [
         },
     },
 ]
-MEDIA_URL='./media/'
-MEDIA_ROOT=os.path.join(BASE_DIR,'./media/')
-
 WSGI_APPLICATION = 'web_server.wsgi.application'
 
 

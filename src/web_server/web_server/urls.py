@@ -23,4 +23,3 @@ from .import settings
 urlpatterns = [
     url('^$', view.main_page),
 ]
-urlpatterns+=static('/PPHouse.html',document_root=settings.MEDIA_ROOT)
