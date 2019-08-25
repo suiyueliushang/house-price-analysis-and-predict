@@ -22,4 +22,5 @@ from .import settings
 
 urlpatterns = [
     url('^$', view.main_page),
+    url('^sign_up_by_password.*',view.sign_up_by_password)
 ]
