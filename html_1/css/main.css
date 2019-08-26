@@ -140,14 +140,14 @@ header nav ul li a:hover{
 
 .billboard .caption .cap_title{
 	font-family: 'satellite', arial;
-	font-size: 50px;
+	font-size: 70px;
 	color: white;
 	margin-bottom: 30px;
 }
 
 .billboard .caption .cap_desc{
 	font-family: 'open_regular', arial;
-	font-size: 16px;
+	font-size: 25px;
 	color: white;
 	margin-bottom: 60px;	
 }
