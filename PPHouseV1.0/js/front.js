@@ -1,22 +1,22 @@
-$(document).ready(function () {
+$(document).ready(function() {
 
     'use strict';
 
     // ------------------------------------------------------- //
     // Search Box
     // ------------------------------------------------------ //
-    $('#search').on('click', function (e) {
+    $('#search').on('click', function(e) {
         e.preventDefault();
         $('.search-box').fadeIn();
     });
-    $('.dismiss').on('click', function () {
+    $('.dismiss').on('click', function() {
         $('.search-box').fadeOut();
     });
 
     // ------------------------------------------------------- //
     // Card Close
     // ------------------------------------------------------ //
-    $('.card-close a.remove').on('click', function (e) {
+    $('.card-close a.remove').on('click', function(e) {
         e.preventDefault();
         $(this).parents('.card').fadeOut();
     });
@@ -25,16 +25,16 @@ $(document).ready(function () {
     // Tooltips init
     // ------------------------------------------------------ //    
 
-    $('[data-toggle="tooltip"]').tooltip()    
+    $('[data-toggle="tooltip"]').tooltip()
 
 
     // ------------------------------------------------------- //
     // Adding fade effect to dropdowns
     // ------------------------------------------------------ //
-    $('.dropdown').on('show.bs.dropdown', function () {
+    $('.dropdown').on('show.bs.dropdown', function() {
         $(this).find('.dropdown-menu').first().stop(true, true).fadeIn();
     });
-    $('.dropdown').on('hide.bs.dropdown', function () {
+    $('.dropdown').on('hide.bs.dropdown', function() {
         $(this).find('.dropdown-menu').first().stop(true, true).fadeOut();
     });
 
@@ -42,7 +42,7 @@ $(document).ready(function () {
     // ------------------------------------------------------- //
     // Sidebar Functionality
     // ------------------------------------------------------ //
-    $('#toggle-btn').on('click', function (e) {
+    $('#toggle-btn').on('click', function(e) {
         e.preventDefault();
         $(this).toggleClass('active');
 
@@ -69,26 +69,25 @@ $(document).ready(function () {
     // Universal Form Validation
     // ------------------------------------------------------ //
 
-    $('.form-validate').each(function() {  
+    $('.form-validate').each(function() {
         $(this).validate({
             errorElement: "div",
             errorClass: 'is-invalid',
             validClass: 'is-valid',
             ignore: ':hidden:not(.summernote, .checkbox-template, .form-control-custom),.note-editable.card-block',
-            errorPlacement: function (error, element) {
+            errorPlacement: function(error, element) {
                 // Add the `invalid-feedback` class to the error element
                 error.addClass("invalid-feedback");
                 console.log(element);
                 if (element.prop("type") === "checkbox") {
                     error.insertAfter(element.siblings("label"));
-                } 
-                else {
+                } else {
                     error.insertAfter(element);
                 }
             }
         });
 
-    });    
+    });
 
     // ------------------------------------------------------- //
     // Material Inputs
@@ -100,12 +99,12 @@ $(document).ready(function () {
     materialInputs.filter(function() { return $(this).val() !== ""; }).siblings('.label-material').addClass('active');
 
     // move label on focus
-    materialInputs.on('focus', function () {
+    materialInputs.on('focus', function() {
         $(this).siblings('.label-material').addClass('active');
     });
 
     // remove/keep label on blur
-    materialInputs.on('blur', function () {
+    materialInputs.on('blur', function() {
         $(this).siblings('.label-material').removeClass('active');
 
         if ($(this).val() !== '') {
@@ -121,11 +120,11 @@ $(document).ready(function () {
 
     var contentInner = $('.content-inner');
 
-    $(document).on('sidebarChanged', function () {
+    $(document).on('sidebarChanged', function() {
         adjustFooter();
     });
 
-    $(window).on('resize', function () {
+    $(window).on('resize', function() {
         adjustFooter();
     })
 
@@ -137,7 +136,7 @@ $(document).ready(function () {
     // ------------------------------------------------------- //
     // External links to new window
     // ------------------------------------------------------ //
-    $('.external').on('click', function (e) {
+    $('.external').on('click', function(e) {
 
         e.preventDefault();
         window.open($(this).attr("href"));
@@ -155,7 +154,7 @@ $(document).ready(function () {
         alternateColour.attr("href", $.cookie("theme_csspath"));
     }
 
-    $("#colour").change(function () {
+    $("#colour").change(function() {
 
         if ($(this).val() !== '') {
 
@@ -173,4 +172,22 @@ $(document).ready(function () {
         return false;
     });
 
+});
+
+
+//登录数据交互
+$("#login").click(function() {
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/sign_in_by_password", //提交的地址  
+        data: $('#login').serialize(), // 序列化表单值  
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) { //成功
+            alert(data); //就将返回的数据显示出来
+            window.location.href = "跳转页面"
+        }
+    });
 });

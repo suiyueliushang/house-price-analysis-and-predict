@@ -77,23 +77,19 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Form Panel    -->
+                    <!--   登录界面实现    -->
                     <div class="col-lg-6 bg-white">
                         <div class="form d-flex align-items-center">
                             <div class="content">
-                                <form method="post" class="form-validate">
+                                <form id="login_form">
                                     <div class="form-group">
-                                        <input id="login-username" type="text" name="loginUsername" required data-msg="Please enter your username" class="input-material">
+                                        <input id="login-username" type="text" name="user_name" required data-msg="Please enter your username" class="input-material">
                                         <label for="login-username" class="label-material">User Name</label>
                                     </div>
                                     <div class="form-group">
-                                        <input id="login-password" type="password" name="loginPassword" required data-msg="Please enter your password" class="input-material">
+                                        <input id="login-password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
                                         <label for="login-password" class="label-material">Password</label>
-
-
                                     </div>
-
-
 
                                     <form action="#">
                                         <div class="form-group">
@@ -101,7 +97,6 @@
                                             <label for="login-password" class="label-material">验证码</label>
 
                                         </div>
-
                                         <span class="code"></span>
                                         <span class="refresh"><img src="./img/refresh.png"></span>
                                         <br/>
@@ -109,10 +104,8 @@
                                         <br>
                                         <button class="btn" type="button">确定</button>
                                     </form>
+                                    <button type="button" id="login" class="btn btn-primary">Login</button>
 
-
-                                    <a id="login" href="index.html" class="btn btn-primary">Login</a>
-                                    <!-- This should be submit button but I replaced it with <a> for demo purposes-->
                                 </form><a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
                             </div>
                         </div>
@@ -135,6 +128,7 @@
     </script>
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    
     <!-- Main File-->
     <script src="js/front.js"></script>
     <script>
