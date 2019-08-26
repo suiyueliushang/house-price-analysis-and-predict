@@ -32,7 +32,11 @@ legend {
     border: 1px solid #ccc;
     outline: none;
     background-color: #aaa;
+<<<<<<< HEAD
+    float:right;
+=======
     margin: 0 20px;
+>>>>>>> d8efd2694810d35012cb829cc3c49c1bf7ab7070
 }
 
 .btn:disabled {
