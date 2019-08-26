@@ -61,7 +61,7 @@
 
 <header>
 	<div class="wrapper">
-		<a href="#" class="logo"> <img src="img/pphouse.jpg" alt="PPHouse" width="120" height="120" title="PPHouse"/> </a>
+		<a href="index.html" class="logo"> <img src="img/pphouse.jpg" alt="PPHouse" width="120" height="120" title="PPHouse"/> </a>
 		<nav>
 			<ul>
 				<li><a href="">地区</a></li>
@@ -229,28 +229,60 @@
 
 
 
-<!--登录对话框-->
+<!--账号密码登录对话框-->
 <div id="id01" class="modal">
-	 <form class="modal-content animate" action="/sign_up_by_password" method="POST">{% csrf_token %}
+	<form class="modal-content animate">
 		<div class="imgcontainer">
 			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
 			<img src="img/logo.jpg" alt="PPHouse" class="avatar">
 		</div>
 		<div class="container">
+	        <h2 class="box-title">账号密码登录</h2><br><br>
 			<label><b>用户名</b></label>
-			<input type="text" class="log_input" placeholder="请输入用户名或手机号" name="user_name" required>
+			<input type="text" class="log_input" placeholder="请输入用户名或手机号" name="name_1" required>
 			<label><b>密码</b></label>
-			<input type="password" class="log_input" placeholder="请输入密码" name="password" required>
+			<input type="password" class="log_input" placeholder="请输入密码" name="psw_1" required>
 			<form action="#">
 				<h1 style="font-size: 15px;">验证码</h1>
 			    <label for="codes">
-			        <input id="codes" class="validateCode" placeholder="请输入验证码">
+			        <input id="codes" class="validateCode" placeholder="请输入验证码" name="verify_1" required>
 			    </label>
 			    <span class="code"></span>
 			    <span class="refresh"><img src="./img/refresh.png"></span><br/>
 			    <span class="wrong-show"></span><br>
 		    </form>
-			<center><button class="btn" type="submit" onclick="login_by_password(document.getElementsByName(user_name),document.getElementsByName(password))" >登录</button></center>
+			<center><button class="btn" type="submit" onclick="login_by_password(document.getElementsByName(uname),document.getElementsByName(psw))" >登录</button></center>
+			<span class="c"><a onclick="document.getElementById('id04').style.display='block'" style="width:auto;" class="a">手机快捷登录</a></span>
+			<span class="psw"><a onclick="document.getElementById('id03').style.display='block'" style="width:auto;" class="a" >忘记密码?</a></span>
+		</div>
+	</form>
+</div>
+
+<!--手机号快捷登录对话框-->
+<div id="id04" class="modal">
+	<form class="modal-content animate">
+		<div class="imgcontainer">
+			<span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
+			<img src="img/logo.jpg" alt="PPHouse" class="avatar">
+		</div>
+		<div class="container">
+			<h2 class="box-title">手机号快捷登录</h2><br><br>
+			<label><b>手机号</b></label>
+			<input type="text" class="log_input" placeholder="请输入手机号" name="name_4" required>
+			<form action="#">
+				<h1 style="font-size: 15px;">验证码</h1>
+			    <label for="codes">
+			        <input id="codes" class="validateCode" placeholder="请输入验证码" name="verify_4" required>
+			    </label>
+			    <span class="code"></span>
+			    <span class="refresh"><img src="./img/refresh.png"></span><br/>
+			    <span class="wrong-show"></span><br>
+		    </form>
+			<label><b>手机验证码</b></label>
+			<input type="password" class="log_input" placeholder="请输入手机验证码密码" name="ph_verify_4" required>
+			
+			<center><button class="btn" type="submit" onclick="login_by_password(document.getElementsByName(uname),document.getElementsByName(psw))" >登录</button></center>
+			<span class="c"><a onclick="document.getElementById('id04').style.display='none'" class="a">账号密码登录</a></span>
 			<span class="psw"><a onclick="document.getElementById('id03').style.display='block'" style="width:auto;" class="a" >忘记密码?</a></span>
 		</div>
 	</form>
@@ -263,14 +295,15 @@
 			<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
 		</div>
 		<div class="container">
+			<h2 class="box-title">手机号码注册</h2><br><br>
 			<label><b>用户名</b></label>
-			<input type="text" class="log_input" placeholder="请输入用户名" name="name2" required>
+			<input type="text" class="log_input" placeholder="请输入用户名" name="name_2" required>
 			<label><b>手机号</b></label>
-			<input type="text" class="log_input" placeholder="请输入手机号" name="email" required>
+			<input type="text" class="log_input" placeholder="请输入手机号" name="phone_2" required>
 			<label><b>密码</b></label>
-			<input type="password" class="log_input" placeholder="请输入密码" name="psw" required>
+			<input type="password" class="log_input" placeholder="请输入密码" name="psw_2" required>
 			<label><b>确认密码</b></label>
-			<input type="password" class="log_input" placeholder="请再次输入密码" name="psw2" required>
+			<input type="password" class="log_input" placeholder="请再次输入密码" name="re_psw_2" required>
 			<div class="clearfix">
 				<center><button type="submit" class="signupbtn">注册</button></center>
 			</div>
@@ -285,12 +318,13 @@
 			<span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
 		</div>
 		<div class="container">
+			<h2 class="box-title">找回密码</h2><br><br>
 			<label><b>手机号</b></label>
-			<input type="text" class="log_input" placeholder="请输入手机号" name="email" required>
+			<input type="text" class="log_input" placeholder="请输入手机号" name="phone_3" required>
 			<label><b>修改密码</b></label>
-			<input type="text" class="log_input" placeholder="请重新输入密码" name="psw" required>
+			<input type="text" class="log_input" placeholder="请重新输入密码" name="psw_3" required>
 			<label><b>验证码</b></label>
-			<input type="password" class="log_input" placeholder="请输入手机验证码" name="verify" required>
+			<input type="password" class="log_input" placeholder="请输入手机验证码" name="verify_3" required>
 				<div class="clearfix">
 					<center><button type="submit" class="signupbtn">提交</button></center>
 				</div>

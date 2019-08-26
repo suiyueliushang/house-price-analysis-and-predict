@@ -116,6 +116,10 @@ span.psw {
     }
 }
 
+.box-title{
+    font-size: 20px;
+}
+
 .a{
 	color:#009900;
 }
@@ -123,4 +127,8 @@ span.psw {
 .b{
 	float: none;
 	width:100px;
+}
+
+.c{
+    float: left;
 }
