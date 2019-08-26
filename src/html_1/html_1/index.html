@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>PPHouse</title>
+<meta charset="utf-8">
+<meta name="author" content="">
+<meta name="description" content=""/>
+<link rel="stylesheet" type="text/css" href="css/reset.css">
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" href="css/8.css" />
+<link rel="stylesheet" href="css/9.css" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+<style>
+	.validateCode {
+		height: 25px;
+		padding-left: 5px;
+		margin-right: 10px;
+	}
+	
+	.code {
+		color: red;
+		font-style: italic;
+		display: inline-block;
+		height: 30px;
+		width: 65px;
+		padding: 0 5px;
+		line-height: 27px;
+		letter-spacing: 4px;
+		/*调整字母间距*/
+		background-image: url('./img/timg.jpg');
+	}
+	
+	.refresh {
+		cursor: pointer;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	
+	.wrong-show {
+		font-size: 12px;
+		line-height: 12px;
+		color: red;
+	}
+	
+	.btn {
+		background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 50%;
+	}
+</style>
+
+</head>
+
+<body>
+
+<header>
+	<div class="wrapper">
+		<a href="index.html" class="logo"> <img src="img/pphouse.jpg" alt="PPHouse" width="120" height="120" title="PPHouse"/> </a>
+		<nav>
+			<ul>
+				<li><a href="">地区</a></li>
+				<li><a href="">语言</a></li>
+				<li><a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">登录</a><a>/</a><a onclick="document.getElementById('id02').style.display='block'" style="width:auto;">注册</a></li>
+				<li><a href="">联系我们</a></li>
+			</ul>
+		</nav>
+	</div>
+</header><!-- End Header -->
+
+<section class="billboard">
+	<section class="caption">
+		<p class="cap_title"><strong>P P H o u s e</strong></p>
+		<p class="cap_desc">在线房价分析与预测系统</p>
+		<form action="">
+			<input type="text" class="search" name="searchContent" placeholder="请输入区域或小区名开始找房"/>
+		    <a href="#">查找</a>
+		</form>
+	</section>
+</section><!-- End billboard -->
+
+<section class="services wrapper">
+	<ul>
+		<li>
+			<a href="page1.html">
+				<img class="s_icons" src="img/s1_icon.png" title="" alt=""/>
+		  	    <h3>房价查询</h3>
+			    <p>Excepteur sint occaecat cupi datat non it proident, sunt in culpa qui officia dese runtorn mollit anim id est laborum.</p>
+			</a>	
+		</li>
+		<li>
+			<a href="#">
+				<img class="s_icons" src="img/s2_icon.png" title="" alt=""/>
+			    <h3>地图找房</h3>
+			    <p>Excepteur sint occaecat cupi datat non it proident, sunt in culpa qui officia dese runtorn mollit anim id est laborum.</p>
+			</a>	
+		</li>
+		<li>
+			<a href="#">
+			    <img class="s_icons" src="img/s3_icon.png" title="" alt=""/>
+			    <h3>房价预测</h3>
+			    <p>Excepteur sint occaecat cupi datat non it proident, sunt in culpa qui officia dese runtorn mollit anim id est laborum.</p>	
+			</a>		
+		</li>
+	</ul>
+</section><!-- End services -->
+
+
+<section class="video wrapper">
+	<h3>sunt in culpa qui officia deserunt mollit</h3>
+	<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	<div class="ex_video">
+		<a href="#"><img src="img/video.jpg" alt="" title=""/></a>
+	</div>
+</section>	<!-- End video -->
+
+
+<section class="recent_work wrapper">
+	<h3 class="S_title">Recent Work</h3>
+
+	<div class="work">
+		<a href="#" class="work_img">
+			<img src="img/work_image.jpg" alt="" title=""/>
+		</a>
+		<a href="#" class="work_title">
+			Brand Project
+			<i></i>
+		</a>
+	</div>
+	<div class="work">
+		<a href="#" class="work_img">
+			<img src="img/work_image1.jpg" alt="" title=""/>
+		</a>
+		<a href="#" class="work_title">
+			Brand Project 2
+			<i></i>
+		</a>
+	</div>
+	<div class="work">
+		<a href="#" class="work_img">
+			<img src="img/work_image2.jpg" alt="" title=""/>
+		</a>
+		<a href="#" class="work_title">
+			Brand Project 3
+			<i></i>
+		</a>
+	</div>
+	<div class="work">
+		<a href="#" class="work_img">
+			<img src="img/work_image3.jpg" alt="" title=""/>
+		</a>
+		<a href="#" class="work_title">
+			Brand Project 4
+			<i></i>
+		</a>
+	</div>
+</section><!-- End recent_work -->
+
+<section class="subscription">
+	<div class="wrapper">
+		<p class="title">join our subscribers.</p>
+		<p class="desc">10 000 sint occaecat cupidatat non proident sunt in culpa qui officia.</p>
+		<a href="#" class="start_btn">Click here to subscribe</a>
+	</div>
+</section><!-- End subscription -->
+
+
+
+<section class="social">
+		<a href="#" target="_blank" class="fb"></a>
+		<a href="#" target="_blank" class="t"></a>
+		<a href="#" target="_blank" class="d"></a>
+		<a href="#" target="_blank" class="g"></a>
+</section><!-- End social -->
+	
+
+
+<footer>
+	<div class="wrapper">
+		<div class="f_cols">
+			<h3>Location</h3>
+			<p>1401 South Grand Avenue Los Angeles, CA 90015 <span class="phone">(213) 748-2411</span></p> 	
+			<a href="#" class="map">see it in the map <span class="arrow">&nbsp;&rarr;</span></a>	
+		</div>	
+
+		<div class="f_cols">
+			<h3>Company</h3>
+			<ul>
+				<li><a href="#">Our Story</a></li>
+				<li><a href="#">Mission</a></li>
+				<li><a href="#">Journal</a></li>
+				<li><a href="#">Careers</a></li>
+			</ul>	
+		</div>	
+
+		<div class="f_cols">
+			<h3>Support</h3>
+			<ul>
+				<li><a href="#">FAQ</a></li>
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="#">Policies</a></li>
+			</ul>	
+		</div>	
+
+		<div class="f_cols">
+			<h3>Minima.</h3>
+			<p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<p></p>
+		</div>	
+
+
+	</div>
+</footer><!-- End footer -->
+
+<div id="lightbox"></div>
+<div id="box">
+	<a href="" class="close"></a>
+	<form method="" action="">
+		<input type="text" id="email" placeholder="Email"/>
+		<input type="text" id="name" placeholder="Name"/>
+		<input type="submit" id="submit" value="Subscribe Now"/>
+	</form>
+</div>
+
+
+
+<!--账号密码登录对话框-->
+<div id="id01" class="modal">
+	<form class="modal-content animate">
+		<div class="imgcontainer">
+			<span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+			<img src="img/logo.jpg" alt="PPHouse" class="avatar">
+		</div>
+		<div class="container">
+	        <h2 class="box-title">账号密码登录</h2><br><br>
+			<label><b>用户名</b></label>
+			<input type="text" class="log_input" placeholder="请输入用户名或手机号" name="name_1" required>
+			<label><b>密码</b></label>
+<<<<<<< HEAD:html_1/index.html
+			<input type="password" class="log_input" placeholder="请输入密码" name="psw_1" required>
+			<form action="#">
+				<h1 style="font-size: 15px;">验证码</h1>
+			    <label for="codes">
+			        <input id="codes" class="validateCode" placeholder="请输入验证码" name="verify_1" required>
+=======
+			<input type="password" class="log_input" placeholder="请输入密码" name="psw" required>
+			<form action="#">
+				<h1 style="font-size: 15px;">验证码</h1>
+			    <label for="codes">
+			        <input id="codes" class="validateCode" placeholder="请输入验证码">
+>>>>>>> d8efd2694810d35012cb829cc3c49c1bf7ab7070:src/html_1/html_1/index.html
+			    </label>
+			    <span class="code"></span>
+			    <span class="refresh"><img src="./img/refresh.png"></span><br/>
+			    <span class="wrong-show"></span><br>
+		    </form>
+			<center><button class="btn" type="submit" onclick="login_by_password(document.getElementsByName(uname),document.getElementsByName(psw))" >登录</button></center>
+<<<<<<< HEAD:html_1/index.html
+			<span class="c"><a onclick="document.getElementById('id04').style.display='block'" style="width:auto;" class="a">手机快捷登录</a></span>
+			<span class="psw"><a onclick="document.getElementById('id03').style.display='block'" style="width:auto;" class="a" >忘记密码?</a></span>
+		</div>
+	</form>
+</div>
+
+<!--手机号快捷登录对话框-->
+<div id="id04" class="modal">
+	<form class="modal-content animate">
+		<div class="imgcontainer">
+			<span onclick="document.getElementById('id04').style.display='none'" class="close" title="Close Modal">&times;</span>
+			<img src="img/logo.jpg" alt="PPHouse" class="avatar">
+		</div>
+		<div class="container">
+			<h2 class="box-title">手机号快捷登录</h2><br><br>
+			<label><b>手机号</b></label>
+			<input type="text" class="log_input" placeholder="请输入手机号" name="name_4" required>
+			<form action="#">
+				<h1 style="font-size: 15px;">验证码</h1>
+			    <label for="codes">
+			        <input id="codes" class="validateCode" placeholder="请输入验证码" name="verify_4" required>
+			    </label>
+			    <span class="code"></span>
+			    <span class="refresh"><img src="./img/refresh.png"></span><br/>
+			    <span class="wrong-show"></span><br>
+		    </form>
+			<label><b>手机验证码</b></label>
+			<input type="password" class="log_input" placeholder="请输入手机验证码密码" name="ph_verify_4" required>
+			
+			<center><button class="btn" type="submit" onclick="login_by_password(document.getElementsByName(uname),document.getElementsByName(psw))" >登录</button></center>
+			<span class="c"><a onclick="document.getElementById('id04').style.display='none'" class="a">账号密码登录</a></span>
+=======
+>>>>>>> d8efd2694810d35012cb829cc3c49c1bf7ab7070:src/html_1/html_1/index.html
+			<span class="psw"><a onclick="document.getElementById('id03').style.display='block'" style="width:auto;" class="a" >忘记密码?</a></span>
+		</div>
+	</form>
+</div>
+
+<!--注册对话框-->
+<div id="id02" class="modal">
+	<form class="modal-content animate" action="/action_page.php">
+		<div class="imgcontainer">
+			<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+		</div>
+		<div class="container">
+<<<<<<< HEAD:html_1/index.html
+			<h2 class="box-title">手机号码注册</h2><br><br>
+			<label><b>用户名</b></label>
+			<input type="text" class="log_input" placeholder="请输入用户名" name="name_2" required>
+			<label><b>手机号</b></label>
+			<input type="text" class="log_input" placeholder="请输入手机号" name="phone_2" required>
+			<label><b>密码</b></label>
+			<input type="password" class="log_input" placeholder="请输入密码" name="psw_2" required>
+			<label><b>确认密码</b></label>
+			<input type="password" class="log_input" placeholder="请再次输入密码" name="re_psw_2" required>
+=======
+			<label><b>用户名</b></label>
+			<input type="text" class="log_input" placeholder="请输入用户名" name="name2" required>
+			<label><b>手机号</b></label>
+			<input type="text" class="log_input" placeholder="请输入手机号" name="email" required>
+			<label><b>密码</b></label>
+			<input type="password" class="log_input" placeholder="请输入密码" name="psw" required>
+			<label><b>确认密码</b></label>
+			<input type="password" class="log_input" placeholder="请再次输入密码" name="psw2" required>
+>>>>>>> d8efd2694810d35012cb829cc3c49c1bf7ab7070:src/html_1/html_1/index.html
+			<div class="clearfix">
+				<center><button type="submit" class="signupbtn">注册</button></center>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!--找回密码对话框-->
+<div id="id03" class="modal">
+	<form class="modal-content animate" action="/action_page.php">
+		<div class="imgcontainer">
+			<span onclick="document.getElementById('id03').style.display='none'" class="close" title="Close Modal">&times;</span>
+		</div>
+		<div class="container">
+			<h2 class="box-title">找回密码</h2><br><br>
+			<label><b>手机号</b></label>
+			<input type="text" class="log_input" placeholder="请输入手机号" name="phone_3" required>
+			<label><b>修改密码</b></label>
+<<<<<<< HEAD:html_1/index.html
+			<input type="text" class="log_input" placeholder="请重新输入密码" name="psw_3" required>
+			<label><b>验证码</b></label>
+			<input type="password" class="log_input" placeholder="请输入手机验证码" name="verify_3" required>
+=======
+			<input type="text" class="log_input" placeholder="请重新输入密码" name="psw" required>
+			<label><b>验证码</b></label>
+			<input type="password" class="log_input" placeholder="请输入手机验证码" name="verify" required>
+>>>>>>> d8efd2694810d35012cb829cc3c49c1bf7ab7070:src/html_1/html_1/index.html
+				<div class="clearfix">
+					<center><button type="submit" class="signupbtn">提交</button></center>
+				</div>
+		</div>
+	</form>
+</div>
+
+<script>
+	var valiCode = document.getElementsByClassName('validateCode')[0];
+	var code = document.getElementsByClassName('code')[0];
+	var wrongShow = document.getElementsByClassName('wrong-show')[0];
+	var refresh = document.getElementsByClassName('refresh')[0];
+	var btn = document.getElementsByClassName('btn')[0];
+
+	var result = [];
+
+	/*声明一个数组包含所有字母及数字*/
+	var arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+		'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
+		'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+	];
+
+
+	/*生成一个四位随机字符串*/
+	function getRandomStr() {
+		result.lenght = 0;
+		for (var i = 0; i < 4; i++) {
+			var num = Math.floor(Math.random() * 62);
+			result[i] = arr[num];
+		}
+		var codeStr = result.join('');
+		code.innerText = codeStr;
+	}
+
+	/*初始化一个验证码*/
+	window.onload = getRandomStr();
+
+	/*点击页面中该字符串重新生成一次*/
+	refresh.onclick = function() {
+		getRandomStr();
+	};
+
+
+	/*点击确定按钮进行验证并显示结果*/
+	btn.onclick = function() {
+		var val = valiCode.value;
+		var current = result.join('');
+		console.log(val, typeof val, current, typeof current)
+		if (current == val) {
+			wrongShow.innerText = '验证码输入正确!';
+			/* getRandomStr();
+			 alert('验证码输入正确!');*/
+		} else {
+			wrongShow.innerText = '验证码输入有误!';
+			getRandomStr();
+		}
+	};
+</script>
+</body>
+</html>

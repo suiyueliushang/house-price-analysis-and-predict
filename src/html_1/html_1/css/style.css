@@ -1,0 +1,52 @@
+/*全局样式*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+fieldset {
+    width: 500px;
+    padding: 20px;
+    margin: 30px;
+    border: 1px solid #ccc;
+}
+
+legend {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#addr-show,
+#addr-show02,
+#addr-show03 {
+    width: 200px;
+    height: 25px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    width: 80px;
+    height: 30px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    outline: none;
+    background-color: #aaa;
+<<<<<<< HEAD
+    float:right;
+=======
+    margin: 0 20px;
+>>>>>>> d8efd2694810d35012cb829cc3c49c1bf7ab7070
+}
+
+.btn:disabled {
+    background-color: #ccc;
+}
+
+
+/*方法一样式部分*/
+
+select {
+    width: 120px;
+    height: 30px;
+}
