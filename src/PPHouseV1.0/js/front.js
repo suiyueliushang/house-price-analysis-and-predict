@@ -180,7 +180,7 @@ $("#login").click(function() {
     $.ajax({
         type: "POST", //提交的方法
         url: "/sign_in_by_password", //提交的地址  
-        data: $('#login').serialize(), // 序列化表单值  
+        data: $('#login_form').serialize(), // 序列化表单值  
         async: false,
         error: function(request) { //失败的话
             alert("Connection error");
