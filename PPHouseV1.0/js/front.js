@@ -184,8 +184,8 @@ $("#login").click(function() {
         type: "POST", //提交的方法
         url: "/sign_in_by_password", //提交的地址  
         data: {
-            user_name,
-            password
+            "username": username,
+            "password": password
         },
         //$('#login_form').serialize(), // 序列化表单值  
         async: false,
