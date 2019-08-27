@@ -177,6 +177,8 @@ $(document).ready(function() {
 
 //登录数据交互
 $("#login").click(function() {
+    var user_name = $('#user_name').val();
+    var password = $('#password').val();
     $.ajax({
         type: "POST", //提交的方法
         url: "/sign_in_by_password", //提交的地址  
@@ -192,7 +194,7 @@ $("#login").click(function() {
             alert("Connection error");
         },
         success: function(data) { //成功
-            alert($('#user_name').val()); //就将返回的数据显示出来
+            alert(user_name); //就将返回的数据显示出来
             window.location.href = "index.html"
         }
     });
