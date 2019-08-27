@@ -182,12 +182,12 @@ $("#login").click(function() {
     $.ajax({
         type: "POST", //提交的方法
         url: "/sign_in_by_password", //提交的地址  
-        contentType: false,
+        // contentType: false,
         data: {
             "user_name": user_name,
             "password": password
         },
-        datatype: "json",
+        // datatype: "json",
         //$('#login_form').serialize(), // 序列化表单值  
         async: false,
         error: function(request) { //失败的话
@@ -196,6 +196,7 @@ $("#login").click(function() {
         success: function(data) { //成功
             alert(user_name);            
             window.location.href = "/"
+
         }
     });
 });
