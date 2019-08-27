@@ -177,15 +177,15 @@ $(document).ready(function() {
 
 //登录数据交互
 $("#login").click(function() {
-    //var user_name = $('#user_name').val();
-    //var password = $('#password').val();
+    user_name = $('#user_name').val();
+    password = $('#password').val();
     $.ajax({
         type: "POST", //提交的方法
         url: "/sign_in_by_password", //提交的地址  
         // contentType: false,
         data: {
-            'user_name': $('#user_name'),
-            'password': $('#password'),
+            'user_name': user_name,
+            'password': password
         },
 
         // datatype: "json",
