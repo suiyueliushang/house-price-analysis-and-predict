@@ -200,7 +200,7 @@ $("#login").click(function() {
         success: function(data) { //成功
             alert(data); //就将返回的数据显示出来
             window.location.href = "index.html";
-            $("#h4").val(user_name);
+            $("#login_id").val(user_name);
 
 
 
