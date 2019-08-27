@@ -13,7 +13,7 @@ def sign_in_by_password(request):
     @return : sessionid 为空表示用户名或密码错误
     @date:2019.8.25
     '''
-    print("用户名："+str(request.POST.items()))
+    print("用户名："+str(request.POST.get('user_name')))
     print('密码：'+str(request.POST.get('password')))
     return HttpResponse('hello,world')
 
