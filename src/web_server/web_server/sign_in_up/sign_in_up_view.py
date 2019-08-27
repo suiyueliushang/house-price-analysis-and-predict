@@ -13,11 +13,8 @@ def sign_in_by_password(request):
     @return : sessionid 为空表示用户名或密码错误
     @date:2019.8.25
     '''
-    print("hello")
-    print(request.POST.items())
     print("用户名："+str(request.POST.items()))
     print('密码：'+str(request.POST.get('password')))
-    print(str(request.POST.get('url')))
     return HttpResponse('hello,world')
 
 def is_resgistered_phone(request):

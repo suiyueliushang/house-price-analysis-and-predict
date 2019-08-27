@@ -179,8 +179,6 @@ $(document).ready(function() {
 $("#login").click(function() {
     var user_name = $('#user_name').val();
     var password = $('#password').val();
-
-
     $.ajax({
         type: "POST", //提交的方法
         url: "/sign_in_by_password", //提交的地址  
@@ -197,7 +195,7 @@ $("#login").click(function() {
         },
         success: function(data) { //成功
             alert(user_name);            
-            window.location.href = "index.html"
+            window.location.href = "/"
         }
     });
 });
