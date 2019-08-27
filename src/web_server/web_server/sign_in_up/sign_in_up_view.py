@@ -5,7 +5,7 @@ from .. import dbconnect
 
 
 @csrf_exempt
-def sign_up_by_password(request):
+def sign_in_by_password(request):
     '''登录传输的用户名和密码
     @arg：str:request.post[user_name]
           str:request.post[password]
@@ -13,8 +13,11 @@ def sign_up_by_password(request):
     @return : sessionid 为空表示用户名或密码错误
     @date:2019.8.25
     '''
-    print("用户名："+request.POST.get('user_name'))
-    print('密码：'+request.POST.get('password'))
+    print("hello")
+    print(request.POST.items())
+    print("用户名："+str(request.POST.items()))
+    print('密码：'+str(request.POST.get('password')))
+    print(str(request.POST.get('url')))
     return HttpResponse('hello,world')
 
 def is_resgistered_phone(request):
@@ -30,16 +33,26 @@ def is_resgistered_username(request):
     @args：user_name
     @return:bool 
     '''
-def sign_up_by_phone_number(request):
+def sign_in_by_phone_number(request):
     '''手机号登录
     传递一个正确的11位中国大陆手机号码，和用户出入的验证码
         @args：phonenumber，auth_code
         @return：sessionid，为空，则表示用户输入验证码错误
     '''
 
-def sign_in(request):
+def sign_up(request):
     '''注册
     传递用户名，手机号，还有密码,验证码
     @args：user_name,phone_number,password,auth_code
     @return bool，判断用户验证码是否正确
+    '''
+
+def forget_password(request):
+    '''忘记密码
+    用于用户忘记密码通过手机验证码重新设置密码时
+    @args:str:phonenumber，
+        str:password，
+        str:auth_code
+    @return: bool,判断用户输入的验证码马是否正确，如果正确，则找回新密码生效
+    @date:
     '''

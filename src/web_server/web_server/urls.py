@@ -22,6 +22,6 @@ from .import settings
 from .sign_in_up import sign_in_up_view
 urlpatterns = [
     url('^$', view.main_page),
-    url('^sign_up_by_password.*',sign_in_up_view.sign_up_by_password),
-    url('^sign_up_by_phone_number.*',sign_in_up_view.sign_up_by_phone_number),
+    url('^sign_in_by_password.*',sign_in_up_view.sign_in_by_password),
+    url('^sign_in_by_phone_number.*',sign_in_up_view.sign_in_by_phone_number),
 ]

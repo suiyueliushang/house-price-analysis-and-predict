@@ -58,7 +58,7 @@ ROOT_URLCONF = 'web_server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['../html_1',],
+        'DIRS': ['../PPHouseV1.0',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
