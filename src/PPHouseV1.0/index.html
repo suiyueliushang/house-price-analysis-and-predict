@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home</title>
+    <title>PPHouse</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -55,7 +55,7 @@
                         <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                             <li style="padding: 0px 10px 0px"><a href="">地区</a></li>
                             <li style="padding: 0px 10px 0px"><a href="">语言</a></li>
-                            <li style="padding: 0px 10px 0px"><a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">登录</a><a>/</a><a onclick="document.getElementById('id02').style.display='block'" style="width:auto;">注册</a></li>
+                            <li style="padding: 0px 10px 0px"><a href="register.html" style="width:auto;">注册</a><a>/</a><a href="login.html" style="width:auto;">登录</a></li>
                             <li style="padding: 0px 10px 0px"><a href="">联系我们</a></li>
                             <!-- Logout    -->
                             <li class="nav-item">
@@ -128,13 +128,40 @@
                                     <div class="home_01" style="display: inline">
                                         <h2 class="no-margin-bottom">房源展示</h2>
                                         <br>
-                                        <table>
-                                            <tr>
-                                                <td><img src="./img/home_01.png" border=0 style="width: 370px"></td>
-                                                <td><img src="./img/home_02.png" border=0 style="width: 370px"></td>
-                                                <td><img src="./img/home_03.png" border=0 style="width: 370px"></td>
-                                            </tr>
-                                        </table>
+
+
+                                        <div id="demo" class="carousel slide" data-ride="carousel">
+
+                                            <!-- 指示符 -->
+                                            <ul class="carousel-indicators">
+                                                <li data-target="#demo" data-slide-to="0" class="active"></li>
+                                                <li data-target="#demo" data-slide-to="1"></li>
+                                                <li data-target="#demo" data-slide-to="2"></li>
+                                            </ul>
+
+                                            <!-- 轮播图片 -->
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active">
+                                                    <img src="./img/home_01.png">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="./img/home_02.png">
+                                                </div>
+                                                <div class="carousel-item">
+                                                    <img src="./img/home_03.png">
+                                                </div>
+                                            </div>
+
+                                            <!-- 左右切换按钮 -->
+                                            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                                <span class="carousel-control-prev-icon"></span>
+                                            </a>
+                                            <a class="carousel-control-next" href="#demo" data-slide="next">
+                                                <span class="carousel-control-next-icon"></span>
+                                            </a>
+
+                                        </div>
+
 
                                         <table>
                                             <tr>
