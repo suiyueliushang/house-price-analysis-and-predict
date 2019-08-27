@@ -179,6 +179,7 @@ $(document).ready(function() {
 $("#login").click(function() {
     user_name = $('#user_name').val();
     password = $('#password').val();
+
     $.ajax({
         type: "POST", //提交的方法
         url: "/sign_in_by_password", //提交的地址  
@@ -192,11 +193,17 @@ $("#login").click(function() {
         //$('#login_form').serialize(), // 序列化表单值  
         async: false,
         error: function(request) { //失败的话
+
+
             alert("Connection error");
         },
         success: function(data) { //成功
             alert(data); //就将返回的数据显示出来
-            window.location.href = "index.html"
+            window.location.href = "index.html";
+            $("#h4").val(user_name);
+
+
+
         }
     });
 });
