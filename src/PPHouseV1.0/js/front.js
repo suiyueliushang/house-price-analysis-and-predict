@@ -193,17 +193,23 @@ $("#login").click(function() {
         //$('#login_form').serialize(), // 序列化表单值  
         async: false,
         error: function(request) { //失败的话
-
-
             alert("Connection error");
         },
         success: function(data) { //成功
             alert(data); //就将返回的数据显示出来
             window.location.href = "index.html";
-            $("#login_id").val(user_name);
+            // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
+            window.localStorage.setItem("name", user_name);
+
 
 
 
         }
     });
+});
+
+$("#log_out").click(function() {
+    //user_name = $('#login_id').val();
+    window.localStorage.removeItem("name");
+
 });
