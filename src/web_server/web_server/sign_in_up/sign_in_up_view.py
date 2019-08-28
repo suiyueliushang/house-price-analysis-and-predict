@@ -15,7 +15,7 @@ def sign_in_by_password(request):
     '''
     print("用户名："+str(request.POST.get('user_name')))
     print('密码：'+str(request.POST.get('password')))
-    return HttpResponse('hello,world')
+    return HttpResponse('1')
 
 def is_resgistered_phone(request):
     '''注册和登录时使用

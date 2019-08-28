@@ -209,10 +209,17 @@ $("#login").click(function() {
                 alert("Connection error");
             },
             success: function(data) { //成功
-                alert(data); //就将返回的数据显示出来
-                window.location.href = "index.html";
-                // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
-                window.localStorage.setItem("name", user_name);
+                if (data == '0') {
+                    alert("登陆成功"); //就将返回的数据显示出来
+                    window.location.href = "index.html";
+                    // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
+                    window.localStorage.setItem("name", data);
+                } else if (data == '1') {
+                    alert("用户名不存在");
+                } else {
+                    alert("密码错误");
+                }
+
             }
         });
 
@@ -351,3 +358,43 @@ window.onload = getRandomStr();
 refresh.onclick = function() {
     getRandomStr();
 };
+
+
+//手机验证码
+$("#get_phone_code").click(function() {
+
+
+    phone_number = $('#phone_number').val();
+
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/sign_in_by_password", //提交的地址  
+        // contentType: false,
+        data: {
+            'user_name': user_name,
+            'password': password
+        },
+
+        // datatype: "json",
+        //$('#login_form').serialize(), // 序列化表单值  
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) { //成功
+            if (data == '0') {
+                alert("注册成功成功"); //就将返回的数据显示出来
+                window.location.href = "index.html";
+                // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
+                window.localStorage.setItem("name", user_name);
+            } else if (data == '1') {
+                alert("用户名不存在");
+            } else {
+                alert("密码错误");
+            }
+
+        }
+    });
+
+}
+});
