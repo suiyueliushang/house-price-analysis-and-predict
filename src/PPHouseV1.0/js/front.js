@@ -382,7 +382,7 @@ $("#get_phone_code").click(function() {
         },
         success: function(data) { //成功
             if (data == '0') {
-                alert("验证码已发送"); //就将返回的数据显示出来
+                alert(phone_number); //就将返回的数据显示出来
                 window.location.href = "index.html";
                 // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
                 window.localStorage.setItem("name", user_name);
@@ -394,6 +394,5 @@ $("#get_phone_code").click(function() {
 
         }
     });
-
 }
-});
+);
