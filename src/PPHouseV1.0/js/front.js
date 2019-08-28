@@ -368,11 +368,10 @@ $("#get_phone_code").click(function() {
 
     $.ajax({
         type: "POST", //提交的方法
-        url: "/sign_in_by_password", //提交的地址  
+        url: "/reg_phone_number", //提交的地址  
         // contentType: false,
         data: {
-            'user_name': user_name,
-            'password': password
+            'phone_number': phone_number,
         },
 
         // datatype: "json",
@@ -383,14 +382,14 @@ $("#get_phone_code").click(function() {
         },
         success: function(data) { //成功
             if (data == '0') {
-                alert("注册成功成功"); //就将返回的数据显示出来
+                alert("验证码已发送"); //就将返回的数据显示出来
                 window.location.href = "index.html";
                 // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
                 window.localStorage.setItem("name", user_name);
             } else if (data == '1') {
-                alert("用户名不存在");
+                alert("手机号已注册");
             } else {
-                alert("密码错误");
+                alert("手机号不存在");
             }
 
         }
