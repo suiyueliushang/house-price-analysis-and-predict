@@ -45,7 +45,6 @@
             padding: 0 5px;
             line-height: 27px;
             letter-spacing: 4px;
-            align-self: flex-end;
             /*调整字母间距*/
             background-image: url('./img/timg.jpg');
         }
@@ -174,6 +173,7 @@
         btn.onclick = function() {
             var val = valiCode.value;
             var current = result.join('');
+
             console.log(val, typeof val, current, typeof current)
             if (current == val) {
                 wrongShow.innerText = '验证码输入正确!';

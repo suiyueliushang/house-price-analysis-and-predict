@@ -641,6 +641,11 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+        document.getElementById('login_id').innerText = window.localStorage.getItem("name");
+        console.log(window.localStorage.getItem("name"));
+    </script>
+
 </body>
 
 </html>
