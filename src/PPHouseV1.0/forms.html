@@ -73,7 +73,7 @@
                 <div class="sidebar-header d-flex align-items-center">
                     <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
-                        <h1 class="h4">UserName</h1>
+                        <h1 class="h4" id="login_id">UserName</h1>
                         <p>City</p>
                     </div>
                 </div>
@@ -641,6 +641,11 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+        document.getElementById('login_id').innerText = window.localStorage.getItem("name");
+        console.log(window.localStorage.getItem("name"));
+    </script>
+
 </body>
 
 </html>

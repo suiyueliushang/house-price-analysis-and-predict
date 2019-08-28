@@ -73,7 +73,7 @@
                 <div class="sidebar-header d-flex align-items-center">
                     <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
-                        <h1 class="h4">UserName</h1>
+                        <h1 class="h4" id="login_id">UserName</h1>
                         <p>City</p>
                     </div>
                 </div>
@@ -217,7 +217,7 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                            <h3 class="h4">city two</h3>
+                                        <h3 class="h4">city two</h3>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="lineChartExample2"></canvas>
@@ -392,10 +392,14 @@
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="js/charts-custom.js"></script>
-    
-    
+
+
     <!-- Main File-->
     <script src="js/front.js"></script>
+    <script>
+        document.getElementById('login_id').innerText = window.localStorage.getItem("name");
+        console.log(window.localStorage.getItem("name"));
+    </script>
 </body>
 
 </html>
