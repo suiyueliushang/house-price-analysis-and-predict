@@ -478,7 +478,7 @@ $(document).ready(function () {
             scales:
             {
                 xAxes: [{
-                    display: false
+                    display: true
                 }],
                 yAxes: [{
                     display: false
@@ -489,11 +489,15 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["A", "B", "C", "D", "E", "F", "G", "H"],
+            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
             datasets: [
                 {
-                    label: "Data Set 1",
+                    label: "city 1",
                     backgroundColor: [
+                        '#44b2d7',
+                        '#44b2d7',
+                        '#44b2d7',
+                        '#44b2d7',
                         '#44b2d7',
                         '#44b2d7',
                         '#44b2d7',
@@ -511,35 +515,14 @@ $(document).ready(function () {
                         '#44b2d7',
                         '#44b2d7',
                         '#44b2d7',
+                        '#44b2d7',
+                        '#44b2d7',
+                        '#44b2d7',
+                        '#44b2d7',
                         '#44b2d7'
                     ],
                     borderWidth: 0,
-                    data: [35, 55, 65, 85, 30, 22, 18, 35]
-                },
-                {
-                    label: "Data Set 1",
-                    backgroundColor: [
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6'
-                    ],
-                    borderColor: [
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6',
-                        '#59c2e6'
-                    ],
-                    borderWidth: 0,
-                    data: [49, 68, 85, 40, 27, 35, 20, 25]
+                    data: [35, 55, 65, 85, 30, 22, 18, 35, 24, 35, 26, 27]
                 }
             ]
         }
@@ -557,7 +540,7 @@ $(document).ready(function () {
             scales:
             {
                 xAxes: [{
-                    display: false
+                    display: true
                 }],
                 yAxes: [{
                     display: false
@@ -568,14 +551,11 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O"],
+            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
             datasets: [
                 {
-                    label: "Data Set 1",
+                    label: "city 2",
                     backgroundColor: [
-                        '#54e69d',
-                        '#54e69d',
-                        '#54e69d',
                         '#54e69d',
                         '#54e69d',
                         '#54e69d',
@@ -601,13 +581,10 @@ $(document).ready(function () {
                         '#54e69d',
                         '#54e69d',
                         '#54e69d',
-                        '#54e69d',
-                        '#54e69d',
-                        '#54e69d',
                         '#54e69d'
                     ],
                     borderWidth: 1,
-                    data: [40, 33, 22, 28, 40, 25, 30, 40, 28, 27, 22, 15, 20, 24, 30]
+                    data: [40, 33, 22, 28, 40, 25, 30, 40, 28, 27, 22, 15]
                 }
             ]
         }
