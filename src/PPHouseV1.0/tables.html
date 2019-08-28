@@ -26,6 +26,132 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    
+    <!--
+        <link rel="stylesheet" rev="stylesheet" href="https://include.anjukestatic.com/anjuke-user/res/20190826.5428.0/b/Ershou_Web_Property_List_Search.css" type="text/css" />-->
+    <style>
+        .div-border {
+            border:1px solid #D8D8D8;
+            border-radius: 5px;
+
+            /*width: 970px;
+            margin:0 auto;*/
+
+            width: 100% !important;
+            _width: 1180px;
+            _margin: 0 auto;
+            _display: block;
+
+            *zoom:1;
+            
+            font-family: "Microsoft YaHei", "微软雅黑", Tahoma, Arial, simhei, Helvetica, sans-serif;
+            font-size: 13px;
+            width: 1180px;
+            position: relative;/* for nav */
+        }
+
+        .items-list {
+            padding:5px 10px;
+            border-radius: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .items {
+            line-height: 26px;
+            padding: 4px 10px;
+            border-bottom: 1px dashed #D8D8D8;
+        }
+
+        .items .item-title {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            color: #999;
+            margin-right: 15px;
+            vertical-align: top;
+        }
+
+        .items .elems-l {
+            width: 1082px;
+            _width: 1078px;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+        }
+
+        .items a {
+            margin-right: 20px;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+        /*    color: #333333;*/
+        }
+
+        .items a:link, .items a:visited {
+            color: #333333;
+        }
+
+        .items span .selected-item {
+            color: #ff6600;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .items a:hover, .items a:active {
+            color: #ff6600;
+        }
+
+        .items .pricecond, .items .areacond {
+            height: 26px;
+            line-height: 26px;
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            vertical-align: bottom;
+            *margin-top :2px;
+        }
+
+        .items form {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            vertical-align: top;
+        }
+
+        .items form input {
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            height: 16px;
+            line-height: 16px;
+            padding: 0 3px;
+            text-align: center;
+            margin: -4px 0px 0px 0px;
+            *margin-top :0px;
+            width: 22px;
+        }
+
+        .items form input.yell {
+            color: #ff6600;
+        }
+
+        .items form input.smit {
+            width: 40px;
+            height: 22px;
+            margin-left: 3px;
+            color: #333333;
+            cursor: pointer;
+            border: 1px solid #cccccc;
+            background-color: #f6f6f6;
+        }
+
+        .items form input.hover {
+            background-color: #F0F0F0;
+        }
+
+    </style>
+
+</head>
 
     <body>
         <div class="page">
@@ -113,23 +239,111 @@
                     <!-- Page Header-->
                     <header class="page-header">
                         <div class="container-fluid">
-                            <h2 class="no-margin-bottom">在线房价分析与预测系统</h2>
+                            <h2 class="no-margin-bottom">房价查询</h2>
                         </div>
                     </header>
-                    <div class="content-inner">
-                        <!-- Page Header-->
-                        <header class="page-header">
-                            <div class="container-fluid">
-                                <h2 class="no-margin-bottom">Tables</h2>
+                    <!-- Breadcrumb-->
+                    <div class="breadcrumb-holder container-fluid">
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">首页</a></li>
+                            <li class="breadcrumb-item active">房价查询 </li>
+                        </ul>
+                    </div>
+
+
+                        <!-- 多选栏 -->
+                        <div class="div-border items-list">
+
+                            <!-- 区域 -->
+                            <div class="items">
+                                <span class="item-title">区域：</span>
+                                <span class="elems-l">
+                                    <span class="selected-item">全部</span>
+                                    <a href='#' class='' title='江宁' >江宁</a>
+                                    <a href='#' class='' title='浦口' >浦口</a>
+                                    <a href='#' class='' title='栖霞' >栖霞</a>
+                                    <a href='#' class='' title='雨花台' >雨花台</a>
+                                    <a href='#' class='' title='建邺' >建邺</a>
+                                    <a href='#' class='' title='秦淮' >秦淮</a>
+                                    <a href='#' class='' title='鼓楼' >鼓楼</a>
+                                    <a href='#' class='' title='玄武' >玄武</a>
+                                    <a href='#' class='' title='六合' >六合</a>
+                                    <a href='#' class='' title='滨江开发区' >滨江开发区</a>
+                                    <a href='#' class='' title='溧水' >溧水</a>
+                                    <a href='#' class='' title='高淳' >高淳</a>
+                                    <a href='#' class='' title='南京周边' >南京周边</a>
+                                </span>
                             </div>
-                        </header>
-                        <!-- Breadcrumb-->
-                        <div class="breadcrumb-holder container-fluid">
-                            <ul class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active">Tables </li>
-                            </ul>
+                            
+                            <!-- 售价 -->
+                            <div class="items ">
+                                <span class="item-title">售价：</span>
+                                <span class="elems-l">
+                                    <span class="selected-item">全部</span>
+                                    <a href='#' class=' ' rel="nofollow">80万以下</a>
+                                    <a href='#' class=' ' rel="nofollow">80-100万</a>
+                                    <a href='#' class=' ' rel="nofollow">100-120万</a>
+                                    <a href='#' class=' ' rel="nofollow">120-150万</a>
+                                    <a href='#' class=' ' rel="nofollow">150-200万</a>
+                                    <a href='#' class=' ' rel="nofollow">200-250万</a>
+                                    <a href='#' class=' ' rel="nofollow">250-300万</a>
+                                    <a href='#' class=' ' rel="nofollow">300-500万</a>
+                                    <a href='#' class=' ' rel="nofollow">500-1000万</a>
+                                    <a href='#' class=' ' rel="nofollow">1000万以上</a>
+                                    <div class="pricecond">
+                                        <form action="" id="" onsubmit="">
+                                            <input class="from-price " type="text" name="from_price" maxlength="5"  id="from_price" autocomplete="off"
+                                                   value=""  /> -
+                                            <input class="to-price " type="text" name="to_price" maxlength="5"  id="to_price" autocomplete="off"
+                                                   value=""  />&nbsp;<span class="">万</span>
+                                            <input class="smit" id="pricerange_search" style="display:none" type="submit" value="确定" />
+                                        </form>
+                                    </div>
+                                </span>
+                            </div>
+                            
+                            <!-- 面积 -->
+                            <div class="items">
+                                <span class="item-title">面积：</span>
+                                <span class="elems-l">
+                                    <span class="selected-item">全部</span>
+                                    <a href='#' class=' ' rel="nofollow">50m²以下</a>
+                                    <a href='#' class=' ' rel="nofollow">50-70m²</a>
+                                    <a href='#' class=' ' rel="nofollow">70-90m²</a>
+                                    <a href='#' class=' ' rel="nofollow">90-120m²</a>
+                                    <a href='#' class=' ' rel="nofollow">120-150m²</a>
+                                    <a href='#' class=' ' rel="nofollow">150-200m²</a>
+                                    <a href='#' class=' ' rel="nofollow">200-300m²</a>
+                                    <a href='#' class=' ' rel="nofollow">300m²以上</a>
+                                    <div class="areacond" style="display: inline">
+                                        <form method="get" action="" id="" onsubmit="">
+                                            <input class="from-area " type="text" maxlength="5" name="from_area" id="from_area" autocomplete="off" value=""
+                                                 /> -
+                                            <input class="to-area " type="text" maxlength="5" name="to_area" id="to_area" autocomplete="off"
+                                                   value=""  />&nbsp;<span class="">m²</span>
+                                            <input class="smit" id="arearange_search" style="display:none" type="submit" value="确定" />
+                                        </form>
+                                    </div>
+                                </span>
+                            </div>
+
+                            <!-- 房型 -->
+                            <div class="items ">
+                                <span class="item-title">房型：</span>
+                                <span class="elems-l">
+                                    <span class="selected-item">全部</span>
+                                    <a href='#' class=' ' rel="nofollow">一室</a>
+                                    <a href='#' class=' ' rel="nofollow">二室</a>
+                                    <a href='#' class=' ' rel="nofollow">三室</a>
+                                    <a href='#' class=' ' rel="nofollow">四室</a>
+                                    <a href='#' class=' ' rel="nofollow">五室</a>
+                                    <a href='#' class=' ' rel="nofollow">五室以上</a>
+                                </span>
+                            </div>
+
                         </div>
+
+                        <!-- 模板 -->
                         <section class="tables">
                             <div class="container-fluid">
                                 <div class="row">

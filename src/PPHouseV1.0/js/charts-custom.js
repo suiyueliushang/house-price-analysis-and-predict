@@ -41,10 +41,10 @@ $(document).ready(function () {
             },
         },
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Ste", "Oct", "Nov", "Dce"],
             datasets: [
                 {
-                    label: "Data Set One",
+                    label: "City One",
                     fill: true,
                     lineTension: 0.3,
                     backgroundColor: gradient1,
@@ -63,11 +63,11 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [30, 50, 40, 61, 42, 35, 40],
+                    data: [30, 50, 40, 61, 42, 35, 40, 46, 23, 47, 51, 34],
                     spanGaps: false
                 },
                 {
-                    label: "Data Set Two",
+                    label: "City Two",
                     fill: true,
                     lineTension: 0.3,
                     backgroundColor: gradient2,
@@ -86,7 +86,7 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [50, 40, 50, 40, 45, 40, 30],
+                    data: [50, 40, 50, 40, 45, 40, 30, 43, 23, 34, 42, 32],
                     spanGaps: false
                 }
             ]
@@ -139,7 +139,7 @@ $(document).ready(function () {
     // Line Chart 1
     // ------------------------------------------------------ //
     var LINECHART1 = $('#lineChartExample1');
-    var myLineChart = new Chart(LINECHART1, {
+    var myLineChart1 = new Chart(LINECHART1, {
         type: 'line',
         options: {
             scales: {
@@ -166,7 +166,7 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["A", "B", "C", "D", "E", "F", "G"],
+            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
             datasets: [
                 {
                     label: "Total Overdue",
@@ -188,7 +188,83 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 0,
                     pointRadius: 4,
                     pointHitRadius: 0,
-                    data: [20, 28, 30, 22, 24, 10, 7],
+                    data: [20, 28, 30, 22, 24, 10, 7, 8, 10, 11, 32, 23],
+                    spanGaps: false
+                }
+            ]
+        }
+    });
+
+     // ------------------------------------------------------- //
+    // Line Chart 3
+    // ------------------------------------------------------ //
+    var LINECHART3 = $('#lineChartExample3');
+    var myLineChart3 = new Chart(LINECHART3, {
+        type: 'line',
+        options: {
+            scales: {
+                xAxes: [{
+                    display: true,
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    display:true,
+                    gridLines: {
+                        display: false
+                    }
+                }]
+            },
+            legend: {labels:{fontColor:"#777", fontSize: 12}}
+        },
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Ste", "Oct", "Nov", "Dec"],
+            datasets: [
+                {
+                    label: "City 1",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: '#6ccef0',
+                    pointBorderColor: '#59c2e6',
+                    pointHoverBackgroundColor: '#59c2e6',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 3,
+                    pointBackgroundColor: "#59c2e6",
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 4,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 0,
+                    pointRadius: 4,
+                    pointHitRadius: 0,
+                    data: [20, 28, 30, 22, 24, 10, 7, 8, 10, 11, 32, 23],
+                    spanGaps: false
+                },
+                {
+                    label: "City 2",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: '#ff7676',
+                    pointBorderColor: '#ff7676',
+                    pointHoverBackgroundColor: '#ff7676',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 3,
+                    pointBackgroundColor: "#ff7676",
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 4,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 0,
+                    pointRadius: 4,
+                    pointHitRadius: 0,
+                    data: [21, 22, 35, 27, 25, 20, 12, 14, 23, 24, 42, 20],
                     spanGaps: false
                 }
             ]
@@ -199,8 +275,8 @@ $(document).ready(function () {
     // ------------------------------------------------------- //
     // Line Chart 2
     // ------------------------------------------------------ //
-    var LINECHART1 = $('#lineChartExample2');
-    var myLineChart = new Chart(LINECHART1, {
+    var LINECHART2 = $('#lineChartExample2');
+    var myLineChart2 = new Chart(LINECHART2, {
         type: 'line',
         options: {
             scales: {
@@ -228,7 +304,7 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["A", "B", "C", "D", "E", "F", "G"],
+            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
             datasets: [
                 {
                     label: "Total Overdue",
@@ -250,7 +326,7 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 0,
                     pointRadius: 4,
                     pointHitRadius: 0,
-                    data: [20, 8, 30, 22, 24, 17, 20],
+                    data: [20, 8, 30, 22, 24, 17, 20, 23, 24, 34, 23, 12],
                     spanGaps: false
                 }
             ]
@@ -319,10 +395,10 @@ $(document).ready(function () {
             },
         },
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
+            labels: ["January", "February", "March", "April", "May", "June", "July", "Aug", "Ste", "Oct", "Nov", "Dec"],
             datasets: [
                 {
-                    label: "Data Set 1",
+                    label: "City 1",
                     backgroundColor: [
                         gradient1,
                         gradient1,
@@ -354,7 +430,7 @@ $(document).ready(function () {
                     data: [65, 59, 80, 81, 56, 55, 40],
                 },
                 {
-                    label: "Data Set 2",
+                    label: "City 2",
                     backgroundColor: [
                         gradient2,
                         gradient2,

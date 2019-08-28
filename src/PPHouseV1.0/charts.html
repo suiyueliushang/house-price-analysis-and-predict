@@ -55,7 +55,7 @@
                         <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                             <li style="padding: 0px 10px 0px"><a href="">地区</a></li>
                             <li style="padding: 0px 10px 0px"><a href="">语言</a></li>
-                            <li style="padding: 0px 10px 0px"><a href="register.html" style="width:auto;">注册</a><a>/</a><a href="login.html" style="width:auto;">登录</a></li>
+                            <li style="padding: 0px 10px 0px"><a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">登录</a><a>/</a><a onclick="document.getElementById('id02').style.display='block'" style="width:auto;">注册</a></li>
                             <li style="padding: 0px 10px 0px"><a href="">联系我们</a></li>
                             <!-- Logout    -->
                             <li class="nav-item">
@@ -124,6 +124,46 @@
                         <li class="breadcrumb-item active">Charts </li>
                     </ul>
                 </div>
+                <!--选择要对比的区域-->
+                <legend>请选择要对比的城市</legend>
+                <form action="#">
+                    <!--省份选择-->
+                    <select id="prov" onchange="showCity(this)">
+                        <option>=请选择省份=</option>
+                    </select>
+                    <!--城市选择-->
+                    <select id="city" onchange="showCountry(this)">
+                        <option>=请选择城市=</option>
+                    </select>
+                    <!--县区选择-->
+                    <select id="country" onchange="selecCountry(this)">
+                        <option>=请选择县区=</option>
+                    </select>
+                    <button type="button" class="btn met1" onClick="showAddr()">确定</button><br>
+                    <label for="addr-show">您选择的是:
+                        <input type="text" value="" id="addr-show">
+                    </label>
+                </form>
+                <!--选择要对比的区域-->
+                <legend>请选择要对比的城市</legend>
+                <form action="#">
+                    <!--省份选择-->
+                    <select id="prov1" onchange="showCity1(this)">
+                        <option>=请选择省份=</option>
+                    </select>
+                    <!--城市选择-->
+                    <select id="city1" onchange="showCountry1(this)">
+                        <option>=请选择城市=</option>
+                    </select>
+                    <!--县区选择-->
+                    <select id="country1" onchange="selecCountry1(this)">
+                        <option>=请选择县区=</option>
+                    </select>
+                    <button type="button" class="btn met1" onClick="showAddr1()">确定</button><br>
+                    <label for="addr-show1">您选择的是：
+                        <input type="text" value="" id="addr-show1">
+                    </label>
+                </form>
                 <!-- Charts Section-->
                 <section class="charts">
                     <div class="container-fluid">
@@ -141,10 +181,10 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Line Chart Example</h3>
+                                        <h3 class="h4">房价趋势对比图</h3>
                                     </div>
                                     <div class="card-body">
-                                        <canvas id="lineChartExample"></canvas>
+                                        <canvas id="lineChartExample3"></canvas>
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +200,7 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Line Chart Example</h3>
+                                        <h3 class="h4">city one</h3>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="lineChartExample1"></canvas>
@@ -175,6 +215,9 @@
                                                 <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="card-header d-flex align-items-center">
+                                            <h3 class="h4">city two</h3>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="lineChartExample2"></canvas>
@@ -194,7 +237,7 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Bar Chart Example</h3>
+                                        <h3 class="h4">房价柱形图</h3>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="barChart1"></canvas>
@@ -227,7 +270,7 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Bar Chart Example</h3>
+                                        <h3 class="h4">房价对比图</h3>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="barChartExample"></canvas>
@@ -335,6 +378,8 @@
         </div>
     </div>
     <!-- JavaScript files-->
+    <script src="js/city.js"></script>
+    <script src="js/method.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js">
     </script>
@@ -344,6 +389,8 @@
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <script src="js/charts-custom.js"></script>
+    
+    
     <!-- Main File-->
     <script src="js/front.js"></script>
 </body>
