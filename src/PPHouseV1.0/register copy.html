@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,7 +26,6 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-
 
 </head>
 <style>
@@ -67,6 +65,8 @@
 </style>
 
 <body>
+
+
     <div class="page login-page">
         <div class="container d-flex align-items-center">
             <div class="form-holder has-shadow">
@@ -82,43 +82,48 @@
                             </div>
                         </div>
                     </div>
-                    <!--   登录界面实现    -->
+                    <!-- Form Panel    -->
                     <div class="col-lg-6 bg-white">
                         <div class="form d-flex align-items-center">
                             <div class="content">
-                                <a href="./loginbyphone.html">手机号登录</a>
-                                <br/>
-                                <br/>
-                                <form id="login_form">
-
+                                <form class="form-validate" id="register">
                                     <div class="form-group">
-                                        <input id="user_name" type="text" name="user_name" required data-msg="Please enter your username" class="input-material">
-                                        <label for="login-username" class="label-material">用户名</label>
+                                        <input id="register-phone" type="phone" name="reg_phone" required data-msg="Please enter a valid email address" class="input-material">
+                                        <label for="register-email" class="label-material">手机号</label>
                                     </div>
                                     <div class="form-group">
-                                        <input id="password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
-                                        <label for="login-password" class="label-material">密码</label>
+                                        <input id="register-username" type="text" name="reg_user_name" required data-msg="Please enter your username" class="input-material">
+                                        <label for="register-username" class="label-material">用户名</label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input id="register-password" type="password" name="reg_password" required data-msg="Please enter your password" class="input-material">
+                                        <label for="register-password" class="label-material">密码</label>
                                     </div>
 
                                     <form action="#">
                                         <div class="form-group" style="display: inline-block">
                                             <input id="codes" type="text" name="validateCode" required data-msg="请输入验证码" class="input-material">
                                             <label for="login-password" class="label-material">验证码</label>
-
                                         </div>
                                         <span class="refresh" style=" float: right"><img src="./img/refresh.png"></span>
                                         <span class="code" style=" float: right" disabled></span>
-
 
                                         <br/>
                                         <span class="wrong-show"></span>
                                         <br>
 
                                     </form>
-                                    <button type="button" id="login" class="btn btn-primary">Login</button>
 
-                                </form> <a href="#" class="forgot-pass">忘记密码？</a>
-                                <br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
+
+                                    <div class="form-group terms-conditions">
+                                        <input id="register-agree" name="registerAgree" type="checkbox" required value="1" data-msg="Your agreement is required" class="checkbox-template">
+                                        <label for="register-agree">Agree the terms and policy</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <button id="sign_up" type="button" name="registerSubmit" class="btn btn-primary">Register</button>
+                                    </div>
+                                </form><small>Already have an account? </small><a href="login.html" class="signup">Login</a>
                             </div>
                         </div>
                     </div>
@@ -136,10 +141,10 @@
     </script>
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-
     <!-- Main File-->
     <script src="js/front.js"></script>
     <script>
+        window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
     </script>
 </body>
 

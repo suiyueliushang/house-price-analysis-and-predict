@@ -86,19 +86,26 @@
                     <div class="col-lg-6 bg-white">
                         <div class="form d-flex align-items-center">
                             <div class="content">
-                                <a href="./loginbyphone.html">手机号登录</a>
+                                <a href="./login.html">用户名登录</a>
                                 <br/>
                                 <br/>
                                 <form id="login_form">
 
                                     <div class="form-group">
-                                        <input id="user_name" type="text" name="user_name" required data-msg="Please enter your username" class="input-material">
-                                        <label for="login-username" class="label-material">用户名</label>
+                                        <input id="user_name" type="text" name="phone_number" required data-msg="Please enter your username" class="input-material">
+                                        <label for="login-username" class="label-material">手机号</label>
                                     </div>
-                                    <div class="form-group">
-                                        <input id="password" type="password" name="password" required data-msg="Please enter your password" class="input-material">
-                                        <label for="login-password" class="label-material">密码</label>
+
+                                    <div>
+                                        <div class="form-group" style="display: inline-block">
+                                            <input id="password" type="password" name="phone_login_code" required data-msg="Please enter your password" class="input-material">
+                                            <label for="login-password" class="label-material">手机验证码</label>
+                                        </div>
+                                        <div style="display: inline-block; float: right">
+                                            <button type="button" id="get_phone_code" class="btn btn-primary" style="background-color:#87CEFA; ">获取验证码</button>
+                                        </div>
                                     </div>
+
 
                                     <form action="#">
                                         <div class="form-group" style="display: inline-block">
@@ -108,7 +115,6 @@
                                         </div>
                                         <span class="refresh" style=" float: right"><img src="./img/refresh.png"></span>
                                         <span class="code" style=" float: right" disabled></span>
-
 
                                         <br/>
                                         <span class="wrong-show"></span>
