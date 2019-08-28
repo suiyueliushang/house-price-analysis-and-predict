@@ -293,9 +293,9 @@
                                     <div class="pricecond">
                                         <form action="" id="" onsubmit="">
                                             <input class="from-price " type="text" name="from_price" maxlength="5"  id="from_price" autocomplete="off"
-                                                   value=""  /> -
+                                                   value="" onfocus="show_price_btn()" onblur="hide_price_btn()" /> -
                                             <input class="to-price " type="text" name="to_price" maxlength="5"  id="to_price" autocomplete="off"
-                                                   value=""  />&nbsp;<span class="">万</span>
+                                                   value="" onfocus="show_price_btn()" onblur="hide_price_btn()" />&nbsp;<span class="">万</span>
                                             <input class="smit" id="pricerange_search" style="display:none" type="submit" value="确定" />
                                         </form>
                                     </div>
@@ -317,10 +317,10 @@
                                     <a href='#' class=' ' rel="nofollow">300m²以上</a>
                                     <div class="areacond" style="display: inline">
                                         <form method="get" action="" id="" onsubmit="">
-                                            <input class="from-area " type="text" maxlength="5" name="from_area" id="from_area" autocomplete="off" value=""
+                                            <input class="from-area " type="text" maxlength="5" name="from_area" id="from_area" autocomplete="off" value="" onfocus="show_area_btn()" onblur="hide_area_btn()"
                                                  /> -
                                             <input class="to-area " type="text" maxlength="5" name="to_area" id="to_area" autocomplete="off"
-                                                   value=""  />&nbsp;<span class="">m²</span>
+                                                   value="" onfocus="show_area_btn()" onblur="hide_area_btn()" />&nbsp;<span class="">m²</span>
                                             <input class="smit" id="arearange_search" style="display:none" type="submit" value="确定" />
                                         </form>
                                     </div>
@@ -596,6 +596,26 @@
             <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
             <!-- Main File-->
             <script src="js/front.js"></script>
+
+            
+            <script>
+                function show_price_btn(){
+                    document.getElementById("pricerange_search").style.display='inline';
+                }
+
+                function hide_price_btn(){
+                    document.getElementById("pricerange_search").style.display='none';
+                }
+
+                function show_area_btn(){
+                    document.getElementById("arearange_search").style.display='inline';
+                }
+
+                function hide_area_btn(){
+                    document.getElementById("arearange_search").style.display='none';
+                }
+            </script>
+                
     </body>
 
 </html>
