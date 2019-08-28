@@ -395,5 +395,4 @@ $("#get_phone_code").click(function() {
         }
     });
 
-}
 });
