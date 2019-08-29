@@ -351,16 +351,15 @@ $("#sign_up").click(function() {
                 success: function(data) { //成功
                     switch (data.is_success) {
                         case '0':
-                            window.localStorage.setItem("name", data.user.user_name);
                             window.location.href = "login.html";
                             break;
                         case '1':
-                            document.getElementsByClassName('wrong-show').innerText = '手机验证码错误';
+                            document.getElementsByClassName('wrong-box').innerText = '手机验证码错误';
                             break;
                         case '2':
-                            document.getElementsByClassName('wrong-show').innerText = '用户名已存在';
+                            document.getElementsByClassName('wrong-box').innerText = '用户名已存在';
                         default:
-                            document.getElementsByClassName('wrong-show').innerText = '已存在';
+                            document.getElementsByClassName('wrong-box').innerText = '未知错误';
                     }
                     // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
 
@@ -451,13 +450,13 @@ $("#forget_password").click(function() {
     reg_password = $('#reg_password').val();
     reg_password_1 = $('#reg_password_1').val();
     if (reg_password.length > 10) {
-        document.getElementsByClassName('wrong-show').innerText = '密码长度超过10位';
+        document.getElementsByClassName('wrong-box').innerText = '密码长度超过10位';
 
     } else if (reg_password.length < 4) {
-        document.getElementsByClassName('wrong-show').innerText = '密码长度小于4位';
+        document.getElementsByClassName('wrong-box').innerText = '密码长度小于4位';
     } {
         if (reg_password != reg_password_1) {
-            document.getElementsByClassName('wrong-show').innerText = '两次密码输入不一致';
+            document.getElementsByClassName('wrong-box').innerText = '两次密码输入不一致';
         } else {
             var val = valiCode.value;
             var current = result.join('');
@@ -503,7 +502,7 @@ $("#forget_password").click(function() {
                                 window.localStorage.setItem("name", data.user.user_name);
                                 break;
                             case '1':
-                                document.getElementsByClassName00('wrong-show').innerText = '手机验证码错误';
+                                document.getElementsByClassName00('wrong-box').innerText = '手机验证码错误';
                                 break;
                             default:
                         }
