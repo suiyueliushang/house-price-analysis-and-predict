@@ -202,7 +202,7 @@ $("#login").click(function() {
                 'password': password
             },
 
-             datatype: "json",
+            datatype: "json",
             //$('#login_form').serialize(), // 序列化表单值  
             async: false,
             error: function(request) { //失败的话
@@ -211,19 +211,19 @@ $("#login").click(function() {
             success: function(data) { //成功
                 var dataObj = eval("(" + data + ")");
                 switch (dataObj.is_success) {
-                /*
-                if (data == '0') {
-                    alert("登陆成功"); //就将返回的数据显示出来
-                    window.location.href = "index.html";
-                    // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
-                    window.localStorage.setItem("name", data);
-                    } else if (data == '1') {
-                        alert("用户名不存在");
-                        } else {
-                                alert("密码错误");
-                }
-                */
-                //switch (data) 
+                    /*
+                    if (data == '0') {
+                        alert("登陆成功"); //就将返回的数据显示出来
+                        window.location.href = "index.html";
+                        // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
+                        window.localStorage.setItem("name", data);
+                        } else if (data == '1') {
+                            alert("用户名不存在");
+                            } else {
+                                    alert("密码错误");
+                    }
+                    */
+                    //switch (data) 
                     case "0":
                         {
                             window.localStorage.setItem("name", user_name);
