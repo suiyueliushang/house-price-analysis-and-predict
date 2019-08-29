@@ -292,15 +292,15 @@ $("#log_out").click(function() {
 
 //注册
 $("#sign_up").click(function() {
-    reg_password = $('#reg_password').val();
-    reg_password_1 = $('#reg_password_1').val();
-    if (reg_password.length > 10) {
-        document.getElementsByClassName('wrong-show').innerText = '密码长度超过10位';
+        reg_password = $('#reg_password').val();
+        reg_password_1 = $('#reg_password_1').val();
+        if (reg_password.length > 10) {
+            document.getElementsByClassName('wrong-show').innerText = '密码长度超过10位';
 
-    } else {
-        if (reg_password != reg_password_1) {
-            document.getElementsByClassName('wrong-show').innerText = '两次密码输入不一致';
         } else {
+            /* if (reg_password != reg_password_1) {
+                 document.getElementsByClassName('wrong-show').innerText = '两次密码输入不一致';
+             } else {*/
             var val = valiCode.value;
             var current = result.join('');
 
@@ -359,7 +359,7 @@ $("#sign_up").click(function() {
         }
     }
 
-});
+);
 
 //验证码
 
@@ -417,12 +417,7 @@ $("#get_phone_code").click(function() {
             alert("Connection error");
         },
         success: function(data) { //成功
-            if (data == '0') {
-                alert(phone_number); //就将返回的数据显示出来
-                window.location.href = "index.html";
-                // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
-                window.localStorage.setItem("name", user_name);
-            } else if (data == '1') {
+            if (data == '0') {} else if (data == '1') {
                 alert("手机号已注册");
             } else {
                 alert("手机号不存在");
