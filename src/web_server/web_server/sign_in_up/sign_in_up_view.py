@@ -15,7 +15,7 @@ def sign_in_by_password(request):
     '''
     print("用户名："+str(request.POST.get('user_name')))
     print('密码：'+str(request.POST.get('password')))
-    return HttpResponse('hello,world')
+    return HttpResponse(1)
 
 def is_resgistered_phone(request):
     '''注册和登录时使用
@@ -50,7 +50,7 @@ def sign_up(request):
     print("用户名："+str(request.POST.get('reg_user_name')))
     print("手机号："+str(request.POST.get('reg_phone_number')))
     print('密码：'+str(request.POST.get('reg_password')))
-    return HttpResponse('hello,world')
+    return HttpResponse('1')
 
 def forget_password(request):
     '''忘记密码
