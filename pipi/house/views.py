@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.http import JsonResponse
 from . import test
 import random
+import json
 
 code_dict={}
 
@@ -22,20 +23,21 @@ def sign_in_by_password(request):
     print("用户名："+str(username))
     print('密码：'+str(password))
     users=User.objects.all()
-    if username.strip() and password:
+    print(users)
+    if username and password:
         try:
             user=User.objects.get(user_name=username)
-            print(user)
         except:
-            response.write('0')
-            return response
+            result={'is_success':'1','user':''}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         if user.password==password:
             response.set_cookie("text","cookie11")
-            response.write('2')
-            return response
+            user_user={'user_name':user.user_name,'id':user.session_id}
+            result={'is_success':'0','user':user_user}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         else:
-            response.write('1')
-            return response
+            result={'is_success':'1','user':''}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def is_resgistered_phone(request):
     '''注册和登录时使用
@@ -160,8 +162,50 @@ def forget_password(request):
         response.write('格式错误')
         return response
 
+def query_prices(request):
+    '''
+    用户点击城市,地区,价格区间来显示该地区的房源
+    @args:  str:ciy
+            str:district
+            date:time
+            int:min
+            int:max
+    '''
+
+def province_average(request):
+    '''
+    用户点击省份来显示近几个月的房价走势
+    @args:  str:province
+    '''
+
+def city_average(request):
+    '''
+    用户点击城市来显示近几个月的房价走势
+    @args:  str:city
+    '''
+
+def district_average(request):
+    '''
+    用户点击区域来显示近几个月的房价走势
+    @args:  str:district
+    '''
+
+def add_collection(request):
+    '''
+    用户点击房源的收藏按钮来将该房源收藏到个人收藏夹
+    @args:  int:id
+            cookie
+    '''
+
+def delete_collection(request):
+    '''
+    用户点击删除按钮来删除收藏的房源
+    @args: int:id
+            cookie
+    '''
 
 '''
+    return
 def login(request):
     #user_name=request.pos
     return HttpResponse('login')
@@ -175,4 +219,4 @@ def index(request):
 def first(request):
     context={}
     return HttpResponse("helloworld")
-'''
+    '''

@@ -202,13 +202,15 @@ $("#login").click(function() {
                 'password': password
             },
 
-            // datatype: "json",
+             datatype: "json",
             //$('#login_form').serialize(), // 序列化表单值  
             async: false,
             error: function(request) { //失败的话
                 alert("Connection error");
             },
             success: function(data) { //成功
+                var dataObj = eval("(" + data + ")");
+                switch (dataObj.is_success) {
                 /*
                 if (data == '0') {
                     alert("登陆成功"); //就将返回的数据显示出来
@@ -221,7 +223,7 @@ $("#login").click(function() {
                                 alert("密码错误");
                 }
                 */
-                switch (data) {
+                //switch (data) 
                     case "0":
                         {
                             window.localStorage.setItem("name", user_name);
@@ -270,7 +272,7 @@ $("#login_by_phones").click(function() {
         },
         success: function(data) { //成功
             var dataObj = eval("(" + data + ")");
-            switch (dataObj.back_status) {
+            switch (dataObj.is_success) {
                 case '0':
                     window.localStorage.setItem("name", user_name);
                     window.location.href = "index.html";
