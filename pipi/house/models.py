@@ -10,3 +10,10 @@ class User(models.Model):
 
     class Meta:
         db_table="user_info"
+
+#class House(models.Model):
+    
+    #city=models.CharField(max_length=30,null=False)
+    #address=models.CharField(max_length=50,null=False)
+    #firm_name=models.CharField(max_length=50,null=False)
+    #house_type

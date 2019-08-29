@@ -298,9 +298,9 @@ $("#sign_up").click(function() {
         document.getElementsByClassName('wrong-show').innerText = '密码长度超过10位';
 
     } else {
-        if (reg_password != reg_password_1) {
+        /*if (reg_password != reg_password_1) {
             document.getElementsByClassName('wrong-show').innerText = '两次密码输入不一致';
-        } else {
+        } else {*/
             var val = valiCode.value;
             var current = result.join('');
 
@@ -349,6 +349,7 @@ $("#sign_up").click(function() {
                             case '2':
                                 document.getElementsByClassName('wrong-show').innerText = '用户名已存在';
                             default:
+                                document.getElementsByClassName('wrong-show').innerText = '已存在';
                         }
                         // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
 
@@ -357,7 +358,7 @@ $("#sign_up").click(function() {
 
             }
         }
-    }
+    
 
 });
 
@@ -399,7 +400,6 @@ refresh.onclick = function() {
 //手机验证码
 $("#get_phone_code").click(function() {
 
-
     phone_number = $('#phone_number').val();
 
     $.ajax({
@@ -418,10 +418,7 @@ $("#get_phone_code").click(function() {
         },
         success: function(data) { //成功
             if (data == '0') {
-                alert(phone_number); //就将返回的数据显示出来
-                window.location.href = "index.html";
-                // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
-                window.localStorage.setItem("name", user_name);
+                
             } else if (data == '1') {
                 alert("手机号已注册");
             } else {
