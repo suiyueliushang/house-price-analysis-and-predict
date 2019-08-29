@@ -36,7 +36,7 @@ def sign_in_by_password(request):
             result={'is_success':'0','user':user_user}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         else:
-            result={'is_success':'1','user':''}
+            result={'is_success':'2','user':''}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def is_resgistered_phone(request):
@@ -62,18 +62,21 @@ def sign_in_by_phone_number(request):
     response=HttpResponse()
     _phonenumber=request.POST.get("phonenumber")
     _auth_code=request.POST.get("auth_code")
+    print(code_dict)
     if _phonenumber and _auth_code:
         try:
             user=User.objects.get(user_phone=_phonenumber)
         except:
-            response.write('手机号不存在')
-            return response
+            result={'is_success':'1','user':''}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         if code_dict[_phonenumber]==_auth_code:
-            response.write('登陆成功')
-            return response
+            response.set_cookie("text","cookie11")
+            user_user={'user_name':user.user_name,'id':user.session_id}
+            result={'is_success':'0','user':user_user}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         else: 
-            response.write('验证码错误')
-            return response
+            result={'is_success':'2','user':''}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     else:
         return HttpResponse('格式错误')
 
@@ -103,28 +106,20 @@ def sign_up(request):
     _phone_number=request.POST.get('phone_number')
     _auth_code=request.POST.get('reg_phone_code')
     print(request.POST)
-    print(_phone_number)
-    print(_auth_code)
-    users=User.objects.all()
+    print(code_dict)
     response=HttpResponse()
     if _phone_number.strip() and _auth_code:
         if _phone_number in code_dict.keys():
             if code_dict[_phone_number]==_auth_code:
-                response.write('0')
-                _reg_user_name=request.Post.get('reg_user_name')
-                _reg_password=request.Post.get('reg_password')
-                u=User(user_name=_reg_user_name,password=_reg_password,user_phone=_phone_number,user_mail='123',session_id='123')
+                _reg_user_name=request.POST.get('reg_user_name')
+                _reg_password=request.POST.get('reg_password')
+                u=User(user_name=_reg_user_name,password=_reg_password,user_phone=_phone_number,session_id='123')
                 u.save()
-                print(0)
-                return response
+                return HttpResponse(json.dumps({'is_success':'0'},ensure_ascii=False),content_type="application/json,charset=utf-8")
             else:
-                response.write('1')
-                print(1)
-                return response
+                return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
         else:
-            response.write('1')
-            print(2)
-            return response
+            return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
     else:
         return HttpResponse("手机号格式不正确")
     
