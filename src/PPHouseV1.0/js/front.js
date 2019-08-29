@@ -271,16 +271,20 @@ $("#login_by_phones").click(function() {
             alert("Connection error");
         },
         success: function(data) { //成功
-            var dataObj = eval("(" + data + ")");
-            switch (dataObj.is_success) {
+
+            switch (data.is_success) {
                 case '0':
-                    window.localStorage.setItem("name", user_name);
+                    window.localStorage.setItem("name", data.user.user_name);
                     window.location.href = "index.html";
                     break;
                 case '1':
-                    document.getElementById('wrong_box').innerText = "密码错误";
+                    document.getElementById('wrong_box').innerText = "手机号未注册";
+                    break;
+                case '2':
+                    document.getElementById('wrong_box').innerText = "验证码错误";
                     break;
                 default:
+                    document.getElementById('wrong_box').innerText = "未知错误";
             }
 
             // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
@@ -344,9 +348,9 @@ $("#sign_up").click(function() {
                     alert("Connection error");
                 },
                 success: function(data) { //成功
-                    switch (data) {
+                    switch (data.is_success) {
                         case '0':
-                            window.localStorage.setItem("name", user_name);
+                            window.localStorage.setItem("name", data.user.user_name);
                             window.location.href = "index.html";
                             break;
                         case '1':
@@ -489,10 +493,10 @@ $("#forget_password").click(function() {
                         alert("Connection error");
                     },
                     success: function(data) { //成功
-                        switch (data) {
+                        switch (data.is_success) {
                             case '0':
                                 window.location.href = "index.html";
-                                window.localStorage.setItem("name", user_name);
+                                window.localStorage.setItem("name", data.user.user_name);
                                 break;
                             case '1':
                                 document.getElementsByClassName00('wrong-show').innerText = '手机验证码错误';
