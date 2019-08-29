@@ -334,6 +334,7 @@ $("#sign_up").click(function() {
                 type: "POST", //提交的方法
                 url: "/sign_up", //提交的地址  
                 // contentType: false,
+                datatype: "json",
                 data: {
                     'phone_number': phone_number,
                     'reg_phone_code': reg_phone_code,
@@ -351,7 +352,7 @@ $("#sign_up").click(function() {
                     switch (data.is_success) {
                         case '0':
                             window.localStorage.setItem("name", data.user.user_name);
-                            window.location.href = "index.html";
+                            window.location.href = "login.html";
                             break;
                         case '1':
                             document.getElementsByClassName('wrong-show').innerText = '手机验证码错误';
@@ -452,7 +453,9 @@ $("#forget_password").click(function() {
     if (reg_password.length > 10) {
         document.getElementsByClassName('wrong-show').innerText = '密码长度超过10位';
 
-    } else {
+    } else if (reg_password.length < 4) {
+        document.getElementsByClassName('wrong-show').innerText = '密码长度小于4位';
+    } {
         if (reg_password != reg_password_1) {
             document.getElementsByClassName('wrong-show').innerText = '两次密码输入不一致';
         } else {
@@ -478,6 +481,7 @@ $("#forget_password").click(function() {
                     type: "POST", //提交的方法
                     url: "/sign_up", //提交的地址  
                     // contentType: false,
+                    datatype: "json",
                     data: {
                         'phone_number': phone_number,
                         'log_phone_code': log_phone_code,
@@ -486,7 +490,7 @@ $("#forget_password").click(function() {
 
                     },
 
-                    // datatype: "json",
+                    datatype: "json",
                     //$('#login_form').serialize(), // 序列化表单值  
                     async: false,
                     error: function(request) { //失败的话
@@ -513,3 +517,4 @@ $("#forget_password").click(function() {
     }
 
 });
+s
