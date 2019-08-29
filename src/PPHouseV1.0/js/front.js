@@ -182,12 +182,12 @@ $("#login").click(function() {
     var current = result.join('');
 
     console.log(val, typeof val, current, typeof current)
-    if (current != val) {
+    if (current.toLowerCase() != val.toLowerCase()) {
         wrongShow.innerText = '验证码输入有误!';
         getRandomStr();
 
     } else {
-        wrongShow.innerText = '验证码输入正确!';
+        //wrongShow.innerText = '验证码输入正确!';
         /* getRandomStr();
          alert('验证码输入正确!');*/
         user_name = $('#user_name').val();
@@ -233,12 +233,12 @@ $("#login_by_phones").click(function() {
     var current = result.join('');
 
     console.log(val, typeof val, current, typeof current)
-    if (current != val) {
+    if (current.toLowerCase() != val.toLowerCase()) {
         wrongShow.innerText = '验证码输入有误!';
         getRandomStr();
 
     } else {
-        wrongShow.innerText = '验证码输入正确!';
+        // wrongShow.innerText = '验证码输入正确!';
         /* getRandomStr();
          alert('验证码输入正确!');*/
         phone_number = $('#phone_number').val();
@@ -283,8 +283,8 @@ $("#sign_up").click(function() {
     var val = valiCode.value;
     var current = result.join('');
 
-    console.log(val, typeof val, current, typeof current)
-    if (current != val) {
+    console.log(val, typeof val, current, typeof current);
+    if (current.toLowerCase() != val.toLowerCase()) {
         wrongShow.innerText = '验证码输入有误!';
         getRandomStr();
 
@@ -395,5 +395,4 @@ $("#get_phone_code").click(function() {
         }
     });
 
-}
 });
