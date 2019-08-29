@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import User
 from django.http import HttpResponse
 from django.http import JsonResponse
-from . import tests
+from . import test
 import random
 
 code_dict={}
@@ -18,6 +18,7 @@ def sign_in_by_password(request):
     username=request.POST.get('user_name')
     password=request.POST.get('password')
     response=HttpResponse()
+    print(request.POST)
     print("用户名："+str(username))
     print('密码：'+str(password))
     users=User.objects.all()
@@ -81,10 +82,15 @@ def reg_phone_number(request):
         @args:phonenumber
         @return:auth_code
     '''
-    _phone_number=request.POST.get("phonenumber")
+
+    _phone_number=request.POST.get('phone_number')
+    print(request.POST)
+    print(request)
+    print(str(_phone_number))
     code=str(random.randint(1000,9999))
-    tests.auth_code(_phone_number,code)
+    test.auth_code(str(_phone_number),code)
     code_dict[_phone_number]=code
+    return HttpResponse("0")
 
 def sign_up(request):
     '''注册
@@ -92,24 +98,30 @@ def sign_up(request):
     @args：reg_user_name,reg_phone_number,reg_password,reg_auth_code
     @return bool，判断用户验证码是否正确
     '''
-    _phone_number=request.POST.get('reg_phonenumber')
-    _auth_code=request.POST.get('reg_auth_code')
+    _phone_number=request.POST.get('phone_number')
+    _auth_code=request.POST.get('reg_phone_code')
+    print(request.POST)
+    print(_phone_number)
+    print(_auth_code)
     users=User.objects.all()
     response=HttpResponse()
     if _phone_number.strip() and _auth_code:
-        if code_dict.has_key(_phone_number):
+        if _phone_number in code_dict.keys():
             if code_dict[_phone_number]==_auth_code:
-                response.write('注册成功')
+                response.write('0')
                 _reg_user_name=request.Post.get('reg_user_name')
                 _reg_password=request.Post.get('reg_password')
                 u=User(user_name=_reg_user_name,password=_reg_password,user_phone=_phone_number,user_mail='123',session_id='123')
                 u.save()
+                print(0)
                 return response
             else:
-                response.write('验证码错误')
+                response.write('1')
+                print(1)
                 return response
         else:
-            response.write('手机号不存在')
+            response.write('1')
+            print(2)
             return response
     else:
         return HttpResponse("手机号格式不正确")
