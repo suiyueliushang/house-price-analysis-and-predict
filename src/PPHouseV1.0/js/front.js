@@ -209,8 +209,8 @@ $("#login").click(function() {
                 alert("Connection error");
             },
             success: function(data) { //成功
-                var dataObj = eval("(" + data + ")");
-                switch (dataObj.is_success) {
+                //var dataObj = data.phra;
+                switch (data.is_success) {
                     /*
                     if (data == '0') {
                         alert("登陆成功"); //就将返回的数据显示出来
@@ -224,9 +224,9 @@ $("#login").click(function() {
                     }
                     */
                     //switch (data) 
-                    case "0":
+                    case '0':
                         {
-                            window.localStorage.setItem("name", user_name);
+                            window.localStorage.setItem("name", data.user.user_name);
                             window.location.href = "index.html";
                             break;
                         }
