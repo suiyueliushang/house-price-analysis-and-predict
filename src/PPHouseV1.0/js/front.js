@@ -166,7 +166,6 @@ $(document).ready(function() {
                 expires: 365,
                 path: document.URL.substr(0, document.URL.lastIndexOf('/'))
             });
-
         }
 
         return false;
@@ -303,217 +302,212 @@ $("#log_out").click(function() {
 
 //注册
 $("#sign_up").click(function() {
-    reg_password = $('#reg_password').val();
-    reg_password_1 = $('#reg_password_1').val();
-    if (reg_password.length > 10) {
-        document.getElementsByClassName('wrong_box').innerText = '密码长度超过10位';
-
-    } else {
-        /* if (reg_password != reg_password_1) {
-             document.getElementsByClassName('wrong-show').innerText = '两次密码输入不一致';
-         } else {*/
-        var val = valiCode.value;
-        var current = result.join('');
-
-        console.log(val, typeof val, current, typeof current);
-        if (current.toLowerCase() != val.toLowerCase()) {
-            wrongShow.innerText = '验证码输入有误!';
-            getRandomStr();
-
-        } else {
-            //wrongShow.innerText = '验证码输入正确!';
-            /* getRandomStr();
-             alert('验证码输入正确!');*/
-            phone_number = $('#phone_number').val();
-            reg_phone_code = $('#reg_phone_code').val();
-            reg_user_name = $('#reg_user_name').val();
             reg_password = $('#reg_password').val();
             reg_password_1 = $('#reg_password_1').val();
+            if (reg_password.length > 10) {
+                document.getElementById('wrong_box').innerText = '密码长度不能超过10位';
+
+            } else if (reg_password.length < 4) {
+                document.getElementById('wrong_box').innerText = '密码长度不能少于4位';
+            } else {
+                if (reg_password != reg_password_1) {
+                    document.getElementById('wrong_box').innerText = '两次密码输入不一致';
+                } else {
+                    var val = valiCode.value;
+                    var current = result.join('');
+
+                    console.log(val, typeof val, current, typeof current);
+                    if (current.toLowerCase() != val.toLowerCase()) {
+                        wrongShow.innerText = '验证码输入有误!';
+                        getRandomStr();
+
+                    } else {
+                        //wrongShow.innerText = '验证码输入正确!';
+                        /* getRandomStr();
+                         alert('验证码输入正确!');*/
+                        phone_number = $('#phone_number').val();
+                        reg_phone_code = $('#reg_phone_code').val();
+                        reg_user_name = $('#reg_user_name').val();
+                        reg_password = $('#reg_password').val();
+                        reg_password_1 = $('#reg_password_1').val();
+
+                        $.ajax({
+                            type: "POST", //提交的方法
+                            url: "/sign_up", //提交的地址  
+                            // contentType: false,
+                            datatype: "json",
+                            data: {
+                                'phone_number': phone_number,
+                                'reg_phone_code': reg_phone_code,
+                                'reg_user_name': reg_user_name,
+                                'reg_password': reg_password,
+                            },
+                            //$('#login_form').serialize(), // 序列化表单值  
+                            async: false,
+                            error: function(request) { //失败的话
+                                alert("Connection error");
+                            },
+                            success: function(data) { //成功
+                                switch (data.is_success) {
+                                    case '0':
+                                        window.location.href = "login.html";
+                                        break;
+                                    case '1':
+                                        document.getElementById('wrong_box').innerText = '手机验证码错误';
+                                        break;
+                                    case '2':
+                                        document.getElementById('wrong_box').innerText = '用户名已存在';
+                                    default:
+                                        document.getElementById('wrong_box').innerText = '未知错误';
+                                }
+                                // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
+
+                            }
+                        });
+
+                    }
+                }
+            });
+
+        //验证码
+
+        var valiCode = document.getElementsByName('validateCode')[0];
+        var code = document.getElementsByClassName('code')[0];
+        var wrongShow = document.getElementsByClassName('wrong-show')[0];
+        var refresh = document.getElementsByClassName('refresh')[0];
+
+        var result = [];
+
+        /*声明一个数组包含所有字母及数字*/
+        var arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+            'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
+            'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+        ]
+
+        /*生成一个四位随机字符串*/
+        function getRandomStr() {
+            result.lenght = 0;
+            for (var i = 0; i < 4; i++) {
+                var num = Math.floor(Math.random() * 62);
+                result[i] = arr[num];
+            }
+            var codeStr = result.join('');
+            code.innerText = codeStr;
+        }
+
+        /*初始化一个验证码*/
+        window.onload = getRandomStr();
+
+        /*点击页面中该字符串重新生成一次*/
+        refresh.onclick = function() {
+            getRandomStr();
+        };
+
+
+        //手机验证码
+        $("#get_phone_code").click(function() {
+
+            phone_number = $('#phone_number').val();
 
             $.ajax({
                 type: "POST", //提交的方法
-                url: "/sign_up", //提交的地址  
+                url: "/reg_phone_number", //提交的地址  
                 // contentType: false,
-                datatype: "json",
                 data: {
                     'phone_number': phone_number,
-                    'reg_phone_code': reg_phone_code,
-                    'reg_user_name': reg_user_name,
-                    'reg_password': reg_password,
                 },
 
-                //datatype: "json",
+                // datatype: "json",
                 //$('#login_form').serialize(), // 序列化表单值  
                 async: false,
                 error: function(request) { //失败的话
                     alert("Connection error");
                 },
                 success: function(data) { //成功
-                    switch (data.is_success) {
-                        case '0':
-                            window.location.href = "login.html";
-                            break;
-                        case '1':
-                            document.getElementsByClassName('wrong-box').innerText = '手机验证码错误';
-                            break;
-                        case '2':
-                            document.getElementsByClassName('wrong-box').innerText = '用户名已存在';
-                        default:
-                            document.getElementsByClassName('wrong-box').innerText = '未知错误';
-                    }
-                    // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
 
-                }
-            });
+                    if (data == '0') {} else if (data == '1') {
 
-        }
-    }
+                        if (data == '0') {
 
+                        } else if (data == '1') {
 
-});
-
-//验证码
-
-var valiCode = document.getElementsByName('validateCode')[0];
-var code = document.getElementsByClassName('code')[0];
-var wrongShow = document.getElementsByClassName('wrong-show')[0];
-var refresh = document.getElementsByClassName('refresh')[0];
-
-var result = [];
-
-/*声明一个数组包含所有字母及数字*/
-var arr = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
-    'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q',
-    'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
-]
-
-/*生成一个四位随机字符串*/
-function getRandomStr() {
-    result.lenght = 0;
-    for (var i = 0; i < 4; i++) {
-        var num = Math.floor(Math.random() * 62);
-        result[i] = arr[num];
-    }
-    var codeStr = result.join('');
-    code.innerText = codeStr;
-}
-
-/*初始化一个验证码*/
-window.onload = getRandomStr();
-
-/*点击页面中该字符串重新生成一次*/
-refresh.onclick = function() {
-    getRandomStr();
-};
-
-
-//手机验证码
-$("#get_phone_code").click(function() {
-
-    phone_number = $('#phone_number').val();
-
-    $.ajax({
-        type: "POST", //提交的方法
-        url: "/reg_phone_number", //提交的地址  
-        // contentType: false,
-        data: {
-            'phone_number': phone_number,
-        },
-
-        // datatype: "json",
-        //$('#login_form').serialize(), // 序列化表单值  
-        async: false,
-        error: function(request) { //失败的话
-            alert("Connection error");
-        },
-        success: function(data) { //成功
-
-            if (data == '0') {} else if (data == '1') {
-
-                if (data == '0') {
-
-                } else if (data == '1') {
-
-                    alert("手机号已注册");
-                } else {
-                    alert("手机号不存在");
-                }
-
-            }
-        }
-
-    });
-});
-
-//忘记密码
-$("#forget_password").click(function() {
-    reg_password = $('#reg_password').val();
-    reg_password_1 = $('#reg_password_1').val();
-    if (reg_password.length > 10) {
-        document.getElementsByClassName('wrong-box').innerText = '密码长度超过10位';
-
-    } else if (reg_password.length < 4) {
-        document.getElementsByClassName('wrong-box').innerText = '密码长度小于4位';
-    } {
-        if (reg_password != reg_password_1) {
-            document.getElementsByClassName('wrong-box').innerText = '两次密码输入不一致';
-        } else {
-            var val = valiCode.value;
-            var current = result.join('');
-
-            console.log(val, typeof val, current, typeof current);
-            if (current.toLowerCase() != val.toLowerCase()) {
-                wrongShow.innerText = '验证码输入有误!';
-                getRandomStr();
-
-            } else {
-                //wrongShow.innerText = '验证码输入正确!';
-                /* getRandomStr();
-                 alert('验证码输入正确!');*/
-                phone_number = $('#phone_number').val();
-                reg_phone_code = $('#reg_phone_code').val();
-                reg_user_name = $('#reg_user_name').val();
-                reg_password = $('#reg_password').val();
-                reg_password_1 = $('#reg_password_1').val();
-
-                $.ajax({
-                    type: "POST", //提交的方法
-                    url: "/sign_up", //提交的地址  
-                    // contentType: false,
-                    datatype: "json",
-                    data: {
-                        'phone_number': phone_number,
-                        'log_phone_code': log_phone_code,
-                        'reg_user_name': reg_user_name,
-                        'reg_password': reg_password,
-
-                    },
-
-                    datatype: "json",
-                    //$('#login_form').serialize(), // 序列化表单值  
-                    async: false,
-                    error: function(request) { //失败的话
-                        alert("Connection error");
-                    },
-                    success: function(data) { //成功
-                        switch (data.is_success) {
-                            case '0':
-                                window.location.href = "index.html";
-                                window.localStorage.setItem("name", data.user.user_name);
-                                break;
-                            case '1':
-                                document.getElementsByClassName00('wrong-box').innerText = '手机验证码错误';
-                                break;
-                            default:
+                            alert("手机号已注册");
+                        } else {
+                            alert("手机号不存在");
                         }
-                        // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
 
                     }
-                });
+                }
 
+            });
+        });
+
+        //忘记密码
+        $("#forget_password").click(function() {
+            reg_password = $('#reg_password').val();
+            reg_password_1 = $('#reg_password_1').val();
+            if (reg_password.length > 10) {
+                document.getElementById('wrong_box').innerText = '密码长度不能超过10位';
+
+            } else if (reg_password.length < 4) {
+                document.getElementById('wrong_box').innerText = '密码长度不能少于4位';
+            } {
+                if (reg_password != reg_password_1) {
+                    document.getElementById('wrong_box').innerText = '两次密码输入不一致';
+                } else {
+                    var val = valiCode.value;
+                    var current = result.join('');
+
+                    console.log(val, typeof val, current, typeof current);
+                    if (current.toLowerCase() != val.toLowerCase()) {
+                        wrongShow.innerText = '验证码输入有误!';
+                        getRandomStr();
+
+                    } else {
+                        //wrongShow.innerText = '验证码输入正确!';
+                        /* getRandomStr();
+                         alert('验证码输入正确!');*/
+                        phone_number = $('#phone_number').val();
+                        reg_phone_code = $('#reg_phone_code').val();
+                        reg_user_name = $('#reg_user_name').val();
+                        reg_password = $('#reg_password').val();
+                        reg_password_1 = $('#reg_password_1').val();
+
+                        $.ajax({
+                            type: "POST", //提交的方法
+                            url: "/sign_up", //提交的地址  
+                            // contentType: false,
+                            datatype: "json",
+                            data: {
+                                'phone_number': phone_number,
+                                'log_phone_code': log_phone_code,
+                                'reg_user_name': reg_user_name,
+                                'reg_password': reg_password,
+
+                            },
+                            //$('#login_form').serialize(), // 序列化表单值  
+                            async: false,
+                            error: function(request) { //失败的话
+                                alert("Connection error");
+                            },
+                            success: function(data) { //成功
+                                switch (data.is_success) {
+                                    case '0':
+                                        window.location.href = "index.html";
+                                        window.localStorage.setItem("name", data.user.user_name);
+                                        break;
+                                    case '1':
+                                        document.getElementById('wrong_box').innerText = '手机验证码错误';
+                                        break;
+                                    default:
+                                }
+                                // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
+
+                            }
+                        });
+
+                    }
+                }
             }
-        }
-    }
 
-});
-s
+        });
