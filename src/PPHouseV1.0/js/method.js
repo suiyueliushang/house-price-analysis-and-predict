@@ -9,12 +9,15 @@ function $(str) {
 var addrShow = $('addr-show');
 var addrShow1= $('addr-show1');
 var btn = document.getElementsByClassName('met1')[0];
+var btn1 = $('btn1');
 var prov = $('prov');
 var prov1= $('prov1');
 var city = $('city');
 var city1= $('city1');
 var country = $('country');
-var country1= $('country1');
+var country1 = $('country1');
+var time_0 = $('time_0');
+var time_1= $('time_1');
 
 
 /*用于保存当前所选的省市区*/
@@ -39,16 +42,32 @@ var current1 = {
         provOpt.value = i;
         prov.appendChild(provOpt);
     }
+    var len_0=10;
+    for(var i = 0; i<len_0; i++) {
+        var year_time=2019-i;
+        var timeOpt = document.createElement('option');
+        timeOpt.innerText=year_time;
+        timeOpt.value = i;
+        time_0.appendChild(timeOpt);
+    }
 })();
 
 (function showProv1() {
-    btn.disabled = true;
+    btn1.disabled = true;
     var len = provice.length;
     for (var i = 0; i < len; i++) {
         var provOpt = document.createElement('option');
         provOpt.innerText = provice[i]['name'];
         provOpt.value = i;
         prov1.appendChild(provOpt);
+    }
+    var len_1=10;
+    for(var i = 0; i<len_1; i++) {
+        var year_time=2019-i;
+        var timeOpt = document.createElement('option');
+        timeOpt.innerText=year_time;
+        timeOpt.value = i;
+        time_1.appendChild(timeOpt);
     }
 })();
 
@@ -78,7 +97,7 @@ function showCity1(obj) {
     if (val != current1.prov1) {
         current1.prov1 = val;
         addrShow1.value = '';
-        btn.disabled = true;
+        btn1.disabled = true;
     }
     //console.log(val);
     if (val != null) {
@@ -142,15 +161,21 @@ function selecCountry(obj) {
 function selecCountry1(obj) {
     current1.country1 = obj.options[obj.selectedIndex].value;
     if ((current1.city1 != null) && (current1.country1 != null)) {
-        btn.disabled = false;
+        btn1.disabled = false;
     }
 }
 
 /*点击确定按钮显示用户所选的地址*/
 function showAddr() {
-    addrShow.value = provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name + '-' + provice[current.prov]["city"][current.city].districtAndCounty[current.country];
+    var myselect=document.getElementById('time_0');
+    var index=myselect.selectedIndex;
+    var time0_name=myselect.options[index].text;
+    addrShow.value = time0_name +  '-' + provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name + '-' + provice[current.prov]["city"][current.city].districtAndCounty[current.country];
 }
 
 function showAddr1() {
-    addrShow1.value = provice[current1.prov1].name + '-' + provice[current1.prov1]["city"][current1.city1].name + '-' + provice[current1.prov1]["city"][current1.city1].districtAndCounty[current1.country1];
+    var myselect=document.getElementById('time_1');
+    var index=myselect.selectedIndex;
+    var time1_name=myselect.options[index].text;
+    addrShow1.value = time1_name + '-' + provice[current1.prov1].name + '-' + provice[current1.prov1]["city"][current1.city1].name + '-' + provice[current1.prov1]["city"][current1.city1].districtAndCounty[current1.country1];
 }

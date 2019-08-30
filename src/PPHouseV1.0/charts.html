@@ -114,7 +114,8 @@
                 <!-- Page Header-->
                 <header class="page-header">
                     <div class="container-fluid">
-                        <h2 class="no-margin-bottom">房价对比</h2>
+                        <h2 class="no-margin-bottom">房价对比</h2><br>
+                        <a href="charts.html">区域对比</a><a href="charts2.html">/城市对比</a>
                     </div>
                 </header>
                 <!-- Breadcrumb-->
@@ -125,8 +126,12 @@
                     </ul>
                 </div>
                 <!--选择要对比的区域-->
-                <legend>请选择要对比的城市</legend>
+                <legend>请选择要对比的城市,时间</legend>
                 <form action="#">
+                    <!--时间选择-->
+                    <select id="time_0">
+                        <option>=请选择年份=</option>
+                    </select>
                     <!--省份选择-->
                     <select id="prov" onchange="showCity(this)">
                         <option>=请选择省份=</option>
@@ -145,8 +150,12 @@
                     </label>
                 </form>
                 <!--选择要对比的区域-->
-                <legend>请选择要对比的城市</legend>
+                <legend>请选择要对比的城市,时间</legend>
                 <form action="#">
+                    <!--时间选择-->
+                    <select id="time_1">
+                        <option>=请选择年份=</option>
+                    </select>
                     <!--省份选择-->
                     <select id="prov1" onchange="showCity1(this)">
                         <option>=请选择省份=</option>
@@ -159,7 +168,7 @@
                     <select id="country1" onchange="selecCountry1(this)">
                         <option>=请选择县区=</option>
                     </select>
-                    <button type="button" class="btn met1" onClick="showAddr1()">确定</button><br>
+                    <button type="button" id="btn1" onClick="showAddr1()">确定</button><br>
                     <label for="addr-show1">您选择的是：
                         <input type="text" value="" id="addr-show1">
                     </label>
@@ -181,7 +190,7 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">房价趋势对比图</h3>
+                                        <h3 class="h4">区域房价趋势对比图</h3>
                                     </div>
                                     <div class="card-body">
                                         <canvas id="lineChartExample3"></canvas>

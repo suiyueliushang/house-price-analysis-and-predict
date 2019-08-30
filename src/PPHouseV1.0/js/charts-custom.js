@@ -387,6 +387,85 @@ $(document).ready(function () {
         }
     });
 
+    // ------------------------------------------------------- //
+    // Line Chart5 
+    // ------------------------------------------------------ //
+    var LINECHART5 = $('#lineChartExample5');
+    var myLineChart5 = new Chart(LINECHART5, {
+        type: 'line',
+        options: {
+            scales: {
+                xAxes: [{
+                    display: true,
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    display:true,
+                    gridLines: {
+                        display: true
+                    }
+                }]
+            },
+            legend: {labels:{fontColor:"#777", fontSize: 12}}
+        },
+        data: {
+            labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+            datasets: [
+                {
+                    label: "City 1",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: '#6ccef0',
+                    pointBorderColor: '#59c2e6',
+                    pointHoverBackgroundColor: '#59c2e6',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 3,
+                    pointBackgroundColor: "#59c2e6",
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 4,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 0,
+                    pointRadius: 4,
+                    pointHitRadius: 0,
+                    data: [20, 28, 30, 22, 24, 10, 7, 8, 10, 11, 32, 23],
+                    spanGaps: false
+                },
+                {
+                    label: "City 2",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: '#ff7676',
+                    pointBorderColor: '#ff7676',
+                    pointHoverBackgroundColor: '#ff7676',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 3,
+                    pointBackgroundColor: "#ff7676",
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 4,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 0,
+                    pointRadius: 4,
+                    pointHitRadius: 0,
+                    data: [21, 22, 35, 27, 25, 20, 12, 14, 23, 24, 42, 20],
+                    spanGaps: false
+
+                }
+            ]
+        }
+    });
+
+
+
 
     // ------------------------------------------------------- //
     // Pie Chart
