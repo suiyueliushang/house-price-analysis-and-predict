@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from .models import User
+from .models import House
 from django.http import HttpResponse
 from django.http import JsonResponse
 from . import test
 import random
 import json
 
-code_dict={}
+code_dict1={}
+code_dict2={}
 
 def sign_in_by_password(request):
     '''登录传输的用户名和密码
@@ -62,14 +64,14 @@ def sign_in_by_phone_number(request):
     response=HttpResponse()
     _phonenumber=request.POST.get("phonenumber")
     _auth_code=request.POST.get("auth_code")
-    print(code_dict)
+    print(code_dict2)
     if _phonenumber and _auth_code:
         try:
             user=User.objects.get(user_phone=_phonenumber)
         except:
             result={'is_success':'1','user':''}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-        if code_dict[_phonenumber]==_auth_code:
+        if code_dict2[_phonenumber]==_auth_code:
             response.set_cookie("text","cookie11")
             user_user={'user_name':user.user_name,'id':user.session_id}
             result={'is_success':'0','user':user_user}
@@ -97,6 +99,28 @@ def reg_phone_number(request):
     code_dict[_phone_number]=code
     return HttpResponse("0")
 
+def get_auth_code(request):
+    '''
+    用户忘记密码时获取验证码
+    发送验证码
+    传递一个正确的11位中国大陆手机号码
+        @args:phonenumber
+        @return:auth_code
+    '''
+    _phone_number=request.POST.get('phone_number')
+    print(request.POST)
+    print(request)
+    print(str(_phone_number))
+    try:
+        user=User.objects.get(user_phone=_phone_number)
+    except:
+        return HttpResponse('1')    
+    code=str(random.randint(1000,9999))
+    test.auth_code(str(_phone_number),code)
+    code_dict[_phone_number]=code
+    return HttpResponse("0")
+
+
 def sign_up(request):
     '''注册
     传递用户名，手机号，还有密码,验证码
@@ -106,11 +130,11 @@ def sign_up(request):
     _phone_number=request.POST.get('phone_number')
     _auth_code=request.POST.get('reg_phone_code')
     print(request.POST)
-    print(code_dict)
+    print(code_dict1)
     response=HttpResponse()
     if _phone_number.strip() and _auth_code:
-        if _phone_number in code_dict.keys():
-            if code_dict[_phone_number]==_auth_code:
+        if _phone_number in code_dict1.keys():
+            if code_dict1[_phone_number]==_auth_code:
                 _reg_user_name=request.POST.get('reg_user_name')
                 _reg_password=request.POST.get('reg_password')
                 u=User(user_name=_reg_user_name,password=_reg_password,user_phone=_phone_number,session_id='123')
@@ -132,46 +156,70 @@ def forget_password(request):
     @args:str:phonenumber，
         str:password，
         str:auth_code
-    @return: bool,判断用户输入的验证码马是否正确，如果正确，则找回新密码生效
+    @return: bool,判断用户输入的验证码是否正确，如果正确，则找回新密码生效
     @date:
     '''
     response=HttpResponse()
-    _phonenumber=request.POST.get("phonenumber")
-    _auth_code=request.POST.get("_auth_code")
+    _phonenumber=request.POST.get("phone_number")
+    _username=request.POST.get('user_name')
+    _auth_code=request.POST.get("phone_code")
     _password=request.POST.get("password")
     if _phonenumber and _auth_code:
-        if code_dict.has_key(_phonenumber):
-            if code_dict[_phonenumber]==_auth_code:
-                response.write('修改密码成功')
+        try:
+            user=User.objects.get(_phonenumber)
+        except:
+            return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+        if _phonenumber in code_dict2.keys():
+            if code_dict2[_phonenumber]==_auth_code:
                 u=User.obiects.get(user_phone=_phonenumber)
-                u.password=_password
-                u.save()
-                return response
+                if _username == u.user_name:
+                    u.password=_password
+                    u.save()
+                    return HttpResponse(json.dumps({'is_success':'0'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+                else:
+                    return HttpResponse(json.dumps({'is_success':'3'},ensure_ascii=False),content_type="application/json,charset=utf-8")
             else:
-                response.write('验证码错误')
-                return response
+                return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
         else:
-            response.write('验证码错误')
-            return response
+            return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
     else:
-        response.write('格式错误')
-        return response
+        return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def query_prices(request):
     '''
     用户点击城市,地区,价格区间来显示该地区的房源
-    @args:  str:ciy
+    @args:  str:city
             str:district
             date:time
             int:min
             int:max
+    return json数据
+            {'is_success':一个数字,0代表成功，1代表失败,houses:一个列表，包含符合条件的所有房源}
     '''
+    _city=request.POST.get('city')
+    _district=request.POST.get('district')
+    _date=request.POST.get('date')
+    _min=request.POST.get('min')
+    _max=request.POST.get('max')
+    try:
+        houses=House.objects.filter(city=_city,district=_district)
+    except:
+        return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+    for house in houses:
+        if house.price > max or house.price < min:
+            houses.remove(house)
+        else:
+            pass
+    result={'is_success':0,'houses':houses}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 
 def province_average(request):
     '''
     用户点击省份来显示近几个月的房价走势
     @args:  str:province
     '''
+
 
 def city_average(request):
     '''
@@ -198,6 +246,17 @@ def delete_collection(request):
     @args: int:id
             cookie
     '''
+
+def admin_sign_in(request):
+    '''
+    管理员通过用户名密码登录
+    @args:  str:admin_name
+            str:password
+    '''
+
+def add_house_info(request):
+    '''
+    管理员添加
 
 '''
     return
