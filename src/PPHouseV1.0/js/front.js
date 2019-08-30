@@ -354,12 +354,12 @@ $("#sign_up").click(function() {
                             window.location.href = "login.html";
                             break;
                         case '1':
-                            document.getElementsByClassName('wrong-box').innerText = '手机验证码错误';
+                            document.getElementById('wrong_box').innerText = '手机验证码错误';
                             break;
                         case '2':
-                            document.getElementsByClassName('wrong-box').innerText = '用户名已存在';
+                            document.getElementById('wrong_box').innerText = '用户名已存在';
                         default:
-                            document.getElementsByClassName('wrong-box').innerText = '未知错误';
+                            document.getElementById('wrong_box').innerText = '未知错误';
                     }
                     // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
 
