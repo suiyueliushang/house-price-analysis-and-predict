@@ -140,17 +140,18 @@ def forget_password(request):
     _auth_code=request.POST.get("_auth_code")
     _password=request.POST.get("password")
     if _phonenumber and _auth_code:
-        if _phonenumber in code_dict.keys():
+        if code_dict.has_key(_phonenumber):
             if code_dict[_phonenumber]==_auth_code:
+                response.write('修改密码成功')
                 u=User.obiects.get(user_phone=_phonenumber)
                 u.password=_password
                 u.save()
-                return HttpResponse(json.dumps({'is_success':'0'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+                return response
             else:
-                return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+                response.write('验证码错误')
                 return response
         else:
-            return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+            response.write('验证码错误')
             return response
     else:
         response.write('格式错误')
