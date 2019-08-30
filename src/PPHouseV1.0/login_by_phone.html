@@ -86,7 +86,7 @@
                     <div class="col-lg-6 bg-white">
                         <div class="form d-flex align-items-center">
                             <div class="content">
-                                <a href="./login.html">用户名登录</a>
+
                                 <br/>
                                 <br/>
                                 <form id="login_form">
@@ -98,8 +98,8 @@
 
                                     <div>
                                         <div class="form-group" style="display: inline-block">
-                                            <input id="phone_login_code" type="password" name="phone_login_code" required data-msg="Please enter your code" class="input-material">
-                                            <label for="login-password" class="label-material">手机验证码</label>
+                                            <input id="phone_code" type="text" required data-msg="Please enter your code" class="input-material">
+                                            <label for="phone_code" class="label-material">手机验证码</label>
                                         </div>
                                         <div style="display: inline-block; float: right">
                                             <button type="button" id="get_auth_code" class="btn btn-primary" style="background-color:#87CEFA; ">获取验证码</button>
@@ -122,10 +122,12 @@
                                         -->
                                         <h7 id="wrong_box" style="color: red"></h7>
                                     </form>
-                                    <button type="button" id="login" class="btn btn-primary">Login</button>
+                                    <button type="button" id="login_by_phone" class="btn btn-primary">Login</button>
 
-                                </form> <a href="#" class="forgot-pass">忘记密码？</a>
-                                <br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
+                                </form>
+                                <a href="./register.html" class="signup" style="margin-right:5px ">注册</a><a class="signup">|</a>
+                                <a href="./login.html" class="signup">用户名登录</a> <a class="signup" style="margin-right:5px ">|</a>
+                                <a href="./admin_login.html" class="signup">管理员登录</a>
                             </div>
                         </div>
                     </div>

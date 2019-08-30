@@ -337,7 +337,7 @@ $("#login").click(function() {
 });
 
 //手机号登录
-$("#login_by_phones").click(function() {
+$("#login_by_phone").click(function() {
     phone_number = $('#phone_number').val();
     phone_login_code = $('#phone_login_code').val();
 
