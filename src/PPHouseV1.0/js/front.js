@@ -523,7 +523,7 @@ $("#forget_password").click(function() {
 
                                     $.ajax({
                                         type: "POST", //提交的方法
-                                        url: "/sign_up", //提交的地址  
+                                        url: "/forget_password", //提交的地址  
                                         // contentType: false,
                                         datatype: "json",
                                         data: {
@@ -546,8 +546,10 @@ $("#forget_password").click(function() {
                                                     break;
                                                 case '1':
                                                     document.getElementById('wrong_box').innerText = '手机验证码错误';
+                                                    break;
                                                 case '2':
                                                     document.getElementById('wrong_box').innerText = '手机号未注册';
+                                                    break;
                                                 case '3':
                                                     document.getElementById('wrong_box').innerText = '手机号与用户名不匹配';
                                                     break;
