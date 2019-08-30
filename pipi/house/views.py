@@ -8,7 +8,7 @@ import random
 import json
 
 code_dict1={}
-code_dict2={}
+code_dict2={'17714209247':'3333'}
 
 def sign_in_by_password(request):
     '''登录传输的用户名和密码
@@ -91,12 +91,12 @@ def reg_phone_number(request):
     '''
 
     _phone_number=request.POST.get('phone_number')
-    print(request.POST)
-    print(request)
-    print(str(_phone_number))
+    #print(request.POST)
+    #print(request)
+    #print(str(_phone_number))
     code=str(random.randint(1000,9999))
     test.auth_code(str(_phone_number),code)
-    code_dict[_phone_number]=code
+    code_dict1[_phone_number]=code
     return HttpResponse("0")
 
 def get_auth_code(request):
@@ -111,13 +111,15 @@ def get_auth_code(request):
     print(request.POST)
     print(request)
     print(str(_phone_number))
+    users=User.objects.all()
+    print(users[3].user_phone)
     try:
-        user=User.objects.get(user_phone=_phone_number)
+        user=User.objects.filter(user_phone=str(_phone_number))[0]
     except:
         return HttpResponse('1')    
     code=str(random.randint(1000,9999))
     test.auth_code(str(_phone_number),code)
-    code_dict[_phone_number]=code
+    code_dict2[_phone_number]=code
     return HttpResponse("0")
 
 
@@ -164,14 +166,16 @@ def forget_password(request):
     _username=request.POST.get('user_name')
     _auth_code=request.POST.get("phone_code")
     _password=request.POST.get("password")
+    print(code_dict2)
     if _phonenumber and _auth_code:
         try:
-            user=User.objects.get(_phonenumber)
+            user=User.objects.filter(user_phone=_phonenumber)[0]
         except:
+            print(2)
             return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
         if _phonenumber in code_dict2.keys():
             if code_dict2[_phonenumber]==_auth_code:
-                u=User.obiects.get(user_phone=_phonenumber)
+                u=User.objects.filter(user_phone=_phonenumber)[0]
                 if _username == u.user_name:
                     u.password=_password
                     u.save()
@@ -181,8 +185,10 @@ def forget_password(request):
             else:
                 return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
         else:
+            print(22)
             return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
     else:
+        print(222)
         return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def query_prices(request):
