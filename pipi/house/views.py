@@ -259,6 +259,7 @@ def add_house_info(request):
     管理员添加
 
 '''
+'''
     return
 def login(request):
     #user_name=request.pos
