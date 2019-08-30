@@ -339,7 +339,7 @@ $("#login").click(function() {
 //手机号登录
 $("#login_by_phone").click(function() {
     phone_number = $('#phone_number').val();
-    phone_login_code = $('#phone_login_code').val();
+    phone_code = $('#phone_code').val();
 
     if (phone_number.length == 0) { document.getElementById('wrong_box').innerText = '未输入手机号'; } else {
         if (phone_number.length != 11) { document.getElementById('wrong_box').innerText = '手机号长度有误'; } else {
@@ -351,7 +351,7 @@ $("#login_by_phone").click(function() {
                 // contentType: false,
                 data: {
                     'phone_number': phone_number,
-                    'phone_login_code': phone_login_code
+                    'phone_code': phone_code
                 },
 
                 datatype: "json",
@@ -494,12 +494,16 @@ function getRandomStr() {
 }
 
 /*初始化一个验证码*/
-window.onload = getRandomStr();
+obj = document.getElementsByClassName('code')[0];
+if (obj) {
+    window.onload = getRandomStr();
 
-/*点击页面中该字符串重新生成一次*/
-refresh.onclick = function() {
-    getRandomStr();
-};
+
+    /*点击页面中该字符串重新生成一次*/
+    refresh.onclick = function() {
+        getRandomStr();
+    };
+}
 
 
 //手机验证码
