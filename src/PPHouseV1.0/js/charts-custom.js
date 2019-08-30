@@ -195,7 +195,7 @@ $(document).ready(function () {
         }
     });
 
-     // ------------------------------------------------------- //
+    // ------------------------------------------------------- //
     // Line Chart 3
     // ------------------------------------------------------ //
     var LINECHART3 = $('#lineChartExample3');
@@ -327,6 +327,60 @@ $(document).ready(function () {
                     pointRadius: 4,
                     pointHitRadius: 0,
                     data: [20, 8, 30, 22, 24, 17, 20, 23, 24, 34, 23, 12],
+                    spanGaps: false
+                }
+            ]
+        }
+    });
+
+
+    // ------------------------------------------------------- //
+    // Line Chart 4
+    // ------------------------------------------------------ //
+    var LINECHART4 = $('#lineChartExample4');
+    var myLineChart4 = new Chart(LINECHART4, {
+        type: 'line',
+        options: {
+            scales: {
+                xAxes: [{
+                    display: true,
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    display:true,
+                    gridLines: {
+                        display: true
+                    }
+                }]
+            },
+            legend: {labels:{fontColor:"#777", fontSize: 12,},display:false}
+        },
+        data: {
+            labels: [lastYear(getMonth()-11), lastYear(getMonth()-10), lastYear(getMonth()-9), lastYear(getMonth()-8), lastYear(getMonth()-7), lastYear(getMonth()-6), lastYear(getMonth()-5), lastYear(getMonth()-4), lastYear(getMonth()-3), lastYear(getMonth()-2), lastYear(getMonth()-1), lastYear(getMonth())],
+            datasets: [
+                {
+                    label: "南京",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: '#6ccef0',
+                    pointBorderColor: '#59c2e6',
+                    pointHoverBackgroundColor: '#59c2e6',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 3,
+                    pointBackgroundColor: "#59c2e6",
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 4,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 0,
+                    pointRadius: 4,
+                    pointHitRadius: 0,
+                    data: [20, 28, 30, 22, 24, 10, 7, 8, 10, 11, 32, 23],
                     spanGaps: false
                 }
             ]
@@ -679,3 +733,14 @@ $(document).ready(function () {
 
 
 });
+
+function getMonth(){
+    var date = new Date();
+    var month = date.getMonth();
+    return month;
+}
+
+function lastYear(month){
+    month = ( month + 12 ) % 12 + 1;
+    return month + "月";
+}

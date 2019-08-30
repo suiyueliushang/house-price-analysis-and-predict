@@ -27,10 +27,267 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
+        
     <link rel="stylesheet" href="css/cityselect.css">
     <script type="text/javascript" src="js/cityselect.js"></script>
 
     <style>
+
+        .sale-left{
+            float:left;
+            width:900px;
+            position:relative;
+            z-index:0
+        }
+
+        .sortby{
+            color:#666;
+            padding-left:20px;
+            padding-right:20px;
+            margin-bottom:10px
+        }
+
+        .sortby .sort-con{
+            float:right;
+            *margin-top:-17px
+        }
+
+        .sortby .sort-con a{
+            margin-left:20px;
+            padding-right:15px;
+            background-image:url("//pages.anjukestatic.com/usersite/site/img/global/2/video_arrow_1x.png");
+            background-image:-webkit-image-set(url("//pages.anjukestatic.com/usersite/site/img/global/2/video_arrow_1x.png") 1x,url("//pages.anjukestatic.com/usersite/site/img/global/2/video_arrow_2x.png") 2x);
+            background-position:-50px 0;
+            background-repeat:no-repeat
+        }
+        
+        .sortby .sort-con a.fst{
+            margin-left:0;
+            padding-right:0;
+            background-image:none
+        }
+
+        .sortby .sort-con a:link,
+        .sortby .sort-con a:visited{
+            color:#666
+        }
+        
+        .sortby .sort-con a:hover{
+            color:#e54b00;
+            text-decoration:underline
+        }
+        
+        .sortby .sort-con a.cur{
+            color:#e54b00;
+            font-weight:normal
+        }
+            
+        .sortby .sort-con .up{
+            background-position:30px -30px;
+            background-position:30px -29px \0;
+            *background-position:30px -29px
+        }
+        
+        .sortby .sort-con .down{
+            background-position:30px -46px;
+            background-position:30px -45px \0;
+            *background-position:30px -45px
+        }
+
+        .clearfix:after{
+            clear:both;
+            content:".";
+            display:block;
+            font-size:0;
+            height:0;
+            line-height:0;
+            visibility:hidden
+        }
+        
+        .clearfix{
+            *zoom:1
+        }
+
+        .sortby-top-v2{
+            margin-top:35px
+        }
+
+        .houselist-mod{
+            border-top:1px solid #e6e6e6;
+            font-size:14px
+        }
+
+        .houselist-mod .list-item{
+            padding:20px 20px 14px 220px;
+            color:#666;
+            border-bottom:1px dashed #e6e6e6;
+            position:relative;
+            z-index:0;
+            cursor:pointer;
+            *zoom:1
+        }
+
+        .houselist-mod .list-item .item-img{
+            float:left;
+            *display:inline;
+            margin-left:-200px;
+            width:180px;
+            height:135px;
+            position:relative;
+            z-index:2
+        }
+        
+        .houselist-mod .list-item .item-img img{
+            display:block;
+            width:100%;
+            height:100%
+        }
+
+        .houselist-mod .list-item a{
+            display:inline-block;
+            color:#333;
+            font-size:16px;
+            font-weight:bold;
+            vertical-align:top;
+            padding-right:7px;
+            max-width:375px;
+            text-overflow:ellipsis;
+            overflow:hidden;
+            white-space:nowrap;
+            display:inline-block;
+            vertical-align:top
+        }
+
+        .houselist-mod .house-details .house-title{
+            margin-bottom:6px;
+            height:34px;
+            line-height:34px;
+            font-size:0
+        }
+        
+        .houselist-mod .house-details .house-title a{
+            display:inline-block;
+            vertical-align:top;
+            padding-right:7px;
+            max-width:375px;
+            text-overflow:ellipsis;
+            overflow:hidden;
+            white-space:nowrap
+        }
+
+        .houselist-mod .house-details .details-item{
+            height:30px;
+            line-height:30px
+        }
+        
+        .houselist-mod .details-item span{
+            margin-right:10px
+        }
+
+        .houselist-mod .details-item .comm-address{
+            display:inline-block;
+            max-width:342px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            margin-right:0;
+            /*_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>342?"342":"auto");*/
+            max-width:342px
+        }
+
+        .houselist-mod .details-item .spe-lines{
+            display:inline-block;
+            margin-right:10px;
+            width:1px;
+            background:#ccc;
+            height:10px;
+            font-size:0;
+            text-indent:-9999px;
+            overflow:hidden
+        }
+
+        .houselist-mod .tags-bottom{
+            width:550px;
+            margin:0 0 7px -8px;
+            font-size:0;
+            white-space:normal;
+            word-break:break-all;
+            word-wrap:break-word;
+            overflow:hidden
+        }
+        
+        .tags-bottom .item-tags{
+            display:inline-block;
+            font-size:12px;
+            height:22px;
+            line-height:22px;
+            margin:8px 0 5px 8px;
+            padding:0 10px;
+            border-radius:100px;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis
+        }
+
+        .tags-bottom .tag-metro,
+        .tags-bottom .tag-school{
+            max-width:160px;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            white-space:nowrap;
+            /*_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>160?"160":"auto")*/
+        }
+        
+        .tags-bottom .tag-metro{
+            color:#6682ae;
+            background:#f0f4f8
+        }
+
+        .tags-bottom .tag-school{
+            color:#e88a78;
+            background:#fbf4f1
+        }
+
+        .tags-bottom .tag-others{
+            color:#799374;
+            background:#f2f6ed
+        }
+        
+        .houselist-mod .pro-price{
+            position:absolute;
+            top:60px;
+            right:20px;
+            width:112px;
+            text-align:right;
+            white-space:nowrap
+        }
+        
+        .houselist-mod .pro-price .price-det{
+            display:block;
+            width:112px;
+            height:30px;
+            line-height:30px;
+            color:#e54b00
+        }
+        
+        .houselist-mod .pro-price strong{
+            font-size:22px;
+            font-weight:bold;
+            font-family:Tahoma;
+            margin-right:3px
+        }
+
+        .houselist-mod .pro-price .unit-price{
+            font-size:12px;
+            color:#999
+        }
+
+        .houselist-mod-new .house-details{
+            height:135px;
+            display:table-cell;
+            vertical-align:middle
+        }
+
 
         .city{
             display: inline-block;
@@ -356,6 +613,69 @@
 
                 </div>
 
+
+                <!-- Line Charts-->
+                <div class="col-lg-8">
+                    <div class="line-chart-example card">
+                        <div class="card-header d-flex align-items-center">
+                            <h3 class="h4">南京房价走势图</h3>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="lineChartExample4"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- left content begin -->
+                <div class="sale-left">
+                    <!-- 搜索无结果-->
+                    <div class="sortby clearfix sortby-top-v2" id='filtersort'>
+                        <span>为您找到以下<strong>南京</strong>二手房</span>    
+                        <span class="sort-con">排序：
+                            <a class="fst cur" href="#" rel="nofollow">默认</a>
+                            <a class="down" href="#" rel="nofollow">面积</a>
+                            <a class="up" href="#" rel="nofollow">价格</a>
+                            <a class="down" href="#" rel="nofollow">最新</a>
+                        </span>
+                    </div>
+
+                    <ul id="houselist-mod-new" class="houselist-mod houselist-mod-new">
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  title="急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校" href="#" target='_blank' class="houseListTitle ">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span>2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>                                
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>            
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong>82</strong>万</span><span class="unit-price">13898元/m²</span>        
+                            </div>
+                        </li>
+                    </ul>
+            </div>
+                
+
+
                 <!-- 模板 -->
                 <section class="tables">
                     <div class="container-fluid">
@@ -605,6 +925,7 @@
     </script>
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="js/charts-custom.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
 
