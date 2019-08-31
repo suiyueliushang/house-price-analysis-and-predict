@@ -390,7 +390,7 @@ $(document).ready(function () {
     // ------------------------------------------------------- //
     // Line Chart5 
     // ------------------------------------------------------ //
-    var LINECHART5 = $('#lineChartExample5');
+    /*var LINECHART5 = $('#lineChartExample5');
     var myLineChart5 = new Chart(LINECHART5, {
         type: 'line',
         options: {
@@ -462,7 +462,7 @@ $(document).ready(function () {
                 }
             ]
         }
-    });
+    });*/
 
 
 
