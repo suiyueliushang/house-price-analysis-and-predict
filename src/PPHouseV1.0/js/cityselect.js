@@ -339,11 +339,43 @@ Vcity.CitySelector.prototype = {
      * */
 
     linkEvent:function(){
+        var date = new Date;
+        var houses;
         var links = Vcity._m.$('a',this.hotCity);
         var that = this;
         for(var i=0,n=links.length;i<n;i++){
             links[i].onclick = function(){
                 that.button.innerHTML = this.innerHTML;
+                $.ajax({
+                    type: "post",
+                    url: "/query_prices",
+                    data: {
+                        "city": this.innerHTML,
+                        
+                        "time": date.getDate,
+                        "min": 0,
+                        "max": 100000000
+                    },
+                    datatype:"json",
+                    async: false,
+                    error: function(request) { //失败的话
+                        alert("Connection error");
+                    },
+                    success(data){
+                        switch(data.is_success){
+                            case '0':{
+                                houses = data.houses;
+                                break;
+                            }
+                            case '1':{
+                                alert("数据传送错误");
+                                break;
+                            }
+                            default:
+                                alert("未知错误");
+                        }
+                    }
+                })
                 Vcity._m.addClass('hide',that.cityBox);
                 /* 点击城市名的时候隐藏myIframe */
                 Vcity._m.addClass('hide',that.myIframe);
