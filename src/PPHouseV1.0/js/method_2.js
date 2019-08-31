@@ -16,7 +16,8 @@ var prov3 = $('prov3');
 var city3 = $('city3');
 var addrShow3 = $('addr-show3');
 var time_3 = $('time_3');
-var price_array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+var price_array2 = new Array(12);
+var price_array3 = new Array(12);
 
 /*用于保存当前所选的省市区*/
 var current2 = {
@@ -164,18 +165,18 @@ function showAddr2 () {
             alert("Connection error");
         },
 		success:function(data) {
-            price_array[0]=data.one;
-            price_array[1]=data.two;
-            price_array[2]=data.three;
-            price_array[3]=data.four;
-            price_array[4]=data.five;
-            price_array[5]=data.six;
-            price_array[6]=data.seven;
-            price_array[7]=data.eight;
-            price_array[8]=data.nine;
-            price_array[9]=data.ten;
-            price_array[10]=data.eleven;
-            price_array[11]=data.twelve;
+            price_array2[0]=data.one;
+            price_array2[1]=data.two;
+            price_array2[2]=data.three;
+            price_array2[3]=data.four;
+            price_array2[4]=data.five;
+            price_array2[5]=data.six;
+            price_array2[6]=data.seven;
+            price_array2[7]=data.eight;
+            price_array2[8]=data.nine;
+            price_array2[9]=data.ten;
+            price_array2[10]=data.eleven;
+            price_array2[11]=data.twelve;
             }
     });
     $(document).ready(function () {
@@ -224,7 +225,30 @@ function showAddr2 () {
                     pointHoverBorderWidth: 0,
                     pointRadius: 4,
                     pointHitRadius: 0,
-                    data: [price_array[0], price_array[1], price_array[2], price_array[3], price_array[4], price_array[5], price_array[6], price_array[7], price_array[8], price_array[9], price_array[10], price_array[11]],
+                    data: [price_array2[0], price_array2[1], price_array2[2], price_array2[3], price_array2[4], price_array2[5], price_array2[6], price_array2[7], price_array2[8], price_array2[9], price_array2[10], price_array2[11]],
+                    spanGaps: false
+                },
+                {
+                    label: "City 2",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: '#ff7676',
+                    pointBorderColor: '#ff7676',
+                    pointHoverBackgroundColor: '#ff7676',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 3,
+                    pointBackgroundColor: "#ff7676",
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 4,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 0,
+                    pointRadius: 4,
+                    pointHitRadius: 0,
+                    data: [price_array3[0], price_array3[1], price_array3[2], price_array3[3], price_array3[4], price_array3[5], price_array3[6], price_array3[7], price_array3[8], price_array3[9], price_array3[10], price_array3[11]],
                     spanGaps: false
                 }
             ]
@@ -237,4 +261,108 @@ function showAddr3() {
     var index=myselect.selectedIndex;
     var time3_name=myselect.options[index].text;
     addrShow3.value = time3_name + '-' + provice[current3.prov3].name + '-' + provice[current3.prov3]["city"][current3.city3].name;
+    var city_name=provice[current3.prov3]["city"][current3.city3].name;
+    $.ajax({
+		type:"POST",//
+        url:"/contrast_city",//
+        datatype:"json",
+		data: {
+			'city_name' :city_name,
+			'year': time3_name
+        },
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+		success:function(data) {
+            price_array3[0]=data.one;
+            price_array3[1]=data.two;
+            price_array3[2]=data.three;
+            price_array3[3]=data.four;
+            price_array3[4]=data.five;
+            price_array3[5]=data.six;
+            price_array3[6]=data.seven;
+            price_array3[7]=data.eight;
+            price_array3[8]=data.nine;
+            price_array3[9]=data.ten;
+            price_array3[10]=data.eleven;
+            price_array3[11]=data.twelve;
+            }
+    });
+    $(document).ready(function () {
+
+        'use strict';
+        var LINECHART5 = $('#lineChartExample5');
+    var myLineChart5 = new Chart(LINECHART5, {
+        type: 'line',
+        options: {
+            scales: {
+                xAxes: [{
+                    display: true,
+                    gridLines: {
+                        display: false
+                    }
+                }],
+                yAxes: [{
+                    display:true,
+                    gridLines: {
+                        display: true
+                    }
+                }]
+            },
+            legend: {labels:{fontColor:"#777", fontSize: 12}}
+        },
+        data: {
+            labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+            datasets: [
+                {
+                    label: "City 1",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: '#6ccef0',
+                    pointBorderColor: '#59c2e6',
+                    pointHoverBackgroundColor: '#59c2e6',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 3,
+                    pointBackgroundColor: "#59c2e6",
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 4,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 0,
+                    pointRadius: 4,
+                    pointHitRadius: 0,
+                    data: [price_array2[0], price_array2[1], price_array2[2], price_array2[3], price_array2[4], price_array2[5], price_array2[6], price_array2[7], price_array2[8], price_array2[9], price_array2[10], price_array2[11]],
+                    spanGaps: false
+                },
+                {
+                    label: "City 2",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: '#ff7676',
+                    pointBorderColor: '#ff7676',
+                    pointHoverBackgroundColor: '#ff7676',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 3,
+                    pointBackgroundColor: "#ff7676",
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 4,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 0,
+                    pointRadius: 4,
+                    pointHitRadius: 0,
+                    data: [price_array3[0], price_array3[1], price_array3[2], price_array3[3], price_array3[4], price_array3[5], price_array3[6], price_array3[7], price_array3[8], price_array3[9], price_array3[10], price_array3[11]],
+                    spanGaps: false
+                }
+            ]
+        }
+    });
+    });
 }
