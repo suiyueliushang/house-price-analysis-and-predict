@@ -390,7 +390,7 @@ $(document).ready(function () {
     // ------------------------------------------------------- //
     // Line Chart5 
     // ------------------------------------------------------ //
-    /*var LINECHART5 = $('#lineChartExample5');
+    var LINECHART5 = $('#lineChartExample5');
     var myLineChart5 = new Chart(LINECHART5, {
         type: 'line',
         options: {
@@ -433,7 +433,7 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 0,
                     pointRadius: 4,
                     pointHitRadius: 0,
-                    data: [20, 28, 30, 22, 24, 10, 7, 8, 10, 11, 32, 23],
+                    data: [price_array[0], price_array[1], price_array[2], price_array[3], price_array[4], price_array[5], price_array[6], price_array[7], price_array[8], price_array[9], price_array[10], price_array[11]],
                     spanGaps: false
                 },
                 {
@@ -462,7 +462,7 @@ $(document).ready(function () {
                 }
             ]
         }
-    });*/
+    });
 
 
 

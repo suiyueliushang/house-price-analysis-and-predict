@@ -7,7 +7,7 @@ function $(str) {
 }
 
 var addrShow2 = $('addr-show2');
-var btn = document.getElementsByClassName('met1')[0];
+var btn2 = $('btn2');
 var prov2 = $('prov2');
 var city2 = $('city2');
 var time_2 = $('time_2');
@@ -16,7 +16,7 @@ var prov3 = $('prov3');
 var city3 = $('city3');
 var addrShow3 = $('addr-show3');
 var time_3 = $('time_3');
-var price_array = new Array(12);
+var price_array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
 /*用于保存当前所选的省市区*/
 var current2 = {
@@ -34,7 +34,7 @@ var current3 = {
 
 /*自动加载省份列表*/
 (function showProv2() {
-    btn.disabled = true;
+    btn2.disabled = true;
     var len = provice.length;
     for (var i = 0; i < len; i++) {
         var provOpt = document.createElement('option');
@@ -77,7 +77,7 @@ function showCity2(obj) {
     if (val != current2.prov2) {
         current2.prov2 = val;
         addrShow2.value = '';
-        btn.disabled = true;
+        btn2.disabled = true;
     }
     //console.log(val);
     if (val != null) {
@@ -134,7 +134,7 @@ function showCountry2(obj) {
 function deal_2(obj) {
     current2.city2 = obj.options[obj.selectedIndex].value;
     if (current2.city2 != null) {
-        btn.disabled = false;
+        btn2.disabled = false;
     }
 }
 function deal_3(obj) {
@@ -145,18 +145,24 @@ function deal_3(obj) {
 }
 
 /*点击确定按钮显示用户所选的地址*/
-function showAddr2() {
+function showAddr2 () {
     var myselect=document.getElementById('time_2');
     var index=myselect.selectedIndex;
     var time2_name=myselect.options[index].text;
     addrShow2.value = time2_name + '-' + provice[current2.prov2].name + '-' + provice[current2.prov2]["city"][current2.city2].name;
+    var city_name=provcie[current2.prov2]["city"][current2.city2].name;
     $.ajax({
-		type:"post",//
-		url:"/contrast_city",//
+		type:"POST",//
+        url:"/contrast_city",//
+        datatype:"json",
 		data: {
 			'city_name' :city_name,
 			'year': time2_name
-		},
+        },
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
 		success:function(data) {
 			for(var i=1;i<(data.length+1);i++){
                 price_array[i-1]=data.i;
@@ -170,80 +176,3 @@ function showAddr3() {
     var time3_name=myselect.options[index].text;
     addrShow3.value = time3_name + '-' + provice[current3.prov3].name + '-' + provice[current3.prov3]["city"][current3.city3].name;
 }
-
- // ------------------------------------------------------- //
-    // Line Chart5 
-    // ------------------------------------------------------ //
-    var LINECHART5 = $('#lineChartExample5');
-    var myLineChart5 = new Chart(LINECHART5, {
-        type: 'line',
-        options: {
-            scales: {
-                xAxes: [{
-                    display: true,
-                    gridLines: {
-                        display: false
-                    }
-                }],
-                yAxes: [{
-                    display:true,
-                    gridLines: {
-                        display: true
-                    }
-                }]
-            },
-            legend: {labels:{fontColor:"#777", fontSize: 12}}
-        },
-        data: {
-            labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-            datasets: [
-                {
-                    label: "City 1",
-                    fill: true,
-                    lineTension: 0,
-                    backgroundColor: "transparent",
-                    borderColor: '#6ccef0',
-                    pointBorderColor: '#59c2e6',
-                    pointHoverBackgroundColor: '#59c2e6',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    borderWidth: 3,
-                    pointBackgroundColor: "#59c2e6",
-                    pointBorderWidth: 0,
-                    pointHoverRadius: 4,
-                    pointHoverBorderColor: "#fff",
-                    pointHoverBorderWidth: 0,
-                    pointRadius: 4,
-                    pointHitRadius: 0,
-                    data: [price_array[0], price_array[1], price_array[2], price_array[3], price_array[4], price_array[5], price_array[6], price_array[7], price_array[8], price_array[9], price_array[10], price_array[11]],
-                    spanGaps: false
-                },
-                {
-                    label: "City 2",
-                    fill: true,
-                    lineTension: 0,
-                    backgroundColor: "transparent",
-                    borderColor: '#ff7676',
-                    pointBorderColor: '#ff7676',
-                    pointHoverBackgroundColor: '#ff7676',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    borderWidth: 3,
-                    pointBackgroundColor: "#ff7676",
-                    pointBorderWidth: 0,
-                    pointHoverRadius: 4,
-                    pointHoverBorderColor: "#fff",
-                    pointHoverBorderWidth: 0,
-                    pointRadius: 4,
-                    pointHitRadius: 0,
-                    data: [21, 22, 35, 27, 25, 20, 12, 14, 23, 24, 42, 20],
-                    spanGaps: false
-
-                }
-            ]
-        }
-    });
