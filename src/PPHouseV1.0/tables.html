@@ -73,10 +73,14 @@
         .sortby .sort-con a {
             margin-left: 20px;
             padding-right: 15px;
-            background-image: url("//pages.anjukestatic.com/usersite/site/img/global/2/video_arrow_1x.png");
-            background-image: -webkit-image-set(url("//pages.anjukestatic.com/usersite/site/img/global/2/video_arrow_1x.png") 1x, url("//pages.anjukestatic.com/usersite/site/img/global/2/video_arrow_2x.png") 2x);
-            background-position: -50px 0;
-            background-repeat: no-repeat
+        }
+        
+        .sortby .sort-con a.fst {
+            margin-left: 0;
+            padding-right: 0;
+            background-image: none;
+            color: #e54b00;
+            font-weight: normal
         }
         
         .sortby .sort-con a.fst {
@@ -193,7 +197,6 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             margin-right: 0;
-            /*_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>342?"342":"auto");*/
             max-width: 342px
         }
         
@@ -237,7 +240,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            /*_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>160?"160":"auto")*/
         }
         
         .tags-bottom .tag-metro {
@@ -671,12 +673,12 @@
                 <div class="sale-left">
                     <!-- 搜索结果-->
                     <div class="sortby" id='filtersort'>
-                        <span>为您找到以下<strong>南京</strong>二手房</span>
+                        <span>为您找到以下<strong id="region">南京</strong>二手房</span>
                         <span class="sort-con">排序：
                             <a class="fst" href="#" rel="nofollow">默认</a>
-                            <a class="down" href="#" rel="nofollow">面积</a>
-                            <a class="up" href="#" rel="nofollow">价格</a>
-                            <a class="down" href="#" rel="nofollow">最新</a>
+                            <a class="down" href="#" rel="nofollow">面积⬇</a>
+                            <a class="up" href="#" rel="nofollow">价格⬆</a>
+                            <a class="down" href="#" rel="nofollow">最新⬇</a>
                         </span>
                     </div>
 
