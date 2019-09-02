@@ -653,3 +653,40 @@ $("#forget_password").click(function() {
         }
     }
 });
+
+
+$("#admin_search").click(function() {
+
+    search_phone = $('#search_phone').val();
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/get_auth_code", //提交的地址  
+        // contentType: false,
+        data: {
+            'search_phone': search_phone,
+        },
+
+        datatype: "json",
+        //$('#login_form').serialize(), // 序列化表单值  
+        async: false,
+        error: function(request) { //失败的话
+
+            alert("Connection error");
+            document.getElementById("search_div").style.display = "";
+            document.getElementById("search_time").innerText = "1";
+            document.getElementById("search_user").innerText = "2";
+            document.getElementById("search_phone_number").innerText = "3456789+";
+
+        },
+        success: function(data) { //成功
+
+            document.getElementById("search_div").style.display = "";
+            document.getElementById("search_time").innerText = "1";
+            document.getElementById("search_user").innerText = "2";
+            document.getElementById("search_phone_number").innerText = "34567";
+
+
+        }
+
+    });
+});

@@ -285,18 +285,60 @@
                                         <form class="form-inline">
                                             <div class="form-group">
                                                 <label for="inlineFormInput" class="sr-only">Name</label>
-                                                <input id="inlineFormInput" type="text" placeholder="用户名或手机号" class="mr-3 form-control">
+                                                <input id="search_phone" type="text" placeholder="用户名或手机号" class="mr-3 form-control">
                                             </div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">查找</button>
+                                                <button id="admin_search" type="button" class="btn btn-primary">查找</button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-
+                    <div id="search_div" class="col-lg-6" style="display: none">
+                        <div class="card">
+                            <div class="card-close">
+                                <div class="dropdown">
+                                    <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                    <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
+                                        <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                                        <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-header d-flex align-items-center">
+                                <h3 class="h4">用户信息</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>登录时间</th>
+                                                <th>用户名</th>
+                                                <th>手机号</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td id="search_time"></td>
+                                                <td id="search_user"></td>
+                                                <td id="search_phone_number"></td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary">删除</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!--查找用户结束-->
                     <div class="container-fluid">
                         <div class="row">
