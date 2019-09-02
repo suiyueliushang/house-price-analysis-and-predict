@@ -8,8 +8,9 @@ urlpatterns = [
     path('sign_up',views.sign_up),
     path('forget_password',views.forget_password),
     path('get_auth_code',views.get_auth_code),
-    path('query_prices',views.query_prices)
-
-    #path('input/',views.index,name="index"),
+    path('query_prices',views.query_prices),
+    path('contrast_city',views.contrast_city),
+    path('contrast_district',views.contrast_district),
+    path('input/',views.index,name="index"),
     #path('',views.login)
 ]

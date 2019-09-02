@@ -24,3 +24,13 @@ class House(models.Model):
 
     class Meta:
         db_table="house"
+
+class City(models.Model):
+    
+    city=models.CharField(max_length=10)
+    average_price=models.IntegerField()
+    year=models.CharField(max_length=5)
+    month=models.CharField(max_length=5)
+
+    class Meta:
+        db_table="city_average_price"

@@ -1,13 +1,14 @@
-from django.shortcuts import render
+﻿from django.shortcuts import render
 from .models import User
 from .models import House
+from .models import City
 from django.http import HttpResponse
 from django.http import JsonResponse
 from . import test
 import random
 import json
 
-code_dict1={}
+code_dict1={'17714209247':'7777'}
 code_dict2={'17714209247':'3333'}
 
 def sign_in_by_password(request):
@@ -62,9 +63,11 @@ def sign_in_by_phone_number(request):
         @return：sessionid，为空，则表示用户输入验证码错误
     '''
     response=HttpResponse()
-    _phonenumber=request.POST.get("phonenumber")
-    _auth_code=request.POST.get("auth_code")
+    _phonenumber=request.POST.get("phone_number")
+    _auth_code=request.POST.get("phone_code")
     print(code_dict2)
+    print(_phonenumber)
+    print(_auth_code)
     if _phonenumber and _auth_code:
         try:
             user=User.objects.get(user_phone=_phonenumber)
@@ -219,6 +222,40 @@ def query_prices(request):
     result={'is_success':0,'houses':houses}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
+def contrast_city(request):
+    '''
+    用户点击房价对比，选择城市来来显对比示某年的区域价格随月份的趋势
+    @args:  str:year
+            list:['城市名']
+
+            return {city_name:[该年的所有月份数据]}
+    '''
+    _year=request.POST.get('year')
+    _city=request.POST.get('city_name')#_city是一个list
+    print(_year,_city)
+    #city1=City.objects.filter(city='nanjing')
+    city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
+    #result={'one':city1[0].average_price,'two':city1[1].average_price,'three':city1[2].average_price,'four':city1[3].average_price,'five':city1[4].average_price,'six':city1[5].average_price,'seven':city1[6].average_price,'eight':city1[7].average_price,'nine':city1[8].average_price,'ten':city1[9].average_price,'eleven':city1[10].average_price,'twelve':city1[11].average_price}
+    result={'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
+def contrast_district(request):
+    '''
+    用户点击房价对比，选择城市来来显对比示某年的区域价格随月份的趋势
+    @args:  date:year
+            list:['区域名']
+
+            return {district_name:[该年的所有月份数据]}
+    '''
+    _year=request.POST.get('year')
+    _district=request.POST.get('city_name')#_city是一个list
+    print(_year,_district)
+    #city1=City.objects.filter(city='nanjing')
+    city1=[21000,20000,240000,26000,254000,26000,253000,269000,26300,259000,269000,27100]
+    #result={'one':city1[0].average_price,'two':city1[1].average_price,'three':city1[2].average_price,'four':city1[3].average_price,'five':city1[4].average_price,'six':city1[5].average_price,'seven':city1[6].average_price,'eight':city1[7].average_price,'nine':city1[8].average_price,'ten':city1[9].average_price,'eleven':city1[10].average_price,'twelve':city1[11].average_price}
+    result={'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 
 def province_average(request):
     '''
@@ -281,3 +318,31 @@ def first(request):
     context={}
     return HttpResponse("helloworld")
     '''
+
+def index(request):
+    c1=City(city="nanjing",average_price=25000,year='2018',month='1')
+    c2=City(city="nanjing",average_price=25000,year='2018',month='2')
+    c3=City(city="nanjing",average_price=25000,year='2018',month='3')
+    c4=City(city='nanjing',average_price=25000,year='2018',month='4')
+    c5=City(city='nanjing',average_price=25000,year='2018',month='5')
+    c6=City(city='nanjing',average_price=25000,year='2018',month='6')
+    c7=City(city='nanjing',average_price=25000,year='2018',month='7')
+    c8=City(city='nanjing',average_price=25000,year='2018',month='8')
+    c9=City(city='nanjing',average_price=25000,year='2018',month='9')
+    c10=City(city='nanjing',average_price=25000,year='2018',month='10')
+    c11=City(city='nanjing',average_price=25000,year='2018',month='11')
+    c12=City(city='nanjing',average_price=25000,year='2018',month='12')
+    print(c1,'1')
+    c1.save()
+    c2.save()
+    c3.save()
+    c4.save()
+    c5.save()
+    c6.save()
+    c7.save()
+    c8.save()
+    c9.save()
+    c10.save()
+    c11.save()
+    c12.save()
+    return HttpResponse('sucess')
