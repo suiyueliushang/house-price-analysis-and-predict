@@ -230,14 +230,20 @@ def contrast_city(request):
 
             return {city_name:[该年的所有月份数据]}
     '''
+    num=0
     _year=request.POST.get('year')
     _city=request.POST.get('city_name')#_city是一个list
     print(_year,_city)
     #city1=City.objects.filter(city='nanjing')
     city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
+    city2=[23000,21000,26000,23000,25400,25000,27300,24900,25300,26900,23900,28100]
     #result={'one':city1[0].average_price,'two':city1[1].average_price,'three':city1[2].average_price,'four':city1[3].average_price,'five':city1[4].average_price,'six':city1[5].average_price,'seven':city1[6].average_price,'eight':city1[7].average_price,'nine':city1[8].average_price,'ten':city1[9].average_price,'eleven':city1[10].average_price,'twelve':city1[11].average_price}
-    result={'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
-    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    if _city=='南京市':
+        result={'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    else:
+        result={'one':city2[0],'two':city2[1],'three':city2[2],'four':city2[3],'five':city2[4],'six':city2[5],'seven':city2[6],'eight':city2[7],'nine':city2[8],'ten':city2[9],'eleven':city2[10],'twelve':city2[11]}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def contrast_district(request):
     '''
