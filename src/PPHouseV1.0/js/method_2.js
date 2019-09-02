@@ -179,6 +179,7 @@ function showAddr2 () {
             price_array2[11]=data.twelve;
             }
     });
+    
     $(document).ready(function () {
 
         'use strict';

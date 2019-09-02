@@ -87,11 +87,29 @@ $(document).ready(function(){
 	});
 
 	$("#smit").click(function(){
+
+		var min_price = 0;
+		var max_price = 1000;
+		var district = "南京";
 		if($("#selectA").length > 0){
-			var district = $("#selectA a").html();
+			district = $("#selectA a").html();
 		}
 		if($("#selectB").length > 0){
 			var price = $("#selectB a").html();
+			var patt1 = new RegExp("万以下");
+			var patt2 = new RegExp("万以上");
+			var n = new Array(2);
+			if(patt1.test(price)){
+				max_price = price.replace(/万以下/,"");
+			}
+			else if(patt2.test(price)){
+				min_price = price.replace(/万以上/,"");
+			}
+			else{
+				n = price.match(/\d+/g);
+				min_price = n[0];
+				max_price = n[1];
+			}
 		}
 		if($("#selectC").length > 0){
 			var area = $("#selectC a").html();
@@ -99,7 +117,11 @@ $(document).ready(function(){
 		if($("#selectD").length > 0){
 			var house_type = $("#selectD a").html();
 		}
+
+		var houses;
+		var pages;
 		var region_price = new Array(12);
+		$("#region").html(district);
 
 		$.ajax({
 			type:"POST",
@@ -108,6 +130,9 @@ $(document).ready(function(){
 			data: {
 				'district' :district,
 				'month': getMonth()+1,
+				'min': min_price,
+				'max': max_price,
+				'page': 1
 			},
 			async: false,
 			error: function(request) {
@@ -126,6 +151,14 @@ $(document).ready(function(){
 				region_price[9]=data.ten;
 				region_price[10]=data.eleven;
 				region_price[11]=data.twelve;
+				houses = data.houses;
+				pages = data.page_num;
+				$("#house_title").html(data.houses[0].firm_name);
+				$("#address").html(data.houses[0].address);
+				$("#house_type").html(data.houses[0].house_type);
+				$("#ave_price").html(data.houses[0].average_price);
+				$("#total_price").html(data.houses[0].total_price);
+				$("#area").html(data.houses[0].area);
 				}
 		});
 		$(document).ready(function () {
@@ -180,6 +213,7 @@ $(document).ready(function(){
 			}
 		});
 		});
+		var house_list = JSON.parse(houses);
 	});
 
 	$("#pricerange_search").click(function(){
