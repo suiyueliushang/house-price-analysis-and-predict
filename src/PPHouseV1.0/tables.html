@@ -439,6 +439,51 @@
         .select-list form input:hover {
             background-color: #F0F0F0;
         }
+
+        /* 换页 */
+        .pagination {
+            list-style: none;
+            display: inline-block;
+            padding: 0;
+            margin-top: 10px;
+        }
+        .pagination li {
+            display: inline;
+            text-align: center;
+        }
+        .pagination a {
+            float: left;
+            display: block;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 5px 12px;
+            color: black;
+            margin-left: -1px;
+            border: 4px solid transparent;
+            line-height: 1.5;
+        }
+        .pagination a.active {
+            cursor: default;
+        }
+        .pagination a:active {
+            outline: none;
+        }
+        .modal-3 a {
+            margin-left: 3px;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            line-height: 30px;
+            -moz-border-radius: 100%;
+            -webkit-border-radius: 100%;
+            border-radius: 100%;
+        }
+        .modal-3 a:hover {
+            background-color: #008cba;
+        }
+        .modal-3 a.active, .modal-3 a:active {
+            background-color: #008cba;
+        }
     </style>
 
 </head>
@@ -664,19 +709,19 @@
                             </div>
                             <div class="house-details">
                                 <div class="house-title">
-                                    <a data-from="" data-company=""  title="急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校" href="#" target='_blank'>急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                    <a data-from="" data-company=""  title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
                                 </div>
                                 <div class="details-item">
-                                    <span>2室1厅</span>
+                                    <span id="house_type">2室1厅</span>
                                     <em class="spe-lines">|</em>
-                                    <span>59m²</span>
+                                    <span id="area">59m²</span>
                                     <em class="spe-lines">|</em>
                                     <span>高层(共6层)</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>                                
                                 </div>
                                 <div class="details-item">
-                                    <span class="comm-address" title="杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                    <span class="comm-address" title="" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
                                 </div>
                                 <div class="tags-bottom">
                                     <span class="item-tags tag-metro">近地铁</span>
@@ -685,10 +730,23 @@
                                 </div>
                             </div>
                             <div class="pro-price">
-                                <span class="price-det"><strong>82</strong>万</span><span class="unit-price">13898元/m²</span>        
+                                <span class="price-det"><strong id="total_price">82</strong>万</span><span class="unit-price" id="ave_price">13898元/m²</span>        
                             </div>
                         </li>
                     </ul>
+
+                    <div style="width: 50%;margin: auto">
+                        <ul class="pagination modal-3">
+                            <li><a href="#" class="prev">&laquo</a></li>
+                            <li><a href="#" class="active">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#">9</a></li>
+                            <li><a href="#" class="next">&raquo;</a></li>
+                        </ul>
+                    </div>
                 </div>
 
 
@@ -917,6 +975,7 @@
                         </div>
                     </div>
                 </section>
+
                 <!-- Page Footer-->
                 <footer class="main-footer">
                     <div class="container-fluid">
