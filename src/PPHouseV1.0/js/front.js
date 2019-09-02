@@ -174,7 +174,7 @@ $(document).ready(function() {
 });
 
 //管理员登录
-$("#login").click(function() {
+$("#admin_login").click(function() {
 
     user_name = $('#admin_name').val();
     password = $('#admin_password').val();
@@ -187,7 +187,7 @@ $("#login").click(function() {
 
             console.log(val, typeof val, current, typeof current)
             if (current.toLowerCase() != val.toLowerCase()) {
-                wrongShow.innerText = '验证码输入有误!';
+                document.getElementById('wrong_box').innerText = '验证码输入有误!';
                 getRandomStr();
 
             } else {
@@ -269,7 +269,7 @@ $("#login").click(function() {
 
             console.log(val, typeof val, current, typeof current)
             if (current.toLowerCase() != val.toLowerCase()) {
-                wrongShow.innerText = '验证码输入有误!';
+                document.getElementById('wrong_box').innerText = '验证码输入有误!';
                 getRandomStr();
 
             } else {
@@ -371,7 +371,7 @@ $("#login_by_phone").click(function() {
                             document.getElementById('wrong_box').innerText = "手机号未注册";
                             break;
                         case '2':
-                            document.getElementById('wrong_box').innerText = "验证码错误";
+                            document.getElementById('wrong_box').innerText = "手机验证码错误";
                             break;
                         default:
                             document.getElementById('wrong_box').innerText = "未知错误";
@@ -415,7 +415,7 @@ $("#sign_up").click(function() {
 
                                 console.log(val, typeof val, current, typeof current);
                                 if (current.toLowerCase() != val.toLowerCase()) {
-                                    wrongShow.innerText = '验证码输入有误!';
+                                    document.getElementById('wrong_box').innerText = '验证码输入有误!';
                                     getRandomStr();
 
                                 } else {
@@ -471,7 +471,7 @@ $("#sign_up").click(function() {
 
 var valiCode = document.getElementsByName('validateCode')[0];
 var code = document.getElementsByClassName('code')[0];
-var wrongShow = document.getElementsByClassName('wrong-show')[0];
+
 var refresh = document.getElementsByClassName('refresh')[0];
 
 var result = [];
@@ -598,7 +598,7 @@ $("#forget_password").click(function() {
 
                                 console.log(val, typeof val, current, typeof current);
                                 if (current.toLowerCase() != val.toLowerCase()) {
-                                    wrongShow.innerText = '验证码输入有误!';
+                                    document.getElementById('wrong_box').innerText = '验证码输入有误!';
                                     getRandomStr();
 
                                 } else {
