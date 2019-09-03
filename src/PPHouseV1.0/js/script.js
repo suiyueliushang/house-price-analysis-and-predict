@@ -88,6 +88,7 @@ $(document).ready(function(){
 
 	$("#smit").click(function(){
 
+		var a = ["a","b","c"]
 		var min_price = 0;
 		var max_price = 1000;
 		var district = "南京";
@@ -134,7 +135,7 @@ $(document).ready(function(){
 			},
 			async: false,
 			error: function(request) {
-				/*alert("Connection error");*/
+				alert("Connection error");
 			},
 			success:function(data) {
 				region_price[0]=data.one;
@@ -150,13 +151,13 @@ $(document).ready(function(){
 				region_price[10]=data.eleven;
 				region_price[11]=data.twelve;
 				$(document).ready(function(){
-					for(var i=0; i<19; i++){
-						$("#house_title").eq(i).html(data.houses[i].firm_name);
-						$("#address").eq(i).html(data.houses[i].address);
-						$("#house_type").eq(i).html(data.houses[i].house_type);
-						$("#ave_price").eq(i).html(data.houses[i].average_price);
-						$("#total_price").eq(i).html(data.houses[i].total_price);
-						$("#area").eq(i).html(data.houses[i].area);
+					for(var i=0; i<20; i++){
+						$(".house_title").eq(i).html(data.houses[i].firm_name);
+						$(".address").eq(i).html(data.houses[i].address);
+						$(".house_type").eq(i).html(data.houses[i].house_type);
+						$(".ave_price").eq(i).html(data.houses[i].average_price);
+						$(".total_price").eq(i).html(data.houses[i].total_price);
+						$(".area").eq(i).html(data.houses[i].area);
 					}
 				})
 				}
