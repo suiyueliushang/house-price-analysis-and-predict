@@ -134,7 +134,7 @@ $(document).ready(function(){
 			},
 			async: false,
 			error: function(request) {
-				alert("Connection error");
+				/*alert("Connection error");*/
 			},
 			success:function(data) {
 				region_price[0]=data.one;
@@ -151,16 +151,17 @@ $(document).ready(function(){
 				region_price[11]=data.twelve;
 				$(document).ready(function(){
 					for(var i=0; i<19; i++){
-						$("#house_title:eq(i)").html(data.houses[i].firm_name);
-						$("#address:eq(i)").html(data.houses[i].address);
-						$("#house_type:eq(i)").html(data.houses[i].house_type);
-						$("#ave_price:eq(i)").html(data.houses[i].average_price);
-						$("#total_price:eq(i)").html(data.houses[i].total_price);
-						$("#area:eq(i)").html(data.houses[i].area);
+						$("#house_title").eq(i).html(data.houses[i].firm_name);
+						$("#address").eq(i).html(data.houses[i].address);
+						$("#house_type").eq(i).html(data.houses[i].house_type);
+						$("#ave_price").eq(i).html(data.houses[i].average_price);
+						$("#total_price").eq(i).html(data.houses[i].total_price);
+						$("#area").eq(i).html(data.houses[i].area);
 					}
 				})
 				}
 		});
+		$("#lineChartExample4").empty();
 		$(document).ready(function () {
 			'use strict';
 		var LINECHART4 = $('#lineChartExample4');
