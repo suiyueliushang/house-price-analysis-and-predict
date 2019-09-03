@@ -673,6 +673,7 @@ $("#admin_search").click(function() {
         error: function(request) { //失败的话
             alert("Connection error");
             document.getElementById("error_info").style.display = "";
+            document.getElementById("search_div").style.display = "none";
 
         },
         success: function(data) { //成功
@@ -684,6 +685,7 @@ $("#admin_search").click(function() {
                 document.getElementById("search_phone_number").innerText = data.user.user_phone;
             } else {
                 document.getElementById("error_info").style.display = "";
+                document.getElementById("search_div").style.display = "none";
             }
 
 
