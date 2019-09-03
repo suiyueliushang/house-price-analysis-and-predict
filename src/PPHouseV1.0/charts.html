@@ -222,84 +222,30 @@
                                     <div class="card-header d-flex align-items-center">
                                         <h3 class="h4">区域房价趋势对比图</h3>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body" id = "line_3">
                                         <canvas id="lineChartExample3"></canvas>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-4">
-                                <div class="line-chart-example card no-margin-bottom">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">city one</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="lineChartExample1"></canvas>
-                                    </div>
-                                </div>
-                                <div class="line-chart-example card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">city two</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="lineChartExample2"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Bar Charts-->
-                            <div class="col-lg-4">
-                                <div class="bar-chart-example card no-margin-bottom">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard4" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">city 1</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="barChart1"></canvas>
-                                    </div>
-                                </div>
-                                <div class="line-chart-example card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                            <h3 class="h4">city 2</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="barChart2"></canvas>
-                                    </div>
-                                </div>
-                            </div>
+                            <legend>请选择要对比的城市,时间</legend>
+                            <form action="#">
+                            <!--时间选择-->
+                            <select id="time_4" class="shortselect">
+                                <option>=请选择年份=</option>
+                            </select>
+                            <!--省份选择-->
+                            <select id="prov4" class="shortselect" onchange="showCity4(this)">
+                                <option>=请选择省份=</option>
+                            </select>
+                            <!--城市选择-->
+                            <select id="city4" class="shortselect" onchange="deal_4(this)">
+                                <option>=请选择城市=</option>
+                            </select>
+                            <button type="button" id="btn4" onClick="showAddr4()">确定</button><br>
+                            <label for="addr-show4">您选择的是:
+                                <input type="text" value="" id="addr-show4">
+                            </label>
+                            </form>
                             <div class="col-lg-8">
                                 <div class="bar-chart-example card">
                                     <div class="card-close">
@@ -314,108 +260,14 @@
                                     <div class="card-header d-flex align-items-center">
                                         <h3 class="h4">房价对比图</h3>
                                     </div>
-                                    <div class="card-body">
-                                        <canvas id="barChartExample"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Doughnut Chart -->
-                            <div class="col-lg-6">
-                                <div class="pie-chart-example card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard7" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard7" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Doughnut Chart Example</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="doughnutChartExample"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Pie Chart -->
-                            <div class="col-lg-6">
-                                <div class="pie-chart-example card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard8" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard8" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Pie Chart Example</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="pieChartExample"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Polar Chart-->
-                            <div class="col-lg-6">
-                                <div class="polar-chart-example card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard9" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard9" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Polar Chart Example</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="polarChartExample"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Radar Chart-->
-                            <div class="col-lg-6">
-                                <div class="radar-chart-example card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard10" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard10" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Radar Chart Example</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <canvas id="radarChartExample"></canvas>
+                                    <div class="card-body" id="bar_1">
+                                        <canvas id="barChart1"></canvas>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
-                <!-- Page Footer-->
-                <footer class="main-footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p>Copyright &copy; 2019.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-                            </div>
-                            <div class="col-sm-6 text-right">
-                                <p></p>
-                                <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-                            </div>
-                        </div>
-                    </div>
-                </footer>
             </div>
         </div>
     </div>

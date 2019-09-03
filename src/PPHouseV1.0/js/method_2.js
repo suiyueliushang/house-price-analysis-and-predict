@@ -18,6 +18,8 @@ var addrShow3 = $('addr-show3');
 var time_3 = $('time_3');
 var price_array2 = new Array(12);
 var price_array3 = new Array(12);
+var city_1;
+var city_2;
 
 /*用于保存当前所选的省市区*/
 var current2 = {
@@ -151,6 +153,7 @@ function showAddr2 () {
     var index=myselect.selectedIndex;
     var time2_name=myselect.options[index].text;
     addrShow2.value = time2_name + '-' + provice[current2.prov2].name + '-' + provice[current2.prov2]["city"][current2.city2].name;
+    city_1=provice[current2.prov2]["city"][current2.city2].name;
     var city_name=provice[current2.prov2]["city"][current2.city2].name;
     $.ajax({
 		type:"POST",//
@@ -179,6 +182,8 @@ function showAddr2 () {
             price_array2[11]=data.twelve;
             }
     });
+    $('#lineChartExample5').remove();
+    $('#line_5').append('<canvas id="lineChartExample5"></canvas>');
     $(document).ready(function () {
 
         'use strict';
@@ -206,7 +211,7 @@ function showAddr2 () {
             labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
             datasets: [
                 {
-                    label: "City 1",
+                    label: city_1,
                     fill: true,
                     lineTension: 0,
                     backgroundColor: "transparent",
@@ -229,7 +234,7 @@ function showAddr2 () {
                     spanGaps: false
                 },
                 {
-                    label: "City 2",
+                    label: city_2,
                     fill: true,
                     lineTension: 0,
                     backgroundColor: "transparent",
@@ -261,6 +266,7 @@ function showAddr3() {
     var index=myselect.selectedIndex;
     var time3_name=myselect.options[index].text;
     addrShow3.value = time3_name + '-' + provice[current3.prov3].name + '-' + provice[current3.prov3]["city"][current3.city3].name;
+    city_2=provice[current3.prov3]["city"][current3.city3].name;
     var city_name=provice[current3.prov3]["city"][current3.city3].name;
     $.ajax({
 		type:"POST",//
@@ -289,6 +295,8 @@ function showAddr3() {
             price_array3[11]=data.twelve;
             }
     });
+    $('#lineChartExample5').remove();
+    $('#line_5').append('<canvas id="lineChartExample5"></canvas>');
     $(document).ready(function () {
 
         'use strict';
@@ -316,7 +324,7 @@ function showAddr3() {
             labels: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
             datasets: [
                 {
-                    label: "City 1",
+                    label: city_1,
                     fill: true,
                     lineTension: 0,
                     backgroundColor: "transparent",
@@ -339,7 +347,7 @@ function showAddr3() {
                     spanGaps: false
                 },
                 {
-                    label: "City 2",
+                    label: city_2,
                     fill: true,
                     lineTension: 0,
                     backgroundColor: "transparent",

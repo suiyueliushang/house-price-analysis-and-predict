@@ -1,4 +1,6 @@
 /*global $, document*/
+    var bar1;
+    var BARCHART1 = $('#barChart1');
 $(document).ready(function () {
 
     'use strict';
@@ -15,6 +17,8 @@ $(document).ready(function () {
     var gradient2 = ctx1.createLinearGradient(146.000, 0.000, 154.000, 300.000);
     gradient2.addColorStop(0, 'rgba(104, 179, 112, 0.85)');
     gradient2.addColorStop(1, 'rgba(76, 162, 205, 0.85)');
+    var region = new Array("江宁区", "鼓楼区", "玄武区", "栖霞区", "白下区", "六合区", "溧水区");
+    var price = new Array(20,18,30,30,17,49,32);
 
 
     // ------------------------------------------------------- //
@@ -603,8 +607,7 @@ $(document).ready(function () {
     // ------------------------------------------------------- //
     // Bar Chart 1
     // ------------------------------------------------------ //
-    var BARCHART1 = $('#barChart1');
-    var barChartHome = new Chart(BARCHART1, {
+    bar1 = new Chart(BARCHART1, {
         type: 'bar',
         options:
         {
@@ -614,7 +617,7 @@ $(document).ready(function () {
                     display: true
                 }],
                 yAxes: [{
-                    display: false
+                    display: true
                 }],
             },
             legend: {
@@ -622,40 +625,13 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+            labels: region,
             datasets: [
                 {
                     label: "city 1",
-                    backgroundColor: [
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7'
-                    ],
-                    borderColor: [
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7',
-                        '#44b2d7'
-                    ],
+                    backgroundColor:"#62a8ea",
                     borderWidth: 0,
-                    data: [35, 55, 65, 85, 30, 22, 18, 35, 24, 35, 26, 27]
+                    data: price
                 }
             ]
         }
@@ -666,7 +642,7 @@ $(document).ready(function () {
     // Bar Chart 2
     // ------------------------------------------------------ //
     var BARCHART2 = $('#barChart2');
-    var barChartHome = new Chart(BARCHART2, {
+    var barChartHome2 = new Chart(BARCHART2, {
         type: 'bar',
         options:
         {
