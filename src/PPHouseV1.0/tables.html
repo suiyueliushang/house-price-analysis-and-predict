@@ -28,6 +28,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
     <link rel="stylesheet" href="css/cityselect.css">
+    <link rel="stylesheet" href="css/pagination.css">
 
     <style>
         .sale-left {
@@ -460,50 +461,6 @@
             background-color: #F0F0F0;
         }
 
-        /* 换页 */
-        .pagination {
-            list-style: none;
-            display: inline-block;
-            padding: 0;
-            margin-top: 10px;
-        }
-        .pagination li {
-            display: inline;
-            text-align: center;
-        }
-        .pagination a {
-            float: left;
-            display: block;
-            font-size: 18px;
-            text-decoration: none;
-            padding: 5px 12px;
-            color: black;
-            margin-left: -1px;
-            border: 4px solid transparent;
-            line-height: 1.5;
-        }
-        .pagination a.active {
-            cursor: default;
-        }
-        .pagination a:active {
-            outline: none;
-        }
-        .modal-3 a {
-            margin-left: 3px;
-            padding: 0;
-            width: 40px;
-            height: 40px;
-            line-height: 30px;
-            -moz-border-radius: 100%;
-            -webkit-border-radius: 100%;
-            border-radius: 100%;
-        }
-        .modal-3 a:hover {
-            background-color: #008cba;
-        }
-        .modal-3 a.active, .modal-3 a:active {
-            background-color: #008cba;
-        }
     </style>
 
 </head>
@@ -708,7 +665,7 @@
                         <div class="card-header d-flex align-items-center">
                             <h3 class="h4">南京房价走势图</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="line_chart">
                             <canvas id="lineChartExample4"></canvas>
                         </div>
                     </div>
@@ -1352,17 +1309,14 @@
                         
                     </ul>
 
-                    <div style="width: 50%;margin: auto">
-                        <ul class="pagination modal-3">
-                            <li><a href="#" class="prev">&laquo</a></li>
-                            <li><a href="#" class="active">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">9</a></li>
-                            <li><a href="#" class="next">&raquo;</a></li>
-                        </ul>
+                    <!-- 分页 -->
+                    <div class="pages">
+                        <div id="Pagination"></div>
+                        <div class="searchPage">
+                            <span class="page-sum">共<strong class="allPage" id="allPage">15</strong>页</span>
+                            <span class="page-go">跳转<input type="text">页</span>
+                            <a href="javascript:;" class="page-btn">GO</a>
+                        </div>
                     </div>
                 </div>
 
@@ -1623,12 +1577,18 @@
     <script type="text/javascript" src="js/cityselect.js"></script>
     <script src="js/script.js"></script>
     <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery.pagination.js"></script>
     <!-- Main File-->
 
 
     <script type="text/javascript">
         var test = new Vcity.CitySelector({
             button: 'citySelect'
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#Pagination").pagination("15");
         });
     </script>
 

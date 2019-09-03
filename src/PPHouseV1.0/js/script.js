@@ -90,7 +90,7 @@ $(document).ready(function(){
 
 		var a = ["a","b","c"]
 		var min_price = 0;
-		var max_price = 1000;
+		var max_price = 10000000;
 		var district = "南京";
 		if($("#selectA").length > 0){
 			district = $("#selectA a").html();
@@ -159,10 +159,13 @@ $(document).ready(function(){
 						$(".total_price").eq(i).html(data.houses[i].total_price);
 						$(".area").eq(i).html(data.houses[i].area);
 					}
+					$("#Pagination").pagination("20");
+					$("#allPage").html(20);
 				});
 				}
 		});
-		$("#lineChartExample4").empty();
+		$("#lineChartExample4").remove();
+		$("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
 		$(document).ready(function () {
 			'use strict';
 		var LINECHART4 = $('#lineChartExample4');
