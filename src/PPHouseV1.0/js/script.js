@@ -159,7 +159,7 @@ $(document).ready(function(){
 						$(".total_price").eq(i).html(data.houses[i].total_price);
 						$(".area").eq(i).html(data.houses[i].area);
 					}
-				})
+				});
 				}
 		});
 		$("#lineChartExample4").empty();
