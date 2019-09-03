@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from . import test
 import random
 import json
+from django.db.models import Q
 
 code_dict1={'17714209247':'7777'}
 code_dict2={'17714209247':'3333'}
@@ -207,20 +208,37 @@ def query_prices(request):
     '''
     _city=request.POST.get('city')
     _district=request.POST.get('district')
-    _date=request.POST.get('date')
-    _min=request.POST.get('min')
-    _max=request.POST.get('max')
+    _month=request.POST.get('month')
+    _min=int(request.POST.get('min'))
+    _max=int(request.POST.get('max'))
+    _page=int(request.POST.get('page'))
+    print(_city)
+    print(_district)
+    print(_min)
+    print(_max)
+    print(_page)
     try:
-        houses=House.objects.filter(city=_city,district=_district)
+        #conditions={'city__exact':'广州','average_price__lt':_max*10000/150,'average_price__gt':min*10000/150}
+        #houses=House.objects.filter(**conditions)
+        houses=House.objects.all()
+        print(len(houses))
     except:
         return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
-    for house in houses:
-        if house.price > max or house.price < min:
-            houses.remove(house)
-        else:
-            pass
-    result={'is_success':0,'houses':houses}
+    
+    _page_num=int(len(houses)/20+1)
+    print(_page_num)
+    start=(_page-1)*20
+    end=(_page-1)*20+20
+    house_s=list(houses)
+    housess=[]
+    for i in range(start,end):
+        house_house={'city':house_s[i].city,'address':house_s[i].address,'firm_name':house_s[i].firm_name,'house_type':house_s[i].house_type,'average_price':house_s[i].average_price,
+                    'area':house_s[i].area,'total_price':house_s[i].total_price,'date':str(house_s[i].date),'district':house_s[i].district}
+        housess.append(house_house)
+    city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
+    result={'page_num':_page_num,'houses':housess,'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 
 def contrast_city(request):
     '''
@@ -230,20 +248,14 @@ def contrast_city(request):
 
             return {city_name:[该年的所有月份数据]}
     '''
-    num=0
     _year=request.POST.get('year')
     _city=request.POST.get('city_name')#_city是一个list
     print(_year,_city)
     #city1=City.objects.filter(city='nanjing')
     city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
-    city2=[23000,21000,26000,23000,25400,25000,27300,24900,25300,26900,23900,28100]
     #result={'one':city1[0].average_price,'two':city1[1].average_price,'three':city1[2].average_price,'four':city1[3].average_price,'five':city1[4].average_price,'six':city1[5].average_price,'seven':city1[6].average_price,'eight':city1[7].average_price,'nine':city1[8].average_price,'ten':city1[9].average_price,'eleven':city1[10].average_price,'twelve':city1[11].average_price}
-    if _city=='南京市':
-        result={'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
-        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    else:
-        result={'one':city2[0],'two':city2[1],'three':city2[2],'four':city2[3],'five':city2[4],'six':city2[5],'seven':city2[6],'eight':city2[7],'nine':city2[8],'ten':city2[9],'eleven':city2[10],'twelve':city2[11]}
-        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    result={'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def contrast_district(request):
     '''
@@ -261,7 +273,6 @@ def contrast_district(request):
     #result={'one':city1[0].average_price,'two':city1[1].average_price,'three':city1[2].average_price,'four':city1[3].average_price,'five':city1[4].average_price,'six':city1[5].average_price,'seven':city1[6].average_price,'eight':city1[7].average_price,'nine':city1[8].average_price,'ten':city1[9].average_price,'eleven':city1[10].average_price,'twelve':city1[11].average_price}
     result={'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-
 
 def province_average(request):
     '''
@@ -303,11 +314,52 @@ def admin_sign_in(request):
             str:password
     '''
 
+
+
 def add_house_info(request):
     '''
     管理员添加
+    '''
 
-'''
+def new_sign_up_list(request):
+    '''
+    args:   
+    return: 新增注册
+    '''
+
+def new_sign_in_list(request):
+    '''
+    return 新增访问
+    '''
+
+def new_sign_up(request):
+    '''
+    return 新增用户趋势
+    '''
+
+def new_sign_in(request):
+    '''
+    
+    return 访问用户趋势
+    '''
+
+def search_member(request):
+    '''
+    args: str:search_phone
+    return 用户或不存在
+    '''
+    _search_phone=request.POST.get('search_phone')
+    try:
+        user=User.objects.filter(Q(user_phone=_search_phone)|Q(user_name=_search_phone))[0]
+        user_user={'user_name':user.user_name,'id':user.session_id,'user_phone':user.user_phone}
+        result={'is_success':'0','user':user_user}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1','user':''}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
+
+
 '''
     return
 def login(request):
