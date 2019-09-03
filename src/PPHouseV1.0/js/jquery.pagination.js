@@ -256,7 +256,7 @@
 					'month': getMonth()+1,
 					'min': min_price,
 					'max': max_price,
-					'page': new_current_page
+					'page': new_current_page+1
 				},
 				async: false,
 				error: function(request) {
