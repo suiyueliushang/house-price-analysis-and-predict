@@ -702,9 +702,9 @@ $("#admin_search").click(function() {
 
 //管理员删除用户
 $("#delete_user").click(function() {
+    var search_user = document.getElementById('search_user').innerText;
+    var search_phone_number = document.getElementById('search_phone_number').innerText;
 
-    search_user = $('#search_user').val();
-    search_phone_number = $('#search_phone_number').val();
     $.ajax({
         type: "POST", //提交的方法
         url: "/delete_users", //提交的地址  
