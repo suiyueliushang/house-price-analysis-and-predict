@@ -405,7 +405,7 @@ $(document).ready(function() {
         data: {
             labels: [GetDateStr(-11), GetDateStr(-10), GetDateStr(-9), GetDateStr(-8), GetDateStr(-7), GetDateStr(-6), GetDateStr(-5), GetDateStr(-4), GetDateStr(-3), GetDateStr(-2), GetDateStr(-1), GetDateStr(0)],
             datasets: [{
-                label: "南京",
+                label: "",
                 fill: true,
                 lineTension: 0,
                 backgroundColor: "transparent",
