@@ -676,14 +676,22 @@ $("#admin_search").click(function() {
 
         },
         success: function(data) { //成功
+            if (data.is_success = "0") {
+                document.getElementById("error_info").style.display = "none";
+                document.getElementById("search_div").style.display = "block";
+                //document.getElementById("search_time").innerText = data.
+                document.getElementById("search_user").innerText = data.user.user_name;
+                document.getElementById("search_phone_number").innerText = data.user.user_phone;
+            } else {
+                document.getElementById("error_info").style.display = "";
+            }
 
-            document.getElementById("error_info").style.display = "none";
-            document.getElementById("search_div").style.display = "block";
-            //document.getElementById("search_time").innerText = data.
-            document.getElementById("search_user").innerText = data.user.user_name;
-            document.getElementById("search_phone_number").innerText = data.user.user_phone;
+
 
         }
 
     });
 });
+
+
+(function() { /* code */ })();
