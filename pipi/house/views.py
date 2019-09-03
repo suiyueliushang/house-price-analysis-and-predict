@@ -1,13 +1,13 @@
-﻿from django.shortcuts import render
-from .models import User
-from .models import House
-from .models import City
+
+from django.shortcuts import render
+from .models import Visitor,New_user,New_user_number,Visitor_number,City,House,User
 from django.http import HttpResponse
 from django.http import JsonResponse
 from . import test
 import random
 import json
 from django.db.models import Q
+import datetime
 
 code_dict1={'17714209247':'7777'}
 code_dict2={'17714209247':'3333'}
@@ -20,22 +20,26 @@ def sign_in_by_password(request):
     @return : sessionid 为空表示用户名或密码错误
     @date:2019.8.25
     '''
-    username=request.POST.get('user_name')
-    password=request.POST.get('password')
+    _username=request.POST.get('user_name')
+    _password=request.POST.get('password')
     response=HttpResponse()
     print(request.POST)
-    print("用户名："+str(username))
-    print('密码：'+str(password))
+    print("用户名："+str(_username))
+    print('密码：'+str(_password))
     users=User.objects.all()
     print(users)
-    if username and password:
+    if _username and _password:
         try:
-            user=User.objects.get(user_name=username)
+            user=User.objects.filter(user_name=_username)[0]
         except:
             result={'is_success':'1','user':''}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-        if user.password==password:
+        if user.password==_password:
             response.set_cookie("text","cookie11")
+
+            user_sign_in=Visitor(time=datetime.datetime.now(),user_name=_username,user_phone=user.user_phone)
+            user_sign_in.save()
+
             user_user={'user_name':user.user_name,'id':user.session_id}
             result={'is_success':'0','user':user_user}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
@@ -76,6 +80,9 @@ def sign_in_by_phone_number(request):
             result={'is_success':'1','user':''}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         if code_dict2[_phonenumber]==_auth_code:
+            user_sign_in=Visitor(time=datetime.datetime.now(),user_name=user.user_name,user_phone=_phonenumber)
+            user_sign_in.save()
+
             response.set_cookie("text","cookie11")
             user_user={'user_name':user.user_name,'id':user.session_id}
             result={'is_success':'0','user':user_user}
@@ -140,9 +147,13 @@ def sign_up(request):
     response=HttpResponse()
     if _phone_number.strip() and _auth_code:
         if _phone_number in code_dict1.keys():
-            if code_dict1[_phone_number]==_auth_code:
+            if code_dict1[_phone_number]==_auth_code:  
                 _reg_user_name=request.POST.get('reg_user_name')
                 _reg_password=request.POST.get('reg_password')
+
+                user_sign_up=New_user(time=datetime.datetime.now(),user_name=_reg_user_name,user_phone=_phone_number)
+                user_sign_up.save()
+
                 u=User(user_name=_reg_user_name,password=_reg_password,user_phone=_phone_number,session_id='123')
                 u.save()
                 return HttpResponse(json.dumps({'is_success':'0'},ensure_ascii=False),content_type="application/json,charset=utf-8")
@@ -316,6 +327,7 @@ def admin_sign_in(request):
 
 
 
+
 def add_house_info(request):
     '''
     管理员添加
@@ -331,6 +343,20 @@ def new_sign_in_list(request):
     '''
     return 新增访问
     '''
+    users=Visitor.objects.all()[-3:]
+    '''
+    first=users[2]
+    second=users[1]
+    third=users[0]
+    '''
+    first_delt=datetime.datetime.now()-users[2].time
+    second_delt=datetime.datetime.now()-users[1].time
+    third_delt=datetime.datetime.now()-users[0].time
+    first={'time':first_delt,'user_name':users[2].user_name,'user_phone':users[2].user_phone}
+    second={'time':first_delt,'user_name':users[1].user_name,'user_phone':users[1].user_phone}
+    third={'time':first_delt,'user_name':users[0].user_name,'user_phone':users[0].user_phone}
+    result={'first':first,'second':second,'third':third}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def new_sign_up(request):
     '''
@@ -339,7 +365,7 @@ def new_sign_up(request):
 
 def new_sign_in(request):
     '''
-    
+
     return 访问用户趋势
     '''
 
@@ -358,6 +384,23 @@ def search_member(request):
         result={'is_success':'1','user':''}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
+
+def add_users(request):
+    pass
+
+
+def delete_users(request):
+    '''
+    return 0,1
+    '''
+    _user_name=request.POST.get('search_user')
+    print(_user_name)
+    try:
+        u=User.objects.filter(user_name=_user_name)[0]
+        u.delete()
+        return HttpResponse(0)
+    except:
+        return HttpResponse(1)
 
 
 '''

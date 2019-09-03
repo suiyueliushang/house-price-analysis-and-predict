@@ -14,6 +14,8 @@ urlpatterns = [
     path('input',views.index,name="index"),
     path('new_sign_up',views.new_sign_up),
 
-    path('search_member',views.search_member)
+    
+    path('search_member',views.search_member),
+    path('delete_users',views.delete_users)
     #path('',views.login)
 ]
