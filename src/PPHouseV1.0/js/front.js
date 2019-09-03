@@ -707,7 +707,7 @@ $("#delete_user").click(function() {
     search_phone_number = $('#search_phone_number').val();
     $.ajax({
         type: "POST", //提交的方法
-        url: "/search_member", //提交的地址  
+        url: "/delete_users", //提交的地址  
         // contentType: false,
         data: {
             'search_user': search_user,
@@ -744,7 +744,7 @@ $("#admin_add").click(function() {
     add_password = $('#add_password').val();
     $.ajax({
         type: "POST", //提交的方法
-        url: "/search_member", //提交的地址  
+        url: "/add_users", //提交的地址  
         // contentType: false,
         data: {
             'add_user': add_user,
@@ -779,7 +779,7 @@ function show_visitor() {
 
     $.ajax({
         type: "POST", //
-        url: "/contrast_city", //
+        url: "/new_sign_in", //
         datatype: "json",
         data: {},
         async: false,
@@ -856,3 +856,29 @@ function show_visitor() {
         });
     });
 }
+
+function show_visitor_table() {
+
+    $.ajax({
+        type: "POST", //
+        url: "/contrast_city", //
+        datatype: "json",
+        data: {},
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) {
+
+
+        }
+    });
+
+    $(document).ready(function() {
+
+    })
+}
+
+//新增用户 new_sign_up_list
+//新增访问 new_sign_in_list
+//new_sign_up
