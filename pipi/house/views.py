@@ -9,8 +9,8 @@ import json
 from django.db.models import Q
 import datetime
 
-code_dict1={'17714209247':'7777'}
-code_dict2={'17714209247':'3333'}
+code_dict1={'17714209247':'7777','15057190316':'7777'}
+code_dict2={'17714209247':'3333','15057190316':'7777'}
 
 def sign_in_by_password(request):
     '''登录传输的用户名和密码
@@ -386,8 +386,15 @@ def search_member(request):
 
 
 def add_users(request):
-    pass
-
+    _user_name=request.POST.get('add_user')
+    _user_phone=request.POST.get('add_phone')
+    _password=request.POST.get('add_password')
+    u=User(user_name=_user_name,user_phone=_user_phone,password=_password,session_id='123')
+    try:
+        u.save()
+        return HttpResponse(json.dumps({'is_success':'0'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def delete_users(request):
     '''
@@ -398,10 +405,9 @@ def delete_users(request):
     try:
         u=User.objects.filter(user_name=_user_name)[0]
         u.delete()
-        return HttpResponse(json.dumps({'is_success':0},ensure_ascii=False),content_type="application/json,charset=utf-8")
-
+        return HttpResponse(json.dumps({'is_success':'0'},ensure_ascii=False),content_type="application/json,charset=utf-8")
     except:
-        return HttpResponse(json.dumps({'is_success':1},ensure_ascii=False),content_type="application/json,charset=utf-8")
+        return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 
 '''
