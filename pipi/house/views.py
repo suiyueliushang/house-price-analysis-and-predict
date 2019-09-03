@@ -398,9 +398,10 @@ def delete_users(request):
     try:
         u=User.objects.filter(user_name=_user_name)[0]
         u.delete()
-        return HttpResponse(0)
+        return HttpResponse(json.dumps({'is_success':0},ensure_ascii=False),content_type="application/json,charset=utf-8")
+
     except:
-        return HttpResponse(1)
+        return HttpResponse(json.dumps({'is_success':1},ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 
 '''
