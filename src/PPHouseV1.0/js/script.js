@@ -118,8 +118,6 @@ $(document).ready(function(){
 			var house_type = $("#selectD a").html();
 		}
 
-		var houses;
-		var pages;
 		var region_price = new Array(12);
 		$("#region").html(district);
 
@@ -151,14 +149,16 @@ $(document).ready(function(){
 				region_price[9]=data.ten;
 				region_price[10]=data.eleven;
 				region_price[11]=data.twelve;
-				houses = data.houses;
-				pages = data.page_num;
-				$("#house_title").html(data.houses[0].firm_name);
-				$("#address").html(data.houses[0].address);
-				$("#house_type").html(data.houses[0].house_type);
-				$("#ave_price").html(data.houses[0].average_price);
-				$("#total_price").html(data.houses[0].total_price);
-				$("#area").html(data.houses[0].area);
+				$(document).ready(function(){
+					for(var i=0; i<19; i++){
+						$("#house_title:eq(i)").html(data.houses[i].firm_name);
+						$("#address:eq(i)").html(data.houses[i].address);
+						$("#house_type:eq(i)").html(data.houses[i].house_type);
+						$("#ave_price:eq(i)").html(data.houses[i].average_price);
+						$("#total_price:eq(i)").html(data.houses[i].total_price);
+						$("#area:eq(i)").html(data.houses[i].area);
+					}
+				})
 				}
 		});
 		$(document).ready(function () {
@@ -213,7 +213,6 @@ $(document).ready(function(){
 			}
 		});
 		});
-		var house_list = JSON.parse(houses);
 	});
 
 	$("#pricerange_search").click(function(){
