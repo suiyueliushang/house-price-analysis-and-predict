@@ -88,11 +88,11 @@
                     <li>
                         <a href="charts.html"> <i class="fa fa-bar-chart"></i>房价对比 </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="forms.html"> <i class="icon-padnote"></i>房价预测 </a>
                     </li>
-                    <li>
-                        <a href="login.html"> <i class="icon-interface-windows"></i>Login page </a>
+                    <li class="active">
+                        <a href="admin_page.html"> <i class="icon-interface-windows"></i>Admin page </a>
                     </li>
                 </ul><span class="heading">Extras</span>
                 <ul class="list-unstyled">
@@ -120,12 +120,267 @@
                 <!-- Breadcrumb-->
                 <div class="breadcrumb-holder container-fluid">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">PPHouse</a></li>
-                        <li class="breadcrumb-item active">Forms </li>
+                        <li class="breadcrumb-item"><a href="admin_page.html">用户管理</a></li>
+                        <li class="breadcrumb-item active"><a href="房源管理">房源管理</a> </li>
                     </ul>
                 </div>
                 <!-- Forms Section-->
                 <section class="forms">
+                    <section class="tables">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <!--charts-->
+                                <div class="col-lg-6" style="display: inline-block">
+                                    <div class="line-chart-example card">
+                                        <div class="card-header d-flex align-items-center">
+                                            <h3 class="h4">访客人数趋势图</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <canvas id="lineChartExample5"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-close">
+                                            <div class="dropdown">
+                                                <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                                <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
+                                                    <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                                                    <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-header d-flex align-items-center">
+                                            <h3 class="h4">新增访问</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>登录时间</th>
+                                                            <th>用户名</th>
+                                                            <th>手机号</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">1</th>
+                                                            <td id="visitor_1_time">1分钟前</td>
+                                                            <td id="visitor_1_name">Jacob</td>
+                                                            <td id="visitor_1_phone">15647894562</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">2</th>
+                                                            <td id="visitor_2_time">1分钟前</td>
+                                                            <td id="visitor_2_name">游客</td>
+                                                            <td id="visitor_2_phone">/</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">3</th>
+                                                            <td id="visitor_3_time">2分钟前</td>
+                                                            <td id="visitor_3_name">fat</td>
+                                                            <td id="visitor_3_phone">13759548256</td>
+                                                        </tr>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--charts-->
+                        <div class="container-fluid">
+                            <div class="row">
+                                <!--charts-->
+                                <div class="col-lg-6" style="display: inline-block">
+                                    <div class="line-chart-example card">
+                                        <div class="card-header d-flex align-items-center">
+                                            <h3 class="h4">新增用户趋势图</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <canvas id="lineChartExample6"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-close">
+                                            <div class="dropdown">
+                                                <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                                <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
+                                                    <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                                                    <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-header d-flex align-items-center">
+                                            <h3 class="h4">新增用户</h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>#</th>
+                                                            <th>登录时间</th>
+                                                            <th>用户名</th>
+                                                            <th>手机号</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">1</th>
+                                                            <td>1分钟前</td>
+                                                            <td>Jacob</td>
+                                                            <td>15647894562</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">2</th>
+                                                            <td>1分钟前</td>
+                                                            <td>游客</td>
+                                                            <td>/</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">3</th>
+                                                            <td>2分钟前</td>
+                                                            <td>fat</td>
+                                                            <td>13759548256</td>
+                                                        </tr>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!--数据查看结束-->
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!--查找用户-->
+                            <div class="col-lg-6" style="display: inline-block">
+                                <div class="card">
+                                    <div class="card-close">
+                                        <div class="dropdown">
+                                            <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                            <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow">
+                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header d-flex align-items-center">
+                                        <h3 class="h4">查找用户</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <label for="inlineFormInput" class="sr-only">Name</label>
+                                                <input id="search_phone" type="text" placeholder="用户名或手机号" class="mr-3 form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <button id="admin_search" type="button" class="btn btn-primary">查找</button>
+                                                <div id="error_info" style="color:red; display: none;">查无此人</div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--注册新用户-->
+                            <div class="col-lg-6" style="display: inline-block">
+                                <div class="card">
+                                    <div class="card-close">
+                                        <div class="dropdown">
+                                            <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                            <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow">
+                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header d-flex align-items-center">
+                                        <h3 class="h4">注册新用户</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-group">
+                                                <table>
+                                                    <tr>
+                                                        <th><input id="add_user" type="text" placeholder="用户名" class="mr-3 form-control"></th>
+                                                        <th><input id="add_phone" type="text" placeholder="手机号" class="mr-3 form-control"></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th> <input id="add_password" type="text" placeholder="密码" class="mr-3 form-control"></th>
+                                                        <th> <button id="admin_add" type="button" class="btn btn-primary" style="float: left;">注册</button>
+                                                            <div id="add_info" style="color:red; "></div>
+                                                        </th>
+
+
+
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="search_div" class="col-lg-6" style="display: none">
+                        <div class="card">
+                            <div class="card-close">
+                                <div class="dropdown">
+                                    <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                    <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
+                                        <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                                        <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-header d-flex align-items-center">
+                                <h3 class="h4">用户信息</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>登录时间</th>
+                                                <th>用户名</th>
+                                                <th>手机号</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td id="search_time"></td>
+                                                <td id="search_user"></td>
+                                                <td id="search_phone_number"></td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <button id="delete_user" type="button" class="btn btn-primary">删除</button>
+                                                    </div>
+                                                    <div id="delete_info" style="color: red;"></div>
+                                                </td>
+                                            </tr>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--查找用户结束-->
                     <div class="container-fluid">
                         <div class="row">
                             <!-- Basic Form-->
@@ -637,6 +892,7 @@
     <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="vendor/jquery.cookie/jquery.cookie.js">
     </script>
+    <script src="js/charts-custom.js"></script>
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <!-- Main File-->

@@ -174,7 +174,7 @@ $(document).ready(function() {
 });
 
 //管理员登录
-$("#login").click(function() {
+$("#admin_login").click(function() {
 
     user_name = $('#admin_name').val();
     password = $('#admin_password').val();
@@ -187,7 +187,7 @@ $("#login").click(function() {
 
             console.log(val, typeof val, current, typeof current)
             if (current.toLowerCase() != val.toLowerCase()) {
-                wrongShow.innerText = '验证码输入有误!';
+                document.getElementById('wrong_box').innerText = '验证码输入有误!';
                 getRandomStr();
 
             } else {
@@ -269,7 +269,7 @@ $("#login").click(function() {
 
             console.log(val, typeof val, current, typeof current)
             if (current.toLowerCase() != val.toLowerCase()) {
-                wrongShow.innerText = '验证码输入有误!';
+                document.getElementById('wrong_box').innerText = '验证码输入有误!';
                 getRandomStr();
 
             } else {
@@ -371,7 +371,7 @@ $("#login_by_phone").click(function() {
                             document.getElementById('wrong_box').innerText = "手机号未注册";
                             break;
                         case '2':
-                            document.getElementById('wrong_box').innerText = "验证码错误";
+                            document.getElementById('wrong_box').innerText = "手机验证码错误";
                             break;
                         default:
                             document.getElementById('wrong_box').innerText = "未知错误";
@@ -415,7 +415,7 @@ $("#sign_up").click(function() {
 
                                 console.log(val, typeof val, current, typeof current);
                                 if (current.toLowerCase() != val.toLowerCase()) {
-                                    wrongShow.innerText = '验证码输入有误!';
+                                    document.getElementById('wrong_box').innerText = '验证码输入有误!';
                                     getRandomStr();
 
                                 } else {
@@ -471,7 +471,7 @@ $("#sign_up").click(function() {
 
 var valiCode = document.getElementsByName('validateCode')[0];
 var code = document.getElementsByClassName('code')[0];
-var wrongShow = document.getElementsByClassName('wrong-show')[0];
+
 var refresh = document.getElementsByClassName('refresh')[0];
 
 var result = [];
@@ -598,7 +598,7 @@ $("#forget_password").click(function() {
 
                                 console.log(val, typeof val, current, typeof current);
                                 if (current.toLowerCase() != val.toLowerCase()) {
-                                    wrongShow.innerText = '验证码输入有误!';
+                                    document.getElementById('wrong_box').innerText = '验证码输入有误!';
                                     getRandomStr();
 
                                 } else {
@@ -653,3 +653,232 @@ $("#forget_password").click(function() {
         }
     }
 });
+
+
+//管理员查找用户
+$("#admin_search").click(function() {
+
+    search_phone = $('#search_phone').val();
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/search_member", //提交的地址  
+        // contentType: false,
+        data: {
+            'search_phone': search_phone,
+        },
+
+        datatype: "json",
+        //$('#login_form').serialize(), // 序列化表单值  
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+            document.getElementById("error_info").style.display = "";
+            document.getElementById("search_div").style.display = "none";
+
+        },
+        success: function(data) { //成功
+            switch (data.is_success) {
+                case '0':
+                    document.getElementById("error_info").style.display = "none";
+                    document.getElementById("search_div").style.display = "block";
+                    //document.getElementById("search_time").innerText = data.
+                    document.getElementById("search_user").innerText = data.user.user_name;
+                    document.getElementById("search_phone_number").innerText = data.user.user_phone;
+                    break;
+                case '1':
+                    document.getElementById("error_info").style.display = "block";
+                    document.getElementById("search_div").style.display = "none";
+                    break;
+                default:
+                    alert("未知错误");
+            }
+
+
+
+        }
+
+    });
+});
+
+//管理员删除用户
+$("#delete_user").click(function() {
+    var search_user = document.getElementById('search_user').innerText;
+    var search_phone_number = document.getElementById('search_phone_number').innerText;
+
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/delete_users", //提交的地址  
+        // contentType: false,
+        data: {
+            'search_user': search_user,
+            'search_phone_number': search_phone_number
+        },
+
+        datatype: "json",
+        //$('#login_form').serialize(), // 序列化表单值  
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+            document.getElementById("delete_info").style.innerText = "连接失败";
+
+        },
+        success: function(data) { //成功
+            switch (data.is_success) {
+                case '0':
+                    document.getElementById("delete_info").style.innerText = "删除成功";
+                    break;
+                default:
+                    alert("未知错误");
+            }
+        }
+
+    });
+});
+
+
+//管理员注册新用户
+$("#admin_add").click(function() {
+
+    add_user = $('#add_user').val();
+    add_phone = $('#add_phone').val();
+    add_password = $('#add_password').val();
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/add_users", //提交的地址  
+        // contentType: false,
+        data: {
+            'add_user': add_user,
+            'add_phone': add_phone,
+            'add_password': add_password
+        },
+
+        datatype: "json",
+        //$('#login_form').serialize(), // 序列化表单值  
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+            document.getElementById("add_info").innerText = "连接失败";
+        },
+        success: function(data) { //成功
+            switch (data.is_success) {
+                case '0':
+                    document.getElementById("add_info").innerText = "注册成功";
+                    break;
+                default:
+                    alert("未知错误");
+
+            }
+        }
+
+    });
+});
+
+
+//显示访客人数趋势图
+function show_visitor() {
+
+    $.ajax({
+        type: "POST", //
+        url: "/new_sign_in", //
+        datatype: "json",
+        data: {},
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) {
+            num[0] = data.one;
+            num[1] = data.two;
+            num[2] = data.three;
+            num[3] = data.four;
+            num[4] = data.five;
+            num[5] = data.six;
+            num[6] = data.seven;
+            num[7] = data.eight;
+            num[8] = data.nine;
+            num[9] = data.ten;
+            num[10] = data.eleven;
+            num[11] = data.twelve;
+        }
+    });
+
+    $(document).ready(function() {
+
+        'use strict';
+        var LINECHART5 = $('#lineChartExample5');
+        var myLineChart5 = new Chart(LINECHART5, {
+            type: 'line',
+            options: {
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: true
+                        }
+                    }]
+                },
+                legend: { labels: { fontColor: "#777", fontSize: 12, }, display: false }
+            },
+
+
+            data: {
+                labels: [GetDateStr(-11), GetDateStr(-10), GetDateStr(-9), GetDateStr(-8), GetDateStr(-7), GetDateStr(-6), GetDateStr(-5), GetDateStr(-4), GetDateStr(-3), GetDateStr(-2), GetDateStr(-1), GetDateStr(0)],
+                datasets: [{
+                    label: "南京",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: '#6ccef0',
+                    pointBorderColor: '#59c2e6',
+                    pointHoverBackgroundColor: '#59c2e6',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 3,
+                    pointBackgroundColor: "#59c2e6",
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 4,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 0,
+                    pointRadius: 4,
+                    pointHitRadius: 0,
+                    data: [num[0], num[1], num[2], num[3], num[4], num[5], num[6], num[7], num[8], num[9], num[10], num[11]],
+                    spanGaps: false
+                }]
+            }
+        });
+    });
+}
+
+function show_visitor_table() {
+
+    $.ajax({
+        type: "POST", //
+        url: "/contrast_city", //
+        datatype: "json",
+        data: {},
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) {
+
+
+        }
+    });
+
+    $(document).ready(function() {
+
+    })
+}
+
+//新增用户 new_sign_up_list
+//新增访问 new_sign_in_list
+//new_sign_up

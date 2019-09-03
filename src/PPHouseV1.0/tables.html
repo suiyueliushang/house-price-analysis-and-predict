@@ -28,359 +28,374 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
     <link rel="stylesheet" href="css/cityselect.css">
+    <link rel="stylesheet" href="css/pagination.css">
 
     <style>
-
-        .sale-left{
-            float:left;
-            width:900px;
-            position:relative;
-            z-index:0
-        }
-
-        .sale-left ul:hover{
-            background:whitesmoke
-        }
-
-        .sale-left ul:hover .house-title a{
-            color:#e54b00;
-            text-decoration:underline
-        }
-
-        .sortby{
-            color:#666;
-            padding-left:20px;
-            padding-right:20px;
-            margin-bottom:10px;
-            *zoom:1;
-            margin-top:35px
-        }
-
-        .sortby:after{
-            clear:both;
-            content:".";
-            display:block;
-            font-size:0;
-            height:0;
-            line-height:0;
-            visibility:hidden
-        }
-
-        .sortby .sort-con{
-            float:right;
-            *margin-top:-17px
-        }
-
-        .sortby .sort-con a{
-            margin-left:20px;
-            padding-right:15px;
-            background-image:url("//pages.anjukestatic.com/usersite/site/img/global/2/video_arrow_1x.png");
-            background-image:-webkit-image-set(url("//pages.anjukestatic.com/usersite/site/img/global/2/video_arrow_1x.png") 1x,url("//pages.anjukestatic.com/usersite/site/img/global/2/video_arrow_2x.png") 2x);
-            background-position:-50px 0;
-            background-repeat:no-repeat
+        .sale-left {
+            float: left;
+            width: 900px;
+            position: relative;
+            z-index: 0
         }
         
-        .sortby .sort-con a.fst{
-            margin-left:0;
-            padding-right:0;
-            background-image:none;
-            color:#e54b00;
-            font-weight:normal
-        }
-
-        .sortby .sort-con a:link,
-        .sortby .sort-con a:visited{
-            color:#666
+        .sale-left ul:hover {
+            background: whitesmoke
         }
         
-        .sortby .sort-con a:hover{
-            color:#e54b00;
-            text-decoration:underline
-        }
-            
-        .sortby .sort-con .up{
-            background-position:30px -30px;
-            background-position:30px -29px \0;
-            *background-position:30px -29px
-        }
-        
-        .sortby .sort-con .down{
-            background-position:30px -46px;
-            background-position:30px -45px \0;
-            *background-position:30px -45px
-        }
-
-        .houselist-mod{
-            border-top:1px solid #e6e6e6;
-            font-size:14px
-        }
-
-        .houselist-mod .list-item{
-            padding:20px 20px 14px 220px;
-            color:#666;
-            border-bottom:1px dashed #e6e6e6;
-            position:relative;
-            z-index:0;
-            cursor:pointer;
-            *zoom:1
-        }
-
-        .houselist-mod .list-item .item-img{
-            float:left;
-            *display:inline;
-            margin-left:-200px;
-            width:180px;
-            height:135px;
-            position:relative;
-            z-index:2
-        }
-        
-        .houselist-mod .list-item .item-img img{
-            display:block;
-            width:100%;
-            height:100%
-        }
-
-        .houselist-mod .list-item a{
-            display:inline-block;
-            color:#333;
-            font-size:16px;
-            font-weight:bold;
-            vertical-align:top;
-            padding-right:7px;
-            max-width:375px;
-            text-overflow:ellipsis;
-            overflow:hidden;
-            white-space:nowrap;
-            display:inline-block;
-            vertical-align:top
-        }
-
-        .houselist-mod .house-details .house-title{
-            margin-bottom:6px;
-            height:34px;
-            line-height:34px;
-            font-size:0
-        }
-        
-        .houselist-mod .house-details .house-title a{
-            display:inline-block;
-            vertical-align:top;
-            padding-right:7px;
-            max-width:375px;
-            text-overflow:ellipsis;
-            overflow:hidden;
-            white-space:nowrap
-        }
-
-        .houselist-mod .house-details .house-title a:hover{
-            color:#e54b00;
+        .sale-left ul:hover .house-title a {
+            color: #e54b00;
             text-decoration: underline
         }
-
-        .houselist-mod .house-details .details-item{
-            height:30px;
-            line-height:30px
+        
+        .sortby {
+            color: #666;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-bottom: 10px;
+            *zoom: 1;
+            margin-top: 35px
         }
         
-        .houselist-mod .details-item span{
-            margin-right:10px
-        }
-
-        .houselist-mod .details-item .comm-address{
-            display:inline-block;
-            max-width:342px;
-            overflow:hidden;
-            text-overflow:ellipsis;
-            white-space:nowrap;
-            margin-right:0;
-            /*_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>342?"342":"auto");*/
-            max-width:342px
-        }
-
-        .houselist-mod .details-item .spe-lines{
-            display:inline-block;
-            margin-right:10px;
-            width:1px;
-            background:#ccc;
-            height:10px;
-            font-size:0;
-            text-indent:-9999px;
-            overflow:hidden
-        }
-
-        .houselist-mod .tags-bottom{
-            width:550px;
-            margin:0 0 7px -8px;
-            font-size:0;
-            white-space:normal;
-            word-break:break-all;
-            word-wrap:break-word;
-            overflow:hidden
+        .sortby:after {
+            clear: both;
+            content: ".";
+            display: block;
+            font-size: 0;
+            height: 0;
+            line-height: 0;
+            visibility: hidden
         }
         
-        .tags-bottom .item-tags{
-            display:inline-block;
-            font-size:12px;
-            height:22px;
-            line-height:22px;
-            margin:8px 0 5px 8px;
-            padding:0 10px;
-            border-radius:100px;
-            white-space:nowrap;
-            overflow:hidden;
-            text-overflow:ellipsis
+        .sortby .sort-con {
+            float: right;
+            *margin-top: -17px
         }
-
+        
+        .sortby .sort-con a {
+            margin-left: 20px;
+            padding-right: 15px;
+        }
+        
+        .sortby .sort-con a.fst {
+            margin-left: 0;
+            padding-right: 0;
+            background-image: none;
+            color: #e54b00;
+            font-weight: normal
+        }
+        
+        .sortby .sort-con a.fst {
+            margin-left: 0;
+            padding-right: 0;
+            background-image: none;
+            color: #e54b00;
+            font-weight: normal
+        }
+        
+        .sortby .sort-con a:link,
+        .sortby .sort-con a:visited {
+            color: #666
+        }
+        
+        .sortby .sort-con a:hover {
+            color: #e54b00;
+            text-decoration: underline
+        }
+        
+        .sortby .sort-con .up {
+            background-position: 30px -30px;
+            background-position: 30px -29px \0;
+            *background-position: 30px -29px
+        }
+        
+        .sortby .sort-con .down {
+            background-position: 30px -46px;
+            background-position: 30px -45px \0;
+            *background-position: 30px -45px
+        }
+        
+        .houselist-mod {
+            border-top: 1px solid #e6e6e6;
+            font-size: 14px
+        }
+        
+        .houselist-mod .list-item {
+            padding: 20px 20px 14px 220px;
+            color: #666;
+            border-bottom: 1px dashed #e6e6e6;
+            position: relative;
+            z-index: 0;
+            cursor: pointer;
+            *zoom: 1
+        }
+        
+        .houselist-mod .list-item .item-img {
+            float: left;
+            *display: inline;
+            margin-left: -200px;
+            width: 180px;
+            height: 135px;
+            position: relative;
+            z-index: 2
+        }
+        
+        .houselist-mod .list-item .item-img img {
+            display: block;
+            width: 100%;
+            height: 100%
+        }
+        
+        .houselist-mod .list-item a {
+            display: inline-block;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            vertical-align: top;
+            padding-right: 7px;
+            max-width: 375px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: top
+        }
+        
+        .houselist-mod .house-details .house-title {
+            margin-bottom: 6px;
+            height: 34px;
+            line-height: 34px;
+            font-size: 0
+        }
+        
+        .houselist-mod .house-details .house-title a {
+            display: inline-block;
+            vertical-align: top;
+            padding-right: 7px;
+            max-width: 375px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap
+        }
+        
+        .houselist-mod .house-details .house-title a:hover {
+            color: #e54b00;
+            text-decoration: underline
+        }
+        
+        .houselist-mod .house-details .details-item {
+            height: 30px;
+            line-height: 30px
+        }
+        
+        .houselist-mod .details-item span {
+            margin-right: 10px
+        }
+        
+        .houselist-mod .details-item .comm-address {
+            display: inline-block;
+            max-width: 342px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-right: 0;
+            max-width: 342px
+        }
+        
+        .houselist-mod .details-item .spe-lines {
+            display: inline-block;
+            margin-right: 10px;
+            width: 1px;
+            background: #ccc;
+            height: 10px;
+            font-size: 0;
+            text-indent: -9999px;
+            overflow: hidden
+        }
+        
+        .houselist-mod .tags-bottom {
+            width: 550px;
+            margin: 0 0 7px -8px;
+            font-size: 0;
+            white-space: normal;
+            word-break: break-all;
+            word-wrap: break-word;
+            overflow: hidden
+        }
+        
+        .tags-bottom .item-tags {
+            display: inline-block;
+            font-size: 12px;
+            height: 22px;
+            line-height: 22px;
+            margin: 8px 0 5px 8px;
+            padding: 0 10px;
+            border-radius: 100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis
+        }
+        
         .tags-bottom .tag-metro,
-        .tags-bottom .tag-school{
-            max-width:160px;
-            overflow:hidden;
-            text-overflow:ellipsis;
-            white-space:nowrap;
-            /*_width:expression((document.documentElement.clientWidth||document.body.clientWidth)>160?"160":"auto")*/
+        .tags-bottom .tag-school {
+            max-width: 160px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
         
-        .tags-bottom .tag-metro{
-            color:#6682ae;
-            background:#f0f4f8
-        }
-
-        .tags-bottom .tag-school{
-            color:#e88a78;
-            background:#fbf4f1
-        }
-
-        .tags-bottom .tag-others{
-            color:#799374;
-            background:#f2f6ed
+        .tags-bottom .tag-metro {
+            color: #6682ae;
+            background: #f0f4f8
         }
         
-        .houselist-mod .pro-price{
-            position:absolute;
-            top:60px;
-            right:20px;
-            width:112px;
-            text-align:right;
-            white-space:nowrap
+        .tags-bottom .tag-school {
+            color: #e88a78;
+            background: #fbf4f1
         }
         
-        .houselist-mod .pro-price .price-det{
-            display:block;
-            width:112px;
-            height:30px;
-            line-height:30px;
-            color:#e54b00
+        .tags-bottom .tag-others {
+            color: #799374;
+            background: #f2f6ed
         }
         
-        .houselist-mod .pro-price strong{
-            font-size:22px;
-            font-weight:bold;
-            font-family:Tahoma;
-            margin-right:3px
+        .houselist-mod .pro-price {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            width: 112px;
+            text-align: right;
+            white-space: nowrap
         }
-
-        .houselist-mod .pro-price .unit-price{
-            font-size:12px;
-            color:#999
+        
+        .houselist-mod .pro-price .price-det {
+            display: block;
+            width: 112px;
+            height: 30px;
+            line-height: 30px;
+            color: #e54b00
         }
-
-        .houselist-mod-new .house-details{
-            height:135px;
-            display:table-cell;
-            vertical-align:middle
+        
+        .houselist-mod .pro-price strong {
+            font-size: 22px;
+            font-weight: bold;
+            font-family: Tahoma;
+            margin-right: 3px
         }
-
-
-        .city{
+        
+        .houselist-mod .pro-price .unit-price {
+            font-size: 12px;
+            color: #999
+        }
+        
+        .houselist-mod-new .house-details {
+            height: 135px;
+            display: table-cell;
+            vertical-align: middle
+        }
+        
+        .city {
             display: inline-block;
             *display: inline;
             *zoom: 1;
             position: relative;
             *vertical-align: bottom;
-            z-index: 101;/* for ie6 */
-            color:#666;
-            font-style:normal;
+            z-index: 101;
+            /* for ie6 */
+            color: #666;
+            font-style: normal;
             font-size: 14px;
-            line-height:18px;
-            cursor:pointer;
+            line-height: 18px;
+            cursor: pointer;
             background: white;
-            border:none;
+            border: none;
         }
-
-        .select{
-            padding:5px 10px;
-            border:#ddd 1px solid;
-            width:100%;
-            font-size:13px;
+        
+        .select {
+            padding: 5px 10px;
+            border: #ddd 1px solid;
+            width: 100%;
+            font-size: 13px;
         }
-        .select li{
-            list-style:none;
-            padding:0 0 0 50px
+        
+        .select li {
+            list-style: none;
+            padding: 0 0 0 50px
         }
-        .select .select-list{
-            border-bottom:#ddd 1px dashed
+        
+        .select .select-list {
+            border-bottom: #ddd 1px dashed
         }
-        .select dl{
-            zoom:1;
-            position:relative;
-            line-height:26px;
+        
+        .select dl {
+            zoom: 1;
+            position: relative;
+            line-height: 26px;
         }
-        .select dl:after{
-            content:" ";
-            display:block;
-            clear:both;
-            height:0;
-            overflow:hidden
+        
+        .select dl:after {
+            content: " ";
+            display: block;
+            clear: both;
+            height: 0;
+            overflow: hidden
         }
-        .select dt{
+        
+        .select dt {
             width: 100px;
-            position:absolute;
-            top:0;
-            left:-100px;
-            text-align:right;
-            color:#666;
-            height:26px;
-            line-height:26px;
+            position: absolute;
+            top: 0;
+            left: -100px;
+            text-align: right;
+            color: #666;
+            height: 26px;
+            line-height: 26px;
         }
-        .select dd{
-            display:inline;
-            margin:0 0 0 5px;
+        
+        .select dd {
+            display: inline;
+            margin: 0 0 0 5px;
         }
-        .select a{
-            display:inline-block;
-            white-space:nowrap;
-            height:26px;
-            padding:0 10px;
-            text-decoration:none;
-            color:#333;
-            border-radius:2px;
+        
+        .select a {
+            display: inline-block;
+            white-space: nowrap;
+            height: 26px;
+            padding: 0 10px;
+            text-decoration: none;
+            color: #333;
+            border-radius: 2px;
         }
-        .select a:hover{
-            color:#f60;
+        
+        .select a:hover {
+            color: #f60;
         }
-        .select .selected a{
-            color:#f60;
-            font-weight:bold
+        
+        .select .selected a {
+            color: #f60;
+            font-weight: bold
         }
-        .select-result dt{
-            font-weight:bold;
+        
+        .select-result dt {
+            font-weight: bold;
             width: 125px;
         }
-        .select-no{
-            color:#999;
+        
+        .select-no {
+            color: #999;
             padding: 0 0 0 25px
         }
-        .select .select-result a{
+        
+        .select .select-result a {
             margin: 0 0 0 25px;
-            padding-right:20px;
-            background:#f3edc2 url("img/close_2.gif") right 9px no-repeat
+            padding-right: 20px;
+            background: #f3edc2 url("img/close_2.gif") right 9px no-repeat
         }
-        .select .select-result a:hover{
-            background-position:right -15px
+        
+        .select .select-result a:hover {
+            background-position: right -15px
         }
-
-        .select-result-smit{
+        
+        .select-result-smit {
             font-size: 13px;
             font-weight: bold;
             border-radius: 2px;
@@ -391,11 +406,11 @@
             float: right;
             margin-right: 600px
         }
-
-        .select-result-smit:hover{
+        
+        .select-result-smit:hover {
             background-color: white;
             color: #008cba;
-            font-weight:bold
+            font-weight: bold
         }
         
         .select-list .pricecond,
@@ -445,6 +460,7 @@
         .select-list form input:hover {
             background-color: #F0F0F0;
         }
+
     </style>
 
 </head>
@@ -480,7 +496,7 @@
                             <li style="padding: 0px 10px 0px"><a href="">联系我们</a></li>
                             <!-- Logout    -->
                             <li class="nav-item">
-                                <a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a>
+                                <a href="login.html" class="nav-link logout" id="log_out"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -492,174 +508,180 @@
             <nav class="side-navbar">
                 <!-- Sidebar Header-->
                 <div class="sidebar-header d-flex align-items-center">
-                    <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                    <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
                         <h1 class="h4">UserName</h1>
                         <p>City</p>
                     </div>
                 </div>
-                    <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="index.html"> <i class="icon-home"></i>首页 </a>
-                        </li>
-                        <li class="active">
-                            <a href="tables.html"> <i class="icon-grid"></i>房价查询 </a>
-                        </li>
-                        <li>
-                            <a href="charts.html"> <i class="fa fa-bar-chart"></i>房价对比 </a>
-                        </li>
-                        <li>
-                            <a href="forms.html"> <i class="icon-padnote"></i>房价预测 </a>
-                        </li>
-                        <li>
-                            <a href="login.html"> <i class="icon-interface-windows"></i>Login page </a>
-                        </li>
-                    </ul><span class="heading">Extras</span>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="#"> <i class="icon-flask"></i>Demo </a>
-                        </li>
-                        <li>
-                            <a href="#"> <i class="icon-screen"></i>Demo </a>
-                        </li>
-                        <li>
-                            <a href="#"> <i class="icon-mail"></i>Demo </a>
-                        </li>
-                        <li>
-                            <a href="#"> <i class="icon-picture"></i>Demo </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class="content-inner">
-                    <!-- Page Header-->
-                    <header class="page-header">
-                        <div class="container-fluid">
-                            <h2 class="no-margin-bottom">
-                                房价查询
-                                <button class="city" id="citySelect">南京市</button>
-                            </h2>
-                        </div>
-                    </header>
-                    <!-- Breadcrumb-->
-                    <div class="breadcrumb-holder container-fluid">
-                        <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">首页</a></li>
-                            <li class="breadcrumb-item active">房价查询 </li>
-                        </ul>
+                <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="index.html"> <i class="icon-home"></i>首页 </a>
+                    </li>
+                    <li class="active">
+                        <a href="tables.html"> <i class="icon-grid"></i>房价查询 </a>
+                    </li>
+                    <li>
+                        <a href="charts.html"> <i class="fa fa-bar-chart"></i>房价对比 </a>
+                    </li>
+                    <li>
+                        <a href="forms.html"> <i class="icon-padnote"></i>房价预测 </a>
+                    </li>
+                    <li>
+                        <a href="login.html"> <i class="icon-interface-windows"></i>Login page </a>
+                    </li>
+                </ul><span class="heading">Extras</span>
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#"> <i class="icon-flask"></i>Demo </a>
+                    </li>
+                    <li>
+                        <a href="#"> <i class="icon-screen"></i>Demo </a>
+                    </li>
+                    <li>
+                        <a href="#"> <i class="icon-mail"></i>Demo </a>
+                    </li>
+                    <li>
+                        <a href="#"> <i class="icon-picture"></i>Demo </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="content-inner">
+                <!-- Page Header-->
+                <header class="page-header">
+                    <div class="container-fluid">
+                        <h2 class="no-margin-bottom">
+                            房价查询
+                            <button class="city" id="citySelect">南京市</button>
+                        </h2>
                     </div>
-                    
-
-                    <ul class="select">
-                        <li class="select-list">
-                            <dl id="select1">
-                                <dt>区域：</dt>
-                                <dd class="select-all selected"><a href="#">全部</a></dd>
-                                <dd><a href="#">江宁</a></dd>
-                                <dd><a href="#">浦口</a></dd>
-                                <dd><a href="#">栖霞</a></dd>
-                                <dd><a href="#">雨花台</a></dd>
-                                <dd><a href="#">建邺</a></dd>
-                                <dd><a href="#">秦淮</a></dd>
-                                <dd><a href="#">鼓楼</a></dd>
-                                <dd><a href="#">玄武</a></dd>
-                                <dd><a href="#">六合</a></dd>
-                                <dd><a href="#">滨江开发区</a></dd>
-                                <dd><a href="#">溧水</a></dd>
-                                <dd><a href="#">高淳</a></dd>
-                            </dl>
-                        </li>
-                        <li class="select-list">
-                            <dl id="select2">
-                                <dt>售价：</dt>
-                                <dd class="select-all selected"><a href="#">全部</a></dd>
-                                <dd><a href="#">80万以下</a></dd>
-                                <dd><a href="#">80-100万</a></dd>
-                                <dd><a href="#">100-120万</a></dd>
-                                <dd><a href="#">120-150万</a></dd>
-                                <dd><a href="#">150-200万</a></dd>
-                                <dd><a href="#">200-250万</a></dd>
-                                <dd><a href="#">250-300万</a></dd>
-                                <dd><a href="#">300-500万</a></dd>
-                                <dd><a href="#">500-1000万</a></dd>
-                                <dd><a href="#">1000万以上</a></dd>
-                                <div class="pricecond">
-                                    <form>
-                                        <input type="text" name="from_price" maxlength="5" id="from_price" autocomplete="off" /> -
-                                        <input type="text" name="to_price" maxlength="5" id="to_price" autocomplete="off" />&nbsp;<span class="">万</span>
-                                    </form>                                </div>
-                                <dd><a><form><input class="smit" id="pricerange_search" style="display:none" type="button" value="确定" /></form></a></dd>
-                            </dl>
-                        </li>
-                        <li class="select-list">
-                            <dl id="select3">
-                                <dt>面积：</dt>
-                                <dd class="select-all selected"><a href="#">全部</a></dd>
-                                <dd><a href="#">50m²以下</a></dd>
-                                <dd><a href="#">50-70m²</a></dd>
-                                <dd><a href="#">70-90m²</a></dd>
-                                <dd><a href="#">90-120m²</a></dd>
-                                <dd><a href="#">120-150m²</a></dd>
-                                <dd><a href="#">150-200m²</a></dd>
-                                <dd><a href="#">200-300m²</a></dd>
-                                <dd><a href="#">300m²以上</a></dd>
-                                <div class="areacond" style="display: inline">
-                                    <form>
-                                        <input type="text" maxlength="5" name="from_area" id="from_area" autocomplete="off" /> -
-                                        <input type="text" maxlength="5" name="to_area" id="to_area" autocomplete="off" />&nbsp;<span class="">m²</span>
-                                        <input class="smit" id="arearange_search" style="display:none" type="button" value="确定" />
-                                    </form>
-                                </div>
-                            </dl>
-                        </li>
-                        <li class="select-list">
-                            <dl id="select4">
-                                <dt>房型：</dt>
-                                <dd class="select-all selected"><a href="#">全部</a></dd>
-                                <dd><a href="#">一室</a></dd>
-                                <dd><a href="#">二室</a></dd>
-                                <dd><a href="#">三室</a></dd>
-                                <dd><a href="#">四室</a></dd>
-                                <dd><a href="#">五室</a></dd>
-                                <dd><a href="#">五室以上</a></dd>
-                            </dl>
-                        </li>
-                        <li class="select-result">
-                            <dl>
-                                <form>
-                                    <dt>已选条件：</dt>
-                                    <dd class="select-no">暂时没有选择过滤条件</dd>
-                                    <button class="select-result-smit" id="smit" style="display: none">提交</button>
-                                </form>
-                            </dl>
-                        </li>
+                </header>
+                <!-- Breadcrumb-->
+                <div class="breadcrumb-holder container-fluid">
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.html">首页</a></li>
+                        <li class="breadcrumb-item active">房价查询 </li>
                     </ul>
+                </div>
+
+
+                <!-- 条件筛选 -->
+                <ul class="select">
+                    <li class="select-list">
+                        <dl id="select1">
+                            <dt>区域：</dt>
+                            <dd class="select-all selected"><a href="#">全部</a></dd>
+                            <dd><a href="#">江宁</a></dd>
+                            <dd><a href="#">浦口</a></dd>
+                            <dd><a href="#">栖霞</a></dd>
+                            <dd><a href="#">雨花台</a></dd>
+                            <dd><a href="#">建邺</a></dd>
+                            <dd><a href="#">秦淮</a></dd>
+                            <dd><a href="#">鼓楼</a></dd>
+                            <dd><a href="#">玄武</a></dd>
+                            <dd><a href="#">六合</a></dd>
+                            <dd><a href="#">滨江开发区</a></dd>
+                            <dd><a href="#">溧水</a></dd>
+                            <dd><a href="#">高淳</a></dd>
+                        </dl>
+                    </li>
+                    <li class="select-list">
+                        <dl id="select2">
+                            <dt>售价：</dt>
+                            <dd class="select-all selected"><a href="#">全部</a></dd>
+                            <dd><a href="#">80万以下</a></dd>
+                            <dd><a href="#">80-100万</a></dd>
+                            <dd><a href="#">100-120万</a></dd>
+                            <dd><a href="#">120-150万</a></dd>
+                            <dd><a href="#">150-200万</a></dd>
+                            <dd><a href="#">200-250万</a></dd>
+                            <dd><a href="#">250-300万</a></dd>
+                            <dd><a href="#">300-500万</a></dd>
+                            <dd><a href="#">500-1000万</a></dd>
+                            <dd><a href="#">1000万以上</a></dd>
+                            <div class="pricecond">
+                                <form>
+                                    <input type="text" name="from_price" maxlength="5" id="from_price" autocomplete="off" /> -
+                                    <input type="text" name="to_price" maxlength="5" id="to_price" autocomplete="off" />&nbsp;<span class="">万</span>
+                                </form>
+                            </div>
+                            <dd>
+                                <a>
+                                    <form><input class="smit" id="pricerange_search" style="display:none" type="button" value="确定" /></form>
+                                </a>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li class="select-list">
+                        <dl id="select3">
+                            <dt>面积：</dt>
+                            <dd class="select-all selected"><a href="#">全部</a></dd>
+                            <dd><a href="#">50m²以下</a></dd>
+                            <dd><a href="#">50-70m²</a></dd>
+                            <dd><a href="#">70-90m²</a></dd>
+                            <dd><a href="#">90-120m²</a></dd>
+                            <dd><a href="#">120-150m²</a></dd>
+                            <dd><a href="#">150-200m²</a></dd>
+                            <dd><a href="#">200-300m²</a></dd>
+                            <dd><a href="#">300m²以上</a></dd>
+                            <div class="areacond" style="display: inline">
+                                <form>
+                                    <input type="text" maxlength="5" name="from_area" id="from_area" autocomplete="off" /> -
+                                    <input type="text" maxlength="5" name="to_area" id="to_area" autocomplete="off" />&nbsp;<span class="">m²</span>
+                                    <input class="smit" id="arearange_search" style="display:none" type="button" value="确定" />
+                                </form>
+                            </div>
+                        </dl>
+                    </li>
+                    <li class="select-list">
+                        <dl id="select4">
+                            <dt>房型：</dt>
+                            <dd class="select-all selected"><a href="#">全部</a></dd>
+                            <dd><a href="#">一室</a></dd>
+                            <dd><a href="#">二室</a></dd>
+                            <dd><a href="#">三室</a></dd>
+                            <dd><a href="#">四室</a></dd>
+                            <dd><a href="#">五室</a></dd>
+                            <dd><a href="#">五室以上</a></dd>
+                        </dl>
+                    </li>
+                    <li class="select-result">
+                        <dl>
+                            <form>
+                                <dt>已选条件：</dt>
+                                <dd class="select-no">暂时没有选择过滤条件</dd>
+                                <button class="select-result-smit" id="smit" style="display: none">提交</button>
+                            </form>
+                        </dl>
+                    </li>
+                </ul>
 
 
 
-                <!-- Line Charts-->
+                <!-- 折线图-->
                 <div class="col-lg-8">
                     <div class="line-chart-example card">
                         <div class="card-header d-flex align-items-center">
                             <h3 class="h4">南京房价走势图</h3>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="line_chart">
                             <canvas id="lineChartExample4"></canvas>
                         </div>
                     </div>
                 </div>
 
 
-                <!-- left content begin -->
+                <!-- left content -->
                 <div class="sale-left">
                     <!-- 搜索结果-->
                     <div class="sortby" id='filtersort'>
-                        <span>为您找到以下<strong>南京</strong>二手房</span>    
+                        <span>为您找到以下<strong id="region">南京</strong>二手房</span>
                         <span class="sort-con">排序：
                             <a class="fst" href="#" rel="nofollow">默认</a>
-                            <a class="down" href="#" rel="nofollow">面积</a>
-                            <a class="up" href="#" rel="nofollow">价格</a>
-                            <a class="down" href="#" rel="nofollow">最新</a>
+                            <a class="down" href="#" rel="nofollow">面积⬇</a>
+                            <a class="up" href="#" rel="nofollow">价格⬆</a>
+                            <a class="down" href="#" rel="nofollow">最新⬇</a>
                         </span>
                     </div>
 
@@ -670,31 +692,632 @@
                             </div>
                             <div class="house-details">
                                 <div class="house-title">
-                                    <a data-from="" data-company=""  title="急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校" href="#" target='_blank'>急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
                                 </div>
                                 <div class="details-item">
-                                    <span>2室1厅</span>
+                                    <span class="house_type" id="house_type">2室1厅</span>
                                     <em class="spe-lines">|</em>
-                                    <span>59m²</span>
+                                    <span class="area" id="area">59m²</span>
                                     <em class="spe-lines">|</em>
                                     <span>高层(共6层)</span>
                                     <em class="spe-lines">|</em>
-                                    <span>1990年建造</span>                                
+                                    <span>1990年建造</span>
                                 </div>
                                 <div class="details-item">
-                                    <span class="comm-address" title="杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
                                 </div>
                                 <div class="tags-bottom">
                                     <span class="item-tags tag-metro">近地铁</span>
                                     <span class="item-tags tag-others">配套成熟</span>
-                                    <span class="item-tags tag-others">交通便利</span>            
+                                    <span class="item-tags tag-others">交通便利</span>
                                 </div>
                             </div>
                             <div class="pro-price">
-                                <span class="price-det"><strong>82</strong>万</span><span class="unit-price">13898元/m²</span>        
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
                             </div>
                         </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+                        
+                        <li class="list-item" data-from="">
+                            <div class="item-img">
+                                <img src="#" width="180" height="135" />
+                            </div>
+                            <div class="house-details">
+                                <div class="house-title">
+                                    <a data-from="" data-company=""  class="house_title" title="" href="#" target='_blank' id="house_title">急售杨庄西村温馨两房 楼层好总价低自住佳 配套齐 近地铁学校</a>            
+                                </div>
+                                <div class="details-item">
+                                    <span class="house_type" id="house_type">2室1厅</span>
+                                    <em class="spe-lines">|</em>
+                                    <span class="area" id="area">59m²</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>高层(共6层)</span>
+                                    <em class="spe-lines">|</em>
+                                    <span>1990年建造</span>
+                                </div>
+                                <div class="details-item">
+                                    <span class="comm-address" title="" class="address" id="address">杨庄西村小区&nbsp;&nbsp;六合-大厂-杨新路</span>
+                                </div>
+                                <div class="tags-bottom">
+                                    <span class="item-tags tag-metro">近地铁</span>
+                                    <span class="item-tags tag-others">配套成熟</span>
+                                    <span class="item-tags tag-others">交通便利</span>
+                                </div>
+                            </div>
+                            <div class="pro-price">
+                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>        
+                            </div>
+                        </li>
+
+                        
                     </ul>
+
+                    <!-- 分页 -->
+                    <div class="pages">
+                        <div id="Pagination"></div>
+                        <div class="searchPage">
+                            <span class="page-sum">共<strong class="allPage" id="allPage">15</strong>页</span>
+                            <span class="page-go">跳转<input type="text">页</span>
+                            <a href="javascript:;" class="page-btn">GO</a>
+                        </div>
+                    </div>
                 </div>
 
 
@@ -923,6 +1546,7 @@
                         </div>
                     </div>
                 </section>
+
                 <!-- Page Footer-->
                 <footer class="main-footer">
                     <div class="container-fluid">
@@ -953,13 +1577,21 @@
     <script type="text/javascript" src="js/cityselect.js"></script>
     <script src="js/script.js"></script>
     <script src="js/jquery-1.7.2.min.js"></script>
+    <script src="js/jquery.pagination.js"></script>
     <!-- Main File-->
 
 
     <script type="text/javascript">
-        var test=new Vcity.CitySelector({button:'citySelect'});
+        var test = new Vcity.CitySelector({
+            button: 'citySelect'
+        });
     </script>
-    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#Pagination").pagination("15");
+        });
+    </script>
+
 </body>
 
 </html>
