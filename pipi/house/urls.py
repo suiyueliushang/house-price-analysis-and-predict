@@ -11,6 +11,9 @@ urlpatterns = [
     path('query_prices',views.query_prices),
     path('contrast_city',views.contrast_city),
     path('contrast_district',views.contrast_district),
-    path('input/',views.index,name="index"),
+    path('input',views.index,name="index"),
+    path('new_sign_up',views.new_sign_up),
+
+    path('search_member',views.search_member)
     #path('',views.login)
 ]

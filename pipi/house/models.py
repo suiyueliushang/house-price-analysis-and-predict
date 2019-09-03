@@ -34,3 +34,35 @@ class City(models.Model):
 
     class Meta:
         db_table="city_average_price"
+
+class new_user(models.Model):
+    time=models.DateField()
+    user_name=models.CharField(max_length=20)
+    user_phone=models.CharField(max_length=20)
+
+    class Meta:
+        db_table='new_users'
+
+class Visitor(models.Model):
+    time=models.DateField()
+    user_name=models.CharField(max_length=20)
+    user_phone=models.CharField(max_length=20)
+
+    class Meta:
+        db_table='visitor'
+
+class new_user_number(models.Model):
+    time=models.DateField()
+    number=models.IntegerField()
+    class Meta:
+        db_table='new_number'
+
+
+class Admin(models.Model):
+
+    admin_name=models.CharField(max_length=20,null=False)
+    password=models.CharField(max_length=100,null=False)
+    session_id=models.CharField(max_length=50,null=False,default=0)
+
+    class Meta:
+        db_table="admin_info"
