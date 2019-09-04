@@ -29,11 +29,7 @@ var price_array1 = new Array(12);
 var price4 = new Array(20000,25000,30000,16000,27000,32000,26000,17000,21000,23000,30000,24000,25000);
 var region_1;
 var region_2;
-var btn5 = $('btn5');
-var prov5 = $('prov5');
-var city5 = $('city5');
-var country5 = $('country5');
-var time_5 = $('time_5');
+
 
 
 /*用于保存当前所选的省市区*/
@@ -51,11 +47,7 @@ var current4 = {
     prov4: '',
     city4: ''
 };
-var current5 = {
-    prov5: '',
-    city5: '',
-    country5: ''
-};
+
 
 /*自动加载省份列表*/
 (function showProv() {
@@ -115,24 +107,7 @@ var current5 = {
     }
 })();
 
-(function showProv5() {
-    btn5.disabled = true;
-    var len = provice.length;
-    for (var i = 0; i < len; i++) {
-        var provOpt = document.createElement('option');
-        provOpt.innerText = provice[i]['name'];
-        provOpt.value = i;
-        prov5.appendChild(provOpt);
-    }
-    var len_0=10;
-    for(var i = 0; i<len_0; i++) {
-        var year_time=2019-i;
-        var timeOpt = document.createElement('option');
-        timeOpt.innerText=year_time;
-        timeOpt.value = i;
-        time_5.appendChild(timeOpt);
-    }
-})();
+
 
 /*根据所选的省份来显示城市列表*/
 function showCity(obj) {
@@ -195,24 +170,7 @@ function showCity4(obj) {
     }
 }
 
-function showCity5(obj) {
-    var val = obj.options[obj.selectedIndex].value;
-    if (val != current5.prov5) {
-        current5.prov5 = val;
-        btn5.disabled = true;
-    }
-    //console.log(val);
-    if (val != null) {
-        city5.length = 1;
-        var cityLen = provice[val]["city"].length;
-        for (var j = 0; j < cityLen; j++) {
-            var cityOpt = document.createElement('option');
-            cityOpt.innerText = provice[val]["city"][j].name;
-            cityOpt.value = j;
-            city5.appendChild(cityOpt);
-        }
-    }
-}
+
 
 /*根据所选的城市来显示县区列表*/
 function showCountry(obj) {
@@ -252,20 +210,7 @@ function showCountry1(obj) {
     }
 }
 
-function showCountry5(obj) {
-    var val = obj.options[obj.selectedIndex].value;
-    current5.city5 = val;
-    if (val != null) {
-        country5.length = 1; //清空之前的内容只留第一个默认选项
-        var countryLen = provice[current5.prov5]["city"][val].districtAndCounty.length;
-        for (var n = 0; n < countryLen; n++) {
-            var countryOpt = document.createElement('option');
-            countryOpt.innerText = provice[current5.prov5]["city"][val].districtAndCounty[n];
-            countryOpt.value = n;
-            country5.appendChild(countryOpt);
-        }
-    }
-}
+
 
 /*选择县区之后的处理函数*/
 function selecCountry(obj) {
@@ -282,12 +227,7 @@ function selecCountry1(obj) {
     }
 }
 
-function selecCountry5(obj) {
-    current5.country5 = obj.options[obj.selectedIndex].value;
-    if ((current5.city5 != null) && (current5.country5 != null)) {
-        btn5.disabled = false;
-    }
-}
+
 
 function deal_4(obj) {
     city_region = new Array();
