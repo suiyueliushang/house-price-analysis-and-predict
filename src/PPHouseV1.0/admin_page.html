@@ -369,8 +369,9 @@
                                                 <td>
                                                     <div class="form-group">
                                                         <button id="delete_user" type="button" class="btn btn-primary">删除</button>
+                                                        <div id="delete_info" style="color: red;"></div>
                                                     </div>
-                                                    <div id="delete_info" style="color: red;"></div>
+
                                                 </td>
                                             </tr>
                                             </tr>
@@ -900,6 +901,12 @@
     <script>
         document.getElementById('login_id').innerText = window.localStorage.getItem("name");
         console.log(window.localStorage.getItem("name"));
+
+        function func() {
+            show_visitor_table();
+            //show_visitor();
+        }
+        window.onload = func();
     </script>
 
 </body>

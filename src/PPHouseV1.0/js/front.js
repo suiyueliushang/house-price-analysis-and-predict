@@ -705,6 +705,7 @@ $("#delete_user").click(function() {
     var search_user = document.getElementById('search_user').innerText;
     var search_phone_number = document.getElementById('search_phone_number').innerText;
 
+
     $.ajax({
         type: "POST", //提交的方法
         url: "/delete_users", //提交的地址  
@@ -719,16 +720,20 @@ $("#delete_user").click(function() {
         async: false,
         error: function(request) { //失败的话
             alert("Connection error");
-            document.getElementById("delete_info").style.innerText = "连接失败";
+            document.getElementById("delete_info").value = "连接失败";
 
         },
         success: function(data) { //成功
             switch (data.is_success) {
                 case '0':
-                    document.getElementById("delete_info").style.innerText = "删除成功";
+                    document.getElementById("delete_info").innerText = "删除成功";
+                    break;
+                case '1':
+                    document.getElementById("delete_info").innerText = "删除失败";
                     break;
                 default:
-                    alert("未知错误");
+                    alert(data.is_success);
+                    // alert("未知错误");
             }
         }
 
@@ -861,7 +866,7 @@ function show_visitor_table() {
 
     $.ajax({
         type: "POST", //
-        url: "/contrast_city", //
+        url: "/new_sign_in_list", //
         datatype: "json",
         data: {},
         async: false,
@@ -869,14 +874,20 @@ function show_visitor_table() {
             alert("Connection error");
         },
         success: function(data) {
+            document.getElementById("visitor_1_time").innerText = data.first.time;
+            document.getElementById("visitor_1_user").innerText = data.first.user_name;
+            document.getElementById("visitor_1_phone").innerText = data.first.user_phone;
 
+            document.getElementById("visitor_2_time").innerText = data.second.time;
+            document.getElementById("visitor_2_user").innerText = data.second.user_name;
+            document.getElementById("visitor_2_phone").innerText = data.second.user_phone;
 
+            document.getElementById("visitor_3_time").innerText = data.third.time;
+            document.getElementById("visitor_3_user").innerText = data.third.user_name;
+            document.getElementById("visitor_3_phone").innerText = data.third.user_phone;
         }
     });
 
-    $(document).ready(function() {
-
-    })
 }
 
 //新增用户 new_sign_up_list
