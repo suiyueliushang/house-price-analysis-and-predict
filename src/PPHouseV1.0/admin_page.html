@@ -73,8 +73,8 @@
                 <div class="sidebar-header d-flex align-items-center">
                     <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
-                        <h1 class="h4" id="login_id">UserName</h1>
-                        <p>City</p>
+                        <h1 class="h4" id="login_id">Username</h1>
+                        <p>1.3</p>
                     </div>
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
@@ -241,21 +241,21 @@
                                                     <tbody>
                                                         <tr>
                                                             <th scope="row">1</th>
-                                                            <td>1分钟前</td>
-                                                            <td>Jacob</td>
-                                                            <td>15647894562</td>
+                                                            <td id="user_1_time">1分钟前</td>
+                                                            <td id="user_1_name">Jacob</td>
+                                                            <td id="user_1_phone">15647894562</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">2</th>
-                                                            <td>1分钟前</td>
-                                                            <td>游客</td>
-                                                            <td>/</td>
+                                                            <td id="user_2_time">1分钟前</td>
+                                                            <td id="user_2_name">游客</td>
+                                                            <td id="user_2_phone">/</td>
                                                         </tr>
                                                         <tr>
                                                             <th scope="row">3</th>
-                                                            <td>2分钟前</td>
-                                                            <td>fat</td>
-                                                            <td>13759548256</td>
+                                                            <td id="user_3_time">2分钟前</td>
+                                                            <td id="user_3_name">fat</td>
+                                                            <td id="user_3_phone">13759548256</td>
                                                         </tr>
                                                         </tr>
                                                     </tbody>
@@ -908,6 +908,7 @@
 
         function func() {
             show_visitor_table();
+            show_user_table();
             //show_visitor();
         }
         window.onload = func();
