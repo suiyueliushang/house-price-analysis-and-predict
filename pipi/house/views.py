@@ -389,6 +389,13 @@ def add_house_info(request):
     管理员添加
     '''
 
+def delete_house_info(request):
+    '''
+    @args   int:id
+    '''
+    _id=request.POST.get(_id)
+
+
 def new_sign_up_list(request):
     '''
     args:   
@@ -417,6 +424,7 @@ def new_sign_up_list(request):
     third={'hour':third_time[0],'minute':third_time[1],'user_name':users[0].user_name,'user_phone':users[0].user_phone}
     result={'first':first,'second':second,'third':third}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 
 def new_sign_in_list(request):
     '''
@@ -459,10 +467,10 @@ def new_sign_up(request):
     print(new_sign[0])
     new=[]
     for i in range(0,12):
-        if(new_sign[-1-i]):
-            new[11-i]=new_sign[-1-i].number
-        else:
-            new[11-i]=0
+        try:
+            new.insert(0,new_sign[-1-i].number)
+        except:
+            new.insert(0,0)
     result={'new':new}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
@@ -475,10 +483,10 @@ def new_sign_in(request):
     print(new_sign[0])
     new=[]
     for i in range(0,12):
-        if(new_sign[-1-i]):
-            new[11-i]=new_sign[-1-i].number
-        else:
-            new[11-i]=0
+        try:
+            new.insert(0,new_sign[-1-i].number)
+        except:
+            new.insert(0,0)
     result={'new':new}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
