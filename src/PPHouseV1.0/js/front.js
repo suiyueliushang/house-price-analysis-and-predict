@@ -956,23 +956,23 @@ function show_visitor_table() {
         },
         success: function(data) {
             if (data.first.time.hour == "0")
-                document.getElementById("visitor_1_time").innerText = data.first.time.minute + "分钟前";
+                document.getElementById("visitor_1_time").innerText = data.first.minute + "分钟前";
             else
-                document.getElementById("visitor_1_time").innerText = data.first.time.hour + "小时" + data.first.time.minute + "分钟前";
+                document.getElementById("visitor_1_time").innerText = data.first.hour + "小时" + data.first.minute + "分钟前";
             document.getElementById("visitor_1_user").innerText = data.first.user_name;
             document.getElementById("visitor_1_phone").innerText = data.first.user_phone;
 
             if (data.first.time.hour == "0")
-                document.getElementById("visitor_2_time").innerText = data.second.time.minute + "分钟前";
+                document.getElementById("visitor_2_time").innerText = data.second.minute + "分钟前";
             else
-                document.getElementById("visitor_2_time").innerText = data.second.time.hour + "小时" + data.second.time.minute + "分钟前";
+                document.getElementById("visitor_2_time").innerText = data.second.hour + "小时" + data.second.minute + "分钟前";
             document.getElementById("visitor_2_user").innerText = data.second.user_name;
             document.getElementById("visitor_2_phone").innerText = data.second.user_phone;
 
             if (data.first.time.hour == "0")
-                document.getElementById("visitor_3_time").innerText = data.third.time.minute + "分钟前";
+                document.getElementById("visitor_3_time").innerText = data.third.minute + "分钟前";
             else
-                document.getElementById("visitor_3_time").innerText = data.third.time.hour + "小时" + data.third.time.minute + "分钟前";
+                document.getElementById("visitor_3_time").innerText = data.third.hour + "小时" + data.third.minute + "分钟前";
             document.getElementById("visitor_3_user").innerText = data.third.user_name;
             document.getElementById("visitor_3_phone").innerText = data.third.user_phone;
         }
