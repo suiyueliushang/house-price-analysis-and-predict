@@ -1,6 +1,6 @@
 
 from django.shortcuts import render
-from .models import Visitor,New_user,New_user_number,Visitor_number,City,House,User
+from .models import Visitor,New_user,New_user_number,Visitor_number,City,House,User,Admin
 from django.http import HttpResponse
 from django.http import JsonResponse
 from . import test
@@ -8,6 +8,7 @@ import random
 import json
 from django.db.models import Q
 import datetime
+import pytz
 
 code_dict1={'17714209247':'7777','15057190316':'7777'}
 code_dict2={'17714209247':'3333','15057190316':'7777'}
@@ -37,8 +38,19 @@ def sign_in_by_password(request):
         if user.password==_password:
             response.set_cookie("text","cookie11")
 
-            user_sign_in=Visitor(time=datetime.datetime.now(),user_name=_username,user_phone=user.user_phone)
+            now=datetime.datetime.now()
+            now=now.replace(tzinfo=None)
+            user_sign_in=Visitor(time=now,user_name=_username,user_phone=user.user_phone)
             user_sign_in.save()
+
+            try:
+                user_num1=Visitor_number.objects.get(time=now.date())
+                user_num1.number+=1
+                user_num1.save()
+            except:
+                i=now.date()
+                user_num2=Visitor_number(time=i,number=1)
+                user_num2.save()
 
             user_user={'user_name':user.user_name,'id':user.session_id}
             result={'is_success':'0','user':user_user}
@@ -80,8 +92,20 @@ def sign_in_by_phone_number(request):
             result={'is_success':'1','user':''}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         if code_dict2[_phonenumber]==_auth_code:
-            user_sign_in=Visitor(time=datetime.datetime.now(),user_name=user.user_name,user_phone=_phonenumber)
+
+            now=datetime.datetime.now()
+            now=now.replace(tzinfo=None)
+            user_sign_in=Visitor(time=now,user_name=user.user_name,user_phone=_phonenumber)
             user_sign_in.save()
+
+            try:
+                user_num1=Visitor_number.objects.get(time=now.date())
+                user_num1.number+=1
+                user_num1.save()
+            except:
+                i=now.date()
+                user_num2=Visitor_number(time=i,number=1)
+                user_num2.save()
 
             response.set_cookie("text","cookie11")
             user_user={'user_name':user.user_name,'id':user.session_id}
@@ -151,8 +175,18 @@ def sign_up(request):
                 _reg_user_name=request.POST.get('reg_user_name')
                 _reg_password=request.POST.get('reg_password')
 
-                user_sign_up=New_user(time=datetime.datetime.now(),user_name=_reg_user_name,user_phone=_phone_number)
+                now=datetime.datetime.now()
+                now=now.replace(tzinfo=None)
+                user_sign_up=New_user(time=now,user_name=_reg_user_name,user_phone=_phone_number)
                 user_sign_up.save()
+
+                try:
+                    user_num1=New_user_number.objects.get(time=now.date())
+                    user_num1.number+=1
+                    user_num1.save()
+                except:
+                    user_num2=New_user_number(time=now.date(),number=1)
+                    user_num2.save()
 
                 u=User(user_name=_reg_user_name,password=_reg_password,user_phone=_phone_number,session_id='123')
                 u.save()
@@ -311,6 +345,7 @@ def add_collection(request):
             cookie
     '''
 
+
 def delete_collection(request):
     '''
     用户点击删除按钮来删除收藏的房源
@@ -324,6 +359,27 @@ def admin_sign_in(request):
     @args:  str:admin_name
             str:password
     '''
+    _admin_name=request.POST.get('admin_name')
+    _password=request.POST.get('password')
+    response=HttpResponse()
+    print(request.POST)
+    print("用户名："+str(_admin_name))
+    print('密码：'+str(_password))
+    if _admin_name and _password:
+        try:
+            admin=Admin.objects.filter(admin_name=_admin_name)[0]
+        except:
+            result={'is_success':'1','admin':''}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        if admin.password==_password:
+            response.set_cookie("text","cookie11")
+            admin_admin={'user_name':admin.user_name,'id':admin.session_id}
+            result={'is_success':'0','admin':admin_admin}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        else:
+            result={'is_success':'2','admin':''}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 
 
 
@@ -333,28 +389,73 @@ def add_house_info(request):
     管理员添加
     '''
 
+def delete_house_info(request):
+    '''
+    @args   int:id
+    '''
+    _id=request.POST.get(_id)
+
+
 def new_sign_up_list(request):
     '''
     args:   
     return: 新增注册
     '''
-
-def new_sign_in_list(request):
-    '''
-    return 新增访问
-    '''
-    users=Visitor.objects.all()[-3:]
+    users=list(New_user.objects.all())[-3:]
     '''
     first=users[2]
     second=users[1]
     third=users[0]
     '''
-    first_delt=datetime.datetime.now()-users[2].time
-    second_delt=datetime.datetime.now()-users[1].time
-    third_delt=datetime.datetime.now()-users[0].time
-    first={'time':first_delt,'user_name':users[2].user_name,'user_phone':users[2].user_phone}
-    second={'time':first_delt,'user_name':users[1].user_name,'user_phone':users[1].user_phone}
-    third={'time':first_delt,'user_name':users[0].user_name,'user_phone':users[0].user_phone}
+    now=datetime.datetime.now()
+    print(now.tzinfo==None)
+    print(users[2].time==None)
+
+    first_delt=str(now-users[2].time.replace(tzinfo=None))
+    second_delt=str(now-users[1].time.replace(tzinfo=None))
+    third_delt=str(now-users[0].time.replace(tzinfo=None))
+
+    first_time=first_delt.split(":")
+    print(first_time)
+    first={'hour':first_time[0],'minute':first_time[1],'user_name':users[2].user_name,'user_phone':users[2].user_phone}
+    second_time=second_delt.split(":")
+    second={'hour':second_time[0],'minute':second_time[1],'user_name':users[1].user_name,'user_phone':users[1].user_phone}
+    third_time=third_delt.split(":")
+    third={'hour':third_time[0],'minute':third_time[1],'user_name':users[0].user_name,'user_phone':users[0].user_phone}
+    result={'first':first,'second':second,'third':third}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
+
+def new_sign_in_list(request):
+    '''
+    return 新增访问
+    '''
+    users=list(Visitor.objects.all())[-3:]
+    '''
+    first=users[2]
+    second=users[1]
+    third=users[0]
+    '''
+    #now=datetime.datetime.now()
+    now=datetime.datetime.now()
+
+    print(now.tzinfo==None)
+    print(users[2].time==None)
+    print(users[2].time)
+
+    first_delt=str(now-users[2].time.replace(tzinfo=None))
+    second_delt=str(now-users[1].time.replace(tzinfo=None))
+    third_delt=str(now-users[0].time.replace(tzinfo=None))
+
+    print(first_delt)
+
+    first_time=first_delt.split(":")
+    print(first_time)
+    first={'hour':first_time[0],'minute':first_time[1],'user_name':users[2].user_name,'user_phone':users[2].user_phone}
+    second_time=second_delt.split(":")
+    second={'hour':second_time[0],'minute':second_time[1],'user_name':users[1].user_name,'user_phone':users[1].user_phone}
+    third_time=third_delt.split(":")
+    third={'hour':third_time[0],'minute':third_time[1],'user_name':users[0].user_name,'user_phone':users[0].user_phone}
     result={'first':first,'second':second,'third':third}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
@@ -362,12 +463,33 @@ def new_sign_up(request):
     '''
     return 新增用户趋势
     '''
+    new_sign=list(New_user_number.objects.all())
+    print(new_sign[0])
+    new=[]
+    for i in range(0,12):
+        try:
+            new.insert(0,new_sign[-1-i].number)
+        except:
+            new.insert(0,0)
+    result={'new':new}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 
 def new_sign_in(request):
     '''
-
     return 访问用户趋势
     '''
+    new_sign=list(Visitor_number.objects.all())
+    print(new_sign[0])
+    new=[]
+    for i in range(0,12):
+        try:
+            new.insert(0,new_sign[-1-i].number)
+        except:
+            new.insert(0,0)
+    result={'new':new}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 
 def search_member(request):
     '''

@@ -13,6 +13,10 @@ urlpatterns = [
     path('contrast_district',views.contrast_district),
     path('input',views.index,name="index"),
     path('new_sign_up',views.new_sign_up),
+    path('new_sign_in',views.new_sign_in),
+    path('new_sign_in_list',views.new_sign_in_list),
+    path('new_sign_up_list',views.new_sign_up_list),
+    path('admin_sign_in',views.admin_sign_in),
 
     path('add_users',views.add_users),
     path('search_member',views.search_member),
