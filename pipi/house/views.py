@@ -408,11 +408,12 @@ def new_sign_up_list(request):
     second_delt=str(now-users[1].time.replace(tzinfo=None))
     third_delt=str(now-users[0].time.replace(tzinfo=None))
 
-    first_time=str.split(":")
+    first_time=first_delt.split(":")
+    print(first_time)
     first={'hour':first_time[0],'minute':first_time[1],'user_name':users[2].user_name,'user_phone':users[2].user_phone}
-    second_time=str.split(":")
+    second_time=second_delt.split(":")
     second={'hour':second_time[0],'minute':second_time[1],'user_name':users[1].user_name,'user_phone':users[1].user_phone}
-    third_time=str.split(":")
+    third_time=third_delt.split(":")
     third={'hour':third_time[0],'minute':third_time[1],'user_name':users[0].user_name,'user_phone':users[0].user_phone}
     result={'first':first,'second':second,'third':third}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
