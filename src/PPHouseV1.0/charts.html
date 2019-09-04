@@ -30,7 +30,7 @@
         .shortselect {
             background: #fafdfe;
             height: 28px;
-            width: 180px;
+            width: 150px;
             line-height: 28px;
             border: 1px solid #66a;
             -moz-border-radius: 2px;
@@ -161,20 +161,26 @@
                         <li class="breadcrumb-item active">房价对比 </li>
                     </ul>
                 </div>
-                <!--选择要对比的区域-->
-                <legend>请选择要对比的区域,时间</legend>
-                <form action="#">
-                    <!--时间选择-->
-                    <select id="time_0" class="shortselect">
-                        <option>=请选择年份=</option>
-                    </select>
-                    <!--省份选择-->
-                    <select id="prov" class="shortselect" onchange="showCity(this)">
-                        <option>=请选择省份=</option>
-                    </select>
-                    <!--城市选择-->
-                    <select id="city" class="shortselect" onchange="showCountry(this)">
-                        <option>=请选择城市=</option>
+                <!-- Charts Section-->
+                <section class="charts">
+                    <div class="container-fluid">
+                        <div class="row">
+                             <!--选择要对比的区域-->
+                            <div class="col-lg-8">
+                                    <div class="line-chart-example card">
+                                        <legend>请选择要对比的区域,时间</legend>
+                                        <form action="#">
+                                            <!--时间选择-->
+                                            <select id="time_0" class="shortselect">
+                                                <option>=请选择年份=</option>
+                                            </select>
+                                            <!--省份选择-->
+                                            <select id="prov" class="shortselect" onchange="showCity(this)">
+                                                <option>=请选择省份=</option>
+                                            </select>
+                                            <!--城市选择-->
+                                            <select id="city" class="shortselect" onchange="showCountry(this)">
+                                                <option>=请选择城市=</option>
                     </select>
                     <!--县区选择-->
                     <select id="country" class="shortselect" onchange="selecCountry(this)">
@@ -209,10 +215,8 @@
                         <input type="text" value="" id="addr-show1">
                     </label>
                 </form>
-                <!-- Charts Section-->
-                <section class="charts">
-                    <div class="container-fluid">
-                        <div class="row">
+                            </div>
+                            </div>
                             <!-- Line Charts-->
                             <div class="col-lg-8">
                                 <div class="line-chart-example card">
@@ -233,6 +237,8 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-lg-8">
+                                    <div class="line-chart-example card">
                             <legend>请选择要对比的城市,时间</legend>
                             <form action="#">
                                 <!--时间选择-->
@@ -252,6 +258,8 @@
                                 <input type="text" value="" id="addr-show4">
                             </label>
                             </form>
+                                    </div>
+                            </div>
                             <div class="col-lg-8">
                                 <div class="bar-chart-example card">
                                     <div class="card-close">
