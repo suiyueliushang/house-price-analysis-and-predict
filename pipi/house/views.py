@@ -394,7 +394,7 @@ def new_sign_up_list(request):
     args:   
     return: 新增注册
     '''
-    users=New_user.objects.all()[-3:]
+    users=list(New_user.objects.all())[-3:]
     '''
     first=users[2]
     second=users[1]
@@ -417,7 +417,6 @@ def new_sign_up_list(request):
     third={'hour':third_time[0],'minute':third_time[1],'user_name':users[0].user_name,'user_phone':users[0].user_phone}
     result={'first':first,'second':second,'third':third}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-
 
 def new_sign_in_list(request):
     '''

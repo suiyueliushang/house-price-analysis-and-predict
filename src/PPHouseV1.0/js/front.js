@@ -873,18 +873,18 @@ function show_visitor() {
             alert("Connection error");
         },
         success: function(data) {
-            num[0] = data.one;
-            num[1] = data.two;
-            num[2] = data.three;
-            num[3] = data.four;
-            num[4] = data.five;
-            num[5] = data.six;
-            num[6] = data.seven;
-            num[7] = data.eight;
-            num[8] = data.nine;
-            num[9] = data.ten;
-            num[10] = data.eleven;
-            num[11] = data.twelve;
+            num[0] = data.new[0]
+            num[1] = data.new[1]
+            num[2] = data.new[2]
+            num[3] = data.new[3]
+            num[4] = data.new[4]
+            num[5] = data.new[5]
+            num[6] = data.new[6]
+            num[7] = data.new[7]
+            num[8] = data.new[8]
+            num[9] = data.new[9]
+            num[10] = data.new[10]
+            num[11] = data.new[11]
         }
     });
 
@@ -955,31 +955,69 @@ function show_visitor_table() {
             alert("Connection error");
         },
         success: function(data) {
-            if (data.first.time.hour == "0")
+            if (data.first.hour == "0")
                 document.getElementById("visitor_1_time").innerText = data.first.minute + "分钟前";
             else
                 document.getElementById("visitor_1_time").innerText = data.first.hour + "小时" + data.first.minute + "分钟前";
-            document.getElementById("visitor_1_user").innerText = data.first.user_name;
+
+            document.getElementById("visitor_1_name").innerText = data.first.user_name;
             document.getElementById("visitor_1_phone").innerText = data.first.user_phone;
 
-            if (data.first.time.hour == "0")
+            if (data.second.hour == "0")
                 document.getElementById("visitor_2_time").innerText = data.second.minute + "分钟前";
             else
                 document.getElementById("visitor_2_time").innerText = data.second.hour + "小时" + data.second.minute + "分钟前";
-            document.getElementById("visitor_2_user").innerText = data.second.user_name;
+            document.getElementById("visitor_2_name").innerText = data.second.user_name;
             document.getElementById("visitor_2_phone").innerText = data.second.user_phone;
 
-            if (data.first.time.hour == "0")
+            if (data.third.hour == "0")
                 document.getElementById("visitor_3_time").innerText = data.third.minute + "分钟前";
             else
                 document.getElementById("visitor_3_time").innerText = data.third.hour + "小时" + data.third.minute + "分钟前";
-            document.getElementById("visitor_3_user").innerText = data.third.user_name;
+            document.getElementById("visitor_3_name").innerText = data.third.user_name;
             document.getElementById("visitor_3_phone").innerText = data.third.user_phone;
         }
     });
 
 }
 
+function show_user_table() {
+
+    $.ajax({
+        type: "POST", //
+        url: "/new_sign_up_list", //
+        datatype: "json",
+        data: {},
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) {
+            if (data.first.hour == "0") {
+
+                document.getElementById("user_1_time").innerText = data.first.minute + "分钟前";
+            } else
+                document.getElementById("user_1_time").innerText = data.first.hour + "小时" + data.first.minute + "分钟前";
+            document.getElementById("user_1_name").innerText = data.first.user_name;
+            document.getElementById("user_1_phone").innerText = data.first.user_phone;
+
+            if (data.second.hour == "0")
+                document.getElementById("user_2_time").innerText = data.second.minute + "分钟前";
+            else
+                document.getElementById("user_2_time").innerText = data.second.hour + "小时" + data.second.minute + "分钟前";
+            document.getElementById("user_2_name").innerText = data.second.user_name;
+            document.getElementById("user_2_phone").innerText = data.second.user_phone;
+
+            if (data.third.hour == "0")
+                document.getElementById("user_3_time").innerText = data.third.minute + "分钟前";
+            else
+                document.getElementById("user_3_time").innerText = data.third.hour + "小时" + data.third.minute + "分钟前";
+            document.getElementById("user_3_name").innerText = data.third.user_name;
+            document.getElementById("user_3_phone").innerText = data.third.user_phone;
+        }
+    });
+
+}
 //新增用户 new_sign_up_list
 //新增访问 new_sign_in_list
 //new_sign_up
