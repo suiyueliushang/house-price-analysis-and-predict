@@ -150,8 +150,7 @@
                 <!-- Page Header-->
                 <header class="page-header">
                     <div class="container-fluid">
-                        <h2 class="no-margin-bottom">房价对比</h2><br>
-                        <a href="charts.html">区域对比</a><a href="charts2.html">/城市对比</a>
+                        <h2 class="no-margin-bottom">房价对比</h2>
                     </div>
                 </header>
                 <!-- Breadcrumb-->
@@ -166,56 +165,73 @@
                     <div class="container-fluid">
                         <div class="row">
                              <!--选择要对比的区域-->
-                            <div class="col-lg-8">
+                            <div class="col-lg-12">
                                 <div class="line-chart-example card">
                                     <legend>请选择要对比的区域,时间</legend>
-                                    <form action="#">
-                                        <!--时间选择-->
-                                        <select id="time_0" class="shortselect">
-                                            <option>=请选择年份=</option>
-                                        </select>
-                                        <!--省份选择-->
-                                        <select id="prov" class="shortselect" onchange="showCity(this)">
-                                            <option>=请选择省份=</option>
-                                        </select>
-                                        <!--城市选择-->
-                                        <select id="city" class="shortselect" onchange="showCountry(this)">
-                                            <option>=请选择城市=</option>
-                                        </select>
-                                        <!--县区选择-->
-                                        <select id="country" class="shortselect" onchange="selecCountry(this)">
-                                            <option>=请选择县区=</option>
-                                        </select>
-                                        <button type="button" class="btn met1" onClick="showAddr()">确定</button><br>
+                                    <div class="card-body">
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <!--时间选择-->
+                                                <select id="time_0" class="form-control mb-3">
+                                                    <option>=请选择年份=</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--省份选择-->
+                                                <select id="prov" class="form-control mb-3" onchange="showCity(this)">
+                                                    <option>=请选择省份=</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--城市选择-->
+                                                <select id="city" class="form-control mb-3" onchange="showCountry(this)">
+                                                    <option>=请选择城市=</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--县区选择-->
+                                                <select id="country" class="form-control mb-3" onchange="selecCountry(this)">
+                                                    <option>=请选择县区=</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" id="btn" onClick="showAddr()" class="btn btn-primary">确定</button><br>
+                                        </form>
                                         <label for="addr-show">您选择的是:
                                             <input type="text" value="" id="addr-show">
                                         </label>
-                                    </form>
-                                    <!--选择要对比的区域-->
-                                    <legend>请选择要对比的区域,时间</legend>
-                                    <form action="#">
-                                        <!--时间选择-->
-                                        <select id="time_1" class="shortselect">
-                                            <option>=请选择年份=</option>
-                                        </select>
-                                        <!--省份选择-->
-                         <select id="prov1" class="shortselect" onchange="showCity1(this)">
-                        <option>=请选择省份=</option>
-                    </select>
-                    <!--城市选择-->
-                    <select id="city1" class="shortselect" onchange="showCountry1(this)">
-                        <option>=请选择城市=</option>
-                    </select>
-                    <!--县区选择-->
-                    <select id="country1" class="shortselect" onchange="selecCountry1(this)">
-                        <option>=请选择县区=</option>
-                    </select>
-                    <button type="button" id="btn1" onClick="showAddr1()">确定</button><br>
-                    <label for="addr-show1">您选择的是:
-                        <input type="text" value="" id="addr-show1">
-                    </label>
-                </form>
-                            </div>
+                                        <!--选择要对比的区域-->
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <!--时间选择-->
+                                                <select id="time_1" class="form-control mb-3">
+                                                    <option>=请选择年份=</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--省份选择-->
+                                                <select id="prov1" class="form-control mb-3" onchange="showCity1(this)">
+                                                    <option>=请选择省份=</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--城市选择-->
+                                                <select id="city1" class="form-control mb-3" onchange="showCountry1(this)">
+                                                        <option>=请选择城市=</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--县区选择-->
+                                                <select id="country1" class="form-control mb-3" onchange="selecCountry1(this)">
+                                                        <option>=请选择县区=</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" id="btn1" onClick="showAddr1()" class="btn btn-primary">确定</button><br>
+                                        </form>
+                                        <label for="addr-show1">您选择的是:
+                                            <input type="text" value="" id="addr-show1">
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                             <!-- Line Charts-->
                             <div class="col-lg-8">
@@ -238,27 +254,35 @@
                                 </div>
                             </div>
                             <div class="col-lg-8">
-                                    <div class="line-chart-example card">
-                            <legend>请选择要对比的城市,时间</legend>
-                            <form action="#">
-                                <!--时间选择-->
-                                <select id="time_4" class="shortselect">
-                                <option>=请选择年份=</option>
-                            </select>
-                                <!--省份选择-->
-                                <select id="prov4" class="shortselect" onchange="showCity4(this)">
-                                <option>=请选择省份=</option>
-                            </select>
-                                <!--城市选择-->
-                                <select id="city4" class="shortselect" onchange="deal_4(this)">
-                                <option>=请选择城市=</option>
-                            </select>
-                                <button type="button" id="btn4" onClick="showAddr4()">确定</button><br>
-                                <label for="addr-show4">您选择的是:
-                                <input type="text" value="" id="addr-show4">
-                            </label>
-                            </form>
+                                <div class="line-chart-example card">
+                                    <legend>请选择要对比的城市,时间</legend>
+                                    <div class ="card-body">
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <!--时间选择-->
+                                                <select id="time_4" class="form-control mb-3">
+                                                    <option>=请选择年份=</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--省份选择-->
+                                                <select id="prov4" class="form-control mb-3" onchange="showCity4(this)">
+                                                    <option>=请选择省份=</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--城市选择-->
+                                                <select id="city4" class="form-control mb-3" onchange="deal_4(this)">
+                                                    <option>=请选择城市=</option>
+                                                </select>
+                                            </div>
+                                            <button type="button" id="btn4" onClick="showAddr4()" class="btn btn-primary">确定</button><br>
+                                        </form>
+                                        <label for="addr-show4">您选择的是:
+                                            <input type="text" value="" id="addr-show4">
+                                        </label>
                                     </div>
+                                </div>
                             </div>
                             <div class="col-lg-8">
                                 <div class="bar-chart-example card">
