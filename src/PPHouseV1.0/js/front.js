@@ -385,6 +385,87 @@ $("#login_by_phone").click(function() {
     }
 });
 
+//管理员登录数据交互
+$("#admin_login").click(function() {
+
+    admin_name = $('#admin_name').val();
+    password = $('#password').val();
+
+    if (admin_name.length == 0) { document.getElementById('wrong_box_1').innerText = '未输入用户名'; } else {
+        if (password.length == 0) { document.getElementById('wrong_box_1').innerText = '未输入密码'; } else {
+
+            var val = valiCode.value;
+            var current = result.join('');
+
+            console.log(val, typeof val, current, typeof current)
+            if (current.toLowerCase() != val.toLowerCase()) {
+                document.getElementById('wrong_box_1').innerText = '验证码输入有误!';
+                getRandomStr();
+
+            } else {
+                //wrongShow.innerText = '验证码输入正确!';
+                /* getRandomStr();
+                 alert('验证码输入正确!');*/
+
+
+                $.ajax({
+                    type: "POST", //提交的方法
+                    url: "/admin_sign_in", //提交的地址  
+                    // contentType: false,
+                    data: {
+                        'admin_name': admin_name,
+                        'password': password
+                    },
+
+                    datatype: "json",
+                    //$('#login_form').serialize(), // 序列化表单值  
+                    async: false,
+                    error: function(request) { //失败的话
+                        alert("Connection error");
+                    },
+                    success: function(data) { //成功
+                        //var dataObj = data.phra;
+                        switch (data.is_success) {
+                            /*
+                            if (data == '0') {
+                                alert("登陆成功"); //就将返回的数据显示出来
+                                window.location.href = "index.html";
+                                // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
+                                window.localStorage.setItem("name", data);
+                                } else if (data == '1') {
+                                    alert("用户名不存在");
+                                    } else {
+                                            alert("密码错误");
+                            }
+                            */
+                            //switch (data) 
+                            case '0':
+                                {
+                                    //window.localStorage.setItem("name", data.user.user_name);
+                                    window.location.href = "admin_page.html";
+                                    break;
+                                }
+                            case "1":
+                                {
+                                    document.getElementById('wrong_box_1').innerText = "用户名不存在";
+                                    break;
+                                }
+                            case "2":
+                                document.getElementById('wrong_box_1').innerText = "密码错误";
+                                break;
+                            default:
+                                document.getElementById('wrong_box_1').innerText = "未知错误";
+
+                        }
+
+                    }
+                });
+
+            }
+        }
+    }
+});
+
 //登出
 $("#log_out").click(function() {
     //user_name = $('#login_id').val();
@@ -705,6 +786,7 @@ $("#delete_user").click(function() {
     var search_user = document.getElementById('search_user').innerText;
     var search_phone_number = document.getElementById('search_phone_number').innerText;
 
+
     $.ajax({
         type: "POST", //提交的方法
         url: "/delete_users", //提交的地址  
@@ -719,16 +801,20 @@ $("#delete_user").click(function() {
         async: false,
         error: function(request) { //失败的话
             alert("Connection error");
-            document.getElementById("delete_info").style.innerText = "连接失败";
+            document.getElementById("delete_info").value = "连接失败";
 
         },
         success: function(data) { //成功
             switch (data.is_success) {
                 case '0':
-                    document.getElementById("delete_info").style.innerText = "删除成功";
+                    document.getElementById("delete_info").innerText = "删除成功";
+                    break;
+                case '1':
+                    document.getElementById("delete_info").innerText = "删除失败";
                     break;
                 default:
-                    alert("未知错误");
+                    alert(data.is_success);
+                    // alert("未知错误");
             }
         }
 
@@ -774,6 +860,7 @@ $("#admin_add").click(function() {
 });
 
 
+var num = new num(12);
 //显示访客人数趋势图
 function show_visitor() {
 
@@ -787,18 +874,19 @@ function show_visitor() {
             alert("Connection error");
         },
         success: function(data) {
-            num[0] = data.one;
-            num[1] = data.two;
-            num[2] = data.three;
-            num[3] = data.four;
-            num[4] = data.five;
-            num[5] = data.six;
-            num[6] = data.seven;
-            num[7] = data.eight;
-            num[8] = data.nine;
-            num[9] = data.ten;
-            num[10] = data.eleven;
-            num[11] = data.twelve;
+            num[0] = data.new[0];
+            num[1] = data.new[1];
+            num[2] = data.new[2];
+            num[3] = data.new[3];
+            num[4] = data.new[4];
+            num[5] = data.new[5];
+            num[6] = data.new[6];
+            num[7] = data.new[7];
+            num[8] = data.new[8];
+            num[9] = data.new[9];
+            num[10] = data.new[10];
+            num[11] = data.new[11];
+
         }
     });
 
@@ -830,7 +918,7 @@ function show_visitor() {
             data: {
                 labels: [GetDateStr(-11), GetDateStr(-10), GetDateStr(-9), GetDateStr(-8), GetDateStr(-7), GetDateStr(-6), GetDateStr(-5), GetDateStr(-4), GetDateStr(-3), GetDateStr(-2), GetDateStr(-1), GetDateStr(0)],
                 datasets: [{
-                    label: "南京",
+                    label: "访客",
                     fill: true,
                     lineTension: 0,
                     backgroundColor: "transparent",
@@ -861,7 +949,7 @@ function show_visitor_table() {
 
     $.ajax({
         type: "POST", //
-        url: "/contrast_city", //
+        url: "/new_sign_in_list", //
         datatype: "json",
         data: {},
         async: false,
@@ -869,16 +957,69 @@ function show_visitor_table() {
             alert("Connection error");
         },
         success: function(data) {
+            if (data.first.hour == "0")
+                document.getElementById("visitor_1_time").innerText = data.first.minute + "分钟前";
+            else
+                document.getElementById("visitor_1_time").innerText = data.first.hour + "小时" + data.first.minute + "分钟前";
 
+            document.getElementById("visitor_1_name").innerText = data.first.user_name;
+            document.getElementById("visitor_1_phone").innerText = data.first.user_phone;
 
+            if (data.second.hour == "0")
+                document.getElementById("visitor_2_time").innerText = data.second.minute + "分钟前";
+            else
+                document.getElementById("visitor_2_time").innerText = data.second.hour + "小时" + data.second.minute + "分钟前";
+            document.getElementById("visitor_2_name").innerText = data.second.user_name;
+            document.getElementById("visitor_2_phone").innerText = data.second.user_phone;
+
+            if (data.third.hour == "0")
+                document.getElementById("visitor_3_time").innerText = data.third.minute + "分钟前";
+            else
+                document.getElementById("visitor_3_time").innerText = data.third.hour + "小时" + data.third.minute + "分钟前";
+            document.getElementById("visitor_3_name").innerText = data.third.user_name;
+            document.getElementById("visitor_3_phone").innerText = data.third.user_phone;
         }
     });
 
-    $(document).ready(function() {
-
-    })
 }
 
+function show_user_table() {
+
+    $.ajax({
+        type: "POST", //
+        url: "/new_sign_up_list", //
+        datatype: "json",
+        data: {},
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) {
+            if (data.first.hour == "0") {
+
+                document.getElementById("user_1_time").innerText = data.first.minute + "分钟前";
+            } else
+                document.getElementById("user_1_time").innerText = data.first.hour + "小时" + data.first.minute + "分钟前";
+            document.getElementById("user_1_name").innerText = data.first.user_name;
+            document.getElementById("user_1_phone").innerText = data.first.user_phone;
+
+            if (data.second.hour == "0")
+                document.getElementById("user_2_time").innerText = data.second.minute + "分钟前";
+            else
+                document.getElementById("user_2_time").innerText = data.second.hour + "小时" + data.second.minute + "分钟前";
+            document.getElementById("user_2_name").innerText = data.second.user_name;
+            document.getElementById("user_2_phone").innerText = data.second.user_phone;
+
+            if (data.third.hour == "0")
+                document.getElementById("user_3_time").innerText = data.third.minute + "分钟前";
+            else
+                document.getElementById("user_3_time").innerText = data.third.hour + "小时" + data.third.minute + "分钟前";
+            document.getElementById("user_3_name").innerText = data.third.user_name;
+            document.getElementById("user_3_phone").innerText = data.third.user_phone;
+        }
+    });
+
+}
 //新增用户 new_sign_up_list
 //新增访问 new_sign_in_list
 //new_sign_up

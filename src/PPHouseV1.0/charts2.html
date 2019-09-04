@@ -27,15 +27,15 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     <style>
-    .shortselect{
-        background:#fafdfe;
-        height:28px;
-        width:180px;
-        line-height:28px;
-        border:1px solid rgb(103, 102, 170);
-        -moz-border-radius:2px;
-        -webkit-border-radius:2px;
-        border-radius:2px;
+        .shortselect {
+            background: #fafdfe;
+            height: 28px;
+            width: 180px;
+            line-height: 28px;
+            border: 1px solid rgb(103, 102, 170);
+            -moz-border-radius: 2px;
+            -webkit-border-radius: 2px;
+            border-radius: 2px;
         }
         
         input {
@@ -116,8 +116,12 @@
                     <li>
                         <a href="tables.html"> <i class="icon-grid"></i>房价查询 </a>
                     </li>
-                    <li class="active">
-                        <a href="charts.html"> <i class="fa fa-bar-chart"></i>房价对比 </a>
+                    <li>
+                        <a href="#charts_page" aria-expanded="ture" data-toggle="collapse" class="active"> <i class="icon-interface-windows"></i>房价对比 </a>
+                        <ul id="charts_page" class="collapse list-unstyled ">
+                            <li><a href="charts.html">区域对比</a></li>
+                            <li><a href="charts2.html">城市对比</a></li>
+                        </ul>
                     </li>
                     <li>
                         <a href="forms.html"> <i class="icon-padnote"></i>房价预测 </a>
@@ -222,6 +226,7 @@
                             </div>
                         </div>
                     </div>
+                </section>
             </div>
         </div>
     </div>
