@@ -860,6 +860,7 @@ $("#admin_add").click(function() {
 });
 
 
+var num = new num(12);
 //显示访客人数趋势图
 function show_visitor() {
 
@@ -873,18 +874,19 @@ function show_visitor() {
             alert("Connection error");
         },
         success: function(data) {
-            num[0] = data.new[0]
-            num[1] = data.new[1]
-            num[2] = data.new[2]
-            num[3] = data.new[3]
-            num[4] = data.new[4]
-            num[5] = data.new[5]
-            num[6] = data.new[6]
-            num[7] = data.new[7]
-            num[8] = data.new[8]
-            num[9] = data.new[9]
-            num[10] = data.new[10]
-            num[11] = data.new[11]
+            num[0] = data.new[0];
+            num[1] = data.new[1];
+            num[2] = data.new[2];
+            num[3] = data.new[3];
+            num[4] = data.new[4];
+            num[5] = data.new[5];
+            num[6] = data.new[6];
+            num[7] = data.new[7];
+            num[8] = data.new[8];
+            num[9] = data.new[9];
+            num[10] = data.new[10];
+            num[11] = data.new[11];
+
         }
     });
 
@@ -916,7 +918,7 @@ function show_visitor() {
             data: {
                 labels: [GetDateStr(-11), GetDateStr(-10), GetDateStr(-9), GetDateStr(-8), GetDateStr(-7), GetDateStr(-6), GetDateStr(-5), GetDateStr(-4), GetDateStr(-3), GetDateStr(-2), GetDateStr(-1), GetDateStr(0)],
                 datasets: [{
-                    label: "南京",
+                    label: "访客",
                     fill: true,
                     lineTension: 0,
                     backgroundColor: "transparent",
