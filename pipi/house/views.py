@@ -8,6 +8,7 @@ import random
 import json
 from django.db.models import Q
 import datetime
+import pytz
 
 code_dict1={'17714209247':'7777','15057190316':'7777'}
 code_dict2={'17714209247':'3333','15057190316':'7777'}
@@ -37,15 +38,18 @@ def sign_in_by_password(request):
         if user.password==_password:
             response.set_cookie("text","cookie11")
 
-            user_sign_in=Visitor(time=datetime.datetime.now(),user_name=_username,user_phone=user.user_phone)
+            now=datetime.datetime.now()
+            now=now.replace(tzinfo=None)
+            user_sign_in=Visitor(time=now,user_name=_username,user_phone=user.user_phone)
             user_sign_in.save()
 
             try:
-                user_num1=Visitor_number.objects.get(time=datetime.date.now())
+                user_num1=Visitor_number.objects.get(time=now.date())
                 user_num1.number+=1
                 user_num1.save()
             except:
-                user_num2=Visitor_number(time=datetime.date.now(),number=1)
+                i=now.date()
+                user_num2=Visitor_number(time=i,number=1)
                 user_num2.save()
 
             user_user={'user_name':user.user_name,'id':user.session_id}
@@ -89,8 +93,19 @@ def sign_in_by_phone_number(request):
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         if code_dict2[_phonenumber]==_auth_code:
 
-            user_sign_in=Visitor(time=datetime.datetime.now(),user_name=user.user_name,user_phone=_phonenumber)
+            now=datetime.datetime.now()
+            now=now.replace(tzinfo=None)
+            user_sign_in=Visitor(time=now,user_name=user.user_name,user_phone=_phonenumber)
             user_sign_in.save()
+
+            try:
+                user_num1=Visitor_number.objects.get(time=now.date())
+                user_num1.number+=1
+                user_num1.save()
+            except:
+                i=now.date()
+                user_num2=Visitor_number(time=i,number=1)
+                user_num2.save()
 
             response.set_cookie("text","cookie11")
             user_user={'user_name':user.user_name,'id':user.session_id}
@@ -160,15 +175,17 @@ def sign_up(request):
                 _reg_user_name=request.POST.get('reg_user_name')
                 _reg_password=request.POST.get('reg_password')
 
-                user_sign_up=New_user(time=datetime.datetime.now(),user_name=_reg_user_name,user_phone=_phone_number)
+                now=datetime.datetime.now()
+                now=now.replace(tzinfo=None)
+                user_sign_up=New_user(time=now,user_name=_reg_user_name,user_phone=_phone_number)
                 user_sign_up.save()
 
                 try:
-                    user_num1=New_user_number.objects.get(time=datetime.date.now())
+                    user_num1=New_user_number.objects.get(time=now.date())
                     user_num1.number+=1
                     user_num1.save()
                 except:
-                    user_num2=New_user_number(time=datetime.date.now(),number=1)
+                    user_num2=New_user_number(time=now.date(),number=1)
                     user_num2.save()
 
                 u=User(user_name=_reg_user_name,password=_reg_password,user_phone=_phone_number,session_id='123')
@@ -383,12 +400,20 @@ def new_sign_up_list(request):
     second=users[1]
     third=users[0]
     '''
-    first_delt=datetime.datetime.now()-users[2].time
-    second_delt=datetime.datetime.now()-users[1].time
-    third_delt=datetime.datetime.now()-users[0].time
-    first={'time':first_delt,'user_name':users[2].user_name,'user_phone':users[2].user_phone}
-    second={'time':first_delt,'user_name':users[1].user_name,'user_phone':users[1].user_phone}
-    third={'time':first_delt,'user_name':users[0].user_name,'user_phone':users[0].user_phone}
+    now=datetime.datetime.now()
+    print(now.tzinfo==None)
+    print(users[2].time==None)
+
+    first_delt=str(now-users[2].time.replace(tzinfo=None))
+    second_delt=str(now-users[1].time.replace(tzinfo=None))
+    third_delt=str(now-users[0].time.replace(tzinfo=None))
+
+    first_time=str.split(":")
+    first={'hour':first_time[0],'minute':first_time[1],'user_name':users[2].user_name,'user_phone':users[2].user_phone}
+    second_time=str.split(":")
+    second={'hour':second_time[0],'minute':second_time[1],'user_name':users[1].user_name,'user_phone':users[1].user_phone}
+    third_time=str.split(":")
+    third={'hour':third_time[0],'minute':third_time[1],'user_name':users[0].user_name,'user_phone':users[0].user_phone}
     result={'first':first,'second':second,'third':third}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
@@ -403,15 +428,28 @@ def new_sign_in_list(request):
     second=users[1]
     third=users[0]
     '''
-    first_delt=datetime.datetime.now()-users[2].time
-    second_delt=datetime.datetime.now()-users[1].time
-    third_delt=datetime.datetime.now()-users[0].time
-    first={'time':first_delt,'user_name':users[2].user_name,'user_phone':users[2].user_phone}
-    second={'time':first_delt,'user_name':users[1].user_name,'user_phone':users[1].user_phone}
-    third={'time':first_delt,'user_name':users[0].user_name,'user_phone':users[0].user_phone}
+    #now=datetime.datetime.now()
+    now=datetime.datetime.now()
+
+    print(now.tzinfo==None)
+    print(users[2].time==None)
+    print(users[2].time)
+
+    first_delt=str(now-users[2].time.replace(tzinfo=None))
+    second_delt=str(now-users[1].time.replace(tzinfo=None))
+    third_delt=str(now-users[0].time.replace(tzinfo=None))
+
+    print(first_delt)
+
+    first_time=first_delt.split(":")
+    print(first_time)
+    first={'hour':first_time[0],'minute':first_time[1],'user_name':users[2].user_name,'user_phone':users[2].user_phone}
+    second_time=second_delt.split(":")
+    second={'hour':second_time[0],'minute':second_time[1],'user_name':users[1].user_name,'user_phone':users[1].user_phone}
+    third_time=third_delt.split(":")
+    third={'hour':third_time[0],'minute':third_time[1],'user_name':users[0].user_name,'user_phone':users[0].user_phone}
     result={'first':first,'second':second,'third':third}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-
 def new_sign_up(request):
     '''
     return 新增用户趋势

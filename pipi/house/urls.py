@@ -16,7 +16,7 @@ urlpatterns = [
     path('new_sign_in',views.new_sign_in),
     path('new_sign_in_list',views.new_sign_in_list),
     path('new_sign_up_list',views.new_sign_up_list),
-
+    path('admin_sign_in',views.admin_sign_in),
 
     path('add_users',views.add_users),
     path('search_member',views.search_member),
