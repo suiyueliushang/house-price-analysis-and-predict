@@ -860,7 +860,7 @@ $("#admin_add").click(function() {
 });
 
 
-var num = new num(12);
+var num = new Array(12);
 //显示访客人数趋势图
 function show_visitor() {
 
@@ -945,6 +945,97 @@ function show_visitor() {
     });
 }
 
+
+
+//显示新增用户人数趋势图
+
+var num1 = new Array(12);
+
+function show_user() {
+
+    $.ajax({
+        type: "POST", //
+        url: "/new_sign_up", //
+        datatype: "json",
+        data: {},
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+
+        },
+        success: function(data) {
+            num1[0] = data.new[0];
+            num1[1] = data.new[1];
+            num1[2] = data.new[2];
+            num1[3] = data.new[3];
+            num1[4] = data.new[4];
+            num1[5] = data.new[5];
+            num1[6] = data.new[6];
+            num1[7] = data.new[7];
+            num1[8] = data.new[8];
+            num1[9] = data.new[9];
+            num1[10] = data.new[10];
+            num1[11] = data.new[11];
+
+        }
+    });
+
+    $(document).ready(function() {
+
+        'use strict';
+        var LINECHART6 = $('#lineChartExample6');
+        var myLineChart6 = new Chart(LINECHART6, {
+            type: 'line',
+            options: {
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        gridLines: {
+                            display: true
+                        }
+                    }]
+                },
+                legend: { labels: { fontColor: "#777", fontSize: 12, }, display: false }
+            },
+
+
+            data: {
+                labels: [GetDateStr(-11), GetDateStr(-10), GetDateStr(-9), GetDateStr(-8), GetDateStr(-7), GetDateStr(-6), GetDateStr(-5), GetDateStr(-4), GetDateStr(-3), GetDateStr(-2), GetDateStr(-1), GetDateStr(0)],
+                datasets: [{
+                    label: "用户",
+                    fill: true,
+                    lineTension: 0,
+                    backgroundColor: "transparent",
+                    borderColor: '#6ccef0',
+                    pointBorderColor: '#59c2e6',
+                    pointHoverBackgroundColor: '#59c2e6',
+                    borderCapStyle: 'butt',
+                    borderDash: [],
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    borderWidth: 3,
+                    pointBackgroundColor: "#59c2e6",
+                    pointBorderWidth: 0,
+                    pointHoverRadius: 4,
+                    pointHoverBorderColor: "#fff",
+                    pointHoverBorderWidth: 0,
+                    pointRadius: 4,
+                    pointHitRadius: 0,
+                    data: [num1[0], num1[1], num1[2], num1[3], num1[4], num1[5], num1[6], num1[7], num1[8], num1[9], num1[10], num1[11]],
+                    spanGaps: false
+                }]
+            }
+        });
+    });
+}
+
+//访客表
 function show_visitor_table() {
 
     $.ajax({
@@ -983,6 +1074,7 @@ function show_visitor_table() {
 
 }
 
+//新增用户表
 function show_user_table() {
 
     $.ajax({
@@ -1022,4 +1114,4 @@ function show_user_table() {
 }
 //新增用户 new_sign_up_list
 //新增访问 new_sign_in_list
-//new_sign_up
+//new_sign_up1
