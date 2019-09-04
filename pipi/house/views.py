@@ -1,6 +1,6 @@
 
 from django.shortcuts import render
-from .models import Visitor,New_user,New_user_number,Visitor_number,City,House,User
+from .models import Visitor,New_user,New_user_number,Visitor_number,City,House,User,Admin
 from django.http import HttpResponse
 from django.http import JsonResponse
 from . import test
@@ -39,6 +39,14 @@ def sign_in_by_password(request):
 
             user_sign_in=Visitor(time=datetime.datetime.now(),user_name=_username,user_phone=user.user_phone)
             user_sign_in.save()
+
+            try:
+                user_num1=Visitor_number.objects.get(time=datetime.date.now())
+                user_num1.number+=1
+                user_num1.save()
+            except:
+                user_num2=Visitor_number(time=datetime.date.now(),number=1)
+                user_num2.save()
 
             user_user={'user_name':user.user_name,'id':user.session_id}
             result={'is_success':'0','user':user_user}
@@ -80,6 +88,7 @@ def sign_in_by_phone_number(request):
             result={'is_success':'1','user':''}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         if code_dict2[_phonenumber]==_auth_code:
+
             user_sign_in=Visitor(time=datetime.datetime.now(),user_name=user.user_name,user_phone=_phonenumber)
             user_sign_in.save()
 
@@ -153,6 +162,14 @@ def sign_up(request):
 
                 user_sign_up=New_user(time=datetime.datetime.now(),user_name=_reg_user_name,user_phone=_phone_number)
                 user_sign_up.save()
+
+                try:
+                    user_num1=New_user_number.objects.get(time=datetime.date.now())
+                    user_num1.number+=1
+                    user_num1.save()
+                except:
+                    user_num2=New_user_number(time=datetime.date.now(),number=1)
+                    user_num2.save()
 
                 u=User(user_name=_reg_user_name,password=_reg_password,user_phone=_phone_number,session_id='123')
                 u.save()
@@ -311,6 +328,7 @@ def add_collection(request):
             cookie
     '''
 
+
 def delete_collection(request):
     '''
     用户点击删除按钮来删除收藏的房源
@@ -324,6 +342,27 @@ def admin_sign_in(request):
     @args:  str:admin_name
             str:password
     '''
+    _admin_name=request.POST.get('admin_name')
+    _password=request.POST.get('password')
+    response=HttpResponse()
+    print(request.POST)
+    print("用户名："+str(_admin_name))
+    print('密码：'+str(_password))
+    if _admin_name and _password:
+        try:
+            admin=Admin.objects.filter(admin_name=_admin_name)[0]
+        except:
+            result={'is_success':'1','admin':''}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        if admin.password==_password:
+            response.set_cookie("text","cookie11")
+            admin_admin={'user_name':admin.user_name,'id':admin.session_id}
+            result={'is_success':'0','admin':admin_admin}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        else:
+            result={'is_success':'2','admin':''}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 
 
 
@@ -338,6 +377,21 @@ def new_sign_up_list(request):
     args:   
     return: 新增注册
     '''
+    users=New_user.objects.all()[-3:]
+    '''
+    first=users[2]
+    second=users[1]
+    third=users[0]
+    '''
+    first_delt=datetime.datetime.now()-users[2].time
+    second_delt=datetime.datetime.now()-users[1].time
+    third_delt=datetime.datetime.now()-users[0].time
+    first={'time':first_delt,'user_name':users[2].user_name,'user_phone':users[2].user_phone}
+    second={'time':first_delt,'user_name':users[1].user_name,'user_phone':users[1].user_phone}
+    third={'time':first_delt,'user_name':users[0].user_name,'user_phone':users[0].user_phone}
+    result={'first':first,'second':second,'third':third}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 
 def new_sign_in_list(request):
     '''
@@ -362,10 +416,11 @@ def new_sign_up(request):
     '''
     return 新增用户趋势
     '''
+    
+
 
 def new_sign_in(request):
     '''
-
     return 访问用户趋势
     '''
 
