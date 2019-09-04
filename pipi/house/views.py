@@ -397,7 +397,7 @@ def new_sign_in_list(request):
     '''
     return 新增访问
     '''
-    users=Visitor.objects.all()[-3:]
+    users=list(Visitor.objects.all())[-3:]
     '''
     first=users[2]
     second=users[1]

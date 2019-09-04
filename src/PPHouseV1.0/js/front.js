@@ -385,6 +385,87 @@ $("#login_by_phone").click(function() {
     }
 });
 
+//管理员登录数据交互
+$("#admin_login").click(function() {
+
+    admin_name = $('#admin_name').val();
+    password = $('#password').val();
+
+    if (admin_name.length == 0) { document.getElementById('wrong_box_1').innerText = '未输入用户名'; } else {
+        if (password.length == 0) { document.getElementById('wrong_box_1').innerText = '未输入密码'; } else {
+
+            var val = valiCode.value;
+            var current = result.join('');
+
+            console.log(val, typeof val, current, typeof current)
+            if (current.toLowerCase() != val.toLowerCase()) {
+                document.getElementById('wrong_box_1').innerText = '验证码输入有误!';
+                getRandomStr();
+
+            } else {
+                //wrongShow.innerText = '验证码输入正确!';
+                /* getRandomStr();
+                 alert('验证码输入正确!');*/
+
+
+                $.ajax({
+                    type: "POST", //提交的方法
+                    url: "/admin_sign_in", //提交的地址  
+                    // contentType: false,
+                    data: {
+                        'admin_name': admin_name,
+                        'password': password
+                    },
+
+                    datatype: "json",
+                    //$('#login_form').serialize(), // 序列化表单值  
+                    async: false,
+                    error: function(request) { //失败的话
+                        alert("Connection error");
+                    },
+                    success: function(data) { //成功
+                        //var dataObj = data.phra;
+                        switch (data.is_success) {
+                            /*
+                            if (data == '0') {
+                                alert("登陆成功"); //就将返回的数据显示出来
+                                window.location.href = "index.html";
+                                // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
+                                window.localStorage.setItem("name", data);
+                                } else if (data == '1') {
+                                    alert("用户名不存在");
+                                    } else {
+                                            alert("密码错误");
+                            }
+                            */
+                            //switch (data) 
+                            case '0':
+                                {
+                                    //window.localStorage.setItem("name", data.user.user_name);
+                                    window.location.href = "admin_page.html";
+                                    break;
+                                }
+                            case "1":
+                                {
+                                    document.getElementById('wrong_box_1').innerText = "用户名不存在";
+                                    break;
+                                }
+                            case "2":
+                                document.getElementById('wrong_box_1').innerText = "密码错误";
+                                break;
+                            default:
+                                document.getElementById('wrong_box_1').innerText = "未知错误";
+
+                        }
+
+                    }
+                });
+
+            }
+        }
+    }
+});
+
 //登出
 $("#log_out").click(function() {
     //user_name = $('#login_id').val();
