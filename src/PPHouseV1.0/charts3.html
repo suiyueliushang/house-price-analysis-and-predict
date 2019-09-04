@@ -26,39 +26,7 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <style>
-    .shortselect{
-        background:#fafdfe;
-        height:28px;
-        width:180px;
-        line-height:28px;
-        border:1px solid rgb(103, 102, 170);
-        -moz-border-radius:2px;
-        -webkit-border-radius:2px;
-        border-radius:2px;
-        }
-        
-        input {
-            border: 1px solid #ccc;
-            padding: 3px 0px;
-            border-radius: 3px;
-            padding-left: 5px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
-        }
-        
-        input:focus {
-            border-color: #66afe9;
-            outline: 0;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
-        }
-    </style>
 </head>
-
 <body>
     <div class="page">
         <!-- Main Navbar-->
@@ -145,107 +113,116 @@
                 <!-- Page Header-->
                 <header class="page-header">
                     <div class="container-fluid">
-                        <h2 class="no-margin-bottom">房价对比</h2><br>
-                        <a href="charts.html">区域对比</a><a href="charts2.html">/城市对比</a>
+                        <h2 class="no-margin-bottom">房源对比</h2>
                     </div>
                 </header>
                 <!-- Breadcrumb-->
                 <div class="breadcrumb-holder container-fluid">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">首页</a></li>
-                        <li class="breadcrumb-item active">房价对比 </li>
+                        <li class="breadcrumb-item active">房源对比 </li>
                     </ul>
                 </div>
-                <!--选择要要查看的城市，时间-->
-                <legend>选择要对比的城市，时间</legend>
-                <form action="#">
-                    <!--时间选择-->
-                    <select id="time_2" class="shortselect">
-                        <option>=请选择年份=</option>
-                    </select>
-                    <!--省份选择-->
-                    <select id="prov2" class="shortselect" onchange="showCity2(this)">
-                        <option>=请选择省份=</option>
-                    </select>
-                    <!--城市选择-->
-                    <select id="city2" class="shortselect" onchange="deal_2(this)">
-                        <option>=请选择城市=</option>
-                    </select>
-                    <button type="button" class="btn met1" id="btn2" onclick=showAddr2()>确定</button><br>
-                    <label for="addr-show2">您选择的是:
-                        <input type="text" value="" id="addr-show2">
-                    </label>
-                </form>
-                <!--选择要要查看的城市，时间-->
-                <legend>选择要对比的城市，时间</legend>
-                <form action="#">
-                    <!--时间选择-->
-                    <select id="time_3" class="shortselect">
-                        <option>=请选择年份=</option>
-                    </select>
-                    <!--省份选择-->
-                    <select id="prov3" class="shortselect" onchange="showCity3(this)">
-                        <option>=请选择省份=</option>
-                    </select>
-                    <!--城市选择-->
-                    <select id="city3" class="shortselect" onchange="deal_3(this)">
-                        <option>=请选择城市=</option>
-                    </select>
-                    <button type="button" id="btn3" onClick="showAddr3()">确定</button><br>
-                    <label for="addr-show3">您选择的是:
-                        <input type="text" value="" id="addr-show3">
-                    </label>
-                </form>
-                <!-- Charts Section-->
-                <section class="charts">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <!-- Line Charts-->
-                            <div class="col-lg-8">
-                                <div class="line-chart-example card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">城市房价趋势对比图</h3>
-                                    </div>
-                                    <div class="card-body" id="line_5">
-                                        <canvas id="lineChartExample5"></canvas>
-                                    </div>
-                                </div>
-                            </div>
+                <div class="mainContent">
+                    <div class="contentContainer">
+                        <div class="compareType">
+                            <span class="typeName">核心信息</span><br>
                         </div>
+                        <br><table class="compareTable" width="100%"  height="500px">
+                            <tbody>
+                                <tr data-select="true" data-hide-same="true">
+                                    <th width="20%">房源名</th>
+                                    <td data-index="0" id="td_11" width="20%"></td>
+                                    <td data-index="1" id="td_21" width="20%"></td>
+                                    <td data-index="2" id="td_31" width="20%"></td>
+                                    <td data-index="3" id="td_41" width="20%"></td>
+                                </tr>
+                                <tr data-select="true" data-hide-same="true">
+                                    <th width="20%">建筑面积</th>
+                                    <td data-index="0" id="td_12" width="20%">65.33平米</td>
+                                    <td data-index="1" id="td_22" width="20%">47.26平米</td>
+                                    <td data-index="2" id="td_32" width="20%">31.61平米</td>
+                                    <td data-index="3" id="td_42" width="20%">139.39平米</td>
+                                </tr>
+                                <tr data-select="true" data-hide-same="true" id="tr3">
+                                    <th width="20%">单价</th>
+                                    <td data-index="0" id="td_13" width="20%">22501元/平米</td>
+                                    <td data-index="1" id="td_23" width="20%">24545元/平米</td>
+                                    <td data-index="2" id="td_33" width="20%">59475元/平米</td>
+                                    <td data-index="3" id="td_43" width="20%">28696元/平米</td>
+                                </tr>
+                                <tr data-select="true" data-hide-same="true" id="tr4">
+                                    <th width="20%">总价</th>
+                                    <td data-index="0" id="td_14" width="20%">22501元/平米</td>
+                                    <td data-index="1" id="td_24" width="20%">24545元/平米</td>
+                                    <td data-index="2" id="td_34" width="20%">59475元/平米</td>
+                                    <td data-index="3" id="td_44" width="20%">28696元/平米</td>
+                                </tr>
+                                <tr data-select="true" data-hide-same="true" id="tr5">
+                                    <th width="20%">户型</th>
+                                    <td data-index="0" id="td_15" width="20%">22501元/平米</td>
+                                    <td data-index="1" id="td_25" width="20%">24545元/平米</td>
+                                    <td data-index="2" id="td_35" width="20%">59475元/平米</td>
+                                    <td data-index="3" id="td_45" width="20%">28696元/平米</td>
+                                </tr>
+                                <tr data-select="true" data-hide-same="true" id="tr6">
+                                    <th width="20%">朝向</th>
+                                    <td data-index="0" id="td_16" width="20%">22501元/平米</td>
+                                    <td data-index="1" id="td_26" width="20%">24545元/平米</td>
+                                    <td data-index="2" id="td_36" width="20%">59475元/平米</td>
+                                    <td data-index="3" id="td_46" width="20%">28696元/平米</td>
+                                </tr>
+                                <tr data-select="true" data-hide-same="true" id="tr7">
+                                    <th width="20%">装修</th>
+                                    <td data-index="0" id="td_17" width="20%">22501元/平米</td>
+                                    <td data-index="1" id="td_27" width="20%">24545元/平米</td>
+                                    <td data-index="2" id="td_37" width="20%">59475元/平米</td>
+                                    <td data-index="3" id="td_47" width="20%">28696元/平米</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     </div>
-    <!-- JavaScript files-->
-    <script src="js/city.js"></script>
-    <script src="js/method_2.js"></script>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper.js/umd/popper.min.js">
-    </script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js">
-    </script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-
-
-
-    <!-- Main File-->
-    <script src="js/front.js"></script>
     <script>
-        document.getElementById('login_id').innerText = window.localStorage.getItem("name");
-        console.log(window.localStorage.getItem("name"));
+        /*window.onload = function() {
+            var house_1 = new Array("", "", "", "", "", "", "");
+            var house_2 = new Array("", "", "", "", "", "", "");
+            var house_3 = new Array("", "", "", "", "", "", "");
+            var house_4 = new Array("", "", "", "", "", "", "");
+            house_1[0] = "ha";
+            house_2[0] = "ha";
+            td_11.innerHTML = house_1[0];
+            td_12.innerHTML = house_1[1];
+            td_13.innerHTML = house_1[2];
+            td_14.innerHTML = house_1[3];
+            td_15.innerHTML = house_1[4];
+            td_16.innerHTML = house_1[5];
+            td_17.innerHTML = house_1[6];
+            td_21.innerHTML = house_2[0];
+            td_22.innerHTML = house_2[1];
+            td_23.innerHTML = house_2[2];
+            td_24.innerHTML = house_2[3];
+            td_25.innerHTML = house_2[4];
+            td_26.innerHTML = house_2[5];
+            td_27.innerHTML = house_2[6];
+            td_31.innerHTML = house_3[0];
+            td_32.innerHTML = house_3[1];
+            td_33.innerHTML = house_3[2];
+            td_34.innerHTML = house_3[3];
+            td_35.innerHTML = house_3[4];
+            td_36.innerHTML = house_3[5];
+            td_37.innerHTML = house_3[6];
+            td_41.innerHTML = house_4[0];
+            td_42.innerHTML = house_4[1];
+            td_43.innerHTML = house_4[2];
+            td_44.innerHTML = house_4[3];
+            td_45.innerHTML = house_4[4];
+            td_46.innerHTML = house_4[5];
+            td_47.innerHTML = house_4[6];
+        }*/
     </script>
 </body>
-
 </html>
