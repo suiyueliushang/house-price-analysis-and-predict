@@ -90,8 +90,8 @@ $(document).ready(function(){
 
 		var min_price = 0;
 		var max_price = 10000000;
-		var min_area = 0;
-		var max_area = 5000;
+		//var min_area = 0;
+		//var max_area = 5000;
 		var district = "";
 		if($("#selectA").length > 0){
 			district = $("#selectA a").html();
@@ -121,7 +121,7 @@ $(document).ready(function(){
 				max_price = n[1];
 			}
 		}
-		if($("#selectC").length > 0){
+		/*if($("#selectC").length > 0){
 			var area = $("#selectC a").html();
 			var patt1 = new RegExp("㎡以下");
 			var patt2 = new RegExp("㎡以上");
@@ -140,7 +140,7 @@ $(document).ready(function(){
 		}
 		if($("#selectD").length > 0){
 			var house_type = $("#selectD a").html();
-		}
+		}*/
 
 		var opts = $.extend({
 			items_per_page:1,
@@ -162,12 +162,13 @@ $(document).ready(function(){
 		var region_price = new Array(12);
 		$("#region").html(district);
 
+		city = $("#citySelect").html();
 		$.ajax({
 			type:"POST",
 			url:"/query_prices",
 			datatype:"json",
 			data: {
-				'city': $("#citySelect").html(),
+				'city': city.replace(/市/, ""),
 				'district' :district,
 				'month': getMonth()+1,
 				'min_price': min_price,

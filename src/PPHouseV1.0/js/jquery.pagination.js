@@ -206,12 +206,13 @@
 				max_area = n[1];
 			}
 		}*/
+		city = $("#citySelect").html();
 		$.ajax({
 			type:"POST",
 			url:"/query_prices",
 			datatype:"json",
 			data: {
-				'city': $('#citySelect').html(),
+				'city': city.replace(/市/, ""),
 				'district' :district,
 				'month': getMonth()+1,
 				'min_price': min_price,
@@ -272,6 +273,14 @@
 			var district = "";
 			if($("#selectA").length > 0){
 				district = $("#selectA a").html();
+				var pat1 = new RegExp("区");
+				var pat2 = new RegExp("县");
+				if(pat1.test(district)){
+					district = district.replace(/区/,"");
+				}
+				if(pat2.test(district)){
+					district = district.replace(/县/,"");
+				}
 			}
 			if($("#selectB").length > 0){
 				var price = $("#selectB a").html();
@@ -290,12 +299,13 @@
 					max_price = n[1];
 				}
 			}
+			city = $("#citySelect").html();
 			$.ajax({
 				type:"POST",
 				url:"/query_prices",
 				datatype:"json",
 				data: {
-					'city': $("#citySelect").html(),
+					'city': city.replace(/市/, ""),
 					'district' :district,
 					'month': getMonth()+1,
 					'min': min_price,
