@@ -356,6 +356,23 @@ Vcity.CitySelector.prototype = {
             links[i].onclick = function(){
                 that.button.innerHTML = this.innerHTML;
                 current_city = this.innerHTML;
+
+                var opts = $.extend({
+                    items_per_page:1,
+                    num_display_entries:4,
+                    current_page:0,
+                    num_edge_entries:1,
+                    link_to:"#",
+                    prev_text:"<i></i>上一页",
+                    next_text:"下一页 <i></i>",
+                    ellipse_text:"...",
+                    prev_show_always:true,
+                    next_show_always:true,
+                    renderer:"defaultRenderer",
+                    show_if_single_page:false,
+                    load_first_page:false,
+                    callback:function(){return false;}
+                },opts||{});
                 
                 $(".load").remove();
                 if (current_city != null) {
@@ -391,7 +408,7 @@ Vcity.CitySelector.prototype = {
                     url: "/query_prices",
                     datatype:"json",
                     data: {
-                        "city": current_city,
+                        "city": current_city.replace(/市/,""),
                         "month": getMonth()+1,
                         'page':1
                     },
@@ -420,8 +437,10 @@ Vcity.CitySelector.prototype = {
                                 $(".ave_price").eq(i).html(data.houses[i].average_price);
                                 $(".total_price").eq(i).html(data.houses[i].total_price);
                                 $(".area").eq(i).html(data.houses[i].area);
+                                $(".floor").eq(i).html(data.houses[i].heigth);
+                                $(".direction").eq(i).html(data.houses[i].direction);
                             }
-                            $("#Pagination").pagination(data.page_num);
+                            $("#Pagination").pagination(data.page_num,opts);
                             $("#allPage").html(data.page_num);
                         });
                         }
