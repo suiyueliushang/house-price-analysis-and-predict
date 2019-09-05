@@ -484,7 +484,7 @@
                     <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
                         <h1 class="h4">UserName</h1>
-                        <p>City1.2</p>
+                        <p>City1.3</p>
                     </div>
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
@@ -1590,89 +1590,89 @@
                         }
                     }
                 });
+                $.ajax({
+                    type: "post",
+                    url: "/query_prices",
+                    datatype:"json",
+                    data: {
+                        "city": $('#citySelect').html(),
+                        "month": getMonth()+1,
+                        'page':1
+                    },
+                    async: false,
+                    error: function(request) {
+                        alert("Connection error");
+                    },
+                    success(data){
+                        $("#lineChartExample4").remove();
+                        $("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
+                        $(document).ready(function () {
+                            'use strict';
+                            var LINECHART4 = $('#lineChartExample4');
+                            var myLineChart4 = new Chart(LINECHART4, {
+                                type: 'line',
+                                options: {
+                                    scales: {
+                                        xAxes: [{
+                                            display: true,
+                                            gridLines: {
+                                                display: false
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            display:true,
+                                            gridLines: {
+                                                display: true
+                                            }
+                                        }]
+                                    },
+                                    legend: {labels:{fontColor:"#777", fontSize: 12},display:false}
+                                },
+                                data: {
+                                    labels: [lastYear(getMonth()-11), lastYear(getMonth()-10), lastYear(getMonth()-9), lastYear(getMonth()-8), lastYear(getMonth()-7), lastYear(getMonth()-6), lastYear(getMonth()-5), lastYear(getMonth()-4), lastYear(getMonth()-3), lastYear(getMonth()-2), lastYear(getMonth()-1), lastYear(getMonth())],
+                                    datasets: [
+                                        {
+                                            label: "City 1",
+                                            fill: true,
+                                            lineTension: 0,
+                                            backgroundColor: "transparent",
+                                            borderColor: '#6ccef0',
+                                            pointBorderColor: '#59c2e6',
+                                            pointHoverBackgroundColor: '#59c2e6',
+                                            borderCapStyle: 'butt',
+                                            borderDash: [],
+                                            borderDashOffset: 0.0,
+                                            borderJoinStyle: 'miter',
+                                            borderWidth: 3,
+                                            pointBackgroundColor: "#59c2e6",
+                                            pointBorderWidth: 0,
+                                            pointHoverRadius: 4,
+                                            pointHoverBorderColor: "#fff",
+                                            pointHoverBorderWidth: 0,
+                                            pointRadius: 4,
+                                            pointHitRadius: 0,
+                                            data: [data.one, data.two, data.three, data.four, data.five, data.six, data.seven, data.eight, data.nine, data.ten, data.eleven, data.twelve],
+                                            spanGaps: false
+                                        }
+                                    ]
+                                }
+                            });
+                            for(var i=0; i<20; i++){
+                                $(".house_title").eq(i).html(data.houses[i].firm_name);
+                                $(".address").eq(i).html(data.houses[i].address);
+                                $(".house_type").eq(i).html(data.houses[i].house_type);
+                                $(".ave_price").eq(i).html(data.houses[i].average_price);
+                                $(".total_price").eq(i).html(data.houses[i].total_price);
+                                $(".area").eq(i).html(data.houses[i].area);
+                            }
+                            $("#Pagination").pagination(data.page_num);
+                            $("#allPage").html(data.page_num);
+                        });
+                    }
+                });
             }
             });
 
-            $.ajax({
-                type: "post",
-                url: "/query_prices",
-                datatype:"json",
-                data: {
-                    "city": $('#citySelect').html(),
-                    "month": getMonth()+1,
-                    'page':1
-                },
-                async: false,
-                error: function(request) {
-                    alert("Connection error");
-                },
-                success(data){
-                    $("#lineChartExample4").remove();
-                    $("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
-                    $(document).ready(function () {
-                        'use strict';
-                        var LINECHART4 = $('#lineChartExample4');
-                        var myLineChart4 = new Chart(LINECHART4, {
-                            type: 'line',
-                            options: {
-                                scales: {
-                                    xAxes: [{
-                                        display: true,
-                                        gridLines: {
-                                            display: false
-                                        }
-                                    }],
-                                    yAxes: [{
-                                        display:true,
-                                        gridLines: {
-                                            display: true
-                                        }
-                                    }]
-                                },
-                                legend: {labels:{fontColor:"#777", fontSize: 12},display:false}
-                            },
-                            data: {
-                                labels: [lastYear(getMonth()-11), lastYear(getMonth()-10), lastYear(getMonth()-9), lastYear(getMonth()-8), lastYear(getMonth()-7), lastYear(getMonth()-6), lastYear(getMonth()-5), lastYear(getMonth()-4), lastYear(getMonth()-3), lastYear(getMonth()-2), lastYear(getMonth()-1), lastYear(getMonth())],
-                                datasets: [
-                                    {
-                                        label: "City 1",
-                                        fill: true,
-                                        lineTension: 0,
-                                        backgroundColor: "transparent",
-                                        borderColor: '#6ccef0',
-                                        pointBorderColor: '#59c2e6',
-                                        pointHoverBackgroundColor: '#59c2e6',
-                                        borderCapStyle: 'butt',
-                                        borderDash: [],
-                                        borderDashOffset: 0.0,
-                                        borderJoinStyle: 'miter',
-                                        borderWidth: 3,
-                                        pointBackgroundColor: "#59c2e6",
-                                        pointBorderWidth: 0,
-                                        pointHoverRadius: 4,
-                                        pointHoverBorderColor: "#fff",
-                                        pointHoverBorderWidth: 0,
-                                        pointRadius: 4,
-                                        pointHitRadius: 0,
-                                        data: [data.one, data.two, data.three, data.four, data.five, data.six, data.seven, data.eight, data.nine, data.ten, data.eleven, data.twelve],
-                                        spanGaps: false
-                                    }
-                                ]
-                            }
-                        });
-                        for(var i=0; i<20; i++){
-                            $(".house_title").eq(i).html(data.houses[i].firm_name);
-                            $(".address").eq(i).html(data.houses[i].address);
-                            $(".house_type").eq(i).html(data.houses[i].house_type);
-                            $(".ave_price").eq(i).html(data.houses[i].average_price);
-                            $(".total_price").eq(i).html(data.houses[i].total_price);
-                            $(".area").eq(i).html(data.houses[i].area);
-                        }
-                        $("#Pagination").pagination(data.page_num);
-                        $("#allPage").html(data.page_num);
-                    });
-                }
-            });
         })
     </script>
 
