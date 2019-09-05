@@ -98,10 +98,3 @@ class City_price(models.Model):
     date=models.DateField()
     class Meta:
         db_table='city_price'
-
-class P_C_D(models.Model):
-    province=models.CharField(max_length=10)
-    city=models.CharField(max_length=15)
-    region=models.CharField(max_length=20)
-    class Meta:
-        db_table='pro_cit_reg'
