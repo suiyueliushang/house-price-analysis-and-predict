@@ -1647,12 +1647,13 @@
                         }
                     }
                 });
+                city = $('#citySelect').html();
                 $.ajax({
                     type: "post",
                     url: "/query_prices",
                     datatype:"json",
                     data: {
-                        "city": $('#citySelect').html(),
+                        "city": city.replace(/市/,""),
                         "month": getMonth()+1,
                         'page':1
                     },

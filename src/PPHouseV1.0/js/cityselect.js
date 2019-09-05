@@ -408,7 +408,7 @@ Vcity.CitySelector.prototype = {
                     url: "/query_prices",
                     datatype:"json",
                     data: {
-                        "city": current_city,
+                        "city": current_city.replace(/市/,""),
                         "month": getMonth()+1,
                         'page':1
                     },

@@ -95,6 +95,14 @@ $(document).ready(function(){
 		var district = "";
 		if($("#selectA").length > 0){
 			district = $("#selectA a").html();
+			var pat1 = new RegExp("区");
+			var pat2 = new RegExp("县");
+			if(pat1.test(district)){
+				district = district.replace(/区/,"");
+			}
+			if(pat2.test(district)){
+				district = district.replace(/县/,"");
+			}
 		}
 		if($("#selectB").length > 0){
 			var price = $("#selectB a").html();
