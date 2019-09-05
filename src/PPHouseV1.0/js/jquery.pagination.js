@@ -295,6 +295,7 @@
 				url:"/query_prices",
 				datatype:"json",
 				data: {
+					'city': $("#citySelect").html(),
 					'district' :district,
 					'month': getMonth()+1,
 					'min': min_price,
