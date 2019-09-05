@@ -7,9 +7,9 @@ function $(str) {
 }
 
 var addrShow = $('addr-show');
-var addrShow1 = $('addr-show1');
-var addrShow4 = $('addr-show4');
-var btn = document.getElementsByClassName('met1')[0];
+var addrShow1= $('addr-show1');
+var addrShow4= $('addr-show4');
+var btn = $('btn');
 var btn1 = $('btn1');
 var btn4 = $('btn4');
 var prov = $('prov');
