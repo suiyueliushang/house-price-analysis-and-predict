@@ -74,44 +74,22 @@
         .sortby .sort-con a {
             margin-left: 20px;
             padding-right: 15px;
+            color:#666
         }
         
         .sortby .sort-con a.fst {
             margin-left: 0;
             padding-right: 0;
-            background-image: none;
-            color: #e54b00;
-            font-weight: normal
         }
         
-        .sortby .sort-con a.fst {
-            margin-left: 0;
-            padding-right: 0;
-            background-image: none;
+        .sortby .sort-con .active {
             color: #e54b00;
-            font-weight: normal
-        }
-        
-        .sortby .sort-con a:link,
-        .sortby .sort-con a:visited {
-            color: #666
+            text-decoration: none
         }
         
         .sortby .sort-con a:hover {
             color: #e54b00;
             text-decoration: underline
-        }
-        
-        .sortby .sort-con .up {
-            background-position: 30px -30px;
-            background-position: 30px -29px \0;
-            *background-position: 30px -29px
-        }
-        
-        .sortby .sort-con .down {
-            background-position: 30px -46px;
-            background-position: 30px -45px \0;
-            *background-position: 30px -45px
         }
         
         .houselist-mod {
@@ -665,10 +643,10 @@
                     <div class="sortby" id='filtersort'>
                         <span>为您找到以下房源</span>
                         <span class="sort-con">排序：
-                            <a class="fst" href="#" rel="nofollow">默认</a>
-                            <a class="down" href="#" rel="nofollow">面积⬇</a>
-                            <a class="up" href="#" rel="nofollow">价格⬆</a>
-                            <a class="down" href="#" rel="nofollow">最新⬇</a>
+                            <a class="fst active" href="#">默认</a>
+                            <a class="down" href="#">面积⬇</a>
+                            <a class="up" href="#">价格⬆</a>
+                            <a class="down" href="#">最新⬇</a>
                         </span>
                     </div>
 
