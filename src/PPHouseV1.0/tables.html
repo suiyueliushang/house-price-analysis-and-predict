@@ -123,21 +123,6 @@
             height: 100%
         }
         
-        .houselist-mod .list-item a {
-            display: inline-block;
-            color: #333;
-            font-size: 16px;
-            font-weight: bold;
-            vertical-align: top;
-            padding-right: 7px;
-            max-width: 375px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            display: inline-block;
-            vertical-align: top;
-        }
-        
         .houselist-mod .house-details .house-title {
             margin-bottom: 6px;
             height: 34px;
@@ -152,7 +137,19 @@
             max-width: 375px;
             text-overflow: ellipsis;
             overflow: hidden;
-            white-space: nowrap
+            white-space: nowrap;
+            display: inline-block;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            vertical-align: top;
+            padding-right: 7px;
+            max-width: 375px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: top;
         }
         
         
@@ -230,6 +227,22 @@
         .tags-bottom .tag-others {
             color: #799374;
             background: #f2f6ed
+        }
+
+        .houselist-mod .actions {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            width: 150px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .houselist-mod .actions a {
+            color: grey;
+            padding: 0 5px;
+            border: solid 1px grey;
+            border-radius: 2px
         }
         
         .houselist-mod .pro-price {
@@ -676,6 +689,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>

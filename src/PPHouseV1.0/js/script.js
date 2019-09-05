@@ -88,12 +88,11 @@ $(document).ready(function(){
 
 	$("#smit").click(function(){
 
-		var a = ["a","b","c"]
 		var min_price = 0;
 		var max_price = 10000000;
 		var min_area = 0;
 		var max_area = 5000;
-		var district = $("#citySelect").html();
+		var district = "";
 		if($("#selectA").length > 0){
 			district = $("#selectA a").html();
 		}
@@ -134,6 +133,23 @@ $(document).ready(function(){
 		if($("#selectD").length > 0){
 			var house_type = $("#selectD a").html();
 		}
+
+		opts = $.extend({
+			items_per_page:1,
+			num_display_entries:4,
+			current_page:0,
+			num_edge_entries:1,
+			link_to:"#",
+			prev_text:"<i></i>上一页",
+			next_text:"下一页 <i></i>",
+			ellipse_text:"...",
+			prev_show_always:true,
+			next_show_always:true,
+			renderer:"defaultRenderer",
+			show_if_single_page:false,
+			load_first_page:false,
+			callback:function(){return false;}
+		},opts||{});
 
 		var region_price = new Array(12);
 		$("#region").html(district);
@@ -178,7 +194,7 @@ $(document).ready(function(){
 						$(".total_price").eq(i).html(data.houses[i].total_price);
 						$(".area").eq(i).html(data.houses[i].area);
 					}
-					$("#Pagination").pagination(data.page_num);
+					$("#Pagination").pagination(data.page_num,opts);
 					$("#allPage").html(data.page_num);
 				});
 				}
