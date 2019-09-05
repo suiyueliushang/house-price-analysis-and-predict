@@ -202,7 +202,16 @@ $(document).ready(function(){
 						$(".total_price").eq(i).html(data.houses[i].total_price);
 						$(".area").eq(i).html(data.houses[i].area);
 						$(".floor").eq(i).html(data.houses[i].heigth);
-						$(".direction").eq(i).html(data.houses[i].direction);
+						$(".house_id").eq(1).html(date.houses[i].id);
+						if(data.houses[i].new){
+							$(".list-item .tags-bottom").append('<span class="item-tags tag-metro">新房</span>');
+						}
+						if(data.houses[i].elevator=="有"){
+							$(".list-item .tags-bottom").append('<span class="item-tags tag-metro">有电梯</span>');
+						}
+						if(data.houses[i].zhuangxiu=="精装"){
+							$(".list-item .tags-bottom").append('<span class="item-tags tag-metro">精装</span>');
+						}
 					}
 					$("#Pagination").pagination(data.page_num,opts);
 					$("#allPage").html(data.page_num);
