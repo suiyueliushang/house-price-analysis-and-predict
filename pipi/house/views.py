@@ -398,7 +398,7 @@ def admin_sign_in(request):
             str:password
     '''
     _admin_name=request.POST.get('admin_name')
-    _password=request.POST.get('password')
+    _password=request.POST.get('admin_password')
     response=HttpResponse()
     print(request.POST)
     print("用户名："+str(_admin_name))
