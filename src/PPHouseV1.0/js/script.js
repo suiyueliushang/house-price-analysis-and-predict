@@ -193,6 +193,8 @@ $(document).ready(function(){
 						$(".ave_price").eq(i).html(data.houses[i].average_price);
 						$(".total_price").eq(i).html(data.houses[i].total_price);
 						$(".area").eq(i).html(data.houses[i].area);
+						$(".floor").eq(i).html(data.houses[i].heigth);
+						$(".direction").eq(i).html(data.houses[i].direction);
 					}
 					$("#Pagination").pagination(data.page_num,opts);
 					$("#allPage").html(data.page_num);
