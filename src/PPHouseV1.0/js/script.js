@@ -91,7 +91,9 @@ $(document).ready(function(){
 		var a = ["a","b","c"]
 		var min_price = 0;
 		var max_price = 10000000;
-		var district = "南京";
+		var min_area = 0;
+		var max_area = 5000;
+		var district = $("#citySelect").html();
 		if($("#selectA").length > 0){
 			district = $("#selectA a").html();
 		}
@@ -114,6 +116,20 @@ $(document).ready(function(){
 		}
 		if($("#selectC").length > 0){
 			var area = $("#selectC a").html();
+			var patt1 = new RegExp("㎡以下");
+			var patt2 = new RegExp("㎡以上");
+			var n = new Array(2);
+			if(patt1.test(area)){
+				max_area = area.replace(/㎡以下/,"");
+			}
+			else if(patt2.test(area)){
+				min_area = area.replace(/㎡以上/,"");
+			}
+			else{
+				n = area.match(/\d+/g);
+				min_area = n[0];
+				max_area = n[1];
+			}
 		}
 		if($("#selectD").length > 0){
 			var house_type = $("#selectD a").html();
@@ -127,10 +143,13 @@ $(document).ready(function(){
 			url:"/query_prices",
 			datatype:"json",
 			data: {
+				'city': $("#citySelect").html(),
 				'district' :district,
 				'month': getMonth()+1,
-				'min': min_price,
-				'max': max_price,
+				'min_price': min_price,
+				'max_price': max_price,
+				'min_area': min_area,
+				'max_area': max_area,
 				'page': 1
 			},
 			async: false,

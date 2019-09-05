@@ -6,6 +6,7 @@ class User(models.Model):
     password=models.CharField(max_length=100,null=False)
     user_phone=models.CharField(max_length=20,null=False)
     session_id=models.CharField(max_length=50,null=False,default=0)
+    collection=models.CharField(max_length=200)
 
     class Meta:
         db_table="user_info"
@@ -19,8 +20,18 @@ class House(models.Model):
     average_price=models.IntegerField()
     area=models.IntegerField()
     total_price=models.IntegerField()
-    date=models.DateField()
+    date=models.CharField(max_length=10)
     district=models.CharField(max_length=20)
+    direction=models.CharField(max_length=100,null=True)
+    elevator=models.CharField(max_length=10,default='暂无数据')
+    height=models.CharField(max_length=20,null=True)
+    huxing_jiegou=models.CharField(max_length=20,default='暂无数据')
+    jianzhuleixing=models.CharField(max_length=10,default='暂无数据')
+    new=models.IntegerField(default=1)
+    nianxian=models.CharField(max_length=10,default='70')
+    tihu_bili=models.CharField(max_length=15,default='暂无数据')
+    zhuangxiu=models.CharField(max_length=15,default='暂无数据')
+    kaipan_shijian=models.CharField(max_length=10,default='暂无数据')
 
     class Meta:
         db_table="house"
@@ -34,7 +45,6 @@ class City(models.Model):
 
     class Meta:
         db_table="city_average_price"
-
 
 
 class Admin(models.Model):
@@ -74,3 +84,17 @@ class Visitor_number(models.Model):
     number=models.IntegerField()
     class Meta:
         db_table='visitor_number'
+
+class District_price(models.Model):
+    district=models.CharField(max_length=20)
+    district_average=models.IntegerField()
+    date=models.DateField()
+    class Meta:
+        db_table='district_price'
+
+class City_price(models.Model):
+    city=models.CharField(max_length=20)
+    city_average=models.IntegerField()
+    date=models.DateField()
+    class Meta:
+        db_table='city_price'

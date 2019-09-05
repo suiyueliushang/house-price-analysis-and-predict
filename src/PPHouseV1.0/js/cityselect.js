@@ -393,8 +393,6 @@ Vcity.CitySelector.prototype = {
                     data: {
                         "city": current_city,
                         "month": getMonth()+1,
-                        "min": 0,
-                        "max": 10000000,
                         'page':1
                     },
                     async: false,

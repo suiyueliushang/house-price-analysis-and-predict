@@ -229,8 +229,7 @@ $("#admin_login").click(function() {
                             //switch (data) 
                             case '0':
                                 {
-                                    window.localStorage.setItem("name", data.user.user_name);
-                                    window.location.href = "index.html";
+                                    window.location.href = "admin_page_1.html";
                                     break;
                                 }
                             case "1":
@@ -1115,3 +1114,30 @@ function show_user_table() {
 //新增用户 new_sign_up_list
 //新增访问 new_sign_in_list
 //new_sign_up1
+
+function get_admin_session() {
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/admin_session", //提交的地址  
+        // contentType: false,
+        data: {},
+
+        datatype: "json",
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) { //成功
+            switch (data.is_success) {
+                case '0':
+                    break;
+                case '1':
+                    window.location.href = "login.html";
+                    break;
+                default:
+                    alert("未知错误");
+            }
+        }
+
+    });
+}
