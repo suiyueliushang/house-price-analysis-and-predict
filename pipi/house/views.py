@@ -399,7 +399,6 @@ def admin_sign_in(request):
     '''
     _admin_name=request.POST.get('admin_name')
     _password=request.POST.get('admin_password')
-    response=HttpResponse()
     print(request.POST)
     print("用户名："+str(_admin_name))
     print('密码：'+str(_password))
@@ -412,13 +411,12 @@ def admin_sign_in(request):
         if admin.password==_password:
             admin_admin={'user_name':admin.user_name,'id':admin.id}
             result={'is_success':'0','admin':admin_admin}
-
+            response=HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
             cookie_key='key'
-            cookie_value='cookie11uiwegfig'
+            cookie_value='cookie1'+str(datetime.datetime.now())+'1uiwegfig'
             response.set_cookie(cookie_key,cookie_value)
             admin.session_id=cookie_value
             admin.save()
-            response=HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
             return response
         else:
             result={'is_success':'2','admin':''}
@@ -426,8 +424,15 @@ def admin_sign_in(request):
 
 
 def admin_session(request):
-
-    pass
+    _session_id=request.COOKIES.get('key')
+    print(_session_id)
+    try:
+        admin=Admin.objects.filter(session_id=_session_id)
+        result={'is_success':'0'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def add_house_info(request):
     '''
