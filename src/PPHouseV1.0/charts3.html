@@ -127,102 +127,240 @@
                     <div class="contentContainer">
                         <div class="compareType">
                             <span class="typeName">核心信息</span><br>
+                        </div><br>
+                        <div class="col-lg-12">
+                            <div class="line-chart-example card">
+                                <div class="card-body">
+                                    <table class="compareTable" width="100%"  height="1500px">
+                                        <tbody>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">城市</th>
+                                                <td data-index="0" id="td_10" width="20%"></td>
+                                                <td data-index="1" id="td_20" width="20%"></td>
+                                                <td data-index="2" id="td_30" width="20%"></td>
+                                                <td data-index="3" id="td_40" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">地址</th>
+                                                <td data-index="0" id="td_11" width="20%"></td>
+                                                <td data-index="1" id="td_21" width="20%"></td>
+                                                <td data-index="2" id="td_31" width="20%"></td>
+                                                <td data-index="3" id="td_41" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">房源名</th>
+                                                <td data-index="0" id="td_12" width="20%"></td>
+                                                <td data-index="1" id="td_22" width="20%"></td>
+                                                <td data-index="2" id="td_32" width="20%"></td>
+                                                <td data-index="3" id="td_42" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true" id="tr5">
+                                                <th width="20%">房屋类型</th>
+                                                <td data-index="0" id="td_13" width="20%">22501元/平米</td>
+                                                <td data-index="1" id="td_23" width="20%">24545元/平米</td>
+                                                <td data-index="2" id="td_33" width="20%">59475元/平米</td>
+                                                <td data-index="3" id="td_43" width="20%">28696元/平米</td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true" id="tr3">
+                                                <th width="20%">单价</th>
+                                                <td data-index="0" id="td_14" width="20%">22501元/平米</td>
+                                                <td data-index="1" id="td_24" width="20%">24545元/平米</td>
+                                                <td data-index="2" id="td_34" width="20%">59475元/平米</td>
+                                                <td data-index="3" id="td_44" width="20%">28696元/平米</td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">建筑面积</th>
+                                                <td data-index="0" id="td_15" width="20%">65.33平米</td>
+                                                <td data-index="1" id="td_25" width="20%">47.26平米</td>
+                                                <td data-index="2" id="td_35" width="20%">31.61平米</td>
+                                                <td data-index="3" id="td_45" width="20%">139.39平米</td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true" id="tr4">
+                                                <th width="20%">总价</th>
+                                                <td data-index="0" id="td_16" width="20%">22501元/平米</td>
+                                                <td data-index="1" id="td_26" width="20%">24545元/平米</td>
+                                                <td data-index="2" id="td_36" width="20%">59475元/平米</td>
+                                                <td data-index="3" id="td_46" width="20%">28696元/平米</td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">日期</th>
+                                                <td data-index="0" id="td_17" width="20%"></td>
+                                                <td data-index="1" id="td_27" width="20%"></td>
+                                                <td data-index="2" id="td_37" width="20%"></td>
+                                                <td data-index="3" id="td_47" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">小区</th>
+                                                <td data-index="0" id="td_18" width="20%"></td>
+                                                <td data-index="1" id="td_28" width="20%"></td>
+                                                <td data-index="2" id="td_38" width="20%"></td>
+                                                <td data-index="3" id="td_48" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true" id="tr6">
+                                                <th width="20%">朝向</th>
+                                                <td data-index="0" id="td_19" width="20%">22501元/平米</td>
+                                                <td data-index="1" id="td_29" width="20%">24545元/平米</td>
+                                                <td data-index="2" id="td_39" width="20%">59475元/平米</td>
+                                                <td data-index="3" id="td_49" width="20%">28696元/平米</td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">电梯</th>
+                                                <td data-index="0" id="td_110" width="20%"></td>
+                                                <td data-index="1" id="td_210" width="20%"></td>
+                                                <td data-index="2" id="td_310" width="20%"></td>
+                                                <td data-index="3" id="td_410" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">楼高</th>
+                                                <td data-index="0" id="td_111" width="20%"></td>
+                                                <td data-index="1" id="td_211" width="20%"></td>
+                                                <td data-index="2" id="td_311" width="20%"></td>
+                                                <td data-index="3" id="td_411" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">户型</th>
+                                                <td data-index="0" id="td_112" width="20%"></td>
+                                                <td data-index="1" id="td_212" width="20%"></td>
+                                                <td data-index="2" id="td_312" width="20%"></td>
+                                                <td data-index="3" id="td_412" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">建筑类型</th>
+                                                <td data-index="0" id="td_113" width="20%"></td>
+                                                <td data-index="1" id="td_213" width="20%"></td>
+                                                <td data-index="2" id="td_313" width="20%"></td>
+                                                <td data-index="3" id="td_413" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">是否为新房</th>
+                                                <td data-index="0" id="td_114" width="20%"></td>
+                                                <td data-index="1" id="td_214" width="20%"></td>
+                                                <td data-index="2" id="td_314" width="20%"></td>
+                                                <td data-index="3" id="td_414" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">房屋年限</th>
+                                                <td data-index="0" id="td_115" width="20%"></td>
+                                                <td data-index="1" id="td_215" width="20%"></td>
+                                                <td data-index="2" id="td_315" width="20%"></td>
+                                                <td data-index="3" id="td_415" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">梯户比例</th>
+                                                <td data-index="0" id="td_116" width="20%"></td>
+                                                <td data-index="1" id="td_216" width="20%"></td>
+                                                <td data-index="2" id="td_316" width="20%"></td>
+                                                <td data-index="3" id="td_416" width="20%"></td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true" id="tr7">
+                                                <th width="20%">装修</th>
+                                                <td data-index="0" id="td_117" width="20%">22501元/平米</td>
+                                                <td data-index="1" id="td_217" width="20%">24545元/平米</td>
+                                                <td data-index="2" id="td_317" width="20%">59475元/平米</td>
+                                                <td data-index="3" id="td_417" width="20%">28696元/平米</td>
+                                            </tr>
+                                            <tr data-select="true" data-hide-same="true">
+                                                <th width="20%">开盘时间</th>
+                                                <td data-index="0" id="td_118" width="20%"></td>
+                                                <td data-index="1" id="td_218" width="20%"></td>
+                                                <td data-index="2" id="td_318" width="20%"></td>
+                                                <td data-index="3" id="td_418" width="20%"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                        <br><table class="compareTable" width="100%"  height="500px">
-                            <tbody>
-                                <tr data-select="true" data-hide-same="true">
-                                    <th width="20%">房源名</th>
-                                    <td data-index="0" id="td_11" width="20%"></td>
-                                    <td data-index="1" id="td_21" width="20%"></td>
-                                    <td data-index="2" id="td_31" width="20%"></td>
-                                    <td data-index="3" id="td_41" width="20%"></td>
-                                </tr>
-                                <tr data-select="true" data-hide-same="true">
-                                    <th width="20%">建筑面积</th>
-                                    <td data-index="0" id="td_12" width="20%">65.33平米</td>
-                                    <td data-index="1" id="td_22" width="20%">47.26平米</td>
-                                    <td data-index="2" id="td_32" width="20%">31.61平米</td>
-                                    <td data-index="3" id="td_42" width="20%">139.39平米</td>
-                                </tr>
-                                <tr data-select="true" data-hide-same="true" id="tr3">
-                                    <th width="20%">单价</th>
-                                    <td data-index="0" id="td_13" width="20%">22501元/平米</td>
-                                    <td data-index="1" id="td_23" width="20%">24545元/平米</td>
-                                    <td data-index="2" id="td_33" width="20%">59475元/平米</td>
-                                    <td data-index="3" id="td_43" width="20%">28696元/平米</td>
-                                </tr>
-                                <tr data-select="true" data-hide-same="true" id="tr4">
-                                    <th width="20%">总价</th>
-                                    <td data-index="0" id="td_14" width="20%">22501元/平米</td>
-                                    <td data-index="1" id="td_24" width="20%">24545元/平米</td>
-                                    <td data-index="2" id="td_34" width="20%">59475元/平米</td>
-                                    <td data-index="3" id="td_44" width="20%">28696元/平米</td>
-                                </tr>
-                                <tr data-select="true" data-hide-same="true" id="tr5">
-                                    <th width="20%">户型</th>
-                                    <td data-index="0" id="td_15" width="20%">22501元/平米</td>
-                                    <td data-index="1" id="td_25" width="20%">24545元/平米</td>
-                                    <td data-index="2" id="td_35" width="20%">59475元/平米</td>
-                                    <td data-index="3" id="td_45" width="20%">28696元/平米</td>
-                                </tr>
-                                <tr data-select="true" data-hide-same="true" id="tr6">
-                                    <th width="20%">朝向</th>
-                                    <td data-index="0" id="td_16" width="20%">22501元/平米</td>
-                                    <td data-index="1" id="td_26" width="20%">24545元/平米</td>
-                                    <td data-index="2" id="td_36" width="20%">59475元/平米</td>
-                                    <td data-index="3" id="td_46" width="20%">28696元/平米</td>
-                                </tr>
-                                <tr data-select="true" data-hide-same="true" id="tr7">
-                                    <th width="20%">装修</th>
-                                    <td data-index="0" id="td_17" width="20%">22501元/平米</td>
-                                    <td data-index="1" id="td_27" width="20%">24545元/平米</td>
-                                    <td data-index="2" id="td_37" width="20%">59475元/平米</td>
-                                    <td data-index="3" id="td_47" width="20%">28696元/平米</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        /*window.onload = function() {
-            var house_1 = new Array("", "", "", "", "", "", "");
-            var house_2 = new Array("", "", "", "", "", "", "");
-            var house_3 = new Array("", "", "", "", "", "", "");
-            var house_4 = new Array("", "", "", "", "", "", "");
+        window.onload = function() {
+            var house_1 = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            var house_2 = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            var house_3 = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            var house_4 = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             house_1[0] = "ha";
             house_2[0] = "ha";
-            td_11.innerHTML = house_1[0];
-            td_12.innerHTML = house_1[1];
-            td_13.innerHTML = house_1[2];
-            td_14.innerHTML = house_1[3];
-            td_15.innerHTML = house_1[4];
-            td_16.innerHTML = house_1[5];
-            td_17.innerHTML = house_1[6];
-            td_21.innerHTML = house_2[0];
-            td_22.innerHTML = house_2[1];
-            td_23.innerHTML = house_2[2];
-            td_24.innerHTML = house_2[3];
-            td_25.innerHTML = house_2[4];
-            td_26.innerHTML = house_2[5];
-            td_27.innerHTML = house_2[6];
-            td_31.innerHTML = house_3[0];
-            td_32.innerHTML = house_3[1];
-            td_33.innerHTML = house_3[2];
-            td_34.innerHTML = house_3[3];
-            td_35.innerHTML = house_3[4];
-            td_36.innerHTML = house_3[5];
-            td_37.innerHTML = house_3[6];
-            td_41.innerHTML = house_4[0];
-            td_42.innerHTML = house_4[1];
-            td_43.innerHTML = house_4[2];
-            td_44.innerHTML = house_4[3];
-            td_45.innerHTML = house_4[4];
-            td_46.innerHTML = house_4[5];
-            td_47.innerHTML = house_4[6];
-        }*/
+            td_10.innerHTML = house_1[0];
+            td_11.innerHTML = house_1[1];
+            td_12.innerHTML = house_1[2];
+            td_13.innerHTML = house_1[3];
+            td_14.innerHTML = house_1[4];
+            td_15.innerHTML = house_1[5];
+            td_16.innerHTML = house_1[6];
+            td_17.innerHTML = house_1[7];
+            td_18.innerHTML = house_1[8];
+            td_19.innerHTML = house_1[9];
+            td_110.innerHTML = house_1[10];
+            td_111.innerHTML = house_1[11];
+            td_112.innerHTML = house_1[12];
+            td_113.innerHTML = house_1[13];
+            td_114.innerHTML = house_1[14];
+            td_115.innerHTML = house_1[15];
+            td_116.innerHTML = house_1[16];
+            td_117.innerHTML = house_1[17];
+            td_118.innerHTML = house_1[18];
+            td_20.innerHTML = house_2[0];
+            td_21.innerHTML = house_2[1];
+            td_22.innerHTML = house_2[2];
+            td_23.innerHTML = house_2[3];
+            td_24.innerHTML = house_2[4];
+            td_25.innerHTML = house_2[5];
+            td_26.innerHTML = house_2[6];
+            td_27.innerHTML = house_2[7];
+            td_28.innerHTML = house_2[8];
+            td_29.innerHTML = house_2[9];
+            td_210.innerHTML = house_2[10];
+            td_211.innerHTML = house_2[11];
+            td_212.innerHTML = house_2[12];
+            td_213.innerHTML = house_2[13];
+            td_214.innerHTML = house_2[14];
+            td_215.innerHTML = house_2[15];
+            td_216.innerHTML = house_2[16];
+            td_217.innerHTML = house_2[17];
+            td_218.innerHTML = house_2[18];
+            td_30.innerHTML = house_3[0];
+            td_31.innerHTML = house_3[1];
+            td_32.innerHTML = house_3[2];
+            td_33.innerHTML = house_3[3];
+            td_34.innerHTML = house_3[4];
+            td_35.innerHTML = house_3[5];
+            td_36.innerHTML = house_3[6];
+            td_37.innerHTML = house_3[7];
+            td_38.innerHTML = house_3[8];
+            td_39.innerHTML = house_3[9];
+            td_310.innerHTML = house_3[10];
+            td_311.innerHTML = house_3[11];
+            td_312.innerHTML = house_3[12];
+            td_313.innerHTML = house_3[13];
+            td_314.innerHTML = house_3[14];
+            td_315.innerHTML = house_3[15];
+            td_316.innerHTML = house_3[16];
+            td_317.innerHTML = house_3[17];
+            td_318.innerHTML = house_3[18];
+            td_40.innerHTML = house_4[0];
+            td_41.innerHTML = house_4[1];
+            td_42.innerHTML = house_4[2];
+            td_43.innerHTML = house_4[3];
+            td_44.innerHTML = house_4[4];
+            td_45.innerHTML = house_4[5];
+            td_46.innerHTML = house_4[6];
+            td_47.innerHTML = house_4[7];
+            td_48.innerHTML = house_4[8];
+            td_49.innerHTML = house_4[9];
+            td_410.innerHTML = house_4[10];
+            td_411.innerHTML = house_4[11];
+            td_412.innerHTML = house_4[12];
+            td_413.innerHTML = house_4[13];
+            td_414.innerHTML = house_4[14];
+            td_415.innerHTML = house_4[15];
+            td_416.innerHTML = house_4[16];
+            td_417.innerHTML = house_4[17];
+            td_418.innerHTML = house_4[18];
+        }
     </script>
 </body>
 </html>
