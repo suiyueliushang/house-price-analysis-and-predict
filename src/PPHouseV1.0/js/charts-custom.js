@@ -355,7 +355,7 @@ $(document).ready(function () {
             legend: { labels: { fontColor: "#777", fontSize: 12, }, display: false }
         },
         data: {
-            labels: [GetDateStr(-11), lastYear(getMonth() - 10), lastYear(getMonth() - 9), lastYear(getMonth() - 8), lastYear(getMonth() - 7), lastYear(getMonth() - 6), lastYear(getMonth() - 5), lastYear(getMonth() - 4), lastYear(getMonth() - 3), lastYear(getMonth() - 2), lastYear(getMonth() - 1), lastYear(getMonth())],
+            labels: [lastYear(getMonth() - 11), lastYear(getMonth() - 10), lastYear(getMonth() - 9), lastYear(getMonth() - 8), lastYear(getMonth() - 7), lastYear(getMonth() - 6), lastYear(getMonth() - 5), lastYear(getMonth() - 4), lastYear(getMonth() - 3), lastYear(getMonth() - 2), lastYear(getMonth() - 1), lastYear(getMonth())],
             datasets: [{
                 label: "南京",
                 fill: true,
@@ -376,7 +376,7 @@ $(document).ready(function () {
                 pointHoverBorderWidth: 0,
                 pointRadius: 4,
                 pointHitRadius: 0,
-                data: [20, 28, 30, 22, 24, 10, 7, 8, 10, 11, 32, 23],
+                data: [],
                 spanGaps: false
             }]
         }
