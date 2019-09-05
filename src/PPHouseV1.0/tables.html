@@ -41,8 +41,8 @@
         .sale-left li:hover {
             background: #f3f3eb
         }
-
-        .sale-left li:hover .actions{
+        
+        .sale-left li:hover .actions {
             display: block
         }
         
@@ -78,7 +78,7 @@
         .sortby .sort-con a {
             margin-left: 20px;
             padding-right: 15px;
-            color:#666
+            color: #666
         }
         
         .sortby .sort-con a.fst {
@@ -156,7 +156,6 @@
             vertical-align: top;
         }
         
-        
         .houselist-mod .house-details .details-item {
             height: 30px;
             line-height: 30px
@@ -232,7 +231,7 @@
             color: #799374;
             background: #f2f6ed
         }
-
+        
         .houselist-mod .actions {
             display: none;
             position: absolute;
@@ -242,18 +241,18 @@
             text-align: center;
             font-size: 14px;
         }
-
+        
         .houselist-mod .actions a {
             color: grey;
             padding: 4px 10px;
             border: solid 1px grey;
             border-radius: 2px
         }
-
-        .houselist-mod .actions a:hover{
+        
+        .houselist-mod .actions a:hover {
             color: black;
             text-decoration: none
-        } 
+        }
         
         .houselist-mod .pro-price {
             position: absolute;
@@ -529,7 +528,7 @@
                         <a href="forms.html"> <i class="icon-padnote"></i>房价预测 </a>
                     </li>
                     <li>
-                        <a href="login.html"> <i class="icon-interface-windows"></i>Login page </a>
+                        <a href="user_page.html"> <i class="icon-user"></i>个人中心</a>
                     </li>
                 </ul><span class="heading">Extras</span>
                 <ul class="list-unstyled">
@@ -1561,81 +1560,85 @@
         });
     </script>
     <script>
-
-        function f(city){
-            if(city.name==$('#citySelect').html()){
+        function f(city) {
+            if (city.name == $('#citySelect').html()) {
                 return city;
             }
         }
 
-        $(function(){
+        $(function() {
             //获取城市ajax
             $.ajax({
-            url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',  
-            type: 'POST',  
-            dataType: 'jsonp',
-            success:function(data) {
-                $('#citySelect').html(data.content.address_detail.city);
-                var districts = citylist[citylist.findIndex(f)].district.length;
-                for (var n = 0; n < districts; n++) {
-                    $(".select1 .select-all").after('<dd class="load"><a href="#">'+citylist[citylist.findIndex(f)].district[n]+'</a></dd>');
-                }
-                $("#select1 dd").click(function () {
-                    $(this).addClass("selected").siblings().removeClass("selected");
-                    if ($(this).hasClass("select-all")) {
-                        $("#selectA").remove();
-                    } else {
-                        var copyThisA = $(this).clone();
-                        if ($("#selectA").length > 0) {
-                            $("#selectA a").html($(this).text());
-                        } else {
-                            $(".select-result dl").append(copyThisA.attr("id", "selectA"));
-                        }
+                url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',
+                type: 'POST',
+                dataType: 'jsonp',
+                success: function(data) {
+                    $('#citySelect').html(data.content.address_detail.city);
+                    var districts = citylist[citylist.findIndex(f)].district.length;
+                    for (var n = 0; n < districts; n++) {
+                        $(".select1 .select-all").after('<dd class="load"><a href="#">' + citylist[citylist.findIndex(f)].district[n] + '</a></dd>');
                     }
-                });
-                city = $('#citySelect').html();
-                $.ajax({
-                    type: "post",
-                    url: "/query_prices",
-                    datatype:"json",
-                    data: {
-                        "city": city.replace(/市/,""),
-                        "month": getMonth()+1,
-                        'page':1
-                    },
-                    async: false,
-                    error: function(request) {
-                        alert("Connection error");
-                    },
-                    success(data){
-                        $("#lineChartExample4").remove();
-                        $("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
-                        $(document).ready(function () {
-                            'use strict';
-                            var LINECHART4 = $('#lineChartExample4');
-                            var myLineChart4 = new Chart(LINECHART4, {
-                                type: 'line',
-                                options: {
-                                    scales: {
-                                        xAxes: [{
-                                            display: true,
-                                            gridLines: {
-                                                display: false
-                                            }
-                                        }],
-                                        yAxes: [{
-                                            display:true,
-                                            gridLines: {
-                                                display: true
-                                            }
-                                        }]
+                    $("#select1 dd").click(function() {
+                        $(this).addClass("selected").siblings().removeClass("selected");
+                        if ($(this).hasClass("select-all")) {
+                            $("#selectA").remove();
+                        } else {
+                            var copyThisA = $(this).clone();
+                            if ($("#selectA").length > 0) {
+                                $("#selectA a").html($(this).text());
+                            } else {
+                                $(".select-result dl").append(copyThisA.attr("id", "selectA"));
+                            }
+                        }
+                    });
+                    city = $('#citySelect').html();
+                    $.ajax({
+                        type: "post",
+                        url: "/query_prices",
+                        datatype: "json",
+                        data: {
+                            "city": city.replace(/市/, ""),
+                            "month": getMonth() + 1,
+                            'page': 1
+                        },
+                        async: false,
+                        error: function(request) {
+                            alert("Connection error");
+                        },
+                        success(data) {
+                            $("#lineChartExample4").remove();
+                            $("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
+                            $(document).ready(function() {
+                                'use strict';
+                                var LINECHART4 = $('#lineChartExample4');
+                                var myLineChart4 = new Chart(LINECHART4, {
+                                    type: 'line',
+                                    options: {
+                                        scales: {
+                                            xAxes: [{
+                                                display: true,
+                                                gridLines: {
+                                                    display: false
+                                                }
+                                            }],
+                                            yAxes: [{
+                                                display: true,
+                                                gridLines: {
+                                                    display: true
+                                                }
+                                            }]
+                                        },
+                                        legend: {
+                                            labels: {
+                                                fontColor: "#777",
+                                                fontSize: 12
+                                            },
+                                            display: false
+                                        }
                                     },
-                                    legend: {labels:{fontColor:"#777", fontSize: 12},display:false}
-                                },
-                                data: {
-                                    labels: [lastYear(getMonth()-11), lastYear(getMonth()-10), lastYear(getMonth()-9), lastYear(getMonth()-8), lastYear(getMonth()-7), lastYear(getMonth()-6), lastYear(getMonth()-5), lastYear(getMonth()-4), lastYear(getMonth()-3), lastYear(getMonth()-2), lastYear(getMonth()-1), lastYear(getMonth())],
-                                    datasets: [
-                                        {
+                                    data: {
+                                        labels: [lastYear(getMonth() - 11), lastYear(getMonth() - 10), lastYear(getMonth() - 9), lastYear(getMonth() - 8), lastYear(getMonth() - 7), lastYear(getMonth() - 6), lastYear(getMonth() - 5), lastYear(getMonth() - 4), lastYear(getMonth() - 3), lastYear(getMonth() - 2), lastYear(getMonth() - 1), lastYear(getMonth())],
+                                        datasets: [{
                                             label: "City 1",
                                             fill: true,
                                             lineTension: 0,
@@ -1657,35 +1660,35 @@
                                             pointHitRadius: 0,
                                             data: [data.one, data.two, data.three, data.four, data.five, data.six, data.seven, data.eight, data.nine, data.ten, data.eleven, data.twelve],
                                             spanGaps: false
-                                        }
-                                    ]
+                                        }]
+                                    }
+                                });
+                                for (var i = 0; i < 20; i++) {
+                                    $(".house_title").eq(i).html(data.houses[i].firm_name);
+                                    $(".address").eq(i).html(data.houses[i].address);
+                                    $(".house_type").eq(i).html(data.houses[i].house_type);
+                                    $(".ave_price").eq(i).html(data.houses[i].average_price);
+                                    $(".total_price").eq(i).html(data.houses[i].total_price);
+                                    $(".area").eq(i).html(data.houses[i].area);
+                                    $(".floor").eq(i).html(data.houses[i].heigth);
+                                    $(".direction").eq(i).html(data.houses[i].direction);
+                                    $(".house_id").eq(1).html(date.houses[i].id);
+                                    if(data.houses[i].new){
+                                        $(".list-item .tags-bottom").append('<span class="item-tags tag-metro">新房</span>');
+                                    }
+                                    if(data.houses[i].elevator=="有"){
+                                        $(".list-item .tags-bottom").append('<span class="item-tags tag-metro">有电梯</span>');
+                                    }
+                                    if(data.houses[i].zhuangxiu=="精装"){
+                                        $(".list-item .tags-bottom").append('<span class="item-tags tag-metro">精装</span>');
+                                    }
                                 }
+                                $("#Pagination").pagination(data.page_num);
+                                $("#allPage").html(data.page_num);
                             });
-                            for(var i=0; i<20; i++){
-                                $(".house_title").eq(i).html(data.houses[i].firm_name);
-                                $(".address").eq(i).html(data.houses[i].address);
-                                $(".house_type").eq(i).html(data.houses[i].house_type);
-                                $(".ave_price").eq(i).html(data.houses[i].average_price);
-                                $(".total_price").eq(i).html(data.houses[i].total_price);
-                                $(".area").eq(i).html(data.houses[i].area);
-                                $(".floor").eq(i).html(data.houses[i].heigth);
-                                $(".house_id").eq(1).html(date.houses[i].id);
-                                if(data.houses[i].new){
-                                    $(".list-item .tags-bottom").append('<span class="item-tags tag-metro">新房</span>');
-                                }
-                                if(data.houses[i].elevator=="有"){
-                                    $(".list-item .tags-bottom").append('<span class="item-tags tag-metro">有电梯</span>');
-                                }
-                                if(data.houses[i].zhuangxiu=="精装"){
-                                    $(".list-item .tags-bottom").append('<span class="item-tags tag-metro">精装</span>');
-                                }
-                            }
-                            $("#Pagination").pagination(data.page_num);
-                            $("#allPage").html(data.page_num);
-                        });
-                    }
-                });
-            }
+                        }
+                    });
+                }
             });
 
         })
