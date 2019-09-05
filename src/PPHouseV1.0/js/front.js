@@ -229,8 +229,7 @@ $("#admin_login").click(function() {
                             //switch (data) 
                             case '0':
                                 {
-                                    window.localStorage.setItem("name", data.user.user_name);
-                                    window.location.href = "index.html";
+                                    window.location.href = "admin_page_1.html";
                                     break;
                                 }
                             case "1":
