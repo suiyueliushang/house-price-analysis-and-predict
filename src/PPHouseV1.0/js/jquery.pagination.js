@@ -235,15 +235,15 @@
 						$(".total_price").eq(i).html(data.houses[i].total_price);
 						$(".area").eq(i).html(data.houses[i].area);
 						$(".floor").eq(i).html(data.houses[i].heigth);
-						$(".house_id").eq(1).html(date.houses[i].id);
+						$(".house_id").eq(i).html(date.houses[i].id);
 						if(data.houses[i].new){
-							$(".list-item .tags-bottom").append('<span class="item-tags tag-metro">新房</span>');
+							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">新房</span>');
 						}
 						if(data.houses[i].elevator=="有"){
-							$(".list-item .tags-bottom").append('<span class="item-tags tag-metro">有电梯</span>');
+							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">有电梯</span>');
 						}
 						if(data.houses[i].zhuangxiu=="精装"){
-							$(".list-item .tags-bottom").append('<span class="item-tags tag-metro">精装</span>');
+							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">精装</span>');
 						}
 					}
 				});
@@ -325,6 +325,17 @@
 							$(".ave_price").eq(i).html(data.houses[i].average_price);
 							$(".total_price").eq(i).html(data.houses[i].total_price);
 							$(".area").eq(i).html(data.houses[i].area);
+							$(".floor").eq(i).html(data.houses[i].heigth);
+							$(".house_id").eq(i).html(date.houses[i].id);
+							if(data.houses[i].new){
+								$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">新房</span>');
+							}
+							if(data.houses[i].elevator=="有"){
+								$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">有电梯</span>');
+							}
+							if(data.houses[i].zhuangxiu=="精装"){
+								$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">精装</span>');
+							}
 						}
 					});
 				}
