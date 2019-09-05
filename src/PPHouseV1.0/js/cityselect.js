@@ -357,7 +357,7 @@ Vcity.CitySelector.prototype = {
                 that.button.innerHTML = this.innerHTML;
                 current_city = this.innerHTML;
 
-                opts = $.extend({
+                var opts = $.extend({
                     items_per_page:1,
                     num_display_entries:4,
                     current_page:0,
