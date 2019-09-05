@@ -158,8 +158,8 @@
 		
 		var min_price = 0;
 		var max_price = 10000000;
-		var min_area = 0;
-		var max_area = 5000;
+		//var min_area = 0;
+		//var max_area = 5000;
 		var district = "";
 		if($("#selectA").length > 0){
 			district = $("#selectA a").html();
@@ -189,7 +189,7 @@
 				max_price = n[1];
 			}
 		}
-		if($("#selectC").length > 0){
+		/*if($("#selectC").length > 0){
 			var area = $("#selectC a").html();
 			var patt1 = new RegExp("㎡以下");
 			var patt2 = new RegExp("㎡以上");
@@ -205,7 +205,7 @@
 				min_area = n[0];
 				max_area = n[1];
 			}
-		}
+		}*/
 		$.ajax({
 			type:"POST",
 			url:"/query_prices",
@@ -216,8 +216,8 @@
 				'month': getMonth()+1,
 				'min_price': min_price,
 				'max_price': max_price,
-				'min_area': min_area,
-				'max_area': max_area,
+				//'min_area': min_area,
+				//'max_area': max_area,
 				'page': goPage
 			},
 			async: false,
@@ -267,7 +267,9 @@
 			
 			var min_price = 0;
 			var max_price = 10000000;
-			var district = "南京";
+			//var min_area = 0;
+			//var max_area = 5000;
+			var district = "";
 			if($("#selectA").length > 0){
 				district = $("#selectA a").html();
 			}
