@@ -265,18 +265,18 @@ def query_prices(request):
             {'is_success':一个数字,0代表成功，1代表失败,houses:一个列表，包含符合条件的所有房源}
     '''
     _city=request.POST.get('city')
-    _district=request.POST.get('district')
-    _month=request.POST.get('month')
-    _min=int(request.POST.get('min'))
-    _max=int(request.POST.get('max'))
     _page=int(request.POST.get('page'))
+    _month=request.POST.get('month')
+
+    #_district=request.POST.get('district')
+    #_min=int(request.POST.get('min_price'))
+    #_max=int(request.POST.get('max_price'))
+
     print(_city)
-    print(_district)
-    print(_min)
-    print(_max)
     #print(_page)
     try:
-        conditions={'city__exact':'珠海','district__exact':'香洲区'}
+        city_name=_city.split('市')
+        conditions={'city__in':_city}
         houses=House.objects.filter(**conditions)
         print(len(houses))
     except:
@@ -295,7 +295,16 @@ def query_prices(request):
         housess.append(house_house)
     city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
     result={'page_num':_page_num,'houses':housess,'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+    
+    '''
+
+    '''
+
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
+def district_in_city(request):
+    _city=request.POST.get('city')
+
 
 
 def contrast_city(request):
@@ -398,8 +407,7 @@ def admin_sign_in(request):
             str:password
     '''
     _admin_name=request.POST.get('admin_name')
-    _password=request.POST.get('password')
-    response=HttpResponse()
+    _password=request.POST.get('admin_password')
     print(request.POST)
     print("用户名："+str(_admin_name))
     print('密码：'+str(_password))
@@ -410,15 +418,14 @@ def admin_sign_in(request):
             result={'is_success':'1','admin':''}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         if admin.password==_password:
-            admin_admin={'user_name':admin.user_name,'id':admin.id}
+            admin_admin={'admin_name':admin.admin_name,'id':admin.id}
             result={'is_success':'0','admin':admin_admin}
-
+            response=HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
             cookie_key='key'
-            cookie_value='cookie11uiwegfig'
+            cookie_value='cookie1'+str(datetime.datetime.now())+'1uiwegfig'
             response.set_cookie(cookie_key,cookie_value)
             admin.session_id=cookie_value
             admin.save()
-            response=HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
             return response
         else:
             result={'is_success':'2','admin':''}
@@ -426,14 +433,22 @@ def admin_sign_in(request):
 
 
 def admin_session(request):
-
-    pass
+    _session_id=request.COOKIES.get('key')
+    print(_session_id)
+    try:
+        admin=Admin.objects.filter(session_id=_session_id)[0]
+        print(admin.session_id)
+        result={'is_success':'0'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def add_house_info(request):
     '''
     管理员添加
     '''
-    _session_id=request.Cookie.get('key')
+    #_session_id=request.Cookie.get('key')
     _city=request.POST.get('city')
     _address=request.POST.get('address')
     _firm_name=request.POST.get('firm_name')
@@ -443,126 +458,125 @@ def add_house_info(request):
     _total_price=request.POST.get('total_price')
     _date=datetime.datetime.now().date()
     _district=request.POST.get('district')
+    #try:
+        #admin=Admin.objects.filter(session_id=_session_id)
     try:
-        admin=Admin.objects.filter(session_id=_session_id)
-        try:
-            house=House(city=_city,address=_address,firm_name=_firm_name,house_type=_house_type,average_price=_average_price,
-                    area=_area,total_price=_total_price,date=_date,district=_district)
-            house.save()
-            result={'is_success':'0'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-        except:
-            result={'is_success':'1'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    except:
-        result={'is_success':'2'}
+        house=House(city=_city,address=_address,firm_name=_firm_name,house_type=_house_type,average_price=_average_price,
+                area=_area,total_price=_total_price,date=_date,district=_district)
+        house.save()
+        result={'is_success':'0'}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    #except:
+        #result={'is_success':'2'}
+        #return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def delete_house_info(request):
     '''
     @args   int:id
     '''
-    _session_id=request.Cookie.get('key')
+    #_session_id=request.Cookie.get('key')
     _id=request.POST.get(_id)
+    #try:
+        #admin=Admin.objects.filter(session_id=_session_id)
     try:
-        admin=Admin.objects.filter(session_id=_session_id)
-        try:
-            house=House.objects.get(_id)
-            house.delete()
-            result={'is_success':'0'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-        except:
-            result={'is_success':'1'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    except:
-        result={'is_success':'2'}
+        house=House.objects.get(_id)
+        house.delete()
+        result={'is_success':'0'}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    #except:
+        #return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 
 def add_district_price(request):
-    _session_id=request.Cookie.get('key')
+    #_session_id=request.Cookie.get('key')
     _id=request.POST.get(_id)
-    try:
-        admin=Admin.objects.filter(session_id=_session_id)
+    #try:
+        #admin=Admin.objects.filter(session_id=_session_id)
 
-        _district=request.POST.get('district')
-        _district_average=request.POST.get('district_average')
-        _date=request.POST.get('date')
-        try:
-            district=District_price(district=_district,district_average=_district_average,date=_date)
-            district.save()
-            result={'is_success':'0'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-        except:
-            result={'is_success':'1'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    except:
-        result={'is_success':'2'}
+    _district=request.POST.get('district')
+    _district_average=request.POST.get('district_average')
+    _date=request.POST.get('date')
+    try:
+        district=District_price(district=_district,district_average=_district_average,date=_date)
+        district.save()
+        result={'is_success':'0'}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    #except:
+        #result={'is_success':'2'}
+        #return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 
 def delete_district_price(request):
 
-    _session_id=request.Cookie.get('key')
+    #_session_id=request.Cookie.get('key')
     _id=request.POST.get(_id)
-    try:
-        admin=Admin.objects.filter(session_id=_session_id)
+    #try:
+    #    admin=Admin.objects.filter(session_id=_session_id)
 
-        _date=request.POST.get('date')
-        _district=request.POST.get('district')
-        try:
-            district_price=District_price.objects.filter(Q(district=_district)&Q(date=_date))[0]
-            district_price.delete()
-            result={'is_success':'0'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-        except:
-            result={'is_success':'1'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    except:
-        result={'is_success':'2'}
+    _date=request.POST.get('date')
+    _district=request.POST.get('district')
+    try:
+        district_price=District_price.objects.filter(Q(district=_district)&Q(date=_date))[0]
+        district_price.delete()
+        result={'is_success':'0'}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    #except:
+    #    result={'is_success':'2'}
+    #    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 
 def add_city_price(request):
-    _session_id=request.Cookie.get('key')
+    #_session_id=request.Cookie.get('key')
     _id=request.POST.get(_id)
-    try:
-        admin=Admin.objects.filter(session_id=_session_id)
+    #try:
+     #   admin=Admin.objects.filter(session_id=_session_id)
 
-        _city=request.POST.get('city')
-        _city_average=request.POST.get('city_average')
-        _date=request.POST.get('date')
-        try:
-            city=City_price(city=_city,city_average=_city_average,date=_date)
-            city.save()
-            result={'is_success':'0'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-        except:
-            result={'is_success':'1'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    except:
-        result={'is_success':'2'}
+    _city=request.POST.get('city')
+    _city_average=request.POST.get('city_average')
+    _date=request.POST.get('date')
+    try:
+        city=City_price(city=_city,city_average=_city_average,date=_date)
+        city.save()
+        result={'is_success':'0'}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    #except:
+    #    result={'is_success':'2'}
+    #    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 
 def delete_city_price(request):
-    _session_id=request.Cookie.get('key')
+    #_session_id=request.Cookie.get('key')
     _id=request.POST.get(_id)
+    #try:
+    #    admin=Admin.objects.filter(session_id=_session_id)
+    _date=request.POST.get('date')
+    _city=request.POST.get('city')
     try:
-        admin=Admin.objects.filter(session_id=_session_id)
-        _date=request.POST.get('date')
-        _city=request.POST.get('city')
-        try:
-            city_price=City_price.objects.filter(Q(city=_city)&Q(date=_date))[0]
-            city_price.delete()
-            result={'is_success':'0'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-        except:
-            result={'is_success':'1'}
-            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    except:
-        result={'is_success':'2'}
+        city_price=City_price.objects.filter(Q(city=_city)&Q(date=_date))[0]
+        city_price.delete()
+        result={'is_success':'0'}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    #except:
+    #    result={'is_success':'2'}
+    #    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 
 def new_sign_up_list(request):

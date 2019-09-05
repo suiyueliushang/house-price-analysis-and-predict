@@ -173,85 +173,6 @@ $(document).ready(function() {
 
 });
 
-//管理员登录
-$("#admin_login").click(function() {
-
-    user_name = $('#admin_name').val();
-    password = $('#admin_password').val();
-
-    if (user_name.length == 0) { document.getElementById('wrong_box').innerText = '未输入管理员用户名'; } else {
-        if (password.length == 0) { document.getElementById('wrong_box').innerText = '未输入密码'; } else {
-
-            var val = valiCode.value;
-            var current = result.join('');
-
-            console.log(val, typeof val, current, typeof current)
-            if (current.toLowerCase() != val.toLowerCase()) {
-                document.getElementById('wrong_box').innerText = '验证码输入有误!';
-                getRandomStr();
-
-            } else {
-                //wrongShow.innerText = '验证码输入正确!';
-                /* getRandomStr();
-                 alert('验证码输入正确!');*/
-
-
-                $.ajax({
-                    type: "POST", //提交的方法
-                    url: "/admin_sign_in", //提交的地址  
-                    // contentType: false,
-                    data: {
-                        'admin_name': admin_name,
-                        'admin_password': admin_password
-                    },
-
-                    datatype: "json",
-                    //$('#login_form').serialize(), // 序列化表单值  
-                    async: false,
-                    error: function(request) { //失败的话
-                        alert("Connection error");
-                    },
-                    success: function(data) { //成功
-                        //var dataObj = data.phra;
-                        switch (data.is_success) {
-                            /*
-                            if (data == '0') {
-                                alert("登陆成功"); //就将返回的数据显示出来
-                                window.location.href = "index.html";
-                                // $.cookie("user_name", user_name, { expires: 7 }); // 存储一个带7天期限的 cookie
-                                window.localStorage.setItem("name", data);
-                                } else if (data == '1') {
-                                    alert("用户名不存在");
-                                    } else {
-                                            alert("密码错误");
-                            }
-                            */
-                            //switch (data) 
-                            case '0':
-                                {
-                                    window.location.href = "admin_page_1.html";
-                                    break;
-                                }
-                            case "1":
-                                {
-                                    document.getElementById('wrong_box').innerText = "用户名不存在";
-                                    break;
-                                }
-                            case "2":
-                                document.getElementById('wrong_box').innerText = "密码错误";
-                                break;
-                            default:
-                                document.getElementById('wrong_box').innerText = "未知错误";
-
-                        }
-
-                    }
-                });
-
-            }
-        }
-    }
-});
 
 
 //登录数据交互
@@ -384,14 +305,14 @@ $("#login_by_phone").click(function() {
     }
 });
 
-//管理员登录数据交互
+//管理员登录
 $("#admin_login").click(function() {
 
     admin_name = $('#admin_name').val();
-    password = $('#password').val();
+    admin_password = $('#admin_password').val();
 
-    if (admin_name.length == 0) { document.getElementById('wrong_box_1').innerText = '未输入用户名'; } else {
-        if (password.length == 0) { document.getElementById('wrong_box_1').innerText = '未输入密码'; } else {
+    if (admin_name.length == 0) { document.getElementById('wrong_box_1').innerText = '未输入管理员用户名'; } else {
+        if (admin_password.length == 0) { document.getElementById('wrong_box_1').innerText = '未输入密码'; } else {
 
             var val = valiCode.value;
             var current = result.join('');
@@ -413,7 +334,7 @@ $("#admin_login").click(function() {
                     // contentType: false,
                     data: {
                         'admin_name': admin_name,
-                        'password': password
+                        'admin_password': admin_password
                     },
 
                     datatype: "json",
@@ -440,8 +361,7 @@ $("#admin_login").click(function() {
                             //switch (data) 
                             case '0':
                                 {
-                                    //window.localStorage.setItem("name", data.user.user_name);
-                                    window.location.href = "admin_page.html";
+                                    window.location.href = "admin_page_1.html";
                                     break;
                                 }
                             case "1":
@@ -464,6 +384,7 @@ $("#admin_login").click(function() {
         }
     }
 });
+
 
 //登出
 $("#log_out").click(function() {
@@ -1141,3 +1062,84 @@ function get_admin_session() {
 
     });
 }
+
+//管理员增加新房源
+$("#admin_add").click(function() {
+
+    date = $('#date').val();
+    province = $('#province').val();
+    city = $('#city').val();
+    district = $('#district').val();
+
+
+    address = $('#address').val();
+    firm_name = $('#firm_name').val();
+    house_type = $('#house_type').val();
+    direction = $('#direction').val();
+
+    area = $('#area').val();
+    average_price = $('#average_price').val();
+    total_price = $('#total_price').val();
+    elevator = $('#elevator').val();
+
+    heigth = $('#heigth').val();
+    huxing_jiegou = $('#huxing_jiegou').val();
+    jianzhuleixing = $('#jianzhuleixing').val();
+    new_h = $('#new_h').val();
+
+    nianxian = $('#nianxian').val();
+    ti_bili = $('#ti_bili').val();
+    zhuangxiu = $('#zhuangxiu').val();
+    kaiaipan_shijian = $('#kaiaipan_shijian').val();
+
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/add_users", //提交的地址  
+        // contentType: false,
+        data: {
+            'date': date,
+            'province': province,
+            'city': city,
+            'district': district,
+
+            'address': address,
+            'firm_name': firm_name,
+            'house_type': house_type,
+            'direction': direction,
+
+            'area': area,
+            'average_price': average_price,
+            'total_price': total_price,
+            'elevator': elevator,
+
+            'heigth': heigth,
+            'huxing_jiegou': huxing_jiegou,
+            'jianzhuleixing': jianzhuleixing,
+            'new_h': new_h,
+
+            'nianxian': nianxian,
+            'ti_bili': ti_bili,
+            'zhuangxiu': zhuangxiu,
+            'kaiaipan_shijian': kaiaipan_shijian,
+
+        },
+
+        datatype: "json",
+        //$('#login_form').serialize(), // 序列化表单值  
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) { //成功
+            switch (data.is_success) {
+                case '0':
+                    alert("提交成功");
+                    break;
+                default:
+                    alert("未知错误");
+
+            }
+        }
+
+    });
+});

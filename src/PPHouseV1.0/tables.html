@@ -41,6 +41,10 @@
         .sale-left li:hover {
             background: #f3f3eb
         }
+
+        .sale-left li:hover .actions{
+            display: block
+        }
         
         .sale-left li:hover .house-title a {
             color: #e54b00;
@@ -74,44 +78,22 @@
         .sortby .sort-con a {
             margin-left: 20px;
             padding-right: 15px;
+            color:#666
         }
         
         .sortby .sort-con a.fst {
             margin-left: 0;
             padding-right: 0;
-            background-image: none;
-            color: #e54b00;
-            font-weight: normal
         }
         
-        .sortby .sort-con a.fst {
-            margin-left: 0;
-            padding-right: 0;
-            background-image: none;
+        .sortby .sort-con .active {
             color: #e54b00;
-            font-weight: normal
-        }
-        
-        .sortby .sort-con a:link,
-        .sortby .sort-con a:visited {
-            color: #666
+            text-decoration: none
         }
         
         .sortby .sort-con a:hover {
             color: #e54b00;
             text-decoration: underline
-        }
-        
-        .sortby .sort-con .up {
-            background-position: 30px -30px;
-            background-position: 30px -29px \0;
-            *background-position: 30px -29px
-        }
-        
-        .sortby .sort-con .down {
-            background-position: 30px -46px;
-            background-position: 30px -45px \0;
-            *background-position: 30px -45px
         }
         
         .houselist-mod {
@@ -145,21 +127,6 @@
             height: 100%
         }
         
-        .houselist-mod .list-item a {
-            display: inline-block;
-            color: #333;
-            font-size: 16px;
-            font-weight: bold;
-            vertical-align: top;
-            padding-right: 7px;
-            max-width: 375px;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            display: inline-block;
-            vertical-align: top;
-        }
-        
         .houselist-mod .house-details .house-title {
             margin-bottom: 6px;
             height: 34px;
@@ -174,7 +141,19 @@
             max-width: 375px;
             text-overflow: ellipsis;
             overflow: hidden;
-            white-space: nowrap
+            white-space: nowrap;
+            display: inline-block;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            vertical-align: top;
+            padding-right: 7px;
+            max-width: 375px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            vertical-align: top;
         }
         
         
@@ -253,6 +232,28 @@
             color: #799374;
             background: #f2f6ed
         }
+
+        .houselist-mod .actions {
+            display: none;
+            position: absolute;
+            top: 25px;
+            right: 0;
+            width: 200px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .houselist-mod .actions a {
+            color: grey;
+            padding: 4px 10px;
+            border: solid 1px grey;
+            border-radius: 2px
+        }
+
+        .houselist-mod .actions a:hover{
+            color: black;
+            text-decoration: none
+        } 
         
         .houselist-mod .pro-price {
             position: absolute;
@@ -506,7 +507,7 @@
                     <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
                         <h1 class="h4">UserName</h1>
-                        <p>City1.1</p>
+                        <p>City1.4</p>
                     </div>
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
@@ -665,10 +666,10 @@
                     <div class="sortby" id='filtersort'>
                         <span>为您找到以下房源</span>
                         <span class="sort-con">排序：
-                            <a class="fst" href="#" rel="nofollow">默认</a>
-                            <a class="down" href="#" rel="nofollow">面积⬇</a>
-                            <a class="up" href="#" rel="nofollow">价格⬆</a>
-                            <a class="down" href="#" rel="nofollow">最新⬇</a>
+                            <a class="fst active" href="#">默认</a>
+                            <a class="down" href="#">面积⬇</a>
+                            <a class="up" href="#">价格⬆</a>
+                            <a class="down" href="#">最新⬇</a>
                         </span>
                     </div>
 
@@ -686,7 +687,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -698,6 +701,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -717,7 +724,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -729,6 +738,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -748,7 +761,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -760,6 +775,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -779,7 +798,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -791,6 +812,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -810,7 +835,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -822,6 +849,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -841,7 +872,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -853,6 +886,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -872,7 +909,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -884,6 +923,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -903,7 +946,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -915,6 +960,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -934,7 +983,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -946,6 +997,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -965,7 +1020,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -977,6 +1034,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -996,7 +1057,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -1008,6 +1071,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -1027,7 +1094,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -1039,6 +1108,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -1058,7 +1131,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -1070,6 +1145,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -1089,7 +1168,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -1101,6 +1182,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -1120,7 +1205,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -1132,6 +1219,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -1151,7 +1242,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -1163,6 +1256,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -1182,7 +1279,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -1194,6 +1293,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -1213,7 +1316,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -1225,6 +1330,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -1244,7 +1353,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -1256,6 +1367,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -1275,7 +1390,9 @@
                                     <em class="spe-lines">|</em>
                                     <span class="area" id="area">XX㎡</span>
                                     <em class="spe-lines">|</em>
-                                    <span>高层(共6层)</span>
+                                    <span class="floor">XX层</span>
+                                    <em class="spe-lines">|</em>
+                                    <span clsss="direction">朝XX</span>
                                     <em class="spe-lines">|</em>
                                     <span>1990年建造</span>
                                 </div>
@@ -1287,6 +1404,10 @@
                                     <span class="item-tags tag-others">配套成熟</span>
                                     <span class="item-tags tag-others">交通便利</span>
                                 </div>
+                            </div>
+                            <div class="actions">
+                                <a href="#">加入对比</a>
+                                <a href="#">关注</a>
                             </div>
                             <div class="pro-price">
                                 <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
@@ -1612,89 +1733,92 @@
                         }
                     }
                 });
+                city = $('#citySelect').html();
+                $.ajax({
+                    type: "post",
+                    url: "/query_prices",
+                    datatype:"json",
+                    data: {
+                        "city": city.replace(/市/,""),
+                        "month": getMonth()+1,
+                        'page':1
+                    },
+                    async: false,
+                    error: function(request) {
+                        alert("Connection error");
+                    },
+                    success(data){
+                        $("#lineChartExample4").remove();
+                        $("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
+                        $(document).ready(function () {
+                            'use strict';
+                            var LINECHART4 = $('#lineChartExample4');
+                            var myLineChart4 = new Chart(LINECHART4, {
+                                type: 'line',
+                                options: {
+                                    scales: {
+                                        xAxes: [{
+                                            display: true,
+                                            gridLines: {
+                                                display: false
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            display:true,
+                                            gridLines: {
+                                                display: true
+                                            }
+                                        }]
+                                    },
+                                    legend: {labels:{fontColor:"#777", fontSize: 12},display:false}
+                                },
+                                data: {
+                                    labels: [lastYear(getMonth()-11), lastYear(getMonth()-10), lastYear(getMonth()-9), lastYear(getMonth()-8), lastYear(getMonth()-7), lastYear(getMonth()-6), lastYear(getMonth()-5), lastYear(getMonth()-4), lastYear(getMonth()-3), lastYear(getMonth()-2), lastYear(getMonth()-1), lastYear(getMonth())],
+                                    datasets: [
+                                        {
+                                            label: "City 1",
+                                            fill: true,
+                                            lineTension: 0,
+                                            backgroundColor: "transparent",
+                                            borderColor: '#6ccef0',
+                                            pointBorderColor: '#59c2e6',
+                                            pointHoverBackgroundColor: '#59c2e6',
+                                            borderCapStyle: 'butt',
+                                            borderDash: [],
+                                            borderDashOffset: 0.0,
+                                            borderJoinStyle: 'miter',
+                                            borderWidth: 3,
+                                            pointBackgroundColor: "#59c2e6",
+                                            pointBorderWidth: 0,
+                                            pointHoverRadius: 4,
+                                            pointHoverBorderColor: "#fff",
+                                            pointHoverBorderWidth: 0,
+                                            pointRadius: 4,
+                                            pointHitRadius: 0,
+                                            data: [data.one, data.two, data.three, data.four, data.five, data.six, data.seven, data.eight, data.nine, data.ten, data.eleven, data.twelve],
+                                            spanGaps: false
+                                        }
+                                    ]
+                                }
+                            });
+                            for(var i=0; i<20; i++){
+                                $(".house_title").eq(i).html(data.houses[i].firm_name);
+                                $(".address").eq(i).html(data.houses[i].address);
+                                $(".house_type").eq(i).html(data.houses[i].house_type);
+                                $(".ave_price").eq(i).html(data.houses[i].average_price);
+                                $(".total_price").eq(i).html(data.houses[i].total_price);
+                                $(".area").eq(i).html(data.houses[i].area);
+                                $(".floor").eq(i).html(data.houses[i].heigth);
+                                $(".direction").eq(i).html(data.houses[i].direction);
+                            }
+                            $("#Pagination").pagination(data.page_num);
+                            $("#allPage").html(data.page_num);
+                        });
+                    }
+                });
             }
             });
 
-            $.ajax({
-                type: "post",
-                url: "/query_prices",
-                datatype:"json",
-                data: {
-                    "city": $('#citySelect').html(),
-                    "month": getMonth()+1,
-                    'page':1
-                },
-                async: false,
-                error: function(request) {
-                    alert("Connection error");
-                },
-                success(data){
-                    $("#lineChartExample4").remove();
-                    $("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
-                    $(document).ready(function () {
-                        'use strict';
-                        var LINECHART4 = $('#lineChartExample4');
-                        var myLineChart4 = new Chart(LINECHART4, {
-                            type: 'line',
-                            options: {
-                                scales: {
-                                    xAxes: [{
-                                        display: true,
-                                        gridLines: {
-                                            display: false
-                                        }
-                                    }],
-                                    yAxes: [{
-                                        display:true,
-                                        gridLines: {
-                                            display: true
-                                        }
-                                    }]
-                                },
-                                legend: {labels:{fontColor:"#777", fontSize: 12},display:false}
-                            },
-                            data: {
-                                labels: [lastYear(getMonth()-11), lastYear(getMonth()-10), lastYear(getMonth()-9), lastYear(getMonth()-8), lastYear(getMonth()-7), lastYear(getMonth()-6), lastYear(getMonth()-5), lastYear(getMonth()-4), lastYear(getMonth()-3), lastYear(getMonth()-2), lastYear(getMonth()-1), lastYear(getMonth())],
-                                datasets: [
-                                    {
-                                        label: "City 1",
-                                        fill: true,
-                                        lineTension: 0,
-                                        backgroundColor: "transparent",
-                                        borderColor: '#6ccef0',
-                                        pointBorderColor: '#59c2e6',
-                                        pointHoverBackgroundColor: '#59c2e6',
-                                        borderCapStyle: 'butt',
-                                        borderDash: [],
-                                        borderDashOffset: 0.0,
-                                        borderJoinStyle: 'miter',
-                                        borderWidth: 3,
-                                        pointBackgroundColor: "#59c2e6",
-                                        pointBorderWidth: 0,
-                                        pointHoverRadius: 4,
-                                        pointHoverBorderColor: "#fff",
-                                        pointHoverBorderWidth: 0,
-                                        pointRadius: 4,
-                                        pointHitRadius: 0,
-                                        data: [data.one, data.two, data.three, data.four, data.five, data.six, data.seven, data.eight, data.nine, data.ten, data.eleven, data.twelve],
-                                        spanGaps: false
-                                    }
-                                ]
-                            }
-                        });
-                        for(var i=0; i<20; i++){
-                            $(".house_title").eq(i).html(data.houses[i].firm_name);
-                            $(".address").eq(i).html(data.houses[i].address);
-                            $(".house_type").eq(i).html(data.houses[i].house_type);
-                            $(".ave_price").eq(i).html(data.houses[i].average_price);
-                            $(".total_price").eq(i).html(data.houses[i].total_price);
-                            $(".area").eq(i).html(data.houses[i].area);
-                        }
-                        $("#Pagination").pagination(data.page_num);
-                        $("#allPage").html(data.page_num);
-                    });
-                }
-            });
         })
     </script>
 
