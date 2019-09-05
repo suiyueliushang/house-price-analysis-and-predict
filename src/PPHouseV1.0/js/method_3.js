@@ -15,7 +15,7 @@ var current5 = {
 };
 
 (function showProv5() {
-    btn5.disabled =true;
+    btn5.disabled = true;
     var len = provice.length;
     for (var i = 0; i < len; i++) {
         var provOpt = document.createElement('option');
@@ -23,11 +23,11 @@ var current5 = {
         provOpt.value = i;
         prov5.appendChild(provOpt);
     }
-    var len_0=10;
-    for(var i = 0; i<len_0; i++) {
-        var year_time=2019-i;
+    var len_0 = 10;
+    for (var i = 0; i < len_0; i++) {
+        var year_time = 2019 - i;
         var timeOpt = document.createElement('option');
-        timeOpt.innerText=year_time;
+        timeOpt.innerText = year_time;
         timeOpt.value = i;
         time_5.appendChild(timeOpt);
     }
