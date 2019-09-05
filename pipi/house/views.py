@@ -265,18 +265,18 @@ def query_prices(request):
             {'is_success':一个数字,0代表成功，1代表失败,houses:一个列表，包含符合条件的所有房源}
     '''
     _city=request.POST.get('city')
-    _district=request.POST.get('district')
-    _month=request.POST.get('month')
-    _min=int(request.POST.get('min'))
-    _max=int(request.POST.get('max'))
     _page=int(request.POST.get('page'))
+    _month=request.POST.get('month')
+
+    #_district=request.POST.get('district')
+    #_min=int(request.POST.get('min_price'))
+    #_max=int(request.POST.get('max_price'))
+
     print(_city)
-    print(_district)
-    print(_min)
-    print(_max)
     #print(_page)
     try:
-        conditions={'city__exact':_city,'district__exact':_district}
+        city_name=_city.split('市')
+        conditions={'city__in':_city}
         houses=House.objects.filter(**conditions)
         print(len(houses))
     except:
@@ -295,6 +295,11 @@ def query_prices(request):
         housess.append(house_house)
     city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
     result={'page_num':_page_num,'houses':housess,'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+    
+    '''
+
+    '''
+
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def district_in_city(request):
@@ -431,7 +436,8 @@ def admin_session(request):
     _session_id=request.COOKIES.get('key')
     print(_session_id)
     try:
-        admin=Admin.objects.filter(session_id=_session_id)
+        admin=Admin.objects.filter(session_id=_session_id)[0]
+        print(admin.session_id)
         result={'is_success':'0'}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     except:
