@@ -133,7 +133,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <!-- Basic Form-->
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-close">
                                         <div class="dropdown">
@@ -145,14 +145,37 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Basic Form</h3>
+                                        <h3 class="h4">房价预测</h3>
                                     </div>
                                     <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet consectetur.</p>
-                                        <form>
+                                        <p>选择您想要预测的城市区域:</p>
+                                        <form class="form-inline">
+
                                             <div class="form-group">
-                                                <label class="form-control-label">Email</label>
-                                                <input type="email" placeholder="Email Address" class="form-control">
+                                                <!--省份选择-->
+                                                <select id="prov5" class="form-control mb-3" onchange="showCity5(this)">
+                                                            <option>=请选择省份=</option>
+                                                        </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--城市选择-->
+                                                <select id="city5" class="form-control mb-3" onchange="showCountry5(this)">
+                                                                <option>=请选择城市=</option>
+                                                        </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!--县区选择-->
+                                                <select id="country5" class="form-control mb-3" onchange="selecCountry5(this)">
+                                                                <option>=请选择县区=</option>
+                                                         </select>
+                                            </div>
+                                        </form>
+
+                                        <form>
+
+                                            <div class="form-group">
+
                                             </div>
                                             <div class="form-group">
                                                 <label class="form-control-label">Password</label>
@@ -635,6 +658,8 @@
         </div>
     </div>
     <!-- JavaScript files-->
+    <script src="js/city.js"></script>
+    <script src="js/method_4.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js">
     </script>
@@ -645,6 +670,7 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+
     <script>
         document.getElementById('login_id').innerText = window.localStorage.getItem("name");
         console.log(window.localStorage.getItem("name"));
