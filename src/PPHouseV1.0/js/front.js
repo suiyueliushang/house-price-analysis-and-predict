@@ -1143,3 +1143,42 @@ $("#admin_add").click(function() {
 
     });
 });
+
+//用户修改密码
+$("#change_password").click(function() {
+
+            change_user_name = $('#change_user_name').val();
+            change_password_1 = $('#change_password_1').val();
+            change_password_2 = $('#change_password_2').val();
+            change_password_3 = $('#change_password_3').val();
+
+            $.ajax({
+                type: "POST", //提交的方法
+                url: "/admin_session", //提交的地址  
+                // contentType: false,
+                data: {
+                    'change_user_name': change_user_name,
+                    'change_password_1': change_password_1,
+                    'change_password_2': change_password_2,
+                    'change_password_3': change_password_3,
+                },
+
+                datatype: "json",
+                async: false,
+                error: function(request) { //失败的话
+                    alert("Connection error");
+                },
+                success: function(data) { //成功
+                    switch (data.is_success) {
+                        case '0':
+                            break;
+                        case '1':
+                            alert(密码错误)
+                            break;
+                        default:
+                            alert("未知错误");
+                    }
+                }
+
+            });
+        }
