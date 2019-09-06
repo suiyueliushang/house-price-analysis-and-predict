@@ -432,13 +432,14 @@ Vcity.CitySelector.prototype = {
                         $(document).ready(function(){
                             for(var i=0; i<20; i++){
                                 $(".house_title").eq(i).html(data.houses[i].firm_name);
-                                $(".address").eq(i).html(data.houses[i].address);
+                                //$(".address").eq(i).html(data.houses[i].address);
                                 $(".house_type").eq(i).html(data.houses[i].house_type);
                                 $(".ave_price").eq(i).html(data.houses[i].average_price);
                                 $(".total_price").eq(i).html(data.houses[i].total_price);
                                 $(".area").eq(i).html(data.houses[i].area);
                                 $(".floor").eq(i).html(data.houses[i].heigth);
                                 $(".house_id").eq(i).html(date.houses[i].id);
+                                $(".list-item").eq(i).attr("href","house.html?id="+data.houses[i].id);
                                 if(data.houses[i].new){
                                     $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">新房</span>');
                                 }

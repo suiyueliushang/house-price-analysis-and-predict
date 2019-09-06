@@ -253,6 +253,22 @@ def forget_password(request):
         print(222)
         return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
 
+def change_password(request):
+    _user_name=request.POST.get('change_user_name')
+    _old_password=request.POST.get('change_password_1')
+    _new_password=request.POST.get('change_password_2')
+    _cookie=request.COOKIES.get('key')
+    try:
+        user=User.objects.filter(Q(user_name=_user_name)&Q(password=_old_password))
+        if user.session_id == _cookie:
+            user.password=_new_password
+            user.save()
+            return HttpResponse(json.dumps({'is_success':'0'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+        else:
+            return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 def query_prices(request):
     '''
     用户点击城市,地区,价格区间来显示该地区的房源
@@ -268,21 +284,133 @@ def query_prices(request):
     _page=int(request.POST.get('page'))
     _month=request.POST.get('month')
 
-    #_district=request.POST.get('district')
-    #_min=int(request.POST.get('min_price'))
-    #_max=int(request.POST.get('max_price'))
+    _max_area=None
+    _max_price=None
+    _min_price=None
+    _min_area=None
+    _district=None
+
+    if request.POST.get('district'):
+        _district=request.POST.get('district')
+    if request.POST.get('min_price'):
+        _min_price=int(request.POST.get('min_price'))
+    if request.POST.get('max_price'):
+        _max_price=int(request.POST.get('max_price'))
+    if request.POST.get('min_area'):
+        _min_area=int(request.POST.get('min_area'))
+    if request.POST.get('max_area'):
+        _max_area=int(request.POST.get('max_area'))
 
     print(_city)
-    #print(_page)
     try:
-        city_name=_city.split('市')
-        conditions={'city__in':_city}
-        houses=House.objects.filter(**conditions)
-        print(len(houses))
+        city_name=_city.split('市')[0]
+        print(city_name)
+        #conditions={'city__in':_city}
+        houses=list(House.objects.filter(city=city_name))
+        length_1=len(houses)
+        print(length_1)
+        housess=[]
+        if _min_price and _min_area:
+            price=(_min_price+_max_price)/2*10000
+            area=(_min_area+_max_area)/2
+            average=price/area;
+            _min_average=average-2000
+            _max_average=average+2000
+            print(_min_average)
+            print(_max_average)
+
+            _page_num=int(length_1/20+1)
+            start=(_page-1)*20
+            end=(_page-1)*20+20
+            for i in range(start,min(len(houses),end)):
+                if houses[i].area and houses[i].total_price and houses[i].huxing_jiegou and houses[i].direction:
+                    area_list=houses[i].area.split(';')
+                    total_price_list=houses[i].total_price.split(';')
+                    huxing_list=houses[i].house_type.split(';')
+                    direction_list=houses[i].direction.split(';')
+                else:
+                    area_list=[]
+                    total_price_list=[]
+                    huxing_list=[]
+                    direction_list=[]
+                print(int(houses[i].average_price))
+                if int(houses[i].average_price)> int(_min_average) and int(houses[i].average_price)< int(_max_average):
+                    print(i,houses[i].average_price)
+                    if _district:
+                        if _district==houses[i].district:
+                            if len(area_list)>0:
+                                house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':huxing_list[0],'average_price':houses[i].average_price,'total_price':total_price_list[0],'area':area_list[0],'height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
+                                #,'date':str(houses[i].date),'district':houses[i].district,'direction':direction_list,'elevator':houses[i].elevator
+                                #,'huxing_jiegou':houses[i].huxing_jiegou,'jianzhuleixing':houses[i].jianzhuleixing,'new':houses[i].new,'nianxian':houses[i].nianxian,
+                                #'tihu_bili':houses[i].tihu_bili,'zhuangxiu':houses[i].zhuangxiu,'kaipan_shijian':houses[i].kaipan_shijian,'city':houses[i].city}
+                                housess.append(house_house)
+                            else:
+                                house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':'','average_price':houses[i].average_price,'total_price':'','area':'','height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
+                                housess.append(house_house)
+                    else:
+                        if len(area_list)>0:
+                            house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':huxing_list[0],'average_price':houses[i].average_price,'total_price':total_price_list[0],'area':area_list[0],'height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
+                            #,'date':str(houses[i].date),'district':houses[i].district,'direction':direction_list,'elevator':houses[i].elevator
+                            #,'huxing_jiegou':houses[i].huxing_jiegou,'jianzhuleixing':houses[i].jianzhuleixing,'new':houses[i].new,'nianxian':houses[i].nianxian,
+                            #'tihu_bili':houses[i].tihu_bili,'zhuangxiu':houses[i].zhuangxiu,'kaipan_shijian':houses[i].kaipan_shijian,'city':houses[i].city}
+                            housess.append(house_house)
+                        else:
+                            house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':'','average_price':houses[i].average_price,'total_price':'','area':'','height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
+                            housess.append(house_house)
+                else:
+                    pass
+            city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
+            result={'page_num':_page_num,'houses':housess,'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        else:
+            print(2)
+            _page_num=int(len(houses)/20+1)
+            start=(_page-1)*20
+            end=(_page-1)*20+20
+            house_s=list(houses)
+            housess=[]
+            for i in range(start,min(len(houses),end)):
+                if houses[i].area and houses[i].total_price and houses[i].huxing_jiegou and houses[i].direction:
+                        area_list=houses[i].area.split(';')
+                        total_price_list=houses[i].total_price.split(';')
+                        huxing_list=houses[i].house_type.split(';')
+                        direction_list=houses[i].direction.split(';')
+                else:
+                    area_list=[]
+                    total_price_list=[]
+                    huxing_list=[]
+                    direction_list=[]
+                if _district:
+                    if _district==houses[i].district:
+                        if len(area_list)>0:
+                            house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':huxing_list[0],'average_price':houses[i].average_price,'total_price':total_price_list[0],'area':area_list[0],'height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
+                            #,'date':str(houses[i].date),'district':houses[i].district,'direction':direction_list,
+                            #,'huxing_jiegou':houses[i].huxing_jiegou,'jianzhuleixing':houses[i].jianzhuleixing,'nianxian':houses[i].nianxian,
+                            #'tihu_bili':houses[i].tihu_bili,'zhuangxiu':houses[i].zhuangxiu,'kaipan_shijian':houses[i].kaipan_shijian,'city':houses[i].city}
+                            housess.append(house_house)
+                        else:
+                            house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':'','average_price':houses[i].average_price,'total_price':'','area':'','height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
+                            housess.append(house_house)
+                else:
+                    if len(area_list)>0:
+                        house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':huxing_list[0],'average_price':houses[i].average_price,'total_price':total_price_list[0],'area':area_list[0],'height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}    #,'date':str(houses[i].date),'district':houses[i].district,'direction':direction_list,'elevator':houses[i].elevator
+                        # ,'huxing_jiegou':houses[i].huxing_jiegou,'jianzhuleixing':houses[i].jianzhuleixing,'nianxian':houses[i].nianxian,
+                            #'tihu_bili':houses[i].tihu_bili,'zhuangxiu':houses[i].zhuangxiu,'kaipan_shijian':houses[i].kaipan_shijian,'city':houses[i].city}
+                        housess.append(house_house)
+                    else:
+                        house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':'','average_price':houses[i].average_price,'total_price':'','area':'','height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
+                        housess.append(house_house)
+                #city,district,month,_min_price,_min_area,page
+                #id,firm_name,address,house_type,average_price,total_price,area,height
+            city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
+            result={'page_num':_page_num,'houses':housess,'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     except:
         traceback.print_exc()
         return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
     
+
+    '''
     _page_num=int(len(houses)/20+1)
     print(_page_num)
     start=(_page-1)*20
@@ -290,17 +418,16 @@ def query_prices(request):
     house_s=list(houses)
     housess=[]
     for i in range(start,end):
-        house_house={'city':house_s[i].city,'address':house_s[i].address,'firm_name':house_s[i].firm_name,'house_type':house_s[i].house_type,'average_price':house_s[i].average_price,
-                    'area':house_s[i].area,'total_price':house_s[i].total_price,'date':str(house_s[i].date),'district':house_s[i].district}
+        print(house_s[i].firm_name)
+        house_house={'city':house_s[i].city,'firm_name':house_s[i].address,'house_type':house_s[i].house_type,'average_price':house_s[i].average_price,
+                    'area':house_s[i].area,'total_price':house_s[i].total_price,'date':str(house_s[i].date),'district':house_s[i].district,'elevator':house_s[i].elevator
+                    ,'height':house_s[i].height,'huxing_jiegou':house_s[i].huxing_jiegou,'jianzhuleixing':house_s[i].jianzhuleixing,'new':house_s[i].new,'nianxian':house_s[i].nianxian}
         housess.append(house_house)
     city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
     result={'page_num':_page_num,'houses':housess,'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
-    
-    '''
-
-    '''
-
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    '''
+
 
 def district_in_city(request):
     _city=request.POST.get('city')
@@ -456,13 +583,25 @@ def add_house_info(request):
     _average_price=request.POST.get('average_price')
     _area=request.POST.get('area')
     _total_price=request.POST.get('total_price')
-    _date=datetime.datetime.now().date()
+    _date=request.POST.get('date')
     _district=request.POST.get('district')
+    _direction=request.POST.get('direction')
+    _elevator=request.POST.get('elevator')
+    _height=request.POST.get('height')
+    _huxing_jiegou=request.POST.get('huxing_jiegou')
+    _jianzhuleixing=request.POST.get('jianzhuleixing')
+    _new=request.POST.get('new')
+    _nianxian=request.POST.get('nianxian')
+    _tihu_bili=request.POST.get('tihu_bili')
+    _zhuangxiu=request.POST.get('zhuangxiu')
+    _kaipan_shijian=request.POST.get('kaipan_shijian')
     #try:
         #admin=Admin.objects.filter(session_id=_session_id)
     try:
         house=House(city=_city,address=_address,firm_name=_firm_name,house_type=_house_type,average_price=_average_price,
-                area=_area,total_price=_total_price,date=_date,district=_district)
+                area=_area,total_price=_total_price,date=_date,district=_district,elevator=_elevator,height=_height,
+                huxing_jiegou=_huxing_jiegou,jianzhuleixing=_jianzhuleixing,new=_new,nianxian=_nianxian,tihu_bili=_tihu_bili,
+                zhuangxiu=_zhuangxiu,kaipan_shijian=_kaipan_shijian)
         house.save()
         result={'is_success':'0'}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
