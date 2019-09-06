@@ -5,13 +5,14 @@ $(document).ready(function() {
     // ------------------------------------------------------- //
     // Search Box
     // ------------------------------------------------------ //
-    $('#search').on('click', function(e) {
+    /*$('#search').on('click', function(e) {
         e.preventDefault();
         $('.search-box').fadeIn();
     });
     $('.dismiss').on('click', function() {
         $('.search-box').fadeOut();
     });
+    */
 
     // ------------------------------------------------------- //
     // Card Close
@@ -1036,6 +1037,50 @@ function show_user_table() {
 //新增访问 new_sign_in_list
 //new_sign_up1
 
+
+//用户修改密码
+$("#change_password").click(function() {
+
+    change_user_name = $('#change_user_name').val();
+    change_password_1 = $('#change_password_1').val();
+    change_password_2 = $('#change_password_2').val();
+    change_password_3 = $('#change_password_3').val();
+
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/change_password_func", //提交的地址  
+        // contentType: false,
+        data: {
+            'change_user_name': change_user_name,
+            'change_password_1': change_password_1,
+            'change_password_2': change_password_2,
+        },
+
+        datatype: "json",
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) { //成功
+            switch (data.is_success) {
+                case '0':
+                    alert("修改成功");
+                    break;
+                case '1':
+                    alert("用户名错误");
+                    break;
+                case '2':
+                    alert("密码错误");
+                    break;
+
+                default:
+                    alert("未知错误");
+            }
+        }
+
+    });
+})
+
 function get_admin_session() {
     $.ajax({
         type: "POST", //提交的方法
@@ -1064,7 +1109,7 @@ function get_admin_session() {
 }
 
 //管理员增加新房源
-$("#admin_add").click(function() {
+$("#admin_add_house").click(function() {
 
     date = $('#date').val();
     province = $('#province').val();
@@ -1144,45 +1189,31 @@ $("#admin_add").click(function() {
     });
 });
 
-//用户修改密码
-$("#change_password").click(function() {
-
-    change_user_name = $('#change_user_name').val();
-    change_password_1 = $('#change_password_1').val();
-    change_password_2 = $('#change_password_2').val();
-    change_password_3 = $('#change_password_3').val();
-
+//获取管理员身份证明
+function get_admin_session() {
     $.ajax({
         type: "POST", //提交的方法
-        url: "/chang_password_func", //提交的地址  
+        url: "/admin_session", //提交的地址  
         // contentType: false,
-        data: {
-            'change_user_name': change_user_name,
-            'change_password_1': change_password_1,
-            'change_password_2': change_password_2,
-        },
+        data: {},
 
         datatype: "json",
         async: false,
         error: function(request) { //失败的话
             alert("Connection error");
+            window.location.href = "login.html";
         },
         success: function(data) { //成功
             switch (data.is_success) {
                 case '0':
-                    alert("修改");
                     break;
                 case '1':
-                    alert("用户名错误");
+                    window.location.href = "login.html";
                     break;
-                case '2':
-                    alert("密码错误");
-                    break;
-
                 default:
                     alert("未知错误");
             }
         }
 
     });
-})
+}

@@ -1,7 +1,7 @@
 /*global $, document*/
-    var bar1;
-    var BARCHART1 = $('#barChart1');
-$(document).ready(function () {
+var bar1;
+var BARCHART1 = $('#barChart1');
+$(document).ready(function() {
 
     'use strict';
 
@@ -18,7 +18,7 @@ $(document).ready(function () {
     gradient2.addColorStop(0, 'rgba(104, 179, 112, 0.85)');
     gradient2.addColorStop(1, 'rgba(76, 162, 205, 0.85)');
     var region = new Array("江宁区", "鼓楼区", "玄武区", "栖霞区", "白下区", "六合区", "溧水区");
-    var price = new Array(20,18,30,30,17,49,32);
+    var price = new Array(20, 18, 30, 30, 17, 49, 32);
 
 
     // ------------------------------------------------------- //
@@ -383,7 +383,7 @@ $(document).ready(function () {
     });
 
 
-    var LINECHART5 = $('#lineChartExample5');
+    /*   var LINECHART5 = $('#lineChartExample5');
 
     var myLineChart5 = new Chart(LINECHART5, {
         type: 'line',
@@ -461,7 +461,7 @@ $(document).ready(function () {
         data: {
             labels: [GetDateStr(-11), GetDateStr(-10), GetDateStr(-9), GetDateStr(-8), GetDateStr(-7), GetDateStr(-6), GetDateStr(-5), GetDateStr(-4), GetDateStr(-3), GetDateStr(-2), GetDateStr(-1), GetDateStr(0)],
             datasets: [{
-                label: "南京",
+                label: "",
                 fill: true,
                 lineTension: 0,
                 backgroundColor: "transparent",
@@ -485,7 +485,7 @@ $(document).ready(function () {
             }]
         }
     });
-
+*/
     // ------------------------------------------------------- //
     // Line Chart5 
     // ------------------------------------------------------ //
@@ -716,14 +716,12 @@ $(document).ready(function () {
         },
         data: {
             labels: region,
-            datasets: [
-                {
-                    label: "city 1",
-                    backgroundColor:"#62a8ea",
-                    borderWidth: 0,
-                    data: price
-                }
-            ]
+            datasets: [{
+                label: "city 1",
+                backgroundColor: "#62a8ea",
+                borderWidth: 0,
+                data: price
+            }]
         }
     });
 
