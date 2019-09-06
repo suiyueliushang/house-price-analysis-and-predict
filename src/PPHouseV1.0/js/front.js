@@ -1170,10 +1170,15 @@ $("#change_password").click(function() {
         success: function(data) { //成功
             switch (data.is_success) {
                 case '0':
+                    alert("修改");
                     break;
                 case '1':
-                    alert(密码错误)
+                    alert("用户名错误");
                     break;
+                case '2':
+                    alert("密码错误");
+                    break;
+
                 default:
                     alert("未知错误");
             }
