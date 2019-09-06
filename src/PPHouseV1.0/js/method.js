@@ -26,7 +26,7 @@ var time_4 = $('time_4');
 var city_region = new Array();
 var price_array = new Array(12);
 var price_array1 = new Array(12);
-var price4 = new Array(20000, 25000, 30000, 16000, 27000, 32000, 26000, 17000, 21000, 23000, 30000, 24000, 25000);
+var price4 = new Array();
 var region_1;
 var region_2;
 
@@ -230,14 +230,9 @@ function selecCountry1(obj) {
 
 
 function deal_4(obj) {
-    city_region = new Array();
     current4.city4 = obj.options[obj.selectedIndex].value;
     if (current4.city4 != null) {
         btn4.disabled = false;
-        var countryLen = provice[current4.prov4]["city"][current4.city4].districtAndCounty.length;
-        for (var n = 0; n < countryLen; n++) {
-            city_region[n] = provice[current4.prov4]["city"][current4.city4].districtAndCounty[n];
-        }
     }
 
 }
@@ -475,6 +470,29 @@ function showAddr4() {
     var index = myselect.selectedIndex;
     var time4_name = myselect.options[index].text;
     addrShow4.value = time4_name + '-' + provice[current4.prov4].name + '-' + provice[current4.prov4]["city"][current4.city4].name;
+    var city_name = provice[current4.prov4]["city"][current4.city4].name;
+    city_region = new Array();
+    price4 = new Array();
+    $.ajax({
+        type: "POST", //
+        url: "/district_in_city", //
+        datatype: "json",
+        data: {
+            'city_name': city_name,
+            'year': time4_name
+        },
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) {
+            var len_region = data.info.length;
+            for (var i=0;i<len_region;i++) {
+                city_region[i] = data.info[i].district;
+                price4[i] = data.info[i].price;
+            }
+        }
+    });
     $('#barChart1').remove();
     $('#bar_1').append('<canvas id="barChart1"></canvas>');
     $(document).ready(function() {
@@ -490,7 +508,7 @@ function showAddr4() {
                     }],
                     yAxes: [{
                         ticks: {
-                            min: 10000
+                            min: 3000
 
                         },
                         display: true

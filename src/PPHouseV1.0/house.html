@@ -203,6 +203,16 @@
             </div>
         </div>
     </div>
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js">
+    </script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
     <script>
         function getParams(key) {
             var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
@@ -214,65 +224,89 @@
         };
         window.onload = function() {
             var house_info = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            alert(getParams("id"));
-            /*$.ajax({
+            var id_name="10000";
+            $.ajax({
                 type: "POST", //
-                url: "", //
+                url: "/detail_info", //
                 datatype: "json",
                 data: {
-                    'id': "1",
+                    'id': id_name
                 },
                 async: false,
                 error: function(request) { //失败的话
                     alert("Connection error");
                 },
                 success: function(data) {
-                    house_info[0] = "";
-                    house_info[1] = "";
-                    house_info[2] = "";
-                    house_info[3] = "";
-                    house_info[4] = "";
-                    house_info[5] = "";
-                    house_info[6] = "";
-                    house_info[7] = "";
-                    house_info[8] = "";
-                    house_info[9] = "";
-                    house_info[10] = "";
-                    house_info[11] = "";
-                    house_info[12] = "";
-                    house_info[13] = "";
-                    house_info[14] = "";
-                    house_info[15] = "";
-                    house_info[16] = "";
-                    house_info[17] = "";
-                    house_info[18] = "";
-                    house_info[19] = "";
-                    house_info[20] = "";
-                    house_info[21] = ""
+                    p_name.innerHTML = data.house.firm_name;
+                    p_type.innerHTML = house_info[1];
+                    var len0 =data.house.total_price.length;
+                    if(len0==0) {
+                        p_price.innerHTML = "";
+                    }
+                    else {
+                        p_price.innerHTML = data.house.total_price[0];
+                    }
+                    td_city.innerHTML = data.house.city;
+                    td_address.innerHTML = data.house.address;
+                    td_xiaoqu.innerHTML = data.house.firm_name;
+                    var len1 = data.house.house_type.length;
+                    if( len1==0) {
+                        td_type.innerHTML = "暂无数据";
+                    }
+                    else {
+                        var array1 = new Array();
+                        for( var i=0;i<len1;i++) {
+                            array1[i]=data.house.house_type[i];
+                        }
+                        td_type.innerHTML = array1.join('/');
+                    }
+                    td_danjia.innerHTML = data.house.average_price;
+                    var len2 =data.house.area.length;
+                    if(len2 == 0) {
+                        td_area.innerHTML = "暂无数据";
+                    }
+                    else {
+                        var array2 = new Array();
+                        for(var i=0; i<len2;i++) {
+                            array2[i]=data.house.area[i];
+                        }
+                        td_area.innerHTML = array2.join('/');
+                    }
+                    var len3 = data.house.total_price.length;
+                    if(len3 ==0) {
+                        td_price.innerHTML = "暂无数据";
+                    }
+                    else {
+                        var array3 = new Array();
+                        for(var i=0;i<len3;i++) {
+                            array3[i]=data.house.total_price[i];
+                        }
+                        td_price.innerHTML = array3.join('/');
+                    }
+                    td_date.innerHTML = house_info[10];
+                    td_district.innerHTML = data.house.district;
+                    var len4 = data.house.direction.length;
+                    if(len4==0) {
+                        td_direction.innerHTML = "暂无数据";
+                    }
+                    else {
+                        var array4 = new Array();
+                        for(var i=0;i<len4; i++) {
+                            array4[i]=data.house.direction[i];
+                        }
+                        td_direction.innerHTML=array4.join('/');
+                    }
+                    td_evlator.innerHTML = data.house.elevator;
+                    td_height.innerHTML = data.house.height;
+                    td_huxing.innerHTML = data.house.huxing_jiegou;
+                    td_jzlx.innerHTML = data.house.jianzhuleixing;
+                    td_new.innerHTML = data.house.new;
+                    td_nianxian.innerHTML = data.house.nianxian;
+                    td_tihu.innerHTML = data.house.tihu_bili;
+                    td_zhuangxiu.innerHTML = data.house.zhuangxiu;
+                    td_kaipan.innerHTML = data.house.kaipan_shijian;
                 }
-            });*/
-            p_name.innerHTML = house_info[0];
-            p_type.innerHTML = house_info[1];
-            p_price.innerHTML = house_info[2];
-            td_city.innerHTML = house_info[3];
-            td_address.innerHTML = house_info[4];
-            td_xiaoqu.innerHTML = house_info[5];
-            td_type.innerHTML = house_info[6];
-            td_danjia.innerHTML = house_info[7];
-            td_area.innerHTML = house_info[8];
-            td_price.innerHTML = house_info[9];
-            td_date.innerHTML = house_info[10];
-            td_district.innerHTML = house_info[11];
-            td_direction.innerHTML = house_info[12];
-            td_evlator.innerHTML = house_info[13];
-            td_height.innerHTML = house_info[14];
-            td_huxing.innerHTML = house_info[15];
-            td_jzlx.innerHTML = house_info[16];
-            td_new.innerHTML = house_info[17];
-            td_nianxian.innerHTML = house_info[18];
-            td_tihu.innerHTML = house_info[19];
-            td_zhuangxiu.innerHTML = house_info[20];
-            td_kaipan.innerHTML = house_info[21];
+            });
         }
     </script>
 </body>
