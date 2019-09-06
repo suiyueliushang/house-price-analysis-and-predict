@@ -248,7 +248,11 @@
                         td_type.innerHTML = "暂无数据";
                     }
                     else {
-                        td_type.innerHTML = data.house_type.join('/');
+                        var array1 = new Array();
+                        for( var i=0;i<len1;i++) {
+                            array1[i]=data.house_type[i];
+                        }
+                        td_type.innerHTML = array1.join('/');
                     }
                     td_danjia.innerHTML = data.average_price;
                     var len2 =data.area.length;
@@ -256,14 +260,22 @@
                         td_area.innerHTML = "暂无数据";
                     }
                     else {
-                        td_area.innerHTML = data.area.join('/');
+                        var array2 = new Array();
+                        for(var i=0; i<len2;i++) {
+                            array2[i]=data.area[i];
+                        }
+                        td_area.innerHTML = array2.join('/');
                     }
                     var len3 = data.total_price.length;
                     if(len3 ==0) {
                         td_price.innerHTML = "暂无数据";
                     }
                     else {
-                        td_price.innerHTML = data.total_price.join('/');
+                        var array3 = new Array();
+                        for(var i=0;i<len3;i++) {
+                            array3[i]=data.total_price[i];
+                        }
+                        td_price.innerHTML = array3.join('/');
                     }
                     td_date.innerHTML = house_info[10];
                     td_district.innerHTML = data.district;
@@ -272,7 +284,11 @@
                         td_direction.innerHTML = "暂无数据";
                     }
                     else {
-                        td_direction.innerHTML=data.direction.join('/');
+                        var array4 = new Array();
+                        for(var i=0;i<len4; i++) {
+                            array4[i]=data.direction[i];
+                        }
+                        td_direction.innerHTML=array4.join('/');
                     }
                     td_evlator.innerHTML = data.elevator;
                     td_height.innerHTML = data.height;

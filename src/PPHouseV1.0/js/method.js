@@ -490,7 +490,7 @@ function showAddr4() {
                     }],
                     yAxes: [{
                         ticks: {
-                            min: 10000
+                            min: 3000
 
                         },
                         display: true
