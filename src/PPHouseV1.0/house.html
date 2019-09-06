@@ -237,9 +237,15 @@
                     alert("Connection error");
                 },
                 success: function(data) {
-                    p_name.innerHTML = house_info[0];
+                    p_name.innerHTML = data.house.firm_name;
                     p_type.innerHTML = house_info[1];
-                    p_price.innerHTML = house_info[2];
+                    var len0 =data.house.total_price.length;
+                    if(len0==0) {
+                        p_price.innerHTML = "";
+                    }
+                    else {
+                        p_price.innerHTML = data.house.total_price[0];
+                    }
                     td_city.innerHTML = data.house.city;
                     td_address.innerHTML = data.house.address;
                     td_xiaoqu.innerHTML = data.house.firm_name;
