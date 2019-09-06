@@ -197,13 +197,14 @@ $(document).ready(function(){
 				$(document).ready(function(){
 					for(var i=0; i<20; i++){
 						$(".house_title").eq(i).html(data.houses[i].firm_name);
-						$(".address").eq(i).html(data.houses[i].address);
+						//$(".address").eq(i).html(data.houses[i].address);
 						$(".house_type").eq(i).html(data.houses[i].house_type);
 						$(".ave_price").eq(i).html(data.houses[i].average_price);
 						$(".total_price").eq(i).html(data.houses[i].total_price);
 						$(".area").eq(i).html(data.houses[i].area);
 						$(".floor").eq(i).html(data.houses[i].heigth);
 						$(".house_id").eq(i).html(date.houses[i].id);
+						$(".list-item").eq(i).attr("href","house.html?id="+data.houses[i].id);
 						if(data.houses[i].new){
 							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">新房</span>');
 						}
@@ -326,4 +327,16 @@ $(document).ready(function(){
 	$(".sort-con a").click(function(){
 		$(this).addClass("active").siblings().removeClass("active");
 	});
+
+	$(".add_to_compare").click(function(){
+		alert($(this).siblings(".house_id").html());
+	});
+
+	$(".add_to_collection").click(function(){
+		alert($(this).siblings(".house_id").html());
+	});
+
+	$(".compare a").click(function(){
+		($(this).attr("href","charts3.html?id="+$(this).siblings(".house_id").html()));
+	})
 });
