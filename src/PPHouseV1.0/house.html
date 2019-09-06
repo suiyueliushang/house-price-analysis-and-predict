@@ -126,8 +126,12 @@
                 <div class="col-lg-8">
                     <div class="line-chart-example card">
                         <div class="card-body">
-                            <div style="float:left"><img src="img/home_03.png" height="100%" width="70%" float:left></div>
-                            <div style="float:right">zzzzzzzz</div>
+                            <div style="float:left"><img src="img/home_03.png" height="100%" width="90%" float:left></div>
+                            <div style="float:right">
+                                <p style="font-size: 20px" id="p_name">江宁校区</p><br>
+                                <p style="font-size: 20px" id="p_type">三室两厅</p><br>
+                                <p style="font-size: 30px;color: red" id="p_price">225万</p><br>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -140,55 +144,55 @@
                             <table width="96%" height="300px">
                                 <tbody>
                                     <tr>
-                                        <th width="16%">所在城市:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">所在地址:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">小区:</th>
-                                        <td width="16%"></td>
+                                        <th width="10%">所在城市:</th>
+                                        <td width="22%" id="td_city"></td>
+                                        <th width="10%">所在地址:</th>
+                                        <td width="22%" id="td_address"></td>
+                                        <th width="10%">小区:</th>
+                                        <td width="22%" id="td_xiaoqu"></td>
                                     </tr>
                                     <tr>
-                                        <th width="16%">房屋类型:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">单价:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">建筑面积:</th>
-                                        <td width="16%"></td>
+                                        <th width="10%">房屋类型:</th>
+                                        <td width="22%" id="td_type"></td>
+                                        <th width="10%">单价:</th>
+                                        <td width="22%" id="td_danjia"></td>
+                                        <th width="10%">建筑面积:</th>
+                                        <td width="22%" id="td_area"></td>
                                     </tr>
                                     <tr>
-                                        <th width="16%">总价:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">日期:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">区域:</th>
-                                        <td width="16%"></td>
+                                        <th width="10%">总价:</th>
+                                        <td width="22%" id="td_price"></td>
+                                        <th width="10%">日期:</th>
+                                        <td width="22%" id="td_date"></td>
+                                        <th width="10%">区域:</th>
+                                        <td width="22%" id="td_district"></td>
                                     </tr>
                                     <tr>
-                                        <th width="16%">朝向:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">电梯:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">楼高:</th>
-                                        <td width="16%"></td>
+                                        <th width="10%">朝向:</th>
+                                        <td width="22%" id="td_direction"></td>
+                                        <th width="10%">电梯:</th>
+                                        <td width="22%" id="td_evlator"></td>
+                                        <th width="10%">楼高:</th>
+                                        <td width="22%" id="td_height"></td>
                                     </tr>
                                     <tr>
-                                        <th width="16%">户型:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">建筑类型:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">是否为新房:</th>
-                                        <td width="16%"></td>
+                                        <th width="10%">户型:</th>
+                                        <td width="22%" id="td_huxing"></td>
+                                        <th width="10%">建筑类型:</th>
+                                        <td width="22%" id="td_jzlx"></td>
+                                        <th width="10%">是否为新房:</th>
+                                        <td width="22%" id="td_new"></td>
                                     </tr>
                                     <tr>
-                                        <th width="16%">房屋年限:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">梯户比例:</th>
-                                        <td width="16%"></td>
-                                        <th width="16%">装修:</th>
-                                        <td width="16%"></td>
+                                        <th width="10%">房屋年限:</th>
+                                        <td width="22%" id="td_nianxian"></td>
+                                        <th width="10%">梯户比例:</th>
+                                        <td width="22%" td="td_tihu"></td>
+                                        <th width="10%">装修:</th>
+                                        <td width="22%" id="td_zhuangxiu"></td>
                                     </tr>
                                     <tr>
-                                        <th width="25%">开盘时间:</th>
+                                        <th width="25%" id="td_kaipan">开盘时间:</th>
                                         <td width="25%"></td>
                                     </tr>
                                 </tbody>
@@ -199,5 +203,77 @@
             </div>
         </div>
     </div>
+    <script>
+        function getParams(key) {
+            var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        };
+        window.onload = function() {
+            var house_info = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            alert(getParams("id"));
+            /*$.ajax({
+                type: "POST", //
+                url: "", //
+                datatype: "json",
+                data: {
+                    'id': "1",
+                },
+                async: false,
+                error: function(request) { //失败的话
+                    alert("Connection error");
+                },
+                success: function(data) {
+                    house_info[0] = "";
+                    house_info[1] = "";
+                    house_info[2] = "";
+                    house_info[3] = "";
+                    house_info[4] = "";
+                    house_info[5] = "";
+                    house_info[6] = "";
+                    house_info[7] = "";
+                    house_info[8] = "";
+                    house_info[9] = "";
+                    house_info[10] = "";
+                    house_info[11] = "";
+                    house_info[12] = "";
+                    house_info[13] = "";
+                    house_info[14] = "";
+                    house_info[15] = "";
+                    house_info[16] = "";
+                    house_info[17] = "";
+                    house_info[18] = "";
+                    house_info[19] = "";
+                    house_info[20] = "";
+                    house_info[21] = ""
+                }
+            });*/
+            p_name.innerHTML = house_info[0];
+            p_type.innerHTML = house_info[1];
+            p_price.innerHTML = house_info[2];
+            td_city.innerHTML = house_info[3];
+            td_address.innerHTML = house_info[4];
+            td_xiaoqu.innerHTML = house_info[5];
+            td_type.innerHTML = house_info[6];
+            td_danjia.innerHTML = house_info[7];
+            td_area.innerHTML = house_info[8];
+            td_price.innerHTML = house_info[9];
+            td_date.innerHTML = house_info[10];
+            td_district.innerHTML = house_info[11];
+            td_direction.innerHTML = house_info[12];
+            td_evlator.innerHTML = house_info[13];
+            td_height.innerHTML = house_info[14];
+            td_huxing.innerHTML = house_info[15];
+            td_jzlx.innerHTML = house_info[16];
+            td_new.innerHTML = house_info[17];
+            td_nianxian.innerHTML = house_info[18];
+            td_tihu.innerHTML = house_info[19];
+            td_zhuangxiu.innerHTML = house_info[20];
+            td_kaipan.innerHTML = house_info[21];
+        }
+    </script>
 </body>
 </html>
