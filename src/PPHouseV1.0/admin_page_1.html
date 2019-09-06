@@ -26,21 +26,38 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <!-- JavaScript files-->
 
 
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper.js/umd/popper.min.js">
-    </script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js">
-    </script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-    <!-- Main File-->
-    <script src="js/front.js"></script>
     <script>
-        //get_admin_session();
+        /*
+                                                                function get_admin_session() {
+                                                                    $.ajax({
+                                                                        type: "POST", //提交的方法
+                                                                        url: "/admin_session", //提交的地址  
+                                                                        // contentType: false,
+                                                                        data: {},
+
+                                                                        datatype: "json",
+                                                                        async: false,
+                                                                        error: function(request) { //失败的话
+                                                                            alert("Connection error");
+                                                                        },
+                                                                        success: function(data) { //成功
+                                                                            switch (data.is_success) {
+                                                                                case '0':
+                                                                                    break;
+                                                                                case '1':
+                                                                                    window.location.href = "login.html";
+                                                                                    break;
+                                                                                default:
+                                                                                    alert("未知错误");
+                                                                            }
+                                                                        }
+
+                                                                    });
+                                                                }
+
+                                                                get_admin_session();*/
     </script>
     <script>
         // document.getElementById('login_id').innerText = window.localStorage.getItem("name");
@@ -717,6 +734,23 @@
 
     <script src="js/city.js"></script>
     <script src="js/method_3.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+
+    <script src="vendor/popper.js/umd/popper.min.js">
+    </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js">
+    </script>
+
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
+
+    <script>
+        window.ready = get_admin_session();
+    </script>
 </body>
 
 </html>

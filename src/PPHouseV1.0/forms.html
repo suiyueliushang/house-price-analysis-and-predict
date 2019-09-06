@@ -153,43 +153,129 @@
 
                                             <div class="form-group">
                                                 <!--省份选择-->
-                                                <select id="prov5" class="form-control mb-3" onchange="showCity5(this)">
+                                                <select id="prov6" class="form-control mb-3" onchange="showCity6(this)">
                                                             <option>=请选择省份=</option>
                                                         </select>
                                             </div>
                                             <div class="form-group">
                                                 <!--城市选择-->
-                                                <select id="city5" class="form-control mb-3" onchange="showCountry5(this)">
+                                                <select id="city6" class="form-control mb-3" onchange="showCountry6(this)">
                                                                 <option>=请选择城市=</option>
                                                         </select>
                                             </div>
 
                                             <div class="form-group">
                                                 <!--县区选择-->
-                                                <select id="country5" class="form-control mb-3" onchange="selecCountry5(this)">
+                                                <select id="country6" class="form-control mb-3" onchange="selecCountry6(this)">
                                                                 <option>=请选择县区=</option>
-                                                         </select>
+                                                </select>
                                             </div>
                                         </form>
+
 
                                         <form>
-
                                             <div class="form-group">
-
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-control-label">Password</label>
-                                                <input type="password" placeholder="Password" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="submit" value="Signin" class="btn btn-primary">
+                                                <div class="col-md-3">
+                                                    <input type="text" placeholder="输入想搜索的小区或楼盘名" class="form-control" id="xiaoqu"></input>
+                                                </div>
                                             </div>
                                         </form>
+
+                                        <div class="table-responsive">
+                                            <table class="table" style="border:none">
+                                                <tbody>
+                                                    <tr>
+                                                        <td> <input id="checkbox1" type="checkbox" value="餐饮" class="checkbox-template">
+                                                            <label for="checkbox1">餐饮</label></td>
+                                                        <td> <input id="checkbox2" type="checkbox" value="购物" class="checkbox-template">
+                                                            <label for="checkbox2">购物</label></td>
+                                                        <td> <input id="checkbox3" type="checkbox" value="生活" class="checkbox-template">
+                                                            <label for="checkbox3">生活</label></td>
+                                                        <td> <input id="checkbox4" type="checkbox" value="小学" class="checkbox-template">
+                                                            <label for="checkbox4">小学</label></td>
+                                                        <td> <input id="checkbox5" type="checkbox" value="中学" class="checkbox-template">
+                                                            <label for="checkbox5">中学</label></td>
+                                                        <td> <input id="checkbox6" type="checkbox" value="住宿" class="checkbox-template">
+                                                            <label for="checkbox6">住宿</label></td>
+                                                        <td> <input id="checkbox7" type="checkbox" value="工厂" class="checkbox-template">
+                                                            <label for="checkbox7">工厂</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <input id="checkbox8" type="checkbox" value="幼儿园" class="checkbox-template">
+                                                            <label for="checkbox8">幼儿园</label></td>
+                                                        <td> <input id="checkbox9" type="checkbox" value="体育休闲" class="checkbox-template">
+                                                            <label for="checkbox9">体育休闲</label></td>
+                                                        <td> <input id="checkbox10" type="checkbox" value="医疗保健" class="checkbox-template">
+                                                            <label for="checkbox10">医疗保健</label></td>
+                                                        <td> <input id="checkbox11" type="checkbox" value="风景名胜" class="checkbox-template">
+                                                            <label for="checkbox11">风景名胜</label></td>
+                                                        <td> <input id="checkbox12" type="checkbox" value="商务住宅" class="checkbox-template">
+                                                            <label for="checkbox12">商务住宅</label></td>
+                                                        <td> <input id="checkbox13" type="checkbox" value="科教文化" class="checkbox-template">
+                                                            <label for="checkbox13">科教文化</label></td>
+                                                        <td> <input id="checkbox14" type="checkbox" value="高等院校" class="checkbox-template">
+                                                            <label for="checkbox14">高等院校</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <input id="checkbox15" type="checkbox" value="交通设施" class="checkbox-template">
+                                                            <label for="checkbox15">交通设施</label></td>
+                                                        <td> <input id="checkbox16" type="checkbox" value="金融保险" class="checkbox-template">
+                                                            <label for="checkbox16">金融保险</label></td>
+                                                        <td> <input id="checkbox17" type="checkbox" value="公司企业" class="checkbox-template">
+                                                            <label for="checkbox17">公司企业</label></td>
+                                                        <td> <input id="checkbox18" type="checkbox" value="政府机构及社会团体" class="checkbox-template">
+                                                            <label for="checkbox18">政府机构</label></td>
+
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <form class="form-inline">
+                                            <div class="form-group">您想预测</div>
+                                            <div class="form-group">
+                                                <div class="col-sm-1">
+                                                    <select id="for_year" name="account" class="form-control mb-3">
+                                                            <option>0</option>
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                            <option>6</option>
+                                                            <option>7</option>
+                                                            <option>8</option>
+                                                            <option>9</option>                                                
+                                                         </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group">年</div>
+                                            <div class="form-group">
+                                                <div class="col-sm-1">
+                                                    <select id="for_month" name="account" class="form-control mb-3">
+                                                    <option>0</option>
+                                                    <option>3</option>
+                                                    <option>6</option>
+                                                    <option>9</option>
+                                                    <option>12</option>
+                                                 </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">月后的房价</div>
+
+                                        </form>
+                                        <div class="form-group">
+                                            <button id="btn6" type="button" onClick="forecast()" class="btn btn-primary">开始预测</button><br>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
+
+
+
                             <!-- Horizontal Form-->
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-close">
                                         <div class="dropdown">
@@ -201,29 +287,95 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Horizontal Form</h3>
+                                        <h3 class="h4">预测结果</h3>
                                     </div>
                                     <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet consectetur.</p>
-                                        <form class="form-horizontal">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Email</label>
-                                                <div class="col-sm-9">
-                                                    <input id="inputHorizontalSuccess" type="email" placeholder="Email Address" class="form-control form-control-success"><small class="form-text">Example help text that remains unchanged.</small>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Password</label>
-                                                <div class="col-sm-9">
-                                                    <input id="inputHorizontalWarning" type="password" placeholder="Pasword" class="form-control form-control-warning"><small class="form-text">Example help text that remains unchanged.</small>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-9 offset-sm-3">
-                                                    <input type="submit" value="Signin" class="btn btn-primary">
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>3个月后</th>
+                                                        <th>6个月后</th>
+                                                        <th>9个月后</th>
+                                                        <th>12个月后</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr id="year_0" style="display: none">
+                                                        <th scope="row">0年</th>
+                                                        <td id="y0m3"></td>
+                                                        <td id="y0m6"></td>
+                                                        <td id="y0m9"></td>
+                                                        <td id="y0m12"></td>
+                                                    </tr>
+                                                    <tr id="year_1" style="display: none">
+                                                        <th scope="row">1年</th>
+                                                        <td id="y1m3">5%</td>
+                                                        <td id="y1m6">10%</td>
+                                                        <td id="y1m9">5%</td>
+                                                        <td id="y1m12">10%</td>
+                                                    </tr>
+                                                    <tr id="year_2" style="display: none">
+                                                        <th scope="row">2年</th>
+                                                        <td id="y2m3"></td>
+                                                        <td id="y2m6"></td>
+                                                        <td id="y2m9"></td>
+                                                        <td id="y2m12"></td>
+                                                    </tr>
+                                                    <tr id="year_3" style="display: none">
+                                                        <th scope="row">3年</th>
+                                                        <td id="y3m3"></td>
+                                                        <td id="y3m6"></td>
+                                                        <td id="y3m9"></td>
+                                                        <td id="y3m12"></td>
+                                                    </tr>
+                                                    <tr id="year_4" style="display: none">
+                                                        <th scope="row">4年</th>
+                                                        <td id="y4m3"></td>
+                                                        <td id="y4m6"></td>
+                                                        <td id="y4m9"></td>
+                                                        <td id="y4m12"></td>
+                                                    </tr>
+                                                    <tr id="year_5" style="display: none">
+                                                        <th scope="row">5年</th>
+                                                        <td id="y5m3"></td>
+                                                        <td id="y5m6"></td>
+                                                        <td id="y5m9"></td>
+                                                        <td id="y5m12"></td>
+                                                    </tr>
+                                                    <tr id="year_6" style="display: none">
+                                                        <th scope="row">6年</th>
+                                                        <td id="y6m3"></td>
+                                                        <td id="y6m6"></td>
+                                                        <td id="y6m9"></td>
+                                                        <td id="y6m12"></td>
+                                                    </tr>
+                                                    <tr id="year_7" style="display: none">
+                                                        <th scope="row">7年</th>
+                                                        <td id="y7m3"></td>
+                                                        <td id="y7m6"></td>
+                                                        <td id="y7m9"></td>
+                                                        <td id="y7m12"></td>
+                                                    </tr>
+                                                    <tr id="year_8" style="display: none">
+                                                        <th scope="row">8年</th>
+                                                        <td id="y8m3"></td>
+                                                        <td id="y8m6"></td>
+                                                        <td id="y8m9"></td>
+                                                        <td id="y8m12"></td>
+                                                    </tr>
+                                                    <tr id="year_9" style="display: none">
+                                                        <th scope="row">9年</th>
+                                                        <td id="y9m3"></td>
+                                                        <td id="y9m6"></td>
+                                                        <td id="y9m9"></td>
+                                                        <td id="y9m12"></td>
+                                                    </tr>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
