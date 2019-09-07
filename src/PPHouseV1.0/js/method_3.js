@@ -269,16 +269,20 @@ function admin_delete_data() {
 
 function admin_change_data() {
 
-    admin_change_house = document.getElementById('admin_change_house').innerText();
+    admin_change_house = $('admin_change_house').val();
+    time = $('time_7').val();
+    prov = $('prov7').val();
+    city = $('city7').val();
+    country = $('country7').val();
     $.ajax({
         type: "POST", //提交的方法
         url: "/add_district_price", //提交的地址  
         // contentType: false,
         data: {
-            'time': time_7.val(),
-            'prov': prov7.val(),
-            'city': city7.val(),
-            'country': country7.val(),
+            'time': time,
+            'prov': prov,
+            'city': city,
+            'country': country,
             'admin_change_house': admin_change_house,
         },
 
