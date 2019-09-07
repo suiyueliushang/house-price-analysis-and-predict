@@ -28,12 +28,12 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
     <style>
-        .sale-left {
-            width: 100%
+        .sale-left{
+            width: 100%;
         }
-        
-        .list-item .house_id {
-            display: none
+
+        .sale-left ul{
+            list-style-type: none
         }
     </style>
 </head>
@@ -217,38 +217,25 @@
                                     <div class="card-header d-flex align-items-center">
                                         <h3 class="h4">收藏夹</h3>
                                     </div>
-                                    <div class="card-body">
-                                        <!--<p>Lorem ipsum dolor sit amet consectetur.</p>
-                                        <form class="form-horizontal">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Email</label>
-                                                <div class="col-sm-9">
-                                                    <input id="inputHorizontalSuccess" type="email" placeholder="Email Address" class="form-control form-control-success"><small class="form-text">Example help text that remains unchanged.</small>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Password</label>
-                                                <div class="col-sm-9">
-                                                    <input id="inputHorizontalWarning" type="password" placeholder="Pasword" class="form-control form-control-warning"><small class="form-text">Example help text that remains unchanged.</small>
-                                                </div>
-                                            </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-9 offset-sm-3">
-                                                    <input type="submit" value="Signin" class="btn btn-primary">
-                                                </div>
-                                            </div>
-                                        </form>
+                                    <div class="card-body sale-left">
+                                        <ul id="houselist-mod-new" class="houselist-mod houselist-mod-new"></ul>
                                     </div>
-                                </div>-->
-                                    </div>
-                                    <!-- Inline Form-->
-
-                                    <!-- Modal Form-->
-
-                                    <!-- Form Elements -->
-
                                 </div>
                             </div>
+
+                            <!-- 对比链接 -->
+                            <div class="compare">
+                                <a href="charts3.html" class="compare_smt">立即对比&nbsp;&nbsp;(<strong class="compare_num">0</strong>)</a>
+                                <!--<div class="compare_content"></div>-->
+                            </div>
+                            <!-- Inline Form-->
+
+                            <!-- Modal Form-->
+
+                            <!-- Form Elements -->
+
+                        </div>
+                    </div>
                 </section>
                 <!-- Page Footer-->
                 <footer class="main-footer">
@@ -264,8 +251,6 @@
                         </div>
                     </div>
                 </footer>
-                </div>
-                </div>
             </div>
         </div>
     </div>
@@ -287,9 +272,44 @@
     </script>
 
     <script>
-        var a = '<li class="list-item"><div class="item"><lable class="house_id">6666666</lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a></div><div class="details-item"><span class="house_type" id="house_type">X室X厅</span><em class="spe-lines">|</em><span class="area" id="area">XX㎡</span><em class="spe-lines">|</em><span class="floor">XX层</span></div><!--<div class="details-item"><span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span></div>--><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span></div></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">已关注</button></div></li>';
-        $(".card-body ul").append(a);
-        //$.parser.parse()
+        $(function(){
+            var a = '<li class="list-item"><div class="item"><lable style="display:none" class="house_id">6666666</lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a></div><div class="details-item"><span class="house_type" id="house_type">X室X厅</span><em class="spe-lines">|</em><span class="area" id="area">XX㎡</span><em class="spe-lines">|</em><span class="floor">XX层</span></div><!--<div class="details-item"><span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span></div>--><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span></div></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">已关注</button></div></li>';
+
+            $.ajax({
+                type: "post",
+                url: "/show_collection",
+                datatype: "json",
+                async: false,
+                error: function(request) {
+                    alert("Connection error");
+                },
+                success(data) {
+                    for (var i = 0; i < data.house.length; i++) {
+                        $(".card-body ul").append(a);
+                        $(".house_title").eq(i).html(data.house[i].firm_name);
+                        //$(".address").eq(i).html(data.house[i].address);
+                        $(".house_type").eq(i).html(data.house[i].house_type);
+                        $(".ave_price").eq(i).html(data.house[i].average_price);
+                        $(".total_price").eq(i).html(data.house[i].total_price);
+                        $(".area").eq(i).html(data.house[i].area);
+                        $(".floor").eq(i).html(data.house[i].heigth);
+                        //$(".direction").eq(i).html(data.house[i].direction);
+                        $(".house_id").eq(i).html(data.house[i].id);
+                        $(".list-item .house_title").eq(i).attr("href","house.html?id="+data.house[i].id);
+                        if(data.house[i].new){
+                            $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
+                        }
+                        if(data.house[i].elevator=="有"){
+                            $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
+                        }
+                        if(data.house[i].zhuangxiu=="精装"){
+                            $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
+                        }
+                    }
+                }
+            });
+        });
+        //$.parser.parse($(".card-body ul"));
     </script>
 </body>
 
