@@ -30,34 +30,34 @@
 
     <script>
         /*
-                                                                function get_admin_session() {
-                                                                    $.ajax({
-                                                                        type: "POST", //提交的方法
-                                                                        url: "/admin_session", //提交的地址  
-                                                                        // contentType: false,
-                                                                        data: {},
+                                                                                                                        function get_admin_session() {
+                                                                                                                            $.ajax({
+                                                                                                                                type: "POST", //提交的方法
+                                                                                                                                url: "/admin_session", //提交的地址  
+                                                                                                                                // contentType: false,
+                                                                                                                                data: {},
 
-                                                                        datatype: "json",
-                                                                        async: false,
-                                                                        error: function(request) { //失败的话
-                                                                            alert("Connection error");
-                                                                        },
-                                                                        success: function(data) { //成功
-                                                                            switch (data.is_success) {
-                                                                                case '0':
-                                                                                    break;
-                                                                                case '1':
-                                                                                    window.location.href = "login.html";
-                                                                                    break;
-                                                                                default:
-                                                                                    alert("未知错误");
-                                                                            }
-                                                                        }
+                                                                                                                                datatype: "json",
+                                                                                                                                async: false,
+                                                                                                                                error: function(request) { //失败的话
+                                                                                                                                    alert("Connection error");
+                                                                                                                                },
+                                                                                                                                success: function(data) { //成功
+                                                                                                                                    switch (data.is_success) {
+                                                                                                                                        case '0':
+                                                                                                                                            break;
+                                                                                                                                        case '1':
+                                                                                                                                            window.location.href = "login.html";
+                                                                                                                                            break;
+                                                                                                                                        default:
+                                                                                                                                            alert("未知错误");
+                                                                                                                                    }
+                                                                                                                                }
 
-                                                                    });
-                                                                }
+                                                                                                                            });
+                                                                                                                        }
 
-                                                                get_admin_session();*/
+                                                                                                                        get_admin_session();*/
     </script>
     <script>
         // document.getElementById('login_id').innerText = window.localStorage.getItem("name");
@@ -337,8 +337,10 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <button id="btn5" type="button" class="btn btn-primary ">确定</button><br>
+                                                <button id="btn5" type="button" class="btn btn-primary ">确定</button>
                                             </div>
+
+                                            <button type="button" class="btn btn-primary " style="margin: 0% 0% 0% 5%">爬取</button><br>
                                         </form>
 
 
@@ -749,7 +751,7 @@
     <script src="js/front.js"></script>
 
     <script>
-        window.ready = get_admin_session();
+        //window.ready = get_admin_session();
     </script>
 </body>
 
