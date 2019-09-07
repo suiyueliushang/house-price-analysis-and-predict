@@ -1047,30 +1047,14 @@ def delete_users(request):
         return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 
-'''
-    return
-def login(request):
-    #user_name=request.pos
-    return HttpResponse('login')
-
-def index(request):
-    u=User(user_name='1234',password='1234',user_phone='123',user_mail='123',session_id='123')
-    print(u,'1123123')
-    u.save()
-    return HttpResponse('sucess')
-
-def first(request):
-    context={}
-    return HttpResponse("helloworld")
-    '''
-
-
 def house_forecast(request):
     _year=int(request.POST.get('for_year'))
     _month=int(request.POST.get('for_month'))
     len=_year*4+_month/3
     print(len)
-    forecast=[int(len)]*int(len)
+    forecast=[0]*int(len)
+    for i in range(0,int(len)):
+        forecast[i]=int(23486*(1.02**i))
     result={'is_success':'0','fore':forecast}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     
