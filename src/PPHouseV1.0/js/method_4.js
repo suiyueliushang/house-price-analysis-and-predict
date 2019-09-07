@@ -123,6 +123,7 @@ function forecast() {
         async: false,
         error: function(request) { //失败的话
             alert("Connection error");
+
         },
         success: function(data) { //成功
             switch (data.is_success) {
@@ -131,7 +132,7 @@ function forecast() {
                         for (var i = 0; i < Number(for_year + 1); i++) {
                             var temp = "year_" + i.toString();
                             document.getElementById(temp).style.display = "";
-                            for (var j = 0; j <= 12; j = j + 3) {
+                            for (var j = 3; j <= 12; j = j + 3) {
                                 temp = "y" + i.toString() + "m" + j.toString();
                                 document.getElementById(temp).innerText = data.fore[i * 4 + Math.floor(j / 3)];
                             }
@@ -139,7 +140,7 @@ function forecast() {
                         if (for_month != 0) {
                             var temp = "year_" + Number(for_year + 2).toString();
                             document.getElementById(temp).style.display = "";
-                            for (var j = 0; j <= Number(for_month); j = j + 3) {
+                            for (var j = 3; j <= Number(for_month); j = j + 3) {
                                 temp = "y" + i.toString() + "m" + j.toString();
                                 document.getElementById(temp).innerText = data.fore[(for_year + 2) * 4 + Math.floor(j / 3)];
                             }
@@ -160,6 +161,7 @@ function forecast() {
                 default:
                     alert("未知错误");
             }
+            3
         }
 
     });
