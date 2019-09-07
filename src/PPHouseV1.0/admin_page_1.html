@@ -29,27 +29,26 @@
 
 
     <script>
-        function loadXMLDoc() {
-            var xmlhttp;
-            if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else { // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.onreadystatechange = function() {
-                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    if (xmlhttp.responseText == 1) {
-                        window.location.href = "login.html";
-                    } else {}
-                } else {
-                    alert("Connection error");
+        /* function loadXMLDoc() {
+                    var xmlhttp;
+                    if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+                        xmlhttp = new XMLHttpRequest();
+                    } else { // code for IE6, IE5
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange = function() {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            if (xmlhttp.responseText == 1) {
+                                window.location.href = "login.html";
+                            } else {}
+                        } else {
+                        }
+                    }
+                    xmlhttp.open("GET", "/admin_session", true);
+                    xmlhttp.send(null);
                 }
-            }
-            xmlhttp.open("GET", "/admin_session", true);
-            xmlhttp.send(null);
-        }
 
-        loadXMLDoc();
+                loadXMLDoc();*/
         /*function get_admin_session() {
              $.ajax({
                  type: "POST", //提交的方法

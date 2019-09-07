@@ -327,9 +327,6 @@ $(document).ready(function(){
 	$(".sort-con a").click(function(){
 		$(this).addClass("active").siblings().removeClass("active");
 	});
-
-	$(".compare a").click(function(){
-	});
 });
 
 /* 点击具体房源行加载链接 */
