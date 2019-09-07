@@ -224,13 +224,13 @@
         }
         
         .tags-bottom .tag-2 {
-            color: #e88a78;
-            background: #fbf4f1
+            color: #ec5436;
+            background: #fad6c8
         }
         
         .tags-bottom .tag-3 {
-            color: #799374;
-            background: #f2f6ed
+            color: #2a6184;
+            background: #a7d9fc
         }
         .compare,
         .houselist-mod .actions {
@@ -244,15 +244,16 @@
         }
         
         .compare a,
-        .houselist-mod .actions a {
+        .houselist-mod .actions button {
             color: grey;
             padding: 4px 10px;
             border: solid 1px grey;
-            border-radius: 2px
+            border-radius: 2px;
+            background-color: inherit
         }
         
-        .compare,
-        .houselist-mod .actions a:hover {
+        .compare a:hover,
+        .houselist-mod .actions button:hover {
             color: black;
             text-decoration: none
         }
@@ -465,6 +466,16 @@
             top: 50%;
             right:0;
             display: block;
+        }
+
+        .compare .compare_num{
+            color: #e54b00;
+            font-size: 16px;
+        }
+
+        .compare .compare_content{
+            display: block;
+            background: white;
         }
     </style>
 
@@ -683,605 +694,643 @@
                     </div>
 
                     <ul id="houselist-mod-new" class="houselist-mod houselist-mod-new">
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom">
-                                    <span class="item-tags tag-1">新房</span>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
                                 </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
-                        <li class="list-item" href="house.html">
-                            <lable style="display: none" class="house_id"></lable>
-                            <div class="item-img">
-                                <img src="#" width="180" height="135" />
-                            </div>
-                            <div class="house-details">
-                                <div class="house-title">
-                                    <a class="house_title" title="" href="#" id="house_title">XXXX-XXXX-XXXX</a>
+                        <li class="list-item">
+                            <div class="item">
+                                <lable style="display: none" class="house_id"></lable>
+                                <div class="item-img">
+                                    <img src="#" width="180" height="135" />
                                 </div>
-                                <div class="details-item">
-                                    <span class="house_type" id="house_type">X室X厅</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="area" id="area">XX㎡</span>
-                                    <em class="spe-lines">|</em>
-                                    <span class="floor">XX层</span>
+                                <div class="house-details">
+                                    <div class="house-title">
+                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                    </div>
+                                    <div class="details-item">
+                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="area" id="area">XX㎡</span>
+                                        <em class="spe-lines">|</em>
+                                        <span class="floor">XX层</span>
+                                    </div>
+                                    <!--<div class="details-item">
+                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                    </div>-->
+                                    <div class="tags-bottom"></div>
                                 </div>
-                                <!--<div class="details-item">
-                                    <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
-                                </div>-->
-                                <div class="tags-bottom"></div>
+                                <div class="pro-price">
+                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                </div>
                             </div>
                             <div class="actions">
-                                <a class="add_to_compare" class="add_to_compare" href="#">加入对比</a>
-                                <a class="add_to_collection" href="#">关注</a>
-                            </div>
-                            <div class="pro-price">
-                                <span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span>
+                                <button class="add_to_compare">加入对比</button>
+                                <button class="add_to_collection">关注</button>
                             </div>
                         </li>
 
@@ -1301,8 +1350,10 @@
 
 
                 <div class="compare">
-                    <a href="charts3.html">立即对比</a>
+                    <a href="charts3.html" class="compare_smt">立即对比&nbsp;&nbsp;(<strong class="compare_num">0</strong>)</a>
+                    <!--<div class="compare_content"></div>-->
                 </div>
+
                 <!-- 模板 -->
                 <!--<section class="tables">
                     <div class="container-fluid">
@@ -1581,6 +1632,15 @@
             }
         }
 
+        function f2(){
+            if(document.getElementsByClassName("compare_num")<2){
+                document.getElementsByClassName("compare").disabled=true;
+            }
+        }
+
+        sessionStorage.removeItem("house_list");
+        $(".compare .compare_num").html("0");
+        /*document.getElementsByClassName("compare_num").addEventListener("change",f2);*/
         $(function() {
             //获取城市ajax
             $.ajax({
@@ -1688,7 +1748,7 @@
                                     $(".floor").eq(i).html(data.houses[i].heigth);
                                     $(".direction").eq(i).html(data.houses[i].direction);
                                     $(".house_id").eq(i).html(data.houses[i].id);
-							        $(".list-item").eq(i).attr("href","house.html?id="+data.houses[i].id);
+							        $(".list-item .house_title").eq(i).attr("href","house.html?id="+data.houses[i].id);
                                     if(data.houses[i].new){
                                         $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
                                     }

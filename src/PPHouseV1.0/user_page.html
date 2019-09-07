@@ -26,6 +26,16 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
+    <style>
+        .sale-left {
+            width: 100%
+        }
+        
+        .list-item .house_id {
+            display: none
+        }
+    </style>
 </head>
 
 <body>
@@ -273,6 +283,10 @@
                 console.log(window.localStorage.getItem("name"));
             </script>
 
+            <script>
+                var a = '<li class="list-item"><div class="item"><lable class="house_id">6666666</lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a></div><div class="details-item"><span class="house_type" id="house_type">X室X厅</span><em class="spe-lines">|</em><span class="area" id="area">XX㎡</span><em class="spe-lines">|</em><span class="floor">XX层</span></div><!--<div class="details-item"><span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span></div>--><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price">82</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">13898元/m²</span></div></div></div></li>';
+                $(".card-body ul").append(a);
+            </script>
 </body>
 
 </html>

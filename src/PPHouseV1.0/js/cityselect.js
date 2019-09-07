@@ -439,15 +439,15 @@ Vcity.CitySelector.prototype = {
                                 $(".area").eq(i).html(data.houses[i].area);
                                 $(".floor").eq(i).html(data.houses[i].heigth);
                                 $(".house_id").eq(i).html(date.houses[i].id);
-                                $(".list-item").eq(i).attr("href","house.html?id="+data.houses[i].id);
+                                $(".list-item .house_title").eq(i).attr("href","house.html?id="+data.houses[i].id);
                                 if(data.houses[i].new){
-                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">新房</span>');
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
                                 }
                                 if(data.houses[i].elevator=="有"){
-                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">有电梯</span>');
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
                                 }
                                 if(data.houses[i].zhuangxiu=="精装"){
-                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-metro">精装</span>');
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
                                 }
                             }
                             $("#Pagination").pagination(data.page_num,opts);
