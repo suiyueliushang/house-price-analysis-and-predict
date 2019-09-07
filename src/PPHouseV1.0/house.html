@@ -224,7 +224,7 @@
         };
         window.onload = function() {
             var house_info = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            var id_name="10000";
+            var id_name= getParams("id");
             $.ajax({
                 type: "POST", //
                 url: "/detail_info", //
