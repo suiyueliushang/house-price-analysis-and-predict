@@ -3713,3 +3713,20 @@ a > code {
   display: table-cell;
   vertical-align: middle
 }
+
+.compare{
+  position: fixed;
+  top: 50%;
+  right:0;
+  display: block;
+}
+
+.compare .compare_num{
+  color: #e54b00;
+  font-size: 16px;
+}
+
+.compare .compare_content{
+  display: block;
+  background: white;
+}

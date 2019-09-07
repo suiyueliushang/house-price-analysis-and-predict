@@ -328,78 +328,81 @@ $(document).ready(function(){
 		$(this).addClass("active").siblings().removeClass("active");
 	});
 
-	$(".add_to_compare").click(function(){
-		if($(this).html()=="加入对比"){
-			if(!sessionStorage.getItem("house_list")){
-				var house_list = [{"id":$(this).parent(".actions").siblings(".item").children(".house_id").html()}];
-				sessionStorage.setItem("house_list",JSON.stringify(house_list));
-				$(".compare .compare_num").html("1");
-			}else{
-				var house_list = JSON.parse(sessionStorage.getItem("house_list"));
-				house_list.push({"id": $(this).parent(".actions").siblings(".item").children(".house_id").html()});
-				sessionStorage.removeItem("house_list");
-				sessionStorage.setItem("house_list",JSON.stringify(house_list));
-				$(".compare .compare_num").html(house_list.length);
-			}
-			$(this).html("已加入对比");
-		}
-		else{
-			var house_list = JSON.parse(sessionStorage.getItem("house_list"));
-			var a = house_list.indexOf({"id":$(this).parent(".actions").siblings(".item").children(".house_id").html()});
-			house_list.splice(a,1);
-			sessionStorage.removeItem("house_list");
-			sessionStorage.setItem("house_list",JSON.stringify(house_list));
-			if(house_list.length>0){
-				$(".compare .compare_num").html(house_list.length);
-			}else{
-				$(".compare .compare_num").html("0");
-			}
-			$(this).html("加入对比");
-		}
-	});
-
-	$(".add_to_collection").click(function(){
-		//alert($(this).parent(".actions").siblings(".item").children(".house_id").html());
-		if($(this).html()=="关注"){//添加关注
-			$.ajax({
-				type:"POST",
-				url:"/add_collection",
-				datatype:"json",
-				data: {
-					'id': $(this).parent(".actions").siblings(".item").children(".house_id").html()
-				},
-				async: false,
-				error: function(request) {
-					alert("Connection error");
-				},
-				success:function(data) {
-					$(this).html("已关注");
-				}
-			});
-		}
-		else{//删除关注
-			$.ajax({
-				type:"POST",
-				url:"/delete_collection",
-				datatype:"json",
-				data: {
-					'id': $(this).parent(".actions").siblings(".item").children(".house_id").html()
-				},
-				async: false,
-				error: function(request) {
-					alert("Connection error");
-				},
-				success:function(data) {
-					$(this).html("关注");
-				}
-			});
-		}
-	});
-
-	$(".list-item .item").click(function(){
-		$("a",this)[0].click();
-	});
-
 	$(".compare a").click(function(){
 	});
+});
+
+/* 点击具体房源行加载链接 */
+$(document).on("click",'.list-item .item',function(){
+	$("a",this)[0].click();
+});
+
+/* 加入/删除对比点击事件 */
+$(document).on("click",".add_to_compare",function(){
+	if($(this).html()=="加入对比"){
+		if(!sessionStorage.getItem("house_list")){
+			var house_list = [$(this).parent(".actions").siblings(".item").children(".house_id").html()];
+			sessionStorage.setItem("house_list",JSON.stringify(house_list));
+			$(".compare .compare_num").html("1");
+		}else{
+			var house_list = JSON.parse(sessionStorage.getItem("house_list"));
+			house_list.push($(this).parent(".actions").siblings(".item").children(".house_id").html());
+			sessionStorage.removeItem("house_list");
+			sessionStorage.setItem("house_list",JSON.stringify(house_list));
+			$(".compare .compare_num").html(house_list.length);
+		}
+		$(this).html("已加入对比");
+	}
+	else{
+		var house_list = JSON.parse(sessionStorage.getItem("house_list"));
+		var a = house_list.indexOf($(this).parent(".actions").siblings(".item").children(".house_id").html());
+		house_list.splice(a,1);
+		sessionStorage.removeItem("house_list");
+		sessionStorage.setItem("house_list",JSON.stringify(house_list));
+		if(house_list.length>0){
+			$(".compare .compare_num").html(house_list.length);
+		}else{
+			$(".compare .compare_num").html("0");
+		}
+		$(this).html("加入对比");
+	}
+});
+
+/* 加入/删除关注点击事件 */
+$(document).on("click",".add_to_collection",function(){
+	//alert($(this).parent(".actions").siblings(".item").children(".house_id").html());
+	if($(this).html()=="关注"){//添加关注
+		$.ajax({
+			type:"POST",
+			url:"/add_collection",
+			datatype:"json",
+			data: {
+				'id': $(this).parent(".actions").siblings(".item").children(".house_id").html()
+			},
+			async: false,
+			error: function(request) {
+				alert("Connection error");
+			},
+			success:function(data) {
+				$(this).html("已关注");
+			}
+		});
+	}
+	else{//删除关注
+		$.ajax({
+			type:"POST",
+			url:"/delete_collection",
+			datatype:"json",
+			data: {
+				'id': $(this).parent(".actions").siblings(".item").children(".house_id").html()
+			},
+			async: false,
+			error: function(request) {
+				alert("Connection error");
+			},
+			success:function(data) {
+				$(this).html("关注");
+			}
+		});
+	}
 });
