@@ -739,6 +739,71 @@ def add_house_info(request):
         #result={'is_success':'2'}
         #return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
+def admin_show_house(request):
+    _city=request.POST.get('city')
+    _page=int(request.POST.get('page'))
+    _month=request.POST.get('month')
+
+    _district=None
+
+    if request.POST.get('district'):
+        _district=request.POST.get('district')
+
+    print(_city)
+    try:
+        city_name=_city.split('市')[0]
+        print(city_name)
+        #conditions={'city__in':_city}
+        houses=list(House.objects.filter(city=city_name))
+        length_1=len(houses)
+        print(length_1)
+        housess=[]
+        _page_num=int(len(houses)/20+1)
+        start=(_page-1)*20
+        end=(_page-1)*20+20
+        house_s=list(houses)
+        housess=[]
+        for i in range(start,min(len(houses),end)):
+            if houses[i].area and houses[i].total_price and houses[i].huxing_jiegou and houses[i].direction:
+                    area_list=houses[i].area.split(';')
+                    total_price_list=houses[i].total_price.split(';')
+                    huxing_list=houses[i].house_type.split(';')
+                    direction_list=houses[i].direction.split(';')
+            else:
+                area_list=[]
+                total_price_list=[]
+                huxing_list=[]
+                direction_list=[]
+            if _district:
+                if _district==houses[i].district:
+                    if len(area_list)>0:
+                        house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':huxing_list[0],'average_price':houses[i].average_price,'total_price':total_price_list[0],'area':area_list[0],'height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
+                        #,'date':str(houses[i].date),'district':houses[i].district,'direction':direction_list,
+                        #,'huxing_jiegou':houses[i].huxing_jiegou,'jianzhuleixing':houses[i].jianzhuleixing,'nianxian':houses[i].nianxian,
+                        #'tihu_bili':houses[i].tihu_bili,'zhuangxiu':houses[i].zhuangxiu,'kaipan_shijian':houses[i].kaipan_shijian,'city':houses[i].city}
+                        housess.append(house_house)
+                    else:
+                        house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':'','average_price':houses[i].average_price,'total_price':'','area':'','height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
+                        housess.append(house_house)
+            else:
+                if len(area_list)>0:
+                    house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':huxing_list[0],'average_price':houses[i].average_price,'total_price':total_price_list[0],'area':area_list[0],'height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}    #,'date':str(houses[i].date),'district':houses[i].district,'direction':direction_list,'elevator':houses[i].elevator
+                    # ,'huxing_jiegou':houses[i].huxing_jiegou,'jianzhuleixing':houses[i].jianzhuleixing,'nianxian':houses[i].nianxian,
+                        #'tihu_bili':houses[i].tihu_bili,'zhuangxiu':houses[i].zhuangxiu,'kaipan_shijian':houses[i].kaipan_shijian,'city':houses[i].city}
+                    housess.append(house_house)
+                else:
+                    house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':'','average_price':houses[i].average_price,'total_price':'','area':'','height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
+                    housess.append(house_house)
+            #city,district,month,_min_price,_min_area,page
+            #id,firm_name,address,house_type,average_price,total_price,area,height
+        city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
+        result={'page_num':_page_num,'houses':housess,'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        traceback.print_exc()
+        return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+    
+
 def delete_house_info(request):
     '''
     @args   int:id
