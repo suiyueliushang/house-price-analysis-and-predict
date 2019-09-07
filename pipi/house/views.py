@@ -694,11 +694,9 @@ def admin_session(request):
     try:
         admin=Admin.objects.filter(session_id=_session_id)[0]
         print(admin.session_id)
-        result={'is_success':'0'}
-        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        return HttpResponse('0')
     except:
-        result={'is_success':'1'}
-        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        return HttpResponse('1')
 
 def add_house_info(request):
     '''
