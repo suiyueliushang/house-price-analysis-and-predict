@@ -1634,13 +1634,13 @@
 
         function f2(){
             if(document.getElementsByClassName("compare_num")<2){
-                document.getElementsByClassName("compare").disabled=true;
+                $(".compare_smt").attr("href","javascript:return false;");
             }
         }
 
         sessionStorage.removeItem("house_list");
         $(".compare .compare_num").html("0");
-        /*document.getElementsByClassName("compare_num").addEventListener("change",f2);*/
+        //document.getElementsByClassName("compare_num").addEventListener("change",f2);
         $(function() {
             //获取城市ajax
             $.ajax({
