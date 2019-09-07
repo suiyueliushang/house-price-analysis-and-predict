@@ -234,7 +234,7 @@ function admin_add_house() {
 
 
 function admin_delete_data() {
-
+    month = $('month').val();
     $.ajax({
         type: "POST", //提交的方法
         url: "/delete_district_price", //提交的地址  
@@ -244,6 +244,7 @@ function admin_delete_data() {
             'prov': prov7.val(),
             'city': city7.val(),
             'country': country7.val(),
+            'month': month,
         },
 
         datatype: "json",
@@ -274,6 +275,7 @@ function admin_change_data() {
     prov = $('prov7').val();
     city = $('city7').val();
     country = $('country7').val();
+    month = $('month').val();
     $.ajax({
         type: "POST", //提交的方法
         url: "/add_district_price", //提交的地址  
@@ -284,6 +286,7 @@ function admin_change_data() {
             'city': city,
             'country': country,
             'admin_change_house': admin_change_house,
+            'month': month,
         },
 
         datatype: "json",
