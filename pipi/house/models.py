@@ -89,6 +89,7 @@ class District_price(models.Model):
     district=models.CharField(max_length=20)
     district_average=models.IntegerField()
     date=models.DateField()
+    city=models.CharField(max_length=20)
     class Meta:
         db_table='district_price'
 

@@ -27,8 +27,10 @@ urlpatterns = [
     path('delete_city_price',views.delete_city_price),
     path('district_in_city',views.district_in_city),
     path('add_collection',views.add_collection),
+    path('show_collection',views.show_collection),
     path('delete_collection',views.delete_collection),
     path('detail_info',views.detail_info),
+    path('contrast_house',views.contrast_house),
 
     path('add_users',views.add_users),
     path('search_member',views.search_member),

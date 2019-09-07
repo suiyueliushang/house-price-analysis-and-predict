@@ -458,9 +458,42 @@ def detail_info(request):
     except:
         result={'is_success':'1','house':''}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-                            
+
+                  
 def contrast_house(request):
-    pass
+    _ids=request.POST.get('id')
+    print(_ids)
+    length=int(len(_ids))
+    house_list=[]
+    for _id in _ids:
+        try:
+            house=House.objects.get(id=_id)
+            if house.area:
+                area_list=house.area.split(';')
+            else:
+                area_list=[]
+            if house.total_price:
+                total_price_list=house.total_price.split(';')
+            else:
+                total_price_list=[]
+            if house.house_type:
+                huxing_list=house.area.split(';')
+            else:
+                huxing_list=[]
+            if house.direction:
+                direction_list=house.area.split(';')
+            else:
+                direction_list=[]
+            house_house={'id':house.id,'address':house.address,'firm_name':house.firm_name,'house_type':huxing_list,'average_price':house.average_price,'total_price':total_price_list,
+                        'area':area_list,'height':house.height,'new':house.new,'elevator':house.elevator,'zhuangxiu':house.zhuangxiu,'date':str(house.date),
+                        'district':house.district,'direction':direction_list,'huxing_jiegou':house.huxing_jiegou,'jianzhuleixing':house.jianzhuleixing,'nianxian':house.nianxian,
+                        'tihu_bili':house.tihu_bili,'zhuangxiu':house.zhuangxiu,'kaipan_shijian':house.kaipan_shijian,'city':house.city}
+            house_list.append(house_house)
+        except:
+            pass
+    result={'is_success':'0','house':house_list}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+            
 
 def contrast_city(request):
     '''
@@ -512,7 +545,8 @@ def contrast_district(request):
 
 def district_in_city(request):
     _year=request.POST.get('year')
-    _city=request.POST.get('city_name')
+    _city=request.POST.get('city_name').split('市')[0]
+    print(_city)
     _districts=District_price.objects.filter(city=_city)
     dis_dis=[]
     price=[]
@@ -544,12 +578,13 @@ def add_collection(request):
             cookie
     '''
     _id=request.POST.get('id')
-    _session_id=request.COOKIE.get('text')
+    _session_id=request.COOKIES.get('key')
     try:
         user=User.objects.filter(session_id=_session_id)[0]
         collections=user.collection.split(';')
         collections.append(_id)
         collections=';'.join(collections)
+        print(collections)
         user.collection=collections
         user.save()
         return HttpResponse(json.dumps({'is_success':'0'},ensure_ascii=False),content_type="application/json,charset=utf-8")
@@ -563,7 +598,7 @@ def delete_collection(request):
             cookie
     '''
     _id=request.POST.get('id')
-    _session_id=request.COOKIE.get('text')
+    _session_id=request.COOKIES.get('key')
     try:
         user=User.objects.filter(session_id=_session_id)[0]
         collections=user.collection.split(';')
@@ -581,18 +616,43 @@ def show_collection(request):
     用户显示收藏夹内容
     return list
     '''
-    _session_id=request.COOKIE.get('text')
+    _session_id=request.COOKIES.get('key')
+    print(_session_id)
     user=User.objects.filter(session_id=_session_id)[0]
     collections=user.collection.split(';')
+    print(collections)
     l=len(collections)
     house_collections=[]
     try:
-        for i in range(0,l):
+        for i in range(1,l):
             house=House.objects.get(id=int(collections[i]))
-            house_collections.append(house)
+            if house.area:
+                area_list=house.area.split(';')
+            else:
+                area_list=['无']
+            if house.total_price:
+                total_price_list=house.total_price.split(';')
+            else:
+                total_price_list=['无']
+            if house.house_type:
+                huxing_list=house.area.split(';')
+            else:
+                huxing_list=['无']
+            if house.direction:
+                direction_list=house.area.split(';')
+            else:
+                direction_list=['无']
+            #house_house={'id':house.id,'address':house.address,'firm_name':house.firm_name,'house_type':huxing_list[0],'average_price':house.average_price,'total_price':total_price_list,
+                        #'area':area_list[0],'height':house.height,'new':house.new,'elevator':house.elevator,'zhuangxiu':house.zhuangxiu,'date':str(house.date),
+                        #'district':house.district,'direction':direction_list,'huxing_jiegou':house.huxing_jiegou,'jianzhuleixing':house.jianzhuleixing,'nianxian':house.nianxian,
+                        #'tihu_bili':house.tihu_bili,'zhuangxiu':house.zhuangxiu,'kaipan_shijian':house.kaipan_shijian,'city':house.city}
+            
+            house_house={'id':house.id,'firm_name':house.address,'house_type':huxing_list[0],'average_price':house.average_price,'total_price':total_price_list[0],'area':area_list[0],'height':house.height,'new':house.new,'elevator':house.elevator,'zhuangxiu':house.zhuangxiu}
+            house_collections.append(house_house)           
         result={'is_success':'0','house':house_collections}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     except:
+        traceback.print_exc()
         result={'is_success':'1','house':[]}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
@@ -703,13 +763,14 @@ def delete_house_info(request):
 
 def add_district_price(request):
     #_session_id=request.Cookie.get('key')
-    _id=request.POST.get(_id)
+    #_id=request.POST.get(_id)
     #try:
         #admin=Admin.objects.filter(session_id=_session_id)
 
-    _district=request.POST.get('district')
-    _district_average=request.POST.get('district_average')
-    _date=request.POST.get('date')
+    _district=request.POST.get('contry')
+    _district_average=request.POST.get('admin_change_house')
+    _date=request.POST.get('time')
+
     try:
         district=District_price(district=_district,district_average=_district_average,date=_date)
         district.save()
