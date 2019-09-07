@@ -224,7 +224,7 @@
         };
         window.onload = function() {
             var house_info = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            var id_name="10000";
+            var id_name= getParams("id");
             $.ajax({
                 type: "POST", //
                 url: "/detail_info", //
@@ -238,13 +238,13 @@
                 },
                 success: function(data) {
                     p_name.innerHTML = data.house.firm_name;
-                    p_type.innerHTML = house_info[1];
+                    p_type.innerHTML = data.house.address;
                     var len0 =data.house.total_price.length;
                     if(len0==0) {
                         p_price.innerHTML = "";
                     }
                     else {
-                        p_price.innerHTML = data.house.total_price[0];
+                        p_price.innerHTML ="总价：" + data.house.total_price[0] + "万";
                     }
                     td_city.innerHTML = data.house.city;
                     td_address.innerHTML = data.house.address;
@@ -260,7 +260,7 @@
                         }
                         td_type.innerHTML = array1.join('/');
                     }
-                    td_danjia.innerHTML = data.house.average_price;
+                    td_danjia.innerHTML = data.house.average_price + "元";
                     var len2 =data.house.area.length;
                     if(len2 == 0) {
                         td_area.innerHTML = "暂无数据";

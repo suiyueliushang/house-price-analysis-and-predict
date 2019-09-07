@@ -306,6 +306,8 @@
     <script src="js/front.js"></script>
     <script>
         window.onload = function() {
+            var house_list = JSON.parse(sessionStorage.getItem("house_list"));
+            var len_house = house_list.length;
             var house = new Array(4);
             for(var j=0;j<4;j++) {
                 house[j] = new Array(20);
@@ -313,12 +315,67 @@
                     house[j][k] = "";
                 }
             }
-            house[0][0] = "ha";
-            house[1][0] = "ha";
-            house[0][19] = "hanpi1";
-            house[1][19] = "hanpi2";
-            house[2][19] = "hanpi3";
-            house[3][19] = "hanpi4";
+            $.ajax({
+                type: "POST", //
+                url: "/contrast_house", //
+                datatype: "json",
+                data: {
+                    'id': house_list
+                },
+                async: false,
+                error: function(request) { //失败的话
+                    alert("Connection error");
+                },
+                success: function(data) {
+                    for(var i=0;i<len_house;i++) {
+                        house[i][0] = data.house[i].city;
+                        house[i][1] = data.house[i].address;
+                        house[i][2] = data.house[i].firm_name;
+                        if(data.house[i].house_type.length==0) {
+                            house[i][3] = "暂无数据";
+                        }
+                        else {
+                            house[i][3] = data.house[i].house_type.join('/');
+                        }
+                        house[i][4] = data.house[i].average_price +"元";
+                        if(data.house[i].area.length==0) {
+                            house[i][5] = "暂无数据";
+                        }
+                        else {
+                            house[i][5] = data.house[i].area.join('/');
+                        }
+                        if(data.house[i].total_price.length==0) {
+                            house[i][6] = "暂无数据";
+                        }
+                        else {
+                            house[i][6] = data.house[i].total_price.join('/');
+                        }
+                        house[i][7] = "";
+                        house[i][8] = data.house[i].district;
+                        if(data.house[i].direction.length==0) {
+                            house[i][9] = "暂无数据";
+                        }
+                        else {
+                            house[i][9] = data.house[i].direction.join('/');
+                        }
+                        house[i][10] = data.house[i].elevator;
+                        house[i][11] = data.house[i].height;
+                        house[i][12] = data.house[i].huxing_jiegou;
+                        house[i][13] = data.house[i].jianzhuleixing;
+                        house[i][14] = data.house[i].new;
+                        house[i][15] = data.house[i].nianxian;
+                        house[i][16] = data.house[i].tihu_bili;
+                        house[i][17] = data.house[i].zhuangxiu;
+                        house[i][18] = data.house[i].kaipan_shijian;
+                        if(data.house[i].firm_name=="") {
+                            house[i][19] = data.house[i].address;
+                        }
+                        else {
+                            house[i][19] = data.house[i].firm_name;
+                        }
+                    }
+                }
+            });
             td_10.innerHTML = house[0][0];
             td_11.innerHTML = house[0][1];
             td_12.innerHTML = house[0][2];
