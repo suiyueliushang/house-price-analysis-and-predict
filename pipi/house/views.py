@@ -256,10 +256,11 @@ def forget_password(request):
 def change_password(request):
     _user_name=request.POST.get('change_user_name')
     _old_password=request.POST.get('change_password_1')
+    print(_user_name,_old_password)
     _new_password=request.POST.get('change_password_2')
     _cookie=request.COOKIES.get('key')
     try:
-        user=User.objects.filter(Q(user_name=_user_name)&Q(password=_old_password))
+        user=User.objects.filter(Q(user_name=_user_name)&Q(password=_old_password))[0]
         if user.session_id == _cookie:
             user.password=_new_password
             user.save()
@@ -428,11 +429,38 @@ def query_prices(request):
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     '''
 
-
-def district_in_city(request):
-    _city=request.POST.get('city')
-
-
+def detail_info(request):
+    _id=request.POST.get('id')
+    try:
+        house=House.objects.get(id=_id)
+        if house.area:
+            area_list=house.area.split(';')
+        else:
+            area_list=[]
+        if house.total_price:
+            total_price_list=house.total_price.split(';')
+        else:
+            total_price_list=[]
+        if house.house_type:
+            huxing_list=house.area.split(';')
+        else:
+            huxing_list=[]
+        if house.direction:
+            direction_list=house.area.split(';')
+        else:
+            direction_list=[]
+        house_house={'id':house.id,'address':house.address,'firm_name':house.firm_name,'house_type':huxing_list,'average_price':house.average_price,'total_price':total_price_list,
+                    'area':area_list,'height':house.height,'new':house.new,'elevator':house.elevator,'zhuangxiu':house.zhuangxiu,'date':str(house.date),
+                    'district':house.district,'direction':direction_list,'huxing_jiegou':house.huxing_jiegou,'jianzhuleixing':house.jianzhuleixing,'nianxian':house.nianxian,
+                    'tihu_bili':house.tihu_bili,'zhuangxiu':house.zhuangxiu,'kaipan_shijian':house.kaipan_shijian,'city':house.city}
+        result={'is_success':'0','house':house_house}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1','house':''}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+                            
+def contrast_house(request):
+    pass
 
 def contrast_city(request):
     '''
@@ -443,12 +471,20 @@ def contrast_city(request):
             return {city_name:[该年的所有月份数据]}
     '''
     _year=request.POST.get('year')
-    _city=request.POST.get('city_name')#_city是一个list
+    _city=request.POST.get('city_name').split('市')[0]
     print(_year,_city)
-    #city1=City.objects.filter(city='nanjing')
-    city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
+    city1=City_price.objects.filter(city=_city)
+    city_city=[0]*12
+    for city in city1:
+        print(str(city.date))
+        year=str(city.date).split('-')[0]
+        if _year==year:
+            month=int(str(city.date).split('-')[1])
+            city_city[month-1]=city.city_average
+    #city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
+
     #result={'one':city1[0].average_price,'two':city1[1].average_price,'three':city1[2].average_price,'four':city1[3].average_price,'five':city1[4].average_price,'six':city1[5].average_price,'seven':city1[6].average_price,'eight':city1[7].average_price,'nine':city1[8].average_price,'ten':city1[9].average_price,'eleven':city1[10].average_price,'twelve':city1[11].average_price}
-    result={'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+    result={'one':city_city[0],'two':city_city[1],'three':city_city[2],'four':city_city[3],'five':city_city[4],'six':city_city[5],'seven':city_city[6],'eight':city_city[7],'nine':city_city[8],'ten':city_city[9],'eleven':city_city[10],'twelve':city_city[11]}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def contrast_district(request):
@@ -460,13 +496,46 @@ def contrast_district(request):
             return {district_name:[该年的所有月份数据]}
     '''
     _year=request.POST.get('year')
-    _district=request.POST.get('city_name')#_city是一个list
+    _district=request.POST.get('region_name').split('区')[0]
     print(_year,_district)
-    #city1=City.objects.filter(city='nanjing')
-    city1=[21000,20000,240000,26000,254000,26000,253000,269000,26300,259000,269000,27100]
-    #result={'one':city1[0].average_price,'two':city1[1].average_price,'three':city1[2].average_price,'four':city1[3].average_price,'five':city1[4].average_price,'six':city1[5].average_price,'seven':city1[6].average_price,'eight':city1[7].average_price,'nine':city1[8].average_price,'ten':city1[9].average_price,'eleven':city1[10].average_price,'twelve':city1[11].average_price}
-    result={'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+    district1=District_price.objects.filter(district=_district)
+    dis_dis=[0]*12
+    for district in district1:
+        print(str(district.date))
+        year=str(district.date).split('-')[0]
+        if _year==year:
+            month=int(str(district.date).split('-')[1])
+            dis_dis[month-1]=district.district_average
+    result={'one':dis_dis[0],'two':dis_dis[1],'three':dis_dis[2],'four':dis_dis[3],'five':dis_dis[4],'six':dis_dis[5],'seven':dis_dis[6],'eight':dis_dis[7],'nine':dis_dis[8],'ten':dis_dis[9],'eleven':dis_dis[10],'twelve':dis_dis[11]}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
+
+def district_in_city(request):
+    _year=request.POST.get('year')
+    _city=request.POST.get('city_name')
+    _districts=District_price.objects.filter(city=_city)
+    dis_dis=[]
+    price=[]
+    for district1 in _districts:
+        year=str(district1.date).split('-')[0]
+        month=int(str(district1.date).split('-')[1])
+        if _year==year and month==1:
+            dis_dis.append({'district':district1.district,'price':district1.district_average})
+
+    result={'info':dis_dis}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
+def user_session(request):
+    _session_id=request.COOKIES.get('key')
+    print(_session_id)
+    try:
+        user=User.objects.filter(session_id=_session_id)[0]
+        print(user.session_id)
+        result={'is_success':'0'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        result={'is_success':'1'}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 def add_collection(request):
     '''
@@ -871,30 +940,13 @@ def first(request):
     return HttpResponse("helloworld")
     '''
 
-def index(request):
-    c1=City(city="nanjing",average_price=25000,year='2018',month='1')
-    c2=City(city="nanjing",average_price=25000,year='2018',month='2')
-    c3=City(city="nanjing",average_price=25000,year='2018',month='3')
-    c4=City(city='nanjing',average_price=25000,year='2018',month='4')
-    c5=City(city='nanjing',average_price=25000,year='2018',month='5')
-    c6=City(city='nanjing',average_price=25000,year='2018',month='6')
-    c7=City(city='nanjing',average_price=25000,year='2018',month='7')
-    c8=City(city='nanjing',average_price=25000,year='2018',month='8')
-    c9=City(city='nanjing',average_price=25000,year='2018',month='9')
-    c10=City(city='nanjing',average_price=25000,year='2018',month='10')
-    c11=City(city='nanjing',average_price=25000,year='2018',month='11')
-    c12=City(city='nanjing',average_price=25000,year='2018',month='12')
-    print(c1,'1')
-    c1.save()
-    c2.save()
-    c3.save()
-    c4.save()
-    c5.save()
-    c6.save()
-    c7.save()
-    c8.save()
-    c9.save()
-    c10.save()
-    c11.save()
-    c12.save()
-    return HttpResponse('sucess')
+
+def house_forecast(request):
+    _year=int(request.POST.get('for_year'))
+    _month=int(request.POST.get('for_month'))
+    len=_year*4+_month/3
+    print(len)
+    forecast=[int(len)]*int(len)
+    result={'is_success':'0','fore':forecast}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    
