@@ -30,34 +30,34 @@
 
     <script>
         /*
-                                                                                                                        function get_admin_session() {
-                                                                                                                            $.ajax({
-                                                                                                                                type: "POST", //提交的方法
-                                                                                                                                url: "/admin_session", //提交的地址  
-                                                                                                                                // contentType: false,
-                                                                                                                                data: {},
+                                                                                                                                                                                                                                                                                                                                                                                                                                                function get_admin_session() {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    $.ajax({
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        type: "POST", //提交的方法
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        url: "/admin_session", //提交的地址  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        // contentType: false,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        data: {},
 
-                                                                                                                                datatype: "json",
-                                                                                                                                async: false,
-                                                                                                                                error: function(request) { //失败的话
-                                                                                                                                    alert("Connection error");
-                                                                                                                                },
-                                                                                                                                success: function(data) { //成功
-                                                                                                                                    switch (data.is_success) {
-                                                                                                                                        case '0':
-                                                                                                                                            break;
-                                                                                                                                        case '1':
-                                                                                                                                            window.location.href = "login.html";
-                                                                                                                                            break;
-                                                                                                                                        default:
-                                                                                                                                            alert("未知错误");
-                                                                                                                                    }
-                                                                                                                                }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        datatype: "json",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        async: false,
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        error: function(request) { //失败的话
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            alert("Connection error");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        },
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        success: function(data) { //成功
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            switch (data.is_success) {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                case '0':
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    break;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                case '1':
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    window.location.href = "login.html";
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    break;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                default:
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    alert("未知错误");
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
 
-                                                                                                                            });
-                                                                                                                        }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    });
+                                                                                                                                                                                                                                                                                                                                                                                                                                                }
 
-                                                                                                                        get_admin_session();*/
+                                                                                                                                                                                                                                                                                                                                                                                                                                                get_admin_session();*/
     </script>
     <script>
         // document.getElementById('login_id').innerText = window.localStorage.getItem("name");
@@ -347,6 +347,77 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- 新增均价-->
+
+                            <div class="col-lg-12">
+                                <div class="card">
+                                    <div class="card-close">
+                                        <div class="dropdown">
+                                            <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                            <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow">
+                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
+                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-header d-flex align-items-center">
+                                        <h3 class="h4">增删地区房价</h3>
+                                    </div>
+
+                                    <div class="card-body">
+
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <!--时间选择-->
+                                                <select id="time_7" class="form-control mb-3">
+                                                    <option>=请选择年份=</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--省份选择-->
+                                                <select id="prov7" class="form-control mb-3" onchange="showCity7(this)">
+                                                    <option>=请选择省份=</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--城市选择-->
+                                                <select id="city7" class="form-control mb-3" onchange="showCountry7(this)">
+                                                        <option>=请选择城市=</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!--县区选择-->
+                                                <select id="country7" class="form-control mb-3" onchange="selecCountry7(this)">
+                                                        <option>=请选择县区=</option>
+                                                 </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <button id="admin_delete_data" onClick="admin_delete_data()" type="button" class="btn btn-primary " style="margin: 0% 0% 15% 20%">删除数据</button>
+
+                                            </div>
+                                            <div class="form-group" style="margin: 0% 0% 0% 2%">
+                                                <div id="div_1" style="color:red"></div>
+                                            </div>
+                                        </form>
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <div class="col-md-5" style="margin: 0% 0% 0% -6%">
+                                                    <input type="text" placeholder="输入新增或修改后的房价" class="form-control" id="admin_change_house">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button id="btn7" type="button" class="btn btn-primary ">新增/修改</button>
+                                                <div id="div_2" style="color:red"></div>
+                                            </div>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Modal Form-->
                             <div class="col-lg-4">
                                 <div class="card">

@@ -8,10 +8,23 @@ var city5 = $('city5');
 var country5 = $('country5');
 var time_5 = $('time_5');
 
+var btn7 = $('btn7');
+var prov7 = $('prov7');
+var city7 = $('city7');
+var country7 = $('country7');
+var time_7 = $('time_7');
+var admin_delete_data = $('admin_delete_data');
+
 var current5 = {
     prov5: '',
     city5: '',
     country5: ''
+};
+
+var current7 = {
+    prov7: '',
+    city7: '',
+    country7: ''
 };
 
 (function showProv5() {
@@ -30,6 +43,26 @@ var current5 = {
         timeOpt.innerText = year_time;
         timeOpt.value = i;
         time_5.appendChild(timeOpt);
+    }
+})();
+
+(function showProv7() {
+    btn7.disabled = true;
+    admin_delete_data.disabled = true;
+    var len = provice.length;
+    for (var i = 0; i < len; i++) {
+        var provOpt = document.createElement('option');
+        provOpt.innerText = provice[i]['name'];
+        provOpt.value = i;
+        prov7.appendChild(provOpt);
+    }
+    var len_0 = 10;
+    for (var i = 0; i < len_0; i++) {
+        var year_time = 2019 - i;
+        var timeOpt = document.createElement('option');
+        timeOpt.innerText = year_time;
+        timeOpt.value = i;
+        time_7.appendChild(timeOpt);
     }
 })();
 
@@ -52,6 +85,27 @@ function showCity5(obj) {
     }
 }
 
+
+function showCity7(obj) {
+    var val = obj.options[obj.selectedIndex].value;
+    if (val != current7.prov7) {
+        current7.prov7 = val;
+        btn7.disabled = true;
+        admin_delete_data.disabled = true;
+    }
+    //console.log(val);
+    if (val != null) {
+        city7.length = 1;
+        var cityLen = provice[val]["city"].length;
+        for (var j = 0; j < cityLen; j++) {
+            var cityOpt = document.createElement('option');
+            cityOpt.innerText = provice[val]["city"][j].name;
+            cityOpt.value = j;
+            city7.appendChild(cityOpt);
+        }
+    }
+}
+
 function showCountry5(obj) {
     var val = obj.options[obj.selectedIndex].value;
     current5.city5 = val;
@@ -67,10 +121,34 @@ function showCountry5(obj) {
     }
 }
 
+function showCountry7(obj) {
+    var val = obj.options[obj.selectedIndex].value;
+    current7.city7 = val;
+    if (val != null) {
+        country7.length = 1; //清空之前的内容只留第一个默认选项
+        var countryLen = provice[current7.prov7]["city"][val].districtAndCounty.length;
+        for (var n = 0; n < countryLen; n++) {
+            var countryOpt = document.createElement('option');
+            countryOpt.innerText = provice[current7.prov7]["city"][val].districtAndCounty[n];
+            countryOpt.value = n;
+            country7.appendChild(countryOpt);
+        }
+    }
+}
+
 function selecCountry5(obj) {
     current5.country5 = obj.options[obj.selectedIndex].value;
     if ((current5.city5 != null) && (current5.country5 != null)) {
-        btn5.disabled = false;
+        btn7.disabled = false;
+        admin_delete_data.disabled = false;
+    }
+}
+
+function selecCountry7(obj) {
+    current7.country7 = obj.options[obj.selectedIndex].value;
+    if ((current7.city7 != null) && (current7.country7 != null)) {
+        btn7.disabled = false;
+        admin_delete_data.disabled = false;
     }
 }
 //管理员增加新房源
@@ -153,3 +231,74 @@ function admin_add_house() {
 
     });
 };
+
+
+function admin_delete_data() {
+
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/delete_district_price", //提交的地址  
+        // contentType: false,
+        data: {
+            'time': time_7.val(),
+            'prov': prov7.val(),
+            'city': city7.val(),
+            'country': country7.val(),
+        },
+
+        datatype: "json",
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) { //成功
+            switch (data.is_success) {
+                case '0':
+                    document.getElementById('div_1').innerText = "删除成功";
+                    break;
+                case '1':
+                    document.getElementById('div_1').innerText = "删除失败,不存在该数据,可能已删除";
+                    break;
+                default:
+                    alert("未知错误");
+            }
+        }
+
+    });
+}
+
+function admin_change_data() {
+
+    admin_change_house = document.getElementById('admin_change_house').innerText();
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/add_district_price", //提交的地址  
+        // contentType: false,
+        data: {
+            'time': time_7.val(),
+            'prov': prov7.val(),
+            'city': city7.val(),
+            'country': country7.val(),
+            'admin_change_house': admin_change_house,
+        },
+
+        datatype: "json",
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) { //成功
+            switch (data.is_success) {
+                case '0':
+                    document.getElementById('div_2').innerText = "新增或修改成功";
+                    break;
+                case '1':
+                    document.getElementById('div_2').innerText = "新增或修改失败";
+                    break;
+                default:
+                    alert("未知错误");
+            }
+        }
+
+    });
+}

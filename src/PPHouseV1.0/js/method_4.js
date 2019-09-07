@@ -129,39 +129,48 @@ function forecast() {
             switch (data.is_success) {
                 case '0':
                     {
-                        for (var i = 0; i < Number(for_year + 1); i++) {
+                        document.getElementById("forecast_div").style.display = "";
+                        for (var i = 0; i < 10; i++) {
+                            var temp = "year_" + i.toString();
+                            document.getElementById(temp).style.display = "none";
+                            for (var j = 3; j <= 12; j = j + 3) {
+                                temp = "y" + i.toString() + "m" + j.toString();
+                                document.getElementById(temp).innerText = null;
+                            }
+                        }
+
+                        for (var i = 0; i < (Number(for_year)); i++) {
+
                             var temp = "year_" + i.toString();
                             document.getElementById(temp).style.display = "";
                             for (var j = 3; j <= 12; j = j + 3) {
                                 temp = "y" + i.toString() + "m" + j.toString();
-                                document.getElementById(temp).innerText = data.fore[i * 4 + Math.floor(j / 3)];
+                                document.getElementById(temp).innerText = data.fore[i * 4 + Math.floor(j / 3) - 1];
                             }
                         }
                         if (for_month != 0) {
-                            var temp = "year_" + Number(for_year + 2).toString();
+                            var temp = "year_" + (Number(for_year)).toString();
                             document.getElementById(temp).style.display = "";
                             for (var j = 3; j <= Number(for_month); j = j + 3) {
                                 temp = "y" + i.toString() + "m" + j.toString();
-                                document.getElementById(temp).innerText = data.fore[(for_year + 2) * 4 + Math.floor(j / 3)];
+                                document.getElementById(temp).innerText = data.fore[(for_year) * 4 + Math.floor(j / 3) - 1];
                             }
                         }
                     }
 
-                    break;
 
+                    break;
                 case '1':
                     {
-                        for (var i = 0; i < 18; i++) {
-                            var temp = "year_" + i.toString();
-                            document.getElementById(temp).style.display = "none";
-                        }
+                        document.getElementById("forecast_div").style.display = "none";
                     }
+
                     alert("未查到您输入的小区或楼盘");
                     break;
                 default:
                     alert("未知错误");
             }
-            3
+
         }
 
     });
