@@ -27,6 +27,7 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
+
 <body>
     <div class="page">
         <!-- Main Navbar-->
@@ -214,6 +215,8 @@
     <!-- Main File-->
     <script src="js/front.js"></script>
     <script>
+        document.getElementById('login_id').innerText = getCookie('name');
+
         function getParams(key) {
             var reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)");
             var r = window.location.search.substr(1).match(reg);
@@ -224,7 +227,7 @@
         };
         window.onload = function() {
             var house_info = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
-            var id_name= getParams("id");
+            var id_name = getParams("id");
             $.ajax({
                 type: "POST", //
                 url: "/detail_info", //
@@ -239,62 +242,57 @@
                 success: function(data) {
                     p_name.innerHTML = data.house.firm_name;
                     p_type.innerHTML = data.house.address;
-                    var len0 =data.house.total_price.length;
-                    if(len0==0) {
+                    var len0 = data.house.total_price.length;
+                    if (len0 == 0) {
                         p_price.innerHTML = "";
-                    }
-                    else {
-                        p_price.innerHTML ="总价：" + data.house.total_price[0] + "万";
+                    } else {
+                        p_price.innerHTML = "总价：" + data.house.total_price[0] + "万";
                     }
                     td_city.innerHTML = data.house.city;
                     td_address.innerHTML = data.house.address;
                     td_xiaoqu.innerHTML = data.house.firm_name;
                     var len1 = data.house.house_type.length;
-                    if( len1==0) {
+                    if (len1 == 0) {
                         td_type.innerHTML = "暂无数据";
-                    }
-                    else {
+                    } else {
                         var array1 = new Array();
-                        for( var i=0;i<len1;i++) {
-                            array1[i]=data.house.house_type[i];
+                        for (var i = 0; i < len1; i++) {
+                            array1[i] = data.house.house_type[i];
                         }
                         td_type.innerHTML = array1.join('/');
                     }
                     td_danjia.innerHTML = data.house.average_price + "元";
-                    var len2 =data.house.area.length;
-                    if(len2 == 0) {
+                    var len2 = data.house.area.length;
+                    if (len2 == 0) {
                         td_area.innerHTML = "暂无数据";
-                    }
-                    else {
+                    } else {
                         var array2 = new Array();
-                        for(var i=0; i<len2;i++) {
-                            array2[i]=data.house.area[i];
+                        for (var i = 0; i < len2; i++) {
+                            array2[i] = data.house.area[i];
                         }
                         td_area.innerHTML = array2.join('/');
                     }
                     var len3 = data.house.total_price.length;
-                    if(len3 ==0) {
+                    if (len3 == 0) {
                         td_price.innerHTML = "暂无数据";
-                    }
-                    else {
+                    } else {
                         var array3 = new Array();
-                        for(var i=0;i<len3;i++) {
-                            array3[i]=data.house.total_price[i];
+                        for (var i = 0; i < len3; i++) {
+                            array3[i] = data.house.total_price[i];
                         }
                         td_price.innerHTML = array3.join('/');
                     }
                     td_date.innerHTML = house_info[10];
                     td_district.innerHTML = data.house.district;
                     var len4 = data.house.direction.length;
-                    if(len4==0) {
+                    if (len4 == 0) {
                         td_direction.innerHTML = "暂无数据";
-                    }
-                    else {
+                    } else {
                         var array4 = new Array();
-                        for(var i=0;i<len4; i++) {
-                            array4[i]=data.house.direction[i];
+                        for (var i = 0; i < len4; i++) {
+                            array4[i] = data.house.direction[i];
                         }
-                        td_direction.innerHTML=array4.join('/');
+                        td_direction.innerHTML = array4.join('/');
                     }
                     td_evlator.innerHTML = data.house.elevator;
                     td_height.innerHTML = data.house.height;
@@ -310,4 +308,5 @@
         }
     </script>
 </body>
+
 </html>

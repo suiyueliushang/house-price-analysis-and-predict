@@ -26,6 +26,26 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script>
+        function getCookie(c_name) {
+            if (document.cookie.length > 0) {
+                c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) {
+                        c_end = document.cookie.length;
+                    }
+
+                    return unescape(document.cookie.substring(c_start, c_end));
+                }
+            }
+
+            return "";
+        }
+        if (getCookie('session') != "admin")
+            window.location.href = "login.html";
+    </script>
 </head>
 
 <body>

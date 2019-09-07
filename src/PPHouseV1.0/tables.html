@@ -32,6 +32,7 @@
 
     <style>
         /* 排序栏 */
+        
         .sortby {
             color: #666;
             padding-left: 20px;
@@ -76,8 +77,8 @@
             color: #e54b00;
             text-decoration: underline
         }
-        
         /* 城市选择按钮 */
+        
         .city {
             display: inline-block;
             *display: inline;
@@ -294,7 +295,7 @@
                 <div class="sidebar-header d-flex align-items-center">
                     <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
-                        <h1 class="h4">UserName</h1>
+                        <h1 class="h4" id="login_id">UserName</h1>
                         <p>City1.4</p>
                     </div>
                 </div>
@@ -1384,6 +1385,7 @@
 
 
     <script>
+        document.getElementById('login_id').innerText = getCookie('name');
         var test = new Vcity.CitySelector({
             button: 'citySelect'
         });
@@ -1400,9 +1402,9 @@
             }
         }
 
-        function f2(){
-            if(document.getElementsByClassName("compare_num")<2){
-                $(".compare_smt").attr("href","javascript:return false;");
+        function f2() {
+            if (document.getElementsByClassName("compare_num") < 2) {
+                $(".compare_smt").attr("href", "javascript:return false;");
             }
         }
 
@@ -1516,14 +1518,14 @@
                                     $(".floor").eq(i).html(data.houses[i].heigth);
                                     //$(".direction").eq(i).html(data.houses[i].direction);
                                     $(".house_id").eq(i).html(data.houses[i].id);
-							        $(".list-item .house_title").eq(i).attr("href","house.html?id="+data.houses[i].id);
-                                    if(data.houses[i].new){
+                                    $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id);
+                                    if (data.houses[i].new) {
                                         $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
                                     }
-                                    if(data.houses[i].elevator=="有"){
+                                    if (data.houses[i].elevator == "有") {
                                         $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
                                     }
-                                    if(data.houses[i].zhuangxiu=="精装"){
+                                    if (data.houses[i].zhuangxiu == "精装") {
                                         $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
                                     }
                                 }

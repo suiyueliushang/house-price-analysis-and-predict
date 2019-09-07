@@ -174,7 +174,36 @@ $(document).ready(function() {
 
 });
 
+//设置cookie
+function setCookie(c_name, value, expiredays) {
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + expiredays);
+    document.cookie = c_name + "=" + escape(value) +
+        ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+}
+//setCookie('name', 'zzyn', 1); // cookie过期时间为1天。
 
+
+function getCookie(c_name) {
+    if (document.cookie.length > 0) {
+        c_start = document.cookie.indexOf(c_name + "=");
+        if (c_start != -1) {
+            c_start = c_start + c_name.length + 1;
+            c_end = document.cookie.indexOf(";", c_start);
+            if (c_end == -1) {
+                c_end = document.cookie.length;
+            }
+
+            return unescape(document.cookie.substring(c_start, c_end));
+        }
+    }
+
+    return "";
+}
+
+function delCookie(name) {
+    setCookie(name, "", -1);
+}
 
 //登录数据交互
 $("#login").click(function() {
@@ -232,7 +261,9 @@ $("#login").click(function() {
                             //switch (data) 
                             case '0':
                                 {
-                                    window.localStorage.setItem("name", data.user.user_name);
+                                    //window.localStorage.setItem("name", data.user.user_name);
+                                    setCookie('session', 'user', 7);
+                                    setCookie('name', data.user.user_name, 7);
                                     window.location.href = "index.html";
                                     break;
                                 }
@@ -285,7 +316,9 @@ $("#login_by_phone").click(function() {
 
                     switch (data.is_success) {
                         case '0':
-                            window.localStorage.setItem("name", data.user.user_name);
+                            // window.localStorage.setItem("name", data.user.user_name);
+                            setCookie('session', 'user', 7);
+                            setCookie('name', data.user.user_name, 7);
                             window.location.href = "index.html";
                             break;
                         case '1':
@@ -363,6 +396,8 @@ $("#admin_login").click(function() {
                             case '0':
                                 {
                                     window.location.href = "admin_page_1.html";
+                                    setCookie('session', "admin", 7);
+                                    setCookie('name', admin_name, 7);
                                     break;
                                 }
                             case "1":
@@ -390,8 +425,9 @@ $("#admin_login").click(function() {
 //登出
 $("#log_out").click(function() {
     //user_name = $('#login_id').val();
-    window.localStorage.removeItem("name");
-
+    //window.localStorage.removeItem("name");
+    delCookie("session");
+    delCookie("name");
 });
 
 

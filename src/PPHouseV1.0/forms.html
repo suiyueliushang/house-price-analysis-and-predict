@@ -824,7 +824,7 @@
     <script src="js/front.js"></script>
 
     <script>
-        document.getElementById('login_id').innerText = window.localStorage.getItem("name");
+        document.getElementById('login_id').innerText = getCookie('name');
         console.log(window.localStorage.getItem("name"));
     </script>
 

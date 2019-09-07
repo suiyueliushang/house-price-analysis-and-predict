@@ -28,11 +28,11 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 
     <style>
-        .sale-left{
+        .sale-left {
             width: 100%;
         }
-
-        .sale-left ul{
+        
+        .sale-left ul {
             list-style-type: none
         }
     </style>
@@ -267,17 +267,17 @@
     <!-- Main File-->
     <script src="js/front.js"></script>
     <script>
-        document.getElementById('login_id').innerText = window.localStorage.getItem("name");
+        document.getElementById('login_id').innerText = getCookie('name');
         console.log(window.localStorage.getItem("name"));
     </script>
 
     <script>
-        $(function(){
+        $(function() {
             var a = '<li class="list-item"><div class="item"><lable style="display:none" class="house_id">6666666</lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a></div><div class="details-item"><span class="house_type" id="house_type">X室X厅</span><em class="spe-lines">|</em><span class="area" id="area">XX㎡</span><em class="spe-lines">|</em><span class="floor">XX层</span></div><!--<div class="details-item"><span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span></div>--><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span></div></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">已关注</button></div></li>';
 
             sessionStorage.removeItem("house_list");
             $(".compare .compare_num").html("0");
-        
+
             $.ajax({
                 type: "post",
                 url: "/show_collection",
@@ -298,14 +298,14 @@
                         $(".floor").eq(i).html(data.house[i].heigth);
                         //$(".direction").eq(i).html(data.house[i].direction);
                         $(".house_id").eq(i).html(data.house[i].id);
-                        $(".list-item .house_title").eq(i).attr("href","house.html?id="+data.house[i].id);
-                        if(data.house[i].new){
+                        $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.house[i].id);
+                        if (data.house[i].new) {
                             $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
                         }
-                        if(data.house[i].elevator=="有"){
+                        if (data.house[i].elevator == "有") {
                             $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
                         }
-                        if(data.house[i].zhuangxiu=="精装"){
+                        if (data.house[i].zhuangxiu == "精装") {
                             $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
                         }
                     }
