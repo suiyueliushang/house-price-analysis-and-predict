@@ -20,6 +20,7 @@ urlpatterns = [
     path('admin_session',views.admin_session),
     path('user_session',views.user_session),
     path('add_house_info',views.add_house_info),
+    path('show_house_info',views.admin_show_house),
     path('delete_house_info',views.delete_house_info),
     path('add_district_price',views.add_district_price),
     path('delete_district_price',views.delete_district_price),
@@ -31,6 +32,7 @@ urlpatterns = [
     path('delete_collection',views.delete_collection),
     path('detail_info',views.detail_info),
     path('contrast_house',views.contrast_house),
+
 
     path('add_users',views.add_users),
     path('search_member',views.search_member),
