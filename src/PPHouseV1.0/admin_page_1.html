@@ -38,14 +38,15 @@
             }
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    if (xmlhttp.responseText == 1)
-                        xmlhttp.responseText;
+                    if (xmlhttp.responseText == 1) {
+                        window.location.href = "login.html";
+                    } else {}
                 } else {
                     alert("Connection error");
                 }
             }
             xmlhttp.open("GET", "/admin_session", true);
-            xmlhttp.send();
+            xmlhttp.send(null);
         }
 
         loadXMLDoc();
