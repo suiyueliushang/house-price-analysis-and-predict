@@ -58,7 +58,7 @@ def sign_in_by_password(request):
             result={'is_success':'0','user':user_user}
             response=HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
             cookie_key='key'
-            cookie_value='cookie12'
+            cookie_value='cookie12'+str(datetime.datetime.now())+'jfnsdjf'
             response.set_cookie(cookie_key,cookie_value)
             user.session_id=cookie_value
             user.save()
