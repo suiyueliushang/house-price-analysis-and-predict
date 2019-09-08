@@ -205,6 +205,14 @@ function delCookie(name) {
     setCookie(name, "", -1);
 }
 
+function clearCookie() {
+    var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+    if (keys) {
+        for (var i = keys.length; i--;)
+            document.cookie = keys[i] + '=0;expires=' + new Date(0).toUTCString()
+    }
+}
+
 //登录数据交互
 $("#login").click(function() {
 
@@ -423,13 +431,24 @@ $("#admin_login").click(function() {
 
 
 //登出
-$("#log_out").click(function() {
+function log_out() {
     //user_name = $('#login_id').val();
     //window.localStorage.removeItem("name");
     delCookie("session");
     delCookie("name");
-});
+    //clearCookie();
+    window.location.href = "login.html";
+};
 
+
+$("#log_out_a").click(function() {
+    //user_name = $('#login_id').val();
+    //window.localStorage.removeItem("name");
+    delCookie("session");
+    delCookie("name");
+    //clearCookie();
+    window.location.href = "login.html";
+});
 
 //注册
 $("#sign_up").click(function() {
@@ -1252,4 +1271,20 @@ function get_admin_session() {
         }
 
     });
+}
+
+function check_login_state() {
+    if (getCookie('session') == "user") {
+        document.getElementById('in_li').style.display = "none";
+        document.getElementById('out_li').style.display = "";
+        document.getElementById('admin_li').style.display = "none";
+    } else if (getCookie('session') == "admin") {
+        document.getElementById('in_li').style.display = "none";
+        document.getElementById('out_li').style.display = "";
+        document.getElementById('admin_li').style.display = "";
+    } else {
+        document.getElementById('in_li').style.display = "";
+        document.getElementById('out_li').style.display = "none";
+        document.getElementById('admin_li').style.display = "";
+    }
 }
