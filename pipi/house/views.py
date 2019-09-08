@@ -360,8 +360,18 @@ def query_prices(request):
                             housess.append(house_house)
                 else:
                     pass
-            city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
-            result={'page_num':_page_num,'houses':housess,'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+            city1=City_price.objects.filter(city=_city)
+            city_city=[0]*12
+            for city in city1:
+                print(str(city.date))
+                year=str(city.date).split('-')[0]
+                if year=='2019':
+                    month=int(str(city.date).split('-')[1])
+                    city_city[month-1]=city.city_average
+                elif year=='2018':
+                    month=int(str(city.date).split('-')[1])
+                    city_city[month-10]=city.city_average
+            result={'page_num':_page_num,'houses':housess,'one':city_city[0],'two':city_city[1],'three':city_city[2],'four':city_city[3],'five':city_city[4],'six':city_city[5],'seven':city_city[6],'eight':city_city[7],'nine':city_city[8],'ten':city_city[9],'eleven':city_city[10],'twelve':city_city[11]}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         else:
             print(2)
@@ -403,8 +413,18 @@ def query_prices(request):
                         housess.append(house_house)
                 #city,district,month,_min_price,_min_area,page
                 #id,firm_name,address,house_type,average_price,total_price,area,height
-            city1=[21000,20000,24000,26000,25400,26000,25300,26900,26300,25900,26900,27100]
-            result={'page_num':_page_num,'houses':housess,'one':city1[0],'two':city1[1],'three':city1[2],'four':city1[3],'five':city1[4],'six':city1[5],'seven':city1[6],'eight':city1[7],'nine':city1[8],'ten':city1[9],'eleven':city1[10],'twelve':city1[11]}
+            city1=City_price.objects.filter(city=_city)
+            city_city=[0]*12
+            for city in city1:
+                print(str(city.date))
+                year=str(city.date).split('-')[0]
+                if year=='2019':
+                    month=int(str(city.date).split('-')[1])
+                    city_city[month-1]=city.city_average
+                elif year=='2018':
+                    month=int(str(city.date).split('-')[1])
+                    city_city[month-10]=city.city_average
+            result={'page_num':_page_num,'houses':housess,'one':city_city[0],'two':city_city[1],'three':city_city[2],'four':city_city[3],'five':city_city[4],'six':city_city[5],'seven':city_city[6],'eight':city_city[7],'nine':city_city[8],'ten':city_city[9],'eleven':city_city[10],'twelve':city_city[11]}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     except:
         traceback.print_exc()
