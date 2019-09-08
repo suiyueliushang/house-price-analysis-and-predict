@@ -32,8 +32,6 @@ urlpatterns = [
     path('delete_collection',views.delete_collection),
     path('detail_info',views.detail_info),
     path('contrast_house',views.contrast_house),
-
-
     path('add_users',views.add_users),
     path('search_member',views.search_member),
     path('delete_users',views.delete_users),
