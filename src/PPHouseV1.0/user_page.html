@@ -65,11 +65,11 @@
                         <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                             <li style="padding: 0px 10px 0px"><a href="">地区</a></li>
                             <li style="padding: 0px 10px 0px"><a href="">语言</a></li>
-                            <li style="padding: 0px 10px 0px"><a href="register.html" style="width:auto;">注册</a><a>/</a><a href="login.html" style="width:auto;">登录</a></li>
-                            <li style="padding: 0px 10px 0px"><a href="">联系我们</a></li>
+                            <li id="in_li" style="padding: 0px 10px 0px;display:none"><a href=" register.html " style="width:auto; ">注册</a><a>/</a><a href="login.html " style="width:auto; ">登录</a></li>
+                            <li style="padding: 0px 10px 0px "><a href=" ">联系我们</a></li>
                             <!-- Logout    -->
-                            <li class="nav-item">
-                                <a href="login.html" class="nav-link logout" id="log_out"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a>
+                            <li id="out_li" class="nav-item ">
+                                <a href="javascript:void(0);" class="nav-link logout " οnclick="log_out()" id="log_out_a"> <span class="d-none d-sm-inline ">Logout</span><i class="fa fa-sign-out "></i></a>
                             </li>
                         </ul>
                     </div>
@@ -107,6 +107,9 @@
                     </li>
                     <li class="active">
                         <a href="user_page.html"> <i class="icon-user"></i>个人中心</a>
+                    </li>
+                    <li id="admin_li" style="display: none">
+                        <a href="admin_page_1.html"> <i class="icon-interface-windows"></i>Admin page </a>
                     </li>
                 </ul><span class="heading">Extras</span>
                 <ul class="list-unstyled">
@@ -313,6 +316,7 @@
             });
         });
         //$.parser.parse($(".card-body ul"));
+        check_login_state();
     </script>
 </body>
 
