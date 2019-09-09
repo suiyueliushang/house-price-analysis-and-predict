@@ -248,7 +248,7 @@ $(document).ready(function(){
 						$(".floor").eq(i).html("");
 						$(".house_id").eq(i).html("");
 						$(".list-item .house_title").eq(i).attr("href","#");
-						$(".list-item .tags-bottom").eq(i).clear();
+						$(".list-item .tags-bottom").eq(i).empty();
 
 						$(".house_title").eq(i).html(data.houses[i].firm_name);
 						//$(".address").eq(i).html(data.houses[i].address);
