@@ -76,10 +76,10 @@
             <nav class="side-navbar">
                 <!-- Sidebar Header-->
                 <div class="sidebar-header d-flex align-items-center">
-                    <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+
                     <div class="title">
+                        <h1 class="h5" style="color: gray">Welcome!</h1>
                         <h1 class="h4" id="login_id">UserName</h1>
-                        <p>City</p>
                     </div>
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
@@ -139,7 +139,7 @@
                                 <tr>
                                     <th width="20%"></th>
                                     <td width="20%"><img src="img/home_02.png" width="90%" height="40%"></td>
-                                    <td width="20%"><img src="img/home_03.png" width="90%" height="40%"></td>
+                                    <td width="20%" id="img_2"><img src="img/home_03.png" width="90%" height="40%"></td>
                                     <td width="20%"><img src="img/home_04.png" width="90%" height="40%"></td>
                                     <td width="20%"><img src="img/home_05.png" width="90%" height="40%"></td>
                                 </tr>
@@ -303,6 +303,7 @@
             </div>
         </div>
     </div>
+
     <!-- JavaScript files-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js"></script>
@@ -316,6 +317,7 @@
     <script>
         document.getElementById('login_id').innerText = getCookie('name');
         window.onload = function() {
+            //img_2.style.backgroundImage ="url(img/home_04.png)";//
             var house_list = JSON.parse(sessionStorage.getItem("house_list"));
             var len_house = house_list.length;
             var house = new Array(4);

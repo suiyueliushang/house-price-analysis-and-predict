@@ -70,14 +70,18 @@ var house_type = new Array(18);
 //用户预测房价
 function forecast() {
 
-    prov = $('#prov6').val();
-    city = $('#city6').val();
-    country = $('#country6').val();
+
+    prov = provice[current6.prov6].name
+    city = provice[current6.prov6]["city"][current6.city6].name
+    myselect = document.getElementById('country6');
+    index = myselect.selectedIndex;
+    country = myselect.options[index].text;
+
     xiaoqu = $('#xiaoqu').val();
     for_year = $('#for_year').val();
     for_month = $('#for_month').val();
 
-
+    console.log(for_year, for_month)
     for (var i = 0; i < 18; i++) {
         var h_t = "#checkbox" + i.toString();
         house_type[i] = $(h_t);
@@ -133,6 +137,7 @@ function forecast() {
                         var price = new Array();
                         var index = 0;
                         document.getElementById("forecast_div").style.display = "";
+                        document.getElementById("forecast_line").style.display = "";
                         for (var i = 0; i < 10; i++) {
                             var temp = "year_" + i.toString();
                             document.getElementById(temp).style.display = "none";

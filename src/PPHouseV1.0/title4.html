@@ -26,37 +26,6 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <style>
-        .shortselect {
-            background: #fafdfe;
-            height: 28px;
-            width: 180px;
-            line-height: 28px;
-            border: 1px solid rgb(103, 102, 170);
-            -moz-border-radius: 2px;
-            -webkit-border-radius: 2px;
-            border-radius: 2px;
-        }
-        
-        input {
-            border: 1px solid #ccc;
-            padding: 3px 0px;
-            border-radius: 3px;
-            padding-left: 5px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
-        }
-        
-        input:focus {
-            border-color: #66afe9;
-            outline: 0;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
-        }
-    </style>
 </head>
 
 <body>
@@ -102,7 +71,6 @@
             <nav class="side-navbar">
                 <!-- Sidebar Header-->
                 <div class="sidebar-header d-flex align-items-center">
-
                     <div class="title">
                         <h1 class="h5" style="color: gray">Welcome!</h1>
                         <h1 class="h4" id="login_id">UserName</h1>
@@ -116,8 +84,8 @@
                     <li>
                         <a href="tables.html"> <i class="icon-grid"></i>房价查询 </a>
                     </li>
-                    <li class="active">
-                        <a href="#charts_page" aria-expanded="ture" data-toggle="collapse" class="active"> <i class="icon-interface-windows"></i>房价对比 </a>
+                    <li>
+                        <a href="#charts_page" aria-expanded="ture" data-toggle="collapse"> <i class="icon-interface-windows"></i>房价对比 </a>
                         <ul id="charts_page" class="collapse list-unstyled ">
                             <li><a href="charts.html">区域对比</a></li>
                             <li><a href="charts2.html">城市对比</a></li>
@@ -152,80 +120,23 @@
                 <!-- Page Header-->
                 <header class="page-header">
                     <div class="container-fluid">
-                        <h2 class="no-margin-bottom">房价对比</h2>
+                        <h2 class="no-margin-bottom">新闻/文章</h2>
                     </div>
                 </header>
                 <!-- Breadcrumb-->
                 <div class="breadcrumb-holder container-fluid">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">首页</a></li>
-                        <li class="breadcrumb-item active">房价对比 </li>
+                        <li class="breadcrumb-item active">新闻/文章</li>
                     </ul>
                 </div>
-                <!--选择要要查看的城市，时间-->
-                <div class="col-lg-8">
-                    <div class="line-chart-example card">
-                        <legend>请选择要对比的城市,时间</legend>
-                        <div class="card-body">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <!--时间选择-->
-                                    <select id="time_2" class="form-control mb-3">
-                                        <option>=请选择年份=</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <!--省份选择-->
-                                    <select id="prov2" class="form-control mb-3" onchange="showCity2(this)">
-                                        <option>=请选择省份=</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <!--城市选择-->
-                                    <select id="city2" class="form-control mb-3" onchange="deal_2(this)">
-                                        <option>=请选择城市=</option>
-                                    </select>
-                                </div>
-                                <button type="button" id="btn2" onClick="showAddr2()" class="btn btn-primary">确定</button><br>
-                            </form>
-                            <label for="addr-show2">您选择的是:
-                                <input type="text" value="" id="addr-show2">
-                            </label>
-                            <!--选择要要查看的城市，时间-->
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <!--时间选择-->
-                                    <select id="time_3" class="form-control mb-3">
-                                        <option>=请选择年份=</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <!--省份选择-->
-                                    <select id="prov3" class="form-control mb-3" onchange="showCity3(this)">
-                                        <option>=请选择省份=</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <!--城市选择-->
-                                    <select id="city3" class="form-control mb-3" onchange="deal_3(this)">
-                                        <option>=请选择城市=</option>
-                                    </select>
-                                </div>
-                                <button type="button" id="btn3" onClick="showAddr3()" class="btn btn-primary">确定</button><br>
-                            </form>
-                            <label for="addr-show3">您选择的是:
-                                <input type="text" value="" id="addr-show3">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <!-- Charts Section-->
-                <section class="charts">
+                <!-- Forms Section-->
+                <section class="forms">
                     <div class="container-fluid">
                         <div class="row">
-                            <!-- Line Charts-->
-                            <div class="col-lg-8">
-                                <div class="line-chart-example card">
+                            <!-- Basic Form-->
+                            <div class="col-lg-12">
+                                <div class="card">
                                     <div class="card-close">
                                         <div class="dropdown">
                                             <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
@@ -236,16 +147,43 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">城市房价趋势对比图</h3>
+                                        <h3 class="h4">上半年8个城市卖地收入增速翻倍 14个城市土地成交面积下降</h3>
                                     </div>
-                                    <div class="card-body" id="line_5">
-                                        <canvas id="lineChartExample5"></canvas>
+                                    <div class="card-body">
+                                        <div class="info"> <span>来源:中国新闻网</span> <span><small>┆</small></span> <span>时间:2019-08-22 08:06:31</span> <span></span> </div>
+                                        <br>
+                                        <div class="content showp" style="padding:20px 0 0;">
+                                            <p>中新经纬8月22日电(张猛)</p>
+                                            <p> 据国家信息中心信息化和产业发展部消息，上半年城市土地收入排行榜出炉，杭州1494亿元名列第一，武汉1046亿元次之，北京929亿元排名第三。</p>
+                                            <p>国家信息中心信息化和产业发展部指出，上半年全国共通过招拍挂供应土地45378宗，占地面积为14.46万公顷，同比增长5.2%;成交土地35509宗，面积为11.47万公顷，同比增长2.2%，均保持低速增长。</p>
+                                            <p align="center"><img align="" alt="" src="http://i.ce.cn/ce/xwzx/gnsz/gdxw/201908/22/W020190822267007549478.jpg" style="border-width: 0px; border-style: solid; width: 550px;"></p>
+                                            <p style="text-align: center;">来源：国家信息中心官网</p>
+                                            <p>东部15城挤入前20</p>
+                                            <p>国家信息中心信息化和产业发展部称，今年上半年，杭州以1494亿元的成交价款蝉联城市排名第一;武汉异军突起，由上年同期的第9名前进7名，占据榜眼的位置;北京则由上年同期的第4名前进1名，排名第3。</p>
+                                            <p>从TOP20城市的区域分布来看，有15个城市属于东部地区，3个(合肥、郑州、武汉)属于中部地区，2个(成都、重庆)属于西部地区。</p>
+                                            <p>从城市级别看，京津沪渝4个直辖市全部上榜，9个省会城市(杭州、武汉、福州、广州、郑州、南京、合肥、成都、济南)上榜，5个计划单列市中的宁波和青岛2个城市上榜。另外，还有5个一般性地级城市也上榜，分别是苏州、温州、常州、绍兴、佛山。</p>
+                                            <p>易居研究院智库中心研究总监严跃进对中新经纬客户端表示，土地收入TOP20有15个东部城市，充分说明东部城市产业基础好，土地投资价值大。另外，东部城市近期在人才导入方面有较好的表现，所以，具有较好的投资潜力。房企拿地也较为积极，同时此类城市的地价相对高，这也带动了土地收入的上升。</p>
+                                            <p>中国城市房地产研究院院长谢逸枫认为，土地收入20强，东部占据15个，足以看出土地市场分化严重，区域与城市之间差别巨大。</p>
+                                            <p>8城土地收入增速翻倍</p>
+                                            <p>国家信息中心信息化和产业发展部指出，从土地成交价款看，35个大中城市中，8个城市增速超过100%，分别是贵阳、太原、哈尔滨、深圳、大连、兰州、西宁、南宁，其中有5个城市属于西部地区。</p>
+                                            <p>另外，从各城市的土地溢价率来看，35个大中城市中，溢价率较高的城市有合肥、成都、南昌、海口、深圳等。</p>
+                                            <p>严跃进分析，对于上述8城土地收入增速较快，说明其土地开发潜力被快速挖掘，尤其是部分城市受到了很多房企的关注，类似贵阳、南宁等，这都说明很多房企在寻找优质土地市场，土地溢价率也随之上涨。</p>
+                                            <p>在谢逸枫看来，短期地方政府对土地财政的依赖度还非常高，土地越来越稀缺，意味着未来房价上涨压力巨大。另外，供求关系可能会成为未来房价走势的一个重要因素。</p>
+                                            <p>国家信息中心信息化和产业发展部还称，从土地成交面积增速来看，大连、哈尔滨、长沙3市的土地成交面积增长最快，均超过100%，贵阳、昆明、天津、武汉、兰州也保持较快增长，增幅在50%以上。同时，有14个城市土地成交面积出现负增长，其中乌鲁木齐、呼和浩特、深圳土地成交面积下降较为明显，降幅均超过50%。</p>
+                                            <p>专家：房地产市场分化态势持续</p>
+                                            <p>国家信息中心信息化和产业发展部高聚辉分析，展望2019年下半年，预计在政策及预期的共同引导下，房地产市场保持低速增长，部分先行指标甚至会出现下跌，市场分化态势持续。具体到土地市场，预计土地市场在下半年会出现降温，土地溢价率也将有所回落，土地成交结构将向二三线城市集中，土地价格涨幅将放缓。</p>
+                                            <p>中原地产首席分析师张大伟对中新经纬客户端表示，未来房地产市场走势会出现分化，房企对非优质土地定价出现下调。但对优质城市、优质土地的争抢依然激烈。虽然一二线城市调控政策严格，但对于房企来说，为了加大销售额，依然会集中拿地。</p>
+                                            <p>张大伟指出，从总体土地市场看，三线城市成交额下调下，不排除有进一步微调楼市政策出现。从趋势看，最近三四线城市依然相对低迷，这种情况下，房地产企业把更多资金投入到一二线城市，也是出现一二线土地市场升温的主要原因。(中新经纬APP)</p>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </section>
+                <!-- Page Footer-->
                 <footer class="main-footer">
                     <div class="container-fluid">
                         <div class="row">
@@ -260,7 +198,7 @@
     </div>
     <!-- JavaScript files-->
     <script src="js/city.js"></script>
-    <script src="js/method_2.js"></script>
+    <script src="js/method_4.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js">
     </script>
@@ -269,16 +207,15 @@
     </script>
     <script src="vendor/chart.js/Chart.min.js"></script>
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
-
-
-
     <!-- Main File-->
     <script src="js/front.js"></script>
+
     <script>
         document.getElementById('login_id').innerText = getCookie('name');
         console.log(window.localStorage.getItem("name"));
         check_login_state();
     </script>
+
 </body>
 
 </html>
