@@ -1613,6 +1613,16 @@
                                     }
                                 });
                                 for (var i = 0; i < 20; i++) {
+                                    $(".house_title").eq(i).html("");
+                                    $(".house_type").eq(i).html("");
+                                    $(".ave_price").eq(i).html("");
+                                    $(".total_price").eq(i).html("");
+                                    $(".area").eq(i).html("");
+                                    $(".floor").eq(i).html("");
+                                    $(".house_id").eq(i).html("");
+                                    $(".list-item .house_title").eq(i).attr("href","#");
+                                    $(".list-item .tags-bottom").eq(i).clear();
+
                                     $(".house_title").eq(i).html(data.houses[i].firm_name);
                                     //$(".address").eq(i).html(data.houses[i].address);
                                     $(".house_type").eq(i).html(data.houses[i].house_type);

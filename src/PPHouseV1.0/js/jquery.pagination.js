@@ -152,7 +152,7 @@
     $(".page-btn").one("click",function(){
     	var allPage = $(".allPage").text();
     	//console.log(allPage);
-      var goPage = $(".page-go input").val(); //跳转页数
+      var goPage = $(".page-go input").val()-1; //跳转页数
       if(goPage > -1 && goPage < allPage){
 			opts.current_page = goPage;
 		
@@ -219,33 +219,45 @@
 				'max_price': max_price,
 				'min_area': min_area,
 				'max_area': max_area,
-				'page': goPage
+				'page': goPage+1
 			},
 			async: false,
 			error: function(request) {
 				alert("Connection error");
 			},
 			success:function(data) {
-				for(var i=0; i<20; i++){
-					$(".house_title").eq(i).html(data.houses[i].firm_name);
-					//$(".address").eq(i).html(data.houses[i].address);
-					$(".house_type").eq(i).html(data.houses[i].house_type);
-					$(".ave_price").eq(i).html(data.houses[i].average_price);
-					$(".total_price").eq(i).html(data.houses[i].total_price);
-					$(".area").eq(i).html(data.houses[i].area);
-					$(".floor").eq(i).html(data.houses[i].heigth);
-					$(".house_id").eq(i).html(date.houses[i].id);
-					$(".list-item .house_title").eq(i).attr("href","house.html?id="+data.houses[i].id);
-					if(data.houses[i].new){
-						$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
+				$(document).ready(function(){
+					for(var i=0; i<20; i++){
+						$(".house_title").eq(i).html("");
+						$(".house_type").eq(i).html("");
+						$(".ave_price").eq(i).html("");
+						$(".total_price").eq(i).html("");
+						$(".area").eq(i).html("");
+						$(".floor").eq(i).html("");
+						$(".house_id").eq(i).html("");
+						$(".list-item .house_title").eq(i).attr("href","#");
+						$(".list-item .tags-bottom").eq(i).clear();
+
+						$(".house_title").eq(i).html(data.houses[i].firm_name);
+						//$(".address").eq(i).html(data.houses[i].address);
+						$(".house_type").eq(i).html(data.houses[i].house_type);
+						$(".ave_price").eq(i).html(data.houses[i].average_price);
+						$(".total_price").eq(i).html(data.houses[i].total_price);
+						$(".area").eq(i).html(data.houses[i].area);
+						$(".floor").eq(i).html(data.houses[i].heigth);
+						$(".house_id").eq(i).html(date.houses[i].id);
+						$(".list-item .house_title").eq(i).attr("href","house.html?id="+data.houses[i].id);
+						if(data.houses[i].new){
+							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
+						}
+						if(data.houses[i].elevator=="有"){
+							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
+						}
+						if(data.houses[i].zhuangxiu=="精装"){
+							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
+						}
 					}
-					if(data.houses[i].elevator=="有"){
-						$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
-					}
-					if(data.houses[i].zhuangxiu=="精装"){
-						$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
-					}
-				}
+				});
 			}
 		});
       	$("#Pagination").pagination(allPage,opts);
@@ -335,26 +347,38 @@
 					alert("Connection error");
 				},
 				success:function(data) {
-					for(var i=0; i<20; i++){
-						$(".house_title").eq(i).html(data.houses[i].firm_name);
-						//$(".address").eq(i).html(data.houses[i].address);
-						$(".house_type").eq(i).html(data.houses[i].house_type);
-						$(".ave_price").eq(i).html(data.houses[i].average_price);
-						$(".total_price").eq(i).html(data.houses[i].total_price);
-						$(".area").eq(i).html(data.houses[i].area);
-						$(".floor").eq(i).html(data.houses[i].heigth);
-						$(".house_id").eq(i).html(date.houses[i].id);
-						$(".list-item .house_title").eq(i).attr("href","house.html?id="+data.houses[i].id);
-						if(data.houses[i].new){
-							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
+					$(document).ready(function(){
+						for(var i=0; i<20; i++){
+							$(".house_title").eq(i).html("");
+							$(".house_type").eq(i).html("");
+							$(".ave_price").eq(i).html("");
+							$(".total_price").eq(i).html("");
+							$(".area").eq(i).html("");
+							$(".floor").eq(i).html("");
+							$(".house_id").eq(i).html("");
+							$(".list-item .house_title").eq(i).attr("href","#");
+							$(".list-item .tags-bottom").eq(i).clear();
+	
+							$(".house_title").eq(i).html(data.houses[i].firm_name);
+							//$(".address").eq(i).html(data.houses[i].address);
+							$(".house_type").eq(i).html(data.houses[i].house_type);
+							$(".ave_price").eq(i).html(data.houses[i].average_price);
+							$(".total_price").eq(i).html(data.houses[i].total_price);
+							$(".area").eq(i).html(data.houses[i].area);
+							$(".floor").eq(i).html(data.houses[i].heigth);
+							$(".house_id").eq(i).html(date.houses[i].id);
+							$(".list-item .house_title").eq(i).attr("href","house.html?id="+data.houses[i].id);
+							if(data.houses[i].new){
+								$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
+							}
+							if(data.houses[i].elevator=="有"){
+								$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
+							}
+							if(data.houses[i].zhuangxiu=="精装"){
+								$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
+							}
 						}
-						if(data.houses[i].elevator=="有"){
-							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
-						}
-						if(data.houses[i].zhuangxiu=="精装"){
-							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
-						}
-					}
+					});
 				}
 			});
 			if (!continuePropagation) {
