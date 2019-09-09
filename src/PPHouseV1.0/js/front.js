@@ -1194,7 +1194,7 @@ $("#admin_add_house").click(function() {
 
     $.ajax({
         type: "POST", //提交的方法
-        url: "/add_users", //提交的地址  
+        url: "/add_house_info", //提交的地址  
         // contentType: false,
         data: {
             'date': date,
