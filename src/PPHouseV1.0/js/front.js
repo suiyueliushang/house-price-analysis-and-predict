@@ -1113,40 +1113,75 @@ $("#change_password").click(function() {
     change_password_1 = $('#change_password_1').val();
     change_password_2 = $('#change_password_2').val();
     change_password_3 = $('#change_password_3').val();
+    if (getCookie('session') == "user") {
+        $.ajax({
+            type: "POST", //提交的方法
+            url: "/change_password_func", //提交的地址  
+            // contentType: false,
+            data: {
+                'change_user_name': change_user_name,
+                'change_password_1': change_password_1,
+                'change_password_2': change_password_2,
+            },
 
-    $.ajax({
-        type: "POST", //提交的方法
-        url: "/change_password_func", //提交的地址  
-        // contentType: false,
-        data: {
-            'change_user_name': change_user_name,
-            'change_password_1': change_password_1,
-            'change_password_2': change_password_2,
-        },
+            datatype: "json",
+            async: false,
+            error: function(request) { //失败的话
+                alert("Connection error");
+            },
+            success: function(data) { //成功
+                switch (data.is_success) {
+                    case '0':
+                        alert("修改成功");
+                        break;
+                    case '1':
+                        alert("用户名错误");
+                        break;
+                    case '2':
+                        alert("密码错误");
+                        break;
 
-        datatype: "json",
-        async: false,
-        error: function(request) { //失败的话
-            alert("Connection error");
-        },
-        success: function(data) { //成功
-            switch (data.is_success) {
-                case '0':
-                    alert("修改成功");
-                    break;
-                case '1':
-                    alert("用户名错误");
-                    break;
-                case '2':
-                    alert("密码错误");
-                    break;
-
-                default:
-                    alert("未知错误");
+                    default:
+                        alert("未知错误");
+                }
             }
-        }
 
-    });
+        });
+    } else {
+        $.ajax({
+            type: "POST", //提交的方法
+            url: "/admin_change_password_func", //提交的地址  
+            // contentType: false,
+            data: {
+                'change_user_name': change_user_name,
+                'change_password_1': change_password_1,
+                'change_password_2': change_password_2,
+            },
+
+            datatype: "json",
+            async: false,
+            error: function(request) { //失败的话
+                alert("Connection error");
+            },
+            success: function(data) { //成功
+                switch (data.is_success) {
+                    case '0':
+                        alert("修改成功");
+                        break;
+                    case '1':
+                        alert("用户名错误");
+                        break;
+                    case '2':
+                        alert("密码错误");
+                        break;
+
+                    default:
+                        alert("未知错误");
+                }
+            }
+
+        });
+    }
 })
 
 function get_admin_session() {
