@@ -232,8 +232,7 @@ function admin_add_house() {
     });
 };
 
-
-function admin_delete_data() {
+$("#admin_delete_data").click(function() {
     month = $('month').val();
     $.ajax({
         type: "POST", //提交的方法
@@ -266,7 +265,7 @@ function admin_delete_data() {
         }
 
     });
-}
+})
 
 function admin_change_data() {
 

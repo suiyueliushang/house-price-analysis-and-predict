@@ -586,6 +586,12 @@ $("#get_phone_code").click(function() {
             if (data == '0') {} else if (data == '1') {
 
                 if (data == '0') {
+                    document.getElementById('get_auth_code').innerText = "再次获取需等待1分钟";
+                    document.getElementById('get_auth_code').disabled = "false";
+                    setTimeout(function() {
+                        document.getElementById('get_auth_code').innerText = "获取验证码";
+                        document.getElementById('get_auth_code').disabled = "";
+                    }, 60000);
 
                 } else if (data == '1') {
 
@@ -618,16 +624,23 @@ $("#get_auth_code").click(function() {
         async: false,
         error: function(request) { //失败的话
             alert("Connection error");
+
         },
         success: function(data) { //成功
 
-            if (data == '0') {} else if (data == '1') {
+            if (data == '0') {
+                document.getElementById('get_auth_code').innerText = "再次获取需等待1分钟";
+                document.getElementById('get_auth_code').disabled = "false";
+                setTimeout(function() {
+                    document.getElementById('get_auth_code').innerText = "获取验证码";
+                    document.getElementById('get_auth_code').disabled = "";
+                }, 60000);
 
-                if (data == '0') {} else if (data == '1') {
-                    alert("手机号未注册");
-                }
-
+            } else if (data == '1') {
+                alert("手机号未注册");
             }
+
+
         }
 
     });
