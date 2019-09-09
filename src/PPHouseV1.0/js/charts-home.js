@@ -34,10 +34,10 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17"],
+            labels: ["10月", "11月", "12月", "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月"],
             datasets: [
                 {
-                    label: "Page Visitors",
+                    label: "北京市",
                     fill: true,
                     lineTension: 0,
                     backgroundColor: "transparent",
@@ -56,11 +56,11 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 0,
-                    data: [50, 20, 60, 31, 52, 22, 40, 25, 30, 68, 56, 40, 60, 43, 55, 39, 47],
+                    data: [59943,59602,59868,60017,60125,60487,59993,59809,60142,60061,59888,59871],
                     spanGaps: false
                 },
                 {
-                    label: "Page Views",
+                    label: "上海市",
                     fill: true,
                     lineTension: 0,
                     backgroundColor: "transparent",
@@ -79,7 +79,7 @@ $(document).ready(function () {
                     pointHoverBorderWidth: 2,
                     pointRadius: 1,
                     pointHitRadius: 10,
-                    data: [20, 7, 35, 17, 26, 8, 18, 10, 14, 46, 30, 30, 14, 28, 17, 25, 17, 40],
+                    data: [45127,44367,47011,48099,47140,46476,45134,45751,46441,47519,47453,49551],
                     spanGaps: false
                 }
             ]
@@ -201,10 +201,10 @@ $(document).ready(function () {
             scales:
             {
                 xAxes: [{
-                    display: false
+                    display: true
                 }],
                 yAxes: [{
-                    display: false
+                    display: true
                 }],
             },
             legend: {
@@ -212,11 +212,12 @@ $(document).ready(function () {
             }
         },
         data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "November", "December"],
+            labels: ["鼓楼", "建邺", "秦淮", "白下", "下关", "玄武", "栖霞", "雨花台", "江宁", "浦口", "六合", "溧水", "高淳"],
             datasets: [
                 {
-                    label: "Data Set 1",
+                    label: "南京市",
                     backgroundColor: [
+                        'rgb(121, 106, 238)',
                         'rgb(121, 106, 238)',
                         'rgb(121, 106, 238)',
                         'rgb(121, 106, 238)',
@@ -242,10 +243,11 @@ $(document).ready(function () {
                         'rgb(121, 106, 238)',
                         'rgb(121, 106, 238)',
                         'rgb(121, 106, 238)',
+                        'rgb(121, 106, 238)',
                         'rgb(121, 106, 238)'
                     ],
                     borderWidth: 1,
-                    data: [35, 49, 55, 68, 81, 95, 85, 40, 30, 27, 22, 15]
+                    data: [41052,39991,36863,36741,35339,30784,28067,27242,25095,23069,13790,11562,9398]
                 }
             ]
         }
