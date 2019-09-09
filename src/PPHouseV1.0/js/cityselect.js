@@ -382,10 +382,6 @@ Vcity.CitySelector.prototype = {
                     }
                 }
 
-                Vcity._m.addClass('hide',that.cityBox);
-                /* 点击城市名的时候隐藏myIframe */
-                Vcity._m.addClass('hide',that.myIframe);
-
                 $(document).ready(function(){
                     $("#select1 dd").click(function () {
                         $(this).addClass("selected").siblings().removeClass("selected");
@@ -417,7 +413,88 @@ Vcity.CitySelector.prototype = {
                         alert("Connection error");
                     },
                     success(data){
-                        region_price[0]=data.one;
+                        $("#lineChartExample4").remove();
+                        $("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
+                        $(document).ready(function() {
+                            'use strict';
+                            var LINECHART4 = $('#lineChartExample4');
+                            var myLineChart4 = new Chart(LINECHART4, {
+                                type: 'line',
+                                options: {
+                                    scales: {
+                                        xAxes: [{
+                                            display: true,
+                                            gridLines: {
+                                                display: false
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            display: true,
+                                            gridLines: {
+                                                display: true
+                                            }
+                                        }]
+                                    },
+                                    legend: {
+                                        labels: {
+                                            fontColor: "#777",
+                                            fontSize: 12
+                                        },
+                                        display: false
+                                    }
+                                },
+                                data: {
+                                    labels: [lastYear(getMonth() - 11), lastYear(getMonth() - 10), lastYear(getMonth() - 9), lastYear(getMonth() - 8), lastYear(getMonth() - 7), lastYear(getMonth() - 6), lastYear(getMonth() - 5), lastYear(getMonth() - 4), lastYear(getMonth() - 3), lastYear(getMonth() - 2), lastYear(getMonth() - 1), lastYear(getMonth())],
+                                    datasets: [{
+                                        label: "City 1",
+                                        fill: true,
+                                        lineTension: 0,
+                                        backgroundColor: "transparent",
+                                        borderColor: '#6ccef0',
+                                        pointBorderColor: '#59c2e6',
+                                        pointHoverBackgroundColor: '#59c2e6',
+                                        borderCapStyle: 'butt',
+                                        borderDash: [],
+                                        borderDashOffset: 0.0,
+                                        borderJoinStyle: 'miter',
+                                        borderWidth: 3,
+                                        pointBackgroundColor: "#59c2e6",
+                                        pointBorderWidth: 0,
+                                        pointHoverRadius: 4,
+                                        pointHoverBorderColor: "#fff",
+                                        pointHoverBorderWidth: 0,
+                                        pointRadius: 4,
+                                        pointHitRadius: 0,
+                                        data: [data.one, data.two, data.three, data.four, data.five, data.six, data.seven, data.eight, data.nine, data.ten, data.eleven, data.twelve],
+                                        spanGaps: false
+                                    }]
+                                }
+                            });
+                            for (var i = 0; i < 20; i++) {
+                                $(".house_title").eq(i).html(data.houses[i].firm_name);
+                                //$(".address").eq(i).html(data.houses[i].address);
+                                $(".house_type").eq(i).html(data.houses[i].house_type);
+                                $(".ave_price").eq(i).html(data.houses[i].average_price);
+                                $(".total_price").eq(i).html(data.houses[i].total_price);
+                                $(".area").eq(i).html(data.houses[i].area);
+                                $(".floor").eq(i).html(data.houses[i].heigth);
+                                //$(".direction").eq(i).html(data.houses[i].direction);
+                                $(".house_id").eq(i).html(data.houses[i].id);
+                                $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id);
+                                if (data.houses[i].new) {
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
+                                }
+                                if (data.houses[i].elevator == "有") {
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
+                                }
+                                if (data.houses[i].zhuangxiu == "精装") {
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
+                                }
+                            }
+                            $("#Pagination").pagination(data.page_num);
+                            $("#allPage").html(data.page_num);
+                        });
+                        /*region_price[0]=data.one;
                         region_price[1]=data.two;
                         region_price[2]=data.three;
                         region_price[3]=data.four;
@@ -508,9 +585,15 @@ Vcity.CitySelector.prototype = {
                         ]
                     }
                 });
-                });
+                });*/
+                
+                Vcity._m.addClass('hide',that.cityBox);
+                /* 点击城市名的时候隐藏myIframe */
+                Vcity._m.addClass('hide',that.myIframe);
             }
-        }
+        });
+    }
+}
     },
 
     /* *

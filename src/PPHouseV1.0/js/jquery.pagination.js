@@ -250,7 +250,7 @@
 				});
 				}
 		});
-      	$("#Pagination").pagination(allPage);
+      	$("#Pagination").pagination(allPage,opts);
       }else {
       	$("#Pagination").pagination(allPage);
       }
