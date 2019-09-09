@@ -246,12 +246,12 @@
         .select-list form input:hover {
             background-color: #F0F0F0;
         }
-
-        .delete_container{
+        
+        .delete_container {
             position: relative;
             right: -178px;
         }
-
+        
         .delete_container .all_delete {
             width: 20px;
             height: 20px;
@@ -259,7 +259,7 @@
             border: 1px solid #ddd;
             margin-right: 7px
         }
-
+        
         .delete_container button {
             background-color: inherit;
             border: 1px solid grey;
@@ -268,14 +268,14 @@
             margin: 0 3px;
             border-radius: 3px
         }
-
+        
         .delete_checkbox {
             background-color: inherit;
             position: absolute;
             right: -50px;
             top: 50%;
         }
-
+        
         .delete_checkbox input {
             width: 20px;
             height: 20px;
@@ -329,10 +329,10 @@
             <nav class="side-navbar">
                 <!-- Sidebar Header-->
                 <div class="sidebar-header d-flex align-items-center">
-                    <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+
                     <div class="title">
+                        <h1 class="h5" style="color: gray">Welcome!</h1>
                         <h1 class="h4" id="login_id">UserName</h1>
-                        <p>City1.4</p>
                     </div>
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
@@ -1457,10 +1457,8 @@
                 <footer class="main-footer">
                     <div class="container-fluid">
                         <div class="row">
-
-                            <div class="col-sm-6 text-right">
-                                <p></p>
-                                <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+                            <div class="col-sm-6">
+                                <p>Copyright &copy; 2019.PP House All rights reserved.</p>
                             </div>
                         </div>
                     </div>
@@ -1490,6 +1488,7 @@
 
     <script>
         document.getElementById('login_id').innerText = getCookie('name');
+        check_login_state();
         var test = new Vcity.CitySelector({
             button: 'citySelect'
         });
@@ -1613,6 +1612,16 @@
                                     }
                                 });
                                 for (var i = 0; i < 20; i++) {
+                                    $(".house_title").eq(i).html("");
+                                    $(".house_type").eq(i).html("");
+                                    $(".ave_price").eq(i).html("");
+                                    $(".total_price").eq(i).html("");
+                                    $(".area").eq(i).html("");
+                                    $(".floor").eq(i).html("");
+                                    $(".house_id").eq(i).html("");
+                                    $(".list-item .house_title").eq(i).attr("href","#");
+                                    $(".list-item .tags-bottom").eq(i).empty();
+
                                     $(".house_title").eq(i).html(data.houses[i].firm_name);
                                     //$(".address").eq(i).html(data.houses[i].address);
                                     $(".house_type").eq(i).html(data.houses[i].house_type);
@@ -1643,8 +1652,8 @@
 
         })
         if (getCookie('session') == "user") {
-            $(".delete_container").attr("style","display: inline-block");
-            $(".delete_checkbox").attr("style","display: block");
+            $(".delete_container").attr("style", "display: inline-block");
+            $(".delete_checkbox").attr("style", "display: block");
         }
     </script>
 

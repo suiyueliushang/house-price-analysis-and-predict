@@ -81,10 +81,9 @@
             <nav class="side-navbar">
                 <!-- Sidebar Header-->
                 <div class="sidebar-header d-flex align-items-center">
-                    <div class="avatar"><img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
+                        <h1 class="h5" style="color: gray">Welcome!</h1>
                         <h1 class="h4" id="login_id">UserName</h1>
-                        <p>City</p>
                     </div>
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
@@ -131,14 +130,14 @@
                 <!-- Page Header-->
                 <header class="page-header">
                     <div class="container-fluid">
-                        <h2 class="no-margin-bottom">Forms</h2>
+                        <h2 class="no-margin-bottom">个人中心</h2>
                     </div>
                 </header>
                 <!-- Breadcrumb-->
                 <div class="breadcrumb-holder container-fluid">
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">PPHouse</a></li>
-                        <li class="breadcrumb-item active">Forms </li>
+                        <li class="breadcrumb-item"><a href="index.html">首页</a></li>
+                        <li class="breadcrumb-item active">个人中心 </li>
                     </ul>
                 </div>
                 <!-- Forms Section-->
@@ -245,11 +244,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Copyright &copy; 2019.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-                            </div>
-                            <div class="col-sm-6 text-right">
-                                <p></p>
-                                <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+                                <p>Copyright &copy; 2019.PP House All rights reserved.</p>
                             </div>
                         </div>
                     </div>
@@ -276,45 +271,85 @@
 
     <script>
         $(function() {
-            var a = '<li class="list-item"><div class="item"><lable style="display:none" class="house_id">6666666</lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><!--<div class="details-item"><span class="comm-address" title="" class="address" id="address"></span></div>--><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span></div></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">已关注</button></div></li>';
+                var a = '<li class="list-item"><div class="item"><lable style="display:none" class="house_id">6666666</lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><!--<div class="details-item"><span class="comm-address" title="" class="address" id="address"></span></div>--><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span></div></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">已关注</button></div></li>';
 
-            sessionStorage.removeItem("house_list");
-            $(".compare .compare_num").html("0");
+                sessionStorage.removeItem("house_list");
+                $(".compare .compare_num").html("0");
 
-            $.ajax({
-                type: "post",
-                url: "/show_collection",
-                datatype: "json",
-                async: false,
-                error: function(request) {
-                    alert("Connection error");
-                },
-                success(data) {
-                    for (var i = 0; i < data.house.length; i++) {
-                        $(".card-body ul").append(a);
-                        $(".house_title").eq(i).html(data.house[i].firm_name);
-                        //$(".address").eq(i).html(data.house[i].address);
-                        $(".house_type").eq(i).html(data.house[i].house_type);
-                        $(".ave_price").eq(i).html(data.house[i].average_price);
-                        $(".total_price").eq(i).html(data.house[i].total_price);
-                        $(".area").eq(i).html(data.house[i].area);
-                        $(".floor").eq(i).html(data.house[i].heigth);
-                        //$(".direction").eq(i).html(data.house[i].direction);
-                        $(".house_id").eq(i).html(data.house[i].id);
-                        $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.house[i].id);
-                        if (data.house[i].new) {
-                            $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
+                if (getCookie('session' == "user")) {
+                    $.ajax({
+                        type: "post",
+                        url: "/show_collection",
+                        datatype: "json",
+                        async: false,
+                        error: function(request) {
+                            alert("Connection error");
+                        },
+                        success(data) {
+                            for (var i = 0; i < data.house.length; i++) {
+                                $(".card-body ul").append(a);
+                                $(".house_title").eq(i).html(data.house[i].firm_name);
+                                //$(".address").eq(i).html(data.house[i].address);
+                                $(".house_type").eq(i).html(data.house[i].house_type);
+                                $(".ave_price").eq(i).html(data.house[i].average_price);
+                                $(".total_price").eq(i).html(data.house[i].total_price);
+                                $(".area").eq(i).html(data.house[i].area);
+                                $(".floor").eq(i).html(data.house[i].heigth);
+                                //$(".direction").eq(i).html(data.house[i].direction);
+                                $(".house_id").eq(i).html(data.house[i].id);
+                                $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.house[i].id);
+                                if (data.house[i].new) {
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
+                                }
+                                if (data.house[i].elevator == "有") {
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
+                                }
+                                if (data.house[i].zhuangxiu == "精装") {
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
+                                }
+                            }
                         }
-                        if (data.house[i].elevator == "有") {
-                            $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
+                    });
+                } else if (getCookie('session' == "admin")) {
+                    $.ajax({
+                        type: "post",
+                        url: "/admin_show_collection",
+                        datatype: "json",
+                        async: false,
+                        error: function(request) {
+                            alert("Connection error");
+                        },
+                        success(data) {
+                            for (var i = 0; i < data.house.length; i++) {
+                                $(".card-body ul").append(a);
+                                $(".house_title").eq(i).html(data.house[i].firm_name);
+                                //$(".address").eq(i).html(data.house[i].address);
+                                $(".house_type").eq(i).html(data.house[i].house_type);
+                                $(".ave_price").eq(i).html(data.house[i].average_price);
+                                $(".total_price").eq(i).html(data.house[i].total_price);
+                                $(".area").eq(i).html(data.house[i].area);
+                                $(".floor").eq(i).html(data.house[i].heigth);
+                                //$(".direction").eq(i).html(data.house[i].direction);
+                                $(".house_id").eq(i).html(data.house[i].id);
+                                $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.house[i].id);
+                                if (data.house[i].new) {
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
+                                }
+                                if (data.house[i].elevator == "有") {
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-2">有电梯</span>');
+                                }
+                                if (data.house[i].zhuangxiu == "精装") {
+                                    $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
+                                }
+                            }
                         }
-                        if (data.house[i].zhuangxiu == "精装") {
-                            $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
-                        }
-                    }
+                    });
+
                 }
-            });
-        });
+            }
+
+        )
+
         //$.parser.parse($(".card-body ul"));
         check_login_state();
     </script>

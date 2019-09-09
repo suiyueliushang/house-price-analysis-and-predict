@@ -26,37 +26,6 @@
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    <style>
-        .shortselect {
-            background: #fafdfe;
-            height: 28px;
-            width: 180px;
-            line-height: 28px;
-            border: 1px solid rgb(103, 102, 170);
-            -moz-border-radius: 2px;
-            -webkit-border-radius: 2px;
-            border-radius: 2px;
-        }
-        
-        input {
-            border: 1px solid #ccc;
-            padding: 3px 0px;
-            border-radius: 3px;
-            padding-left: 5px;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
-        }
-        
-        input:focus {
-            border-color: #66afe9;
-            outline: 0;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6)
-        }
-    </style>
 </head>
 
 <body>
@@ -102,7 +71,6 @@
             <nav class="side-navbar">
                 <!-- Sidebar Header-->
                 <div class="sidebar-header d-flex align-items-center">
-
                     <div class="title">
                         <h1 class="h5" style="color: gray">Welcome!</h1>
                         <h1 class="h4" id="login_id">UserName</h1>
@@ -116,8 +84,8 @@
                     <li>
                         <a href="tables.html"> <i class="icon-grid"></i>房价查询 </a>
                     </li>
-                    <li class="active">
-                        <a href="#charts_page" aria-expanded="ture" data-toggle="collapse" class="active"> <i class="icon-interface-windows"></i>房价对比 </a>
+                    <li>
+                        <a href="#charts_page" aria-expanded="ture" data-toggle="collapse"> <i class="icon-interface-windows"></i>房价对比 </a>
                         <ul id="charts_page" class="collapse list-unstyled ">
                             <li><a href="charts.html">区域对比</a></li>
                             <li><a href="charts2.html">城市对比</a></li>
@@ -152,80 +120,23 @@
                 <!-- Page Header-->
                 <header class="page-header">
                     <div class="container-fluid">
-                        <h2 class="no-margin-bottom">房价对比</h2>
+                        <h2 class="no-margin-bottom">新闻/文章</h2>
                     </div>
                 </header>
                 <!-- Breadcrumb-->
                 <div class="breadcrumb-holder container-fluid">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">首页</a></li>
-                        <li class="breadcrumb-item active">房价对比 </li>
+                        <li class="breadcrumb-item active">新闻/文章</li>
                     </ul>
                 </div>
-                <!--选择要要查看的城市，时间-->
-                <div class="col-lg-8">
-                    <div class="line-chart-example card">
-                        <legend>请选择要对比的城市,时间</legend>
-                        <div class="card-body">
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <!--时间选择-->
-                                    <select id="time_2" class="form-control mb-3">
-                                        <option>=请选择年份=</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <!--省份选择-->
-                                    <select id="prov2" class="form-control mb-3" onchange="showCity2(this)">
-                                        <option>=请选择省份=</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <!--城市选择-->
-                                    <select id="city2" class="form-control mb-3" onchange="deal_2(this)">
-                                        <option>=请选择城市=</option>
-                                    </select>
-                                </div>
-                                <button type="button" id="btn2" onClick="showAddr2()" class="btn btn-primary">确定</button><br>
-                            </form>
-                            <label for="addr-show2">您选择的是:
-                                <input type="text" value="" id="addr-show2">
-                            </label>
-                            <!--选择要要查看的城市，时间-->
-                            <form class="form-inline">
-                                <div class="form-group">
-                                    <!--时间选择-->
-                                    <select id="time_3" class="form-control mb-3">
-                                        <option>=请选择年份=</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <!--省份选择-->
-                                    <select id="prov3" class="form-control mb-3" onchange="showCity3(this)">
-                                        <option>=请选择省份=</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <!--城市选择-->
-                                    <select id="city3" class="form-control mb-3" onchange="deal_3(this)">
-                                        <option>=请选择城市=</option>
-                                    </select>
-                                </div>
-                                <button type="button" id="btn3" onClick="showAddr3()" class="btn btn-primary">确定</button><br>
-                            </form>
-                            <label for="addr-show3">您选择的是:
-                                <input type="text" value="" id="addr-show3">
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <!-- Charts Section-->
-                <section class="charts">
+                <!-- Forms Section-->
+                <section class="forms">
                     <div class="container-fluid">
                         <div class="row">
-                            <!-- Line Charts-->
-                            <div class="col-lg-8">
-                                <div class="line-chart-example card">
+                            <!-- Basic Form-->
+                            <div class="col-lg-12">
+                                <div class="card">
                                     <div class="card-close">
                                         <div class="dropdown">
                                             <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
@@ -236,40 +147,64 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">城市房价趋势对比图</h3>
+                                        <h3 class="h4">房地产开发投资仍具韧性 专家预计8月份增速同比会保持在10%以上</h3>
                                     </div>
-                                    <div class="card-body" id="line_5">
-                                        <canvas id="lineChartExample5"></canvas>
+                                    <div class="card-body">
+                                        <div class="info"> <span>来源:证券日报</span> <span><small>┆</small></span> <span>时间:2019-09-05 15:43:47</span> <span></span> </div>
+                                        <br>
+                                        <div>
+                                            <div class="content showp" style="padding:20px 0 0;">
+
+                                                <p>数据显示，今年前7个月，全国共完成固定资产投资(不含农户)348892亿元，同比增长5.7%，增速比上半年回落0.1个百分点，比去年同期加快0.2个百分点。</p>
+                                                <p>从数据上看，虽然固定资产投资仍保持较为平稳的增长态势，但从制造业投资、高技术产业投资、社会领域投资、基础设施投资以及房地产开发投资等领域来看，业内对于后续房地产开发投资的预判，更多地是维持“稳中小幅下降，但投资仍具韧性”。</p>
+                                                <p>房地产开发投资方面的数据显示，2019年前7个月，全国房地产开发投资72843亿元，同比增长10.6%，增速比前6个月回落0.3个百分点。其中，房屋新开工、施工、竣工面积同比增速分别较前值减少0.6%、增加0.2%和1.4%。</p>
+                                                <p>“从数据上看，房屋新开工温和走弱，施工仍在温和抬升，竣工仍处于大幅收缩阶段，不过，新开工和竣工之间的背离仍然没有明显的收窄趋势。”中信证券固定收益首席分析师明明对《证券日报》记者分析称，在政策严控房地产融资的环境下，虽然房企拿地保持低位，但施工环节的支出和土地购置费的“贡献”，成为今年上半年房地产开发投资增速保持稳定的最重要支撑因素。</p>
+                                                <p>截至目前，虽然房地产开发投资数据较此前有小幅下滑，但若综合土地成交面积、房地产销售等方面的数据来看，目前房地产投资仍然保持较为平稳的态势。</p>
+                                                <p>东方金诚房地产行业高级分析师谢瑞在接受《证券日报》记者采访时表示，目前，房屋新开工、房屋存量施工高位以及滞后结算的土地购置费仍会为房地产开发投资形成一定的支撑，整体上看，房地产开发投资增速仍具韧性。</p>
+                                                <p>虽然8月份房地产开发投资数据尚未公布，但谢瑞预计，由于前期土地购置降速对投资增速的拖累影响已经开始显现，且近期房企融资监管政策持续收紧，债券、非标、开发贷等融资均出现边际收紧，叠加近期对于销售去化的担忧导致房企新开工意愿减弱，预计8月份房地产开发投资增速仍延续平稳回落。</p>
+                                                <p>58安居客房产研究院首席分析师张波在接受《证券日报》记者采访时分析称，尽管前7个月房地产开发投资增速略有下降，但下降幅度依然相对平缓，换言之，房地产开发投资依然保持了较好的稳定性，在此背景下，预计8月份房地产开发投资增速同比依然会保持在10%以上的增幅，但开发投资环比增速或略有下降。</p>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
+
+                            </div>
+                        </div>
+                </section>
+                <!-- Page Footer-->
+                <footer class="main-footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Copyright &copy; 2019.PP House All rights reserved.</p>
                             </div>
                         </div>
                     </div>
-                </section>
+                </footer>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- JavaScript files-->
-    <script src="js/city.js"></script>
-    <script src="js/method_2.js"></script>
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/popper.js/umd/popper.min.js">
-    </script>
-    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-    <script src="vendor/jquery.cookie/jquery.cookie.js">
-    </script>
-    <script src="vendor/chart.js/Chart.min.js"></script>
-    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+        <!-- JavaScript files-->
+        <script src="js/city.js"></script>
+        <script src="js/method_4.js"></script>
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/popper.js/umd/popper.min.js">
+        </script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="vendor/jquery.cookie/jquery.cookie.js">
+        </script>
+        <script src="vendor/chart.js/Chart.min.js"></script>
+        <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+        <!-- Main File-->
+        <script src="js/front.js"></script>
 
+        <script>
+            document.getElementById('login_id').innerText = getCookie('name');
+            console.log(window.localStorage.getItem("name"));
+            check_login_state();
+        </script>
 
-
-    <!-- Main File-->
-    <script src="js/front.js"></script>
-    <script>
-        document.getElementById('login_id').innerText = getCookie('name');
-        console.log(window.localStorage.getItem("name"));
-        check_login_state();
-    </script>
 </body>
 
 </html>
