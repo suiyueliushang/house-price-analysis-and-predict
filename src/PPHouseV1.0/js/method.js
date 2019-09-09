@@ -521,7 +521,7 @@ function showAddr4() {
             data: {
                 labels: city_region,
                 datasets: [{
-                    label: "city 1",
+                    label: "均价",
                     backgroundColor: "#62a8ea",
                     borderWidth: 0,
                     data: price4

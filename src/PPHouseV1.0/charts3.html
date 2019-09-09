@@ -139,7 +139,7 @@
                                 <tr>
                                     <th width="20%"></th>
                                     <td width="20%"><img src="img/home_02.png" width="90%" height="40%"></td>
-                                    <td width="20%"><img src="img/home_03.png" width="90%" height="40%"></td>
+                                    <td width="20%" id="img_2"><img src="img/home_03.png" width="90%" height="40%"></td>
                                     <td width="20%"><img src="img/home_04.png" width="90%" height="40%"></td>
                                     <td width="20%"><img src="img/home_05.png" width="90%" height="40%"></td>
                                 </tr>
@@ -316,6 +316,7 @@
     <script>
         document.getElementById('login_id').innerText = getCookie('name');
         window.onload = function() {
+            //img_2.style.backgroundImage ="url(img/home_04.png)";//
             var house_list = JSON.parse(sessionStorage.getItem("house_list"));
             var len_house = house_list.length;
             var house = new Array(4);

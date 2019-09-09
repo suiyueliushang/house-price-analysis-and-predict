@@ -489,7 +489,7 @@ $(document).ready(function() {
     // ------------------------------------------------------- //
     // Line Chart5 
     // ------------------------------------------------------ //
-    /*var LINECHART5 = $('#lineChartExample5');
+   /* var LINECHART5 = $('#lineChartExample5');
     var myLineChart5 = new Chart(LINECHART5, {
         type: 'line',
         options: {
@@ -560,9 +560,9 @@ $(document).ready(function() {
                 }
             ]
         }
-    });
+    });*/
 
-*/
+
 
 
     // ------------------------------------------------------- //
@@ -704,6 +704,11 @@ $(document).ready(function() {
         options: {
             scales: {
                 xAxes: [{
+                    axisLabel:{//把文字竖着放
+                        formatter:function(value){
+                            return value.split("").join("\n")
+                        }
+                    },
                     display: true
                 }],
                 yAxes: [{
