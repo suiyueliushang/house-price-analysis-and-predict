@@ -246,12 +246,12 @@
         .select-list form input:hover {
             background-color: #F0F0F0;
         }
-
-        .delete_container{
+        
+        .delete_container {
             position: relative;
             right: -178px;
         }
-
+        
         .delete_container .all_delete {
             width: 20px;
             height: 20px;
@@ -259,7 +259,7 @@
             border: 1px solid #ddd;
             margin-right: 7px
         }
-
+        
         .delete_container button {
             background-color: inherit;
             border: 1px solid grey;
@@ -268,14 +268,14 @@
             margin: 0 3px;
             border-radius: 3px
         }
-
+        
         .delete_checkbox {
             background-color: inherit;
             position: absolute;
             right: -50px;
             top: 50%;
         }
-
+        
         .delete_checkbox input {
             width: 20px;
             height: 20px;
@@ -1490,6 +1490,7 @@
 
     <script>
         document.getElementById('login_id').innerText = getCookie('name');
+        check_login_state();
         var test = new Vcity.CitySelector({
             button: 'citySelect'
         });
@@ -1643,8 +1644,8 @@
 
         })
         if (getCookie('session') == "user") {
-            $(".delete_container").attr("style","display: inline-block");
-            $(".delete_checkbox").attr("style","display: block");
+            $(".delete_container").attr("style", "display: inline-block");
+            $(".delete_checkbox").attr("style", "display: block");
         }
     </script>
 
