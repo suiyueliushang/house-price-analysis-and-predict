@@ -198,7 +198,7 @@ $(document).ready(function() {
     // ------------------------------------------------------- //
     // Line Chart 3
     // ------------------------------------------------------ //
-    var LINECHART3 = $('#lineChartExample3');
+    /*var LINECHART3 = $('#lineChartExample3');
     var myLineChart3 = new Chart(LINECHART3, {
         type: 'line',
         options: {
@@ -268,7 +268,7 @@ $(document).ready(function() {
                 }
             ]
         }
-    });
+    });*/
 
 
     // ------------------------------------------------------- //
@@ -699,7 +699,7 @@ $(document).ready(function() {
     // ------------------------------------------------------- //
     // Bar Chart 1
     // ------------------------------------------------------ //
-    bar1 = new Chart(BARCHART1, {
+    /*bar1 = new Chart(BARCHART1, {
         type: 'bar',
         options: {
             scales: {
@@ -723,7 +723,7 @@ $(document).ready(function() {
                 data: price
             }]
         }
-    });
+    });*/
 
 
     // ------------------------------------------------------- //
