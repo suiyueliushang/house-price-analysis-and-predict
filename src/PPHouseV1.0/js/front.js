@@ -1284,7 +1284,7 @@ function get_admin_session() {
         }
 
     });
-}
+};
 
 function check_login_state() {
     if (getCookie('session') == "user") {

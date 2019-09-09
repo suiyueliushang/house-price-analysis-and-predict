@@ -129,6 +129,9 @@ function forecast() {
             switch (data.is_success) {
                 case '0':
                     {
+                        var time = new Array();
+                        var price = new Array();
+                        var index = 0;
                         document.getElementById("forecast_div").style.display = "";
                         for (var i = 0; i < 10; i++) {
                             var temp = "year_" + i.toString();
@@ -146,6 +149,10 @@ function forecast() {
                             for (var j = 3; j <= 12; j = j + 3) {
                                 temp = "y" + i.toString() + "m" + j.toString();
                                 document.getElementById(temp).innerText = data.fore[i * 4 + Math.floor(j / 3) - 1];
+
+                                time[index] = i.toString() + "年" + j.toString() + "月";
+                                price[index] = Number(data.fore[i * 4 + Math.floor(j / 3) - 1]);
+                                index++;
                             }
                         }
                         if (for_month != 0) {
@@ -154,11 +161,70 @@ function forecast() {
                             for (var j = 3; j <= Number(for_month); j = j + 3) {
                                 temp = "y" + i.toString() + "m" + j.toString();
                                 document.getElementById(temp).innerText = data.fore[(for_year) * 4 + Math.floor(j / 3) - 1];
+
+                                time[index] = i.toString() + "年" + j.toString() + "月";
+                                price[index] = Number(data.fore[(for_year) * 4 + Math.floor(j / 3) - 1]);
+                                index++;
                             }
                         }
+
+                        $('#lineChart7').remove();
+                        $('#line_1').append('<canvas id="lineChart7"></canvas>');
+                        $(document).ready(function() {
+
+                            'use strict';
+
+                            var LINECHART7 = $('#lineChart7');
+                            var myLineChart7 = new Chart(LINECHART7, {
+                                type: 'line',
+                                options: {
+                                    scales: {
+                                        xAxes: [{
+                                            display: true,
+                                            gridLines: {
+                                                display: false
+                                            }
+                                        }],
+                                        yAxes: [{
+                                            display: true,
+                                            gridLines: {
+                                                display: true
+                                            }
+                                        }]
+                                    },
+                                    legend: { labels: { fontColor: "#777", fontSize: 12, }, display: false }
+                                },
+
+
+                                data: {
+                                    labels: time,
+                                    datasets: [{
+                                        label: "用户",
+                                        fill: true,
+                                        lineTension: 0,
+                                        backgroundColor: "transparent",
+                                        borderColor: '#6ccef0',
+                                        pointBorderColor: '#59c2e6',
+                                        pointHoverBackgroundColor: '#59c2e6',
+                                        borderCapStyle: 'butt',
+                                        borderDash: [],
+                                        borderDashOffset: 0.0,
+                                        borderJoinStyle: 'miter',
+                                        borderWidth: 3,
+                                        pointBackgroundColor: "#59c2e6",
+                                        pointBorderWidth: 0,
+                                        pointHoverRadius: 4,
+                                        pointHoverBorderColor: "#fff",
+                                        pointHoverBorderWidth: 0,
+                                        pointRadius: 4,
+                                        pointHitRadius: 0,
+                                        data: price,
+                                        spanGaps: false
+                                    }]
+                                }
+                            });
+                        })
                     }
-
-
                     break;
                 case '1':
                     {
