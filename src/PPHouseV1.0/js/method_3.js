@@ -277,16 +277,21 @@ function admin_change_data() {
 
 //管理员删除房价
 function admin_delete_price() {
+
+    time = $('time_7').val();
+    prov = $('prov7').val();
+    city = $('city7').val();
+    country = $('country7').val();
     month = $('month').val();
     $.ajax({
         type: "POST", //提交的方法
         url: "/delete_district_price", //提交的地址  
         // contentType: false,
         data: {
-            'time': time_7.val(),
-            'prov': prov7.val(),
-            'city': city7.val(),
-            'country': country7.val(),
+            'time': time,
+            'prov': prov,
+            'city': city,
+            'country': country,
             'month': month,
         },
 
