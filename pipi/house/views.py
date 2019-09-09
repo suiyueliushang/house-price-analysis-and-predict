@@ -10,6 +10,7 @@ from django.db.models import Q
 import datetime
 import pytz
 import traceback
+import re
 
 code_dict1={'17714209247':'7777','15057190316':'7777','15305197816':'7777'}
 code_dict2={'17714209247':'3333','15057190316':'7777','15305197816':'7777'}
@@ -367,10 +368,11 @@ def query_prices(request):
                 year=str(city.date).split('-')[0]
                 if year=='2019':
                     month=int(str(city.date).split('-')[1])
-                    city_city[month-1]=city.city_average
+                    city_city[month+2]=city.city_average
                 elif year=='2018':
                     month=int(str(city.date).split('-')[1])
-                    city_city[month-10]=city.city_average
+                    if month==10 or month==11 or month ==12:
+                        city_city[month-10]=city.city_average
             result={'page_num':_page_num,'houses':housess,'one':city_city[0],'two':city_city[1],'three':city_city[2],'four':city_city[3],'five':city_city[4],'six':city_city[5],'seven':city_city[6],'eight':city_city[7],'nine':city_city[8],'ten':city_city[9],'eleven':city_city[10],'twelve':city_city[11]}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         else:
@@ -420,10 +422,11 @@ def query_prices(request):
                 year=str(city.date).split('-')[0]
                 if year=='2019':
                     month=int(str(city.date).split('-')[1])
-                    city_city[month-1]=city.city_average
+                    city_city[month+2]=city.city_average
                 elif year=='2018':
                     month=int(str(city.date).split('-')[1])
-                    city_city[month-10]=city.city_average
+                    if month==10 or month==11 or month ==12:
+                        city_city[month-10]=city.city_average
             result={'page_num':_page_num,'houses':housess,'one':city_city[0],'two':city_city[1],'three':city_city[2],'four':city_city[3],'five':city_city[4],'six':city_city[5],'seven':city_city[6],'eight':city_city[7],'nine':city_city[8],'ten':city_city[9],'eleven':city_city[10],'twelve':city_city[11]}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     except:
@@ -481,9 +484,10 @@ def detail_info(request):
 
                   
 def contrast_house(request):
-    _ids=request.POST.get('id')
+    _ids = request.POST.getlist('id')  #django接收数组
     print(_ids)
     length=int(len(_ids))
+    print(length)
     house_list=[]
     for _id in _ids:
         try:
@@ -727,9 +731,9 @@ def add_house_info(request):
     _address=request.POST.get('address')
     _firm_name=request.POST.get('firm_name')
     _house_type=request.POST.get('house_type')
-    _average_price=request.POST.get('average_price')
-    _area=request.POST.get('area')
-    _total_price=request.POST.get('total_price')
+    _average_price=int(request.POST.get('average_price'))
+    _area=int(request.POST.get('area'))
+    _total_price=int(request.POST.get('total_price'))
     _date=request.POST.get('date')
     _district=request.POST.get('district')
     _direction=request.POST.get('direction')
@@ -737,7 +741,7 @@ def add_house_info(request):
     _height=request.POST.get('height')
     _huxing_jiegou=request.POST.get('huxing_jiegou')
     _jianzhuleixing=request.POST.get('jianzhuleixing')
-    _new=request.POST.get('new')
+    _new=int(request.POST.get('new_h'))
     _nianxian=request.POST.get('nianxian')
     _tihu_bili=request.POST.get('tihu_bili')
     _zhuangxiu=request.POST.get('zhuangxiu')
@@ -753,6 +757,7 @@ def add_house_info(request):
         result={'is_success':'0'}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     except:
+        traceback.print_exc()
         result={'is_success':'1'}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     #except:
@@ -824,6 +829,57 @@ def admin_show_house(request):
         return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
     
 
+def search_house_info(request):
+    _year=request.POST.get('year')
+    _city=request.POST.get('city')
+    _district=request.POST.get('district')
+    _key=request.POST.get('key')
+    house_house=[]
+    if _district=='':
+        houses=House.objects.filter(city=_city)
+        for house in houses:
+            year=house.date.split('-')[0]
+            if year==_year:
+                if _key:
+                    if re.search(_key,house.firm_name):
+                        house_s={'firm_name':house.firm_name,'total_price':house.total_price}
+                        house_house.append(house_s)
+                    elif re.search(_key,house.address): 
+                        house_s={'firm_name':house.address,'total_price':house.total_price}
+                        house_house.append(house_s)
+                    else:
+                        pass
+                else:
+                    house_s={'firm_name':house.firm_name,'total_price':house.total_price}
+                    house_house.append(house_s)
+            else:
+                pass
+        result={'house':house_house}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    else:
+        houses=House.objects.filter(city=_city)
+        for house in houses:
+            year=house.date.split('-')[0]
+            if year==_year:
+                if _key:
+                    if re.search(_key,house.firm_name):
+                        house_s={'firm_name':house.firm_name,'total_price':house.total_price}
+                        house_house.append(house_s)
+                    elif re.search(_key,house.address): 
+                        house_s={'firm_name':house.address,'total_price':house.total_price}
+                        house_house.append(house_s)
+                    else:
+                        pass
+                else:
+                    house_s={'firm_name':house.firm_name,'total_price':house.total_price}
+                    house_house.append(house_s)
+            else:
+                pass  
+        result={'house':house_house}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
+
+
 def delete_house_info(request):
     '''
     @args   int:id
@@ -849,23 +905,30 @@ def add_district_price(request):
     #_id=request.POST.get(_id)
     #try:
         #admin=Admin.objects.filter(session_id=_session_id)
-
+    _city=request.POST.get('city')
     _district=request.POST.get('contry')
     _district_average=request.POST.get('admin_change_house')
-    _date=request.POST.get('time')
-
-    try:
-        district=District_price(district=_district,district_average=_district_average,date=_date)
-        district.save()
-        result={'is_success':'0'}
-        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    except:
-        result={'is_success':'1'}
-        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    #except:
-        #result={'is_success':'2'}
-        #return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-
+    _year=request.POST.get('time')
+    _month=request.POST.get('month')
+    if _district:
+        try:
+            district=District_price(district=_district,district_average=_district_average,date=_year+'-'+_month+'-1')
+            district.save()
+            result={'is_success':'0'}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        except:
+            result={'is_success':'1'}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    else:
+        try:
+            city=City_price(city=_city,city_average=_district_average,date=_year+'-'+_month+'-1')
+            city.save()
+            result={'is_success':'0'}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        except:
+            result={'is_success':'1'}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+   
 
 def delete_district_price(request):
 
@@ -874,19 +937,46 @@ def delete_district_price(request):
     #try:
     #    admin=Admin.objects.filter(session_id=_session_id)
 
-    _date=request.POST.get('date')
+    _year=request.POST.get('year')
+    _month=int(request.POST.get('month'))
     _district=request.POST.get('district')
-    try:
-        district_price=District_price.objects.filter(Q(district=_district)&Q(date=_date))[0]
-        district_price.delete()
-        result={'is_success':'0'}
-        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    except:
-        result={'is_success':'1'}
-        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-    #except:
-    #    result={'is_success':'2'}
-    #    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    _city=request.POST.get('city')
+    if _district:
+        try:
+            district_price=District_price.objects.filter(district=_district)[0]
+            year=district_price.date.split('-')[0]
+            if _month:
+                month=int(district_price.date.split('-')[1])
+                if _year==year and _month==month:
+                    district_price.delete()
+                    result={'is_success':'0'}
+                    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+            else:
+                if _year==year:
+                    district_price.delete()
+                    result={'is_success':'0'}
+                    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        except:
+            result={'is_success':'1'}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    else:
+        try:
+            city_price=City_price.objects.filter(city=_city)[0]
+            year=city_price.date.split('-')[0]
+            if _month:
+                month=int(city_price.date.split('-')[1])
+                if _year==year and _month==month:
+                    city_price.delete()
+                    result={'is_success':'0'}
+                    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+            else:
+                if _year==year:
+                    city_price.delete()
+                    result={'is_success':'0'}
+                    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        except:
+            result={'is_success':'1'}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 
 def add_city_price(request):
