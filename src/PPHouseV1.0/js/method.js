@@ -508,7 +508,7 @@ function showAddr4() {
                     }],
                     yAxes: [{
                         ticks: {
-                            min: 3000
+                            min: 1000
 
                         },
                         display: true

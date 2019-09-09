@@ -403,3 +403,77 @@ $(document).on("click",".add_to_collection",function(){
 		});
 	}
 });
+
+/* checkbox事件 */
+$(document).on("change",".delete_checkbox input",function(){
+	if($(this).prop('checked')){
+		$(this).closest(".list-item").attr("style","background:#f3f3eb");
+		for(var i=0; i<20; i++){
+			if(!$(".delete_checkbox input").eq(i).prop('checked')){
+				return;
+			}
+		}
+		$(".all_delete").attr("checked",true);
+	}
+	else{
+		$(this).closest(".list-item").attr("style","background:inherit");
+		for(var i=0; i<20; i++){
+			if(!$(".delete_checkbox input").eq(i).prop('checked')){
+				$(".all_delete").attr("checked",false);
+			}
+		}
+	}
+});
+
+/* checkbox全选事件 */
+$(document).on("change",".all_delete",function(){
+	if($(this).prop('checked')){
+		$(".delete_checkbox input").attr("checked",true);
+		$(".list-item").attr("style","background:#f3f3eb");
+	}
+	else{
+		$(".delete_checkbox input").attr("checked",false);
+		$(".list-item").attr("style","background:inherit");
+	}
+});
+
+/* 反选事件 */
+$(document).on("click",".reverse",function(){
+	for(var i=0; i<20; i++){
+		if($(".delete_checkbox input").eq(i).prop('checked')){
+			$(".delete_checkbox input").eq(i).attr("checked",false);
+			$(".list-item").eq(i).attr("style","background:inherit");
+		}
+		else{
+			$(".delete_checkbox input").eq(i).attr("checked",true);
+			$(".list-item").eq(i).attr("style","background:#f3f3eb");
+		}
+	}
+});
+
+/* 删除按钮事件 */
+$(document).on("click",".delete",function(){
+	for(var i=0; i<20; i++){
+		var delete_list = new Array;
+		if($(".delete_checkbox input").eq(i).prop('checked')){
+			delete_list.push($(".list-item lable").eq(i).html());
+			$(".delete_checkbox input").eq(i).attr("checked",false);
+			$(".list-item").eq(i).attr("style","background:inherit");
+			$(".delete_checkbox input").eq(i).attr("disabled",true);
+		}
+	}
+	$.ajax({
+		type: "post",
+		url: "/delete_house_info",
+		datatype: "json",
+		data: {
+			"id": house_list
+		},
+		async: false,
+		traditional: true,
+		error: function(request) {
+			alert("Connection error");
+		},
+		success(data) {}
+	});
+});

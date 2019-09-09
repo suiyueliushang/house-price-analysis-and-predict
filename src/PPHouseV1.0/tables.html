@@ -246,6 +246,42 @@
         .select-list form input:hover {
             background-color: #F0F0F0;
         }
+
+        .delete_container{
+            position: relative;
+            right: -178px;
+        }
+
+        .delete_container .all_delete {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            margin-right: 7px
+        }
+
+        .delete_container button {
+            background-color: inherit;
+            border: 1px solid grey;
+            padding: 0 5px;
+            font-size: 14px;
+            margin: 0 3px;
+            border-radius: 3px
+        }
+
+        .delete_checkbox {
+            background-color: inherit;
+            position: absolute;
+            right: -50px;
+            top: 50%;
+        }
+
+        .delete_checkbox input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            border: 1px solid #ddd
+        }
     </style>
 
 </head>
@@ -462,6 +498,11 @@
                             <a class="down" href="#">面积⬇</a>
                             <a class="up" href="#">价格⬆</a>
                             <a class="down" href="#">最新⬇</a>
+                            <span class="delete_container" style="display: none">
+                                <input type="checkbox" class="all_delete">
+                                <button class="reverse">反选</button>
+                                <button class="delete">删除</button>
+                            </span>
                         </span>
                     </div>
 
@@ -474,27 +515,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -506,27 +550,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -538,27 +585,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -570,27 +620,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -602,27 +655,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -634,27 +690,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -666,27 +725,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -698,27 +760,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -730,27 +795,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -762,27 +830,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -794,27 +865,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -826,27 +900,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -858,27 +935,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -890,27 +970,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -922,27 +1005,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -954,27 +1040,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -986,27 +1075,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -1018,27 +1110,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -1050,27 +1145,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -1082,27 +1180,30 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" id="house_title">XXXX-XXXX-XXXX</a>
+                                        <a class="house_title" title="" href="house.html" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
-                                        <span class="house_type" id="house_type">X室X厅</span>
+                                        <span class="house_type" id="house_type"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="area" id="area">XX㎡</span>
+                                        <span class="area" id="area"></span>
                                         <em class="spe-lines">|</em>
-                                        <span class="floor">XX层</span>
+                                        <span class="floor"></span>
                                     </div>
                                     <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address">XXXX-XXXX-XXXX</span>
+                                        <span class="comm-address" title="" class="address" id="address"></span>
                                     </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price">XX</strong>万</span><span class="unit-price" class="ave_price" id="ave_price">XXXXX元/m²</span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
                                 <button class="add_to_compare">加入对比</button>
                                 <button class="add_to_collection">关注</button>
+                            </div>
+                            <div class="delete_checkbox" style="display: none">
+                                <input type="checkbox">
                             </div>
                         </li>
 
@@ -1541,7 +1642,10 @@
             });
 
         })
-        check_login_state();
+        if (getCookie('session') == "user") {
+            $(".delete_container").attr("style","display: inline-block");
+            $(".delete_checkbox").attr("style","display: block");
+        }
     </script>
 
 </body>
