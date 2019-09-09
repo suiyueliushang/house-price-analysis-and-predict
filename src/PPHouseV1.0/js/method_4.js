@@ -133,6 +133,7 @@ function forecast() {
                         var price = new Array();
                         var index = 0;
                         document.getElementById("forecast_div").style.display = "";
+                        document.getElementById("forecast_line").style.display = "";
                         for (var i = 0; i < 10; i++) {
                             var temp = "year_" + i.toString();
                             document.getElementById(temp).style.display = "none";
