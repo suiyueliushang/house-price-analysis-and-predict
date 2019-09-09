@@ -232,40 +232,6 @@ function admin_add_house() {
     });
 };
 
-$("#admin_delete_data").click(function() {
-    month = $('month').val();
-    $.ajax({
-        type: "POST", //提交的方法
-        url: "/delete_district_price", //提交的地址  
-        // contentType: false,
-        data: {
-            'time': time_7.val(),
-            'prov': prov7.val(),
-            'city': city7.val(),
-            'country': country7.val(),
-            'month': month,
-        },
-
-        datatype: "json",
-        async: false,
-        error: function(request) { //失败的话
-            alert("Connection error");
-        },
-        success: function(data) { //成功
-            switch (data.is_success) {
-                case '0':
-                    document.getElementById('div_1').innerText = "删除成功";
-                    break;
-                case '1':
-                    document.getElementById('div_1').innerText = "删除失败,不存在该数据,可能已删除";
-                    break;
-                default:
-                    alert("未知错误");
-            }
-        }
-
-    });
-})
 
 function admin_change_data() {
 
@@ -300,6 +266,42 @@ function admin_change_data() {
                     break;
                 case '1':
                     document.getElementById('div_2').innerText = "新增或修改失败";
+                    break;
+                default:
+                    alert("未知错误");
+            }
+        }
+
+    });
+}
+
+//管理员删除房价
+function admin_delete_price() {
+    month = $('month').val();
+    $.ajax({
+        type: "POST", //提交的方法
+        url: "/delete_district_price", //提交的地址  
+        // contentType: false,
+        data: {
+            'time': time_7.val(),
+            'prov': prov7.val(),
+            'city': city7.val(),
+            'country': country7.val(),
+            'month': month,
+        },
+
+        datatype: "json",
+        async: false,
+        error: function(request) { //失败的话
+            alert("Connection error");
+        },
+        success: function(data) { //成功
+            switch (data.is_success) {
+                case '0':
+                    document.getElementById('div_1').innerText = "删除成功";
+                    break;
+                case '1':
+                    document.getElementById('div_1').innerText = "删除失败,不存在该数据,可能已删除";
                     break;
                 default:
                     alert("未知错误");
