@@ -453,5 +453,27 @@ $(document).on("click",".reverse",function(){
 
 /* 删除按钮事件 */
 $(document).on("click",".delete",function(){
-	for(var i=0; i<20; i++){}
+	for(var i=0; i<20; i++){
+		var delete_list = new Array;
+		if($(".delete_checkbox input").eq(i).prop('checked')){
+			delete_list.push($(".list-item lable").eq(i).html());
+			$(".delete_checkbox input").eq(i).attr("checked",false);
+			$(".list-item").eq(i).attr("style","background:inherit");
+			$(".delete_checkbox input").eq(i).attr("disabled",true);
+		}
+	}
+	$.ajax({
+		type: "post",
+		url: "/delete_house_info",
+		datatype: "json",
+		data: {
+			"id": house_list
+		},
+		async: false,
+		traditional: true,
+		error: function(request) {
+			alert("Connection error");
+		},
+		success(data) {}
+	});
 });
