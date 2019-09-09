@@ -276,7 +276,7 @@
 
     <script>
         $(function() {
-                var a = '<li class="list-item"><div class="item"><lable style="display:none" class="house_id">6666666</lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><!--<div class="details-item"><span class="comm-address" title="" class="address" id="address"></span></div>--><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span></div></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">已关注</button></div></li>';
+                var a = '<li class="list-item"><div class="item"><lable style="display:none" class="house_id"></lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="#" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" id="ave_price"></span></div></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">已关注</button></div></li>';
 
                 sessionStorage.removeItem("house_list");
                 $(".compare .compare_num").html("0");
@@ -296,10 +296,10 @@
                                 $(".house_title").eq(i).html(data.house[i].firm_name);
                                 //$(".address").eq(i).html(data.house[i].address);
                                 $(".house_type").eq(i).html(data.house[i].house_type);
-                                $(".ave_price").eq(i).html(data.house[i].average_price);
+                                $(".unit-price").eq(i).html(data.house[i].average_price+"元/㎡");
                                 $(".total_price").eq(i).html(data.house[i].total_price);
-                                $(".area").eq(i).html(data.house[i].area);
-                                $(".floor").eq(i).html(data.house[i].heigth);
+                                $(".area").eq(i).html(data.house[i].area+"㎡");
+                                $(".floor").eq(i).html(data.house[i].height);
                                 //$(".direction").eq(i).html(data.house[i].direction);
                                 $(".house_id").eq(i).html(data.house[i].id);
                                 $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.house[i].id);
@@ -330,10 +330,10 @@
                                 $(".house_title").eq(i).html(data.house[i].firm_name);
                                 //$(".address").eq(i).html(data.house[i].address);
                                 $(".house_type").eq(i).html(data.house[i].house_type);
-                                $(".ave_price").eq(i).html(data.house[i].average_price);
+                                $(".unit-price").eq(i).html(data.house[i].average_price+"元/㎡");
                                 $(".total_price").eq(i).html(data.house[i].total_price);
-                                $(".area").eq(i).html(data.house[i].area);
-                                $(".floor").eq(i).html(data.house[i].heigth);
+                                $(".area").eq(i).html(data.house[i].area+"㎡");
+                                $(".floor").eq(i).html(data.house[i].height);
                                 //$(".direction").eq(i).html(data.house[i].direction);
                                 $(".house_id").eq(i).html(data.house[i].id);
                                 $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.house[i].id);

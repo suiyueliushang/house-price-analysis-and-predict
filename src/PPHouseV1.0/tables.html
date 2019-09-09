@@ -416,7 +416,7 @@
                             <dd><a href="#">300-500万</a></dd>
                             <dd><a href="#">500-1000万</a></dd>
                             <dd><a href="#">1000万以上</a></dd>
-                            <div class="pricecond">
+                            <!--<div class="pricecond">
                                 <form>
                                     <input type="text" name="from_price" maxlength="5" id="from_price" autocomplete="off" /> -
                                     <input type="text" name="to_price" maxlength="5" id="to_price" autocomplete="off" />&nbsp;<span class="">万</span>
@@ -426,7 +426,7 @@
                                 <a>
                                     <form><input class="smit" id="pricerange_search" style="display:none" type="button" value="确定" /></form>
                                 </a>
-                            </dd>
+                            </dd>-->
                         </dl>
                     </li>
                     <li class="select-list">
@@ -441,16 +441,16 @@
                             <dd><a href="#">150-200m²</a></dd>
                             <dd><a href="#">200-300m²</a></dd>
                             <dd><a href="#">300m²以上</a></dd>
-                            <div class="areacond" style="display: inline">
+                            <!--<div class="areacond" style="display: inline">
                                 <form>
                                     <input type="text" maxlength="5" name="from_area" id="from_area" autocomplete="off" /> -
                                     <input type="text" maxlength="5" name="to_area" id="to_area" autocomplete="off" />&nbsp;<span class="">m²</span>
                                     <input class="smit" id="arearange_search" style="display:none" type="button" value="确定" />
                                 </form>
-                            </div>
+                            </div>-->
                         </dl>
                     </li>
-                    <li class="select-list">
+                    <!--<li class="select-list">
                         <dl id="select4">
                             <dt>房型：</dt>
                             <dd class="select-all selected"><a href="#">全部</a></dd>
@@ -461,7 +461,7 @@
                             <dd><a href="#">五室</a></dd>
                             <dd><a href="#">五室以上</a></dd>
                         </dl>
-                    </li>
+                    </li>-->
                     <li class="select-result">
                         <dl>
                             <form>
@@ -479,7 +479,7 @@
                 <div class="col-lg-8">
                     <div class="line-chart-example card">
                         <div class="card-header d-flex align-items-center">
-                            <h3 class="h4">南京房价走势图</h3>
+                            <h3 class="h4"><span class="line_area"></span>房价走势图</h3>
                         </div>
                         <div class="card-body" id="line_chart">
                             <canvas id="lineChartExample4"></canvas>
@@ -515,7 +515,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -524,13 +524,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -550,7 +548,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -559,13 +557,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -585,7 +581,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -594,13 +590,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -620,7 +614,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -629,13 +623,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -655,7 +647,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -664,13 +656,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -690,7 +680,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -699,13 +689,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -725,7 +713,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -734,13 +722,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -760,7 +746,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -769,13 +755,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -795,7 +779,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -804,13 +788,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -830,7 +812,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -839,13 +821,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -865,7 +845,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -874,13 +854,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -900,7 +878,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -909,13 +887,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -935,7 +911,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -944,13 +920,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -970,7 +944,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -979,13 +953,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -1005,7 +977,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -1014,13 +986,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -1040,7 +1010,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -1049,13 +1019,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -1075,7 +1043,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -1084,13 +1052,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -1110,7 +1076,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -1119,13 +1085,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -1145,7 +1109,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -1154,13 +1118,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -1180,7 +1142,7 @@
                                 </div>
                                 <div class="house-details">
                                     <div class="house-title">
-                                        <a class="house_title" title="" href="house.html" target="_blank" id="house_title"></a>
+                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
                                     </div>
                                     <div class="details-item">
                                         <span class="house_type" id="house_type"></span>
@@ -1189,13 +1151,11 @@
                                         <em class="spe-lines">|</em>
                                         <span class="floor"></span>
                                     </div>
-                                    <!--<div class="details-item">
-                                        <span class="comm-address" title="" class="address" id="address"></span>
-                                    </div>-->
                                     <div class="tags-bottom"></div>
                                 </div>
                                 <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" class="ave_price" id="ave_price"></span>
+                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
+                                    <span class="unit-price" id="ave_price"></span>
                                 </div>
                             </div>
                             <div class="actions">
@@ -1226,232 +1186,6 @@
                     <a href="charts3.html" class="compare_smt">立即对比&nbsp;&nbsp;(<strong class="compare_num">0</strong>)</a>
                     <!--<div class="compare_content"></div>-->
                 </div>
-
-                <!-- 模板 -->
-                <!--<section class="tables">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Basic Table</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Username</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Larry</td>
-                                                        <td>the Bird</td>
-                                                        <td>@twitter</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Striped Table</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Username</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Larry</td>
-                                                        <td>the Bird</td>
-                                                        <td>@twitter </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard3" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Striped table with hover effect</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Username</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Larry</td>
-                                                        <td>the Bird</td>
-                                                        <td>@twitter </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard4" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Compact Table</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
-                                            <table class="table table-striped table-sm">
-                                                <thead>
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Username</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td>Larry</td>
-                                                        <td>the Bird</td>
-                                                        <td>@twitter </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">4</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">5</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">6</th>
-                                                        <td>Larry</td>
-                                                        <td>the Bird</td>
-                                                        <td>@twitter </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>-->
 
                 <!-- Page Footer-->
                 <footer class="main-footer">
@@ -1542,6 +1276,7 @@
                         }
                     });
                     city = $('#citySelect').html();
+                    $(".line_area").html(city);
                     $.ajax({
                         type: "post",
                         url: "/query_prices",
@@ -1616,21 +1351,23 @@
                                 for (var i = 0; i < 20; i++) {
                                     $(".house_title").eq(i).html("");
                                     $(".house_type").eq(i).html("");
-                                    $(".ave_price").eq(i).html("");
+                                    $(".unit-price").eq(i).html("");
                                     $(".total_price").eq(i).html("");
                                     $(".area").eq(i).html("");
                                     $(".floor").eq(i).html("");
                                     $(".house_id").eq(i).html("");
                                     $(".list-item .house_title").eq(i).attr("href","#");
                                     $(".list-item .tags-bottom").eq(i).empty();
+                                }
 
+                                for (var i = 0; i < data.houses.length; i++) {
                                     $(".house_title").eq(i).html(data.houses[i].firm_name);
                                     //$(".address").eq(i).html(data.houses[i].address);
                                     $(".house_type").eq(i).html(data.houses[i].house_type);
-                                    $(".ave_price").eq(i).html(data.houses[i].average_price);
+                                    $(".unit-price").eq(i).html(data.houses[i].average_price+"元/㎡");
                                     $(".total_price").eq(i).html(data.houses[i].total_price);
-                                    $(".area").eq(i).html(data.houses[i].area);
-                                    $(".floor").eq(i).html(data.houses[i].heigth);
+                                    $(".area").eq(i).html(data.houses[i].area+"㎡");
+                                    $(".floor").eq(i).html(data.houses[i].height);
                                     //$(".direction").eq(i).html(data.houses[i].direction);
                                     $(".house_id").eq(i).html(data.houses[i].id);
                                     $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id);
