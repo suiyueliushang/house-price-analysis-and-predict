@@ -219,7 +219,7 @@
 				'max_price': max_price,
 				'min_area': min_area,
 				'max_area': max_area,
-				'page': goPage
+				'page': goPage+1
 			},
 			async: false,
 			error: function(request) {
@@ -250,7 +250,7 @@
 				});
 				}
 		});
-      	$("#Pagination").pagination(allPage,opts);
+      	$("#Pagination").pagination(allPage);
       }else {
       	$("#Pagination").pagination(allPage);
       }

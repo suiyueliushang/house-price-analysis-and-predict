@@ -450,7 +450,7 @@ Vcity.CitySelector.prototype = {
                                     $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
                                 }
                             }
-                            $("#Pagination").pagination(data.page_num,opts);
+                            $("#Pagination").pagination(data.page_num);
                             $("#allPage").html(data.page_num);
                         });
                         }
