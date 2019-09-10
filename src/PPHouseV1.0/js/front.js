@@ -1352,6 +1352,6 @@ function check_login_state() {
     } else {
         document.getElementById('in_li').style.display = "";
         document.getElementById('out_li').style.display = "none";
-        document.getElementById('admin_li').style.display = "";
+        document.getElementById('admin_li').style.display = "none";
     }
 }
