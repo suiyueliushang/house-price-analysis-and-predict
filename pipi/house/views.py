@@ -396,6 +396,7 @@ def query_prices(request):
                     month=int(str(city.date).split('-')[1])
                     if month==10 or month==11 or month ==12:
                         city_city[month-10]=city.city_average
+            _page_num=int(len(housess/20+1))
             result={'page_num':_page_num,'houses':housess,'one':city_city[0],'two':city_city[1],'three':city_city[2],'four':city_city[3],'five':city_city[4],'six':city_city[5],'seven':city_city[6],'eight':city_city[7],'nine':city_city[8],'ten':city_city[9],'eleven':city_city[10],'twelve':city_city[11]}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         else:
@@ -1221,7 +1222,9 @@ def add_users(request):
     _user_phone=request.POST.get('add_phone')
     _password=request.POST.get('add_password')
     try:
-        user_s=User.objects.filter(_user_name)[0]
+        print(_user_name)
+        user_s=User.objects.filter(user_name=_user_name)[0]
+        print(user_s)
         return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
     except:
         u=User(user_name=_user_name,user_phone=_user_phone,password=_password,session_id='123')
@@ -1249,49 +1252,57 @@ def house_forecast(request):
     _year=int(request.POST.get('for_year'))
     _month=int(request.POST.get('for_month'))
     _district=request.POST.get('country')
-    _confidence=float(request.POST.get('confidence'))
+    if request.POST.get('confidence'):
+        _confidence=float(request.POST.get('confidence'))
     len=_year*4+_month/3
     print(len)
     
     district1=_district.split('区')[0]
     print(district1)
-    district_price=District_price.objects.filter(district=district1)
-    dis_dis={}
-    dis_dis_dis={}
-    for district_1 in district_price:
-        year=str(district_1.date).split('-')[0]
-        month=str(district_1.date).split('-')[1]
-        date=int(year+month)
-        dis_dis[date]=district_1.district_average
-        if int(year)>2018:
-            dis_dis_dis[date]=district_1.district_average
-    keys=sorted(dis_dis)
-    values=[]
-    print(keys)
-    for key in keys:
-        values.append(dis_dis[key])
-    print(values)
-    
-    forecast=model.price_forecast(values,int(len)*3,_confidence)
-    print(forecast)
+    try:
+        district_price=District_price.objects.filter(district=district1)
+        dis_dis={}
+        dis_dis_dis={}
+        for district_1 in district_price:
+            year=str(district_1.date).split('-')[0]
+            month=str(district_1.date).split('-')[1]
+            date=int(year+month)
+            dis_dis[date]=district_1.district_average
+            if int(year)>2018:
+                dis_dis_dis[date]=district_1.district_average
+        keys=sorted(dis_dis)
+        values=[]
+        print(keys)
+        for key in keys:
+            values.append(dis_dis[key])
+        print(values)
+        if request.POST.get('confidence'):
+            forecast=model.price_forecast(values,int(len)*3,float(request.POST.get('confidence')))
+        else:
+            forecast=model.price_forecast(values,int(len)*3,0.95)
+        print(forecast)
 
-    print(type(forecast))
-    forecast_ss=forecast.to_json()
-    forecast_s=json.loads(forecast_ss)
-    print(forecast_s)
-    first=[]
-    second=[]
-    third=[]
-    dic_first=list(forecast_s['0'].values())
-    dic_second=list(forecast_s['1'].values())
-    dic_third=list(forecast_s['2'].values())
-    for i in range(0,int(len)*3):
-        if i % 3 ==0:
-            first.append(int(dic_first[i]))
-            second.append(int(dic_second[i]))
-            third.append(int(dic_third[i]))
-    result={'is_success':'0','first':first,'second':second,'third':third}
-    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+        print(type(forecast))
+        forecast_ss=forecast.to_json()
+        forecast_s=json.loads(forecast_ss)
+        print(forecast_s)
+        first=[]
+        second=[]
+        third=[]
+        dic_first=list(forecast_s['0'].values())
+        dic_second=list(forecast_s['1'].values())
+        dic_third=list(forecast_s['2'].values())
+        for i in range(0,int(len)*3):
+            if i % 3 ==0:
+                first.append(int(dic_first[i]))
+                second.append(int(dic_second[i]))
+                third.append(int(dic_third[i]))
+        result={'is_success':'0','first':first,'second':second,'third':third}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        traceback.print_exc()
+        result={'is_success':'1','first':[],'second':[],'third':[]}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
     '''
     keys_keys=sorted(dis_dis_dis)
