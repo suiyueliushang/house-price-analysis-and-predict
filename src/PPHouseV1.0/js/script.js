@@ -324,12 +324,17 @@ $(document).on("click",".add_to_compare",function(){
 			$(".compare .compare_num").html("1");
 		}else{
 			var house_list = JSON.parse(sessionStorage.getItem("house_list"));
-			house_list.push($(this).parent(".actions").siblings(".item").children(".house_id").html());
-			sessionStorage.removeItem("house_list");
-			sessionStorage.setItem("house_list",JSON.stringify(house_list));
-			$(".compare .compare_num").html(house_list.length);
+			if(house_list.length>3){
+				alert("最多支持4个房源对比！");
+			}
+			else{
+				house_list.push($(this).parent(".actions").siblings(".item").children(".house_id").html());
+				sessionStorage.removeItem("house_list");
+				sessionStorage.setItem("house_list",JSON.stringify(house_list));
+				$(".compare .compare_num").html(house_list.length);
+				$(this).html("已加入对比");
+			}
 		}
-		$(this).html("已加入对比");
 	}
 	else{
 		var house_list = JSON.parse(sessionStorage.getItem("house_list"));
