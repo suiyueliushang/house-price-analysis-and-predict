@@ -66,11 +66,10 @@ function selecCountry6(obj) {
     }
 }
 
-var house_type = new Array(18);
 //用户预测房价
 function forecast() {
 
-
+    var house_type = new Array(18);
     prov = provice[current6.prov6].name
     city = provice[current6.prov6]["city"][current6.city6].name
     myselect = document.getElementById('country6');
