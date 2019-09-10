@@ -756,7 +756,7 @@ $("#admin_search").click(function() {
                 case '0':
                     document.getElementById("error_info").style.display = "none";
                     document.getElementById("search_div").style.display = "block";
-                    //document.getElementById("search_time").innerText = data.
+                    document.getElementById("search_time").innerText = data.time;
                     document.getElementById("search_user").innerText = data.user.user_name;
                     document.getElementById("search_phone_number").innerText = data.user.user_phone;
                     break;
