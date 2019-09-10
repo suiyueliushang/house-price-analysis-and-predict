@@ -1206,7 +1206,8 @@ def search_member(request):
     _search_phone=request.POST.get('search_phone')
     try:
         user=User.objects.filter(Q(user_phone=_search_phone)|Q(user_name=_search_phone))[0]
-        time_s=str(Visitor.objects.filter(Q(user_phone=_search_phone)|Q(user_name=_search_phone))[0].time)
+        time_s=str(Visitor.objects.filter(Q(user_phone=_search_phone)|Q(user_name=_search_phone))[0].time).split('.')[0]
+        print(time_s)
         user_user={'user_name':user.user_name,'user_phone':user.user_phone,'time':time_s}
         result={'is_success':'0','user':user_user}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
@@ -1248,6 +1249,7 @@ def house_forecast(request):
     _year=int(request.POST.get('for_year'))
     _month=int(request.POST.get('for_month'))
     _district=request.POST.get('country')
+    _confidence=float(request.POST.get('confidence'))
     len=_year*4+_month/3
     print(len)
     
@@ -1270,7 +1272,7 @@ def house_forecast(request):
         values.append(dis_dis[key])
     print(values)
     
-    forecast=model.price_forecast(values,int(len)*3,0.95)
+    forecast=model.price_forecast(values,int(len)*3,_confidence)
     print(forecast)
 
     print(type(forecast))
@@ -1285,10 +1287,10 @@ def house_forecast(request):
     dic_third=list(forecast_s['2'].values())
     for i in range(0,int(len)*3):
         if i % 3 ==0:
-            first.append(dic_first[i])
-            second.append(dic_second[i])
-            third.append(dic_third[i])
-    result={'first':first,'second':second,'third':third}
+            first.append(int(dic_first[i]))
+            second.append(int(dic_second[i]))
+            third.append(int(dic_third[i]))
+    result={'is_success':'0','first':first,'second':second,'third':third}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
     '''
