@@ -243,7 +243,7 @@
             var id_name = getParams("id");
             var pa =getParams("img");
             alert(pa);
-            di_1.style.backgroundImage ="url(pa)";
+            di_1.style.backgroundImage ="url(" + pa + ")";
             $.ajax({
                 type: "POST", //
                 url: "/detail_info", //
