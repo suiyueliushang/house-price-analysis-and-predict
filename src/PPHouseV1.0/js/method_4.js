@@ -84,11 +84,11 @@ function forecast() {
     for (var i = 0; i < 18; i++) {
         var h_t = "#checkbox" + i.toString();
         house_type[i] = $(h_t);
-        if ($(house_type[1]).prop("checked") == true) {
-            house_type[i] = 0;
-        } else {
-            house_type[i] = 1;
-        }
+        /*  if ($(house_type[1]).prop("checked") == true) {
+              house_type[i] = 0;
+          } else {
+              house_type[i] = 1;
+          }*/
 
     }
     $.ajax({
@@ -102,7 +102,7 @@ function forecast() {
             'xiaoqu': xiaoqu,
             'for_year': for_year,
             'for_month': for_month,
-            'house_type[0]': house_type[0],
+            /*'house_type[0]': house_type[0],
             'house_type[1]': house_type[1],
             'house_type[2]': house_type[2],
             'house_type[3]': house_type[3],
@@ -120,6 +120,7 @@ function forecast() {
             'house_type[15]': house_type[15],
             'house_type[16]': house_type[16],
             'house_type[17]': house_type[17],
+            */
         },
 
         datatype: "json",
