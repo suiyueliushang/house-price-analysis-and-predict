@@ -507,6 +507,7 @@ $("#sign_up").click(function() {
                                                     break;
                                                 case '2':
                                                     document.getElementById('wrong_box').innerText = '用户名已存在';
+                                                    break;
                                                 default:
                                                     document.getElementById('wrong_box').innerText = '未知错误';
                                             }
@@ -729,6 +730,9 @@ $("#forget_password").click(function() {
 $("#admin_search").click(function() {
 
     search_phone = $('#search_phone').val();
+    document.getElementById("error_info").style.display = "none";
+    document.getElementById("delete_info").style.display = "";
+    document.getElementById("delete_info").innerText = "";
     $.ajax({
         type: "POST", //提交的方法
         url: "/search_member", //提交的地址  
@@ -743,7 +747,8 @@ $("#admin_search").click(function() {
         error: function(request) { //失败的话
             alert("Connection error");
             document.getElementById("error_info").style.display = "";
-            document.getElementById("search_div").style.display = "none";
+            document.getElementById("search_div").value = "none";
+
 
         },
         success: function(data) { //成功
@@ -790,7 +795,7 @@ $("#delete_user").click(function() {
         async: false,
         error: function(request) { //失败的话
             alert("Connection error");
-            document.getElementById("delete_info").value = "连接失败";
+            document.getElementById("delete_info").innerText = "连接失败";
 
         },
         success: function(data) { //成功
@@ -813,7 +818,7 @@ $("#delete_user").click(function() {
 
 //管理员注册新用户
 $("#admin_add").click(function() {
-
+    document.getElementById("add_info").innerText = "";
     add_user = $('#add_user').val();
     add_phone = $('#add_phone').val();
     add_password = $('#add_password').val();
@@ -1041,6 +1046,7 @@ function show_visitor_table() {
                 document.getElementById("visitor_1_time").innerText = data.first.minute + "分钟前";
             else
                 document.getElementById("visitor_1_time").innerText = data.first.hour.replace("day,", "天") + "小时" + data.first.minute + "分钟前";
+            document.getElementById("visitor_1_time").innerText = data.first.hour.replace("days,", "天") + "小时" + data.first.minute + "分钟前";
 
             document.getElementById("visitor_1_name").innerText = data.first.user_name;
             document.getElementById("visitor_1_phone").innerText = data.first.user_phone;
@@ -1049,6 +1055,7 @@ function show_visitor_table() {
                 document.getElementById("visitor_2_time").innerText = data.second.minute + "分钟前";
             else
                 document.getElementById("visitor_2_time").innerText = data.second.hour.replace("day,", "天") + "小时" + data.second.minute + "分钟前";
+            document.getElementById("visitor_2_time").innerText = data.second.hour.replace("days,", "天") + "小时" + data.second.minute + "分钟前";
             document.getElementById("visitor_2_name").innerText = data.second.user_name;
             document.getElementById("visitor_2_phone").innerText = data.second.user_phone;
 
@@ -1056,6 +1063,7 @@ function show_visitor_table() {
                 document.getElementById("visitor_3_time").innerText = data.third.minute + "分钟前";
             else
                 document.getElementById("visitor_3_time").innerText = data.third.hour.replace("day,", "天") + "小时" + data.third.minute + "分钟前";
+            document.getElementById("visitor_3_time").innerText = data.third.hour.replace("days,", "天") + "小时" + data.third.minute + "分钟前";
             document.getElementById("visitor_3_name").innerText = data.third.user_name;
             document.getElementById("visitor_3_phone").innerText = data.third.user_phone;
         }
@@ -1081,6 +1089,7 @@ function show_user_table() {
                 document.getElementById("user_1_time").innerText = data.first.minute + "分钟前";
             } else
                 document.getElementById("user_1_time").innerText = data.first.hour.replace("day,", "天") + "小时" + data.first.minute + "分钟前";
+            document.getElementById("user_1_time").innerText = data.first.hour.replace("days,", "天") + "小时" + data.first.minute + "分钟前";
             document.getElementById("user_1_name").innerText = data.first.user_name;
             document.getElementById("user_1_phone").innerText = data.first.user_phone;
 
@@ -1088,6 +1097,7 @@ function show_user_table() {
                 document.getElementById("user_2_time").innerText = data.second.minute + "分钟前";
             else
                 document.getElementById("user_2_time").innerText = data.second.hour.replace("day,", "天") + "小时" + data.second.minute + "分钟前";
+            document.getElementById("user_3_time").innerText = data.second.hour.replace("days,", "天") + "小时" + data.third.minute + "分钟前";
             document.getElementById("user_2_name").innerText = data.second.user_name;
             document.getElementById("user_2_phone").innerText = data.second.user_phone;
 
@@ -1095,6 +1105,7 @@ function show_user_table() {
                 document.getElementById("user_3_time").innerText = data.third.minute + "分钟前";
             else
                 document.getElementById("user_3_time").innerText = data.third.hour.replace("day,", "天") + "小时" + data.third.minute + "分钟前";
+            document.getElementById("user_3_time").innerText = data.third.hour.replace("days,", "天") + "小时" + data.third.minute + "分钟前";
             document.getElementById("user_3_name").innerText = data.third.user_name;
             document.getElementById("user_3_phone").innerText = data.third.user_phone;
         }
