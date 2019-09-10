@@ -1270,12 +1270,30 @@ def house_forecast(request):
         values.append(dis_dis[key])
     print(values)
     
-    forecast=model.price_forecast(values,int(len),0.95)
+    forecast=model.price_forecast(values,int(len)*3,0.95)
     print(forecast)
 
     print(type(forecast))
     forecast_s=forecast.to_json()
     print(forecast_s)
+    first=[]
+    second=[]
+    third=[]
+    dic_first=forecast_s['0'].values()
+    dic_second=forecast_s['1'].values()
+    dic_third=forecast_s['2'].values()
+    for i in range(0,int(len)*3):
+        if i % 3 ==0:
+            first.append(dic_first[i])
+            second.append(dic_second[i])
+            third.append(dic_third[i])
+    for value_2 in dic_second.values():
+        second.append(value_2)
+    for value_3 in dic_third.values():
+        third.append(value_3)
+    result={'first':first,'second':second,'third':third}
+    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
     '''
     keys_keys=sorted(dis_dis_dis)
     values_values=[]
@@ -1287,10 +1305,9 @@ def house_forecast(request):
 
     #for i in range(0,int(len)):
     #    forecast[i]=int(23486*(1.02**i))
-    result={'is_success':'0','fore':forecast}
 
     #f = open('C:\\Users\\asus\\Desktop\\tank\\resources\\tank_dead.png', 'rb')
     #re=f.read()
     #result = base64.b64encode(re)
     #return HttpResponse(result, content_type='image/png')
-    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    
