@@ -264,11 +264,20 @@
                                             </div>
                                             <div class="form-group">月后的房价</div>
                                         </form>
-                                        <div class="form-group">
-                                            <div class="col-md-3">
-                                                <input type="text" placeholder="设定您需要的置信区间" class="form-control" id="xiaoqu"></input>
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <input type="text" placeholder="设定您需要的置信度" class="form-control" id="confidence"></input>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <div class="form-group">
+                                                <div style="color:sienna">
+                                                    Tips:置信度的输入值在0~1之间，值越大，给出的预测范围越大。
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        <br>
                                         <div class="form-group">
                                             <button id="btn6" type="button" onClick="forecast()" class="btn btn-primary">开始预测</button><br>
                                         </div>

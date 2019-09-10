@@ -76,7 +76,7 @@ function forecast() {
     index = myselect.selectedIndex;
     country = myselect.options[index].text;
 
-    xiaoqu = $('#xiaoqu').val();
+    confidence = $('#confidence').val();
     for_year = $('#for_year').val();
     for_month = $('#for_month').val();
 
@@ -99,7 +99,7 @@ function forecast() {
             'prov': prov,
             'city': city,
             'country': country,
-            'xiaoqu': xiaoqu,
+            'confidence': confidence,
             'for_year': for_year,
             'for_month': for_month,
             /*'house_type[0]': house_type[0],
