@@ -77,8 +77,6 @@ function forecast() {
     country = myselect.options[index].text;
 
     confidence = $('#confidence').val();
-    if (confidence == null)
-        confidence == 0.95;
     for_year = $('#for_year').val();
     for_month = $('#for_month').val();
 
