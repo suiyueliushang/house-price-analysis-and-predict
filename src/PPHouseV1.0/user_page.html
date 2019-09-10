@@ -108,7 +108,7 @@
                         <a href="user_page.html"> <i class="icon-user"></i>个人中心</a>
                     </li>
                     <li id="admin_li" style="display: none">
-                        <a href="admin_page_1.html"> <i class="icon-interface-windows"></i>Admin page </a>
+                        <a href="admin_page.html"> <i class="icon-interface-windows"></i>Admin page </a>
                     </li>
                 </ul><span class="heading">Extras</span>
                 <ul class="list-unstyled">
@@ -276,7 +276,7 @@
                 sessionStorage.removeItem("house_list");
                 $(".compare .compare_num").html("0");
 
-                if (getCookie('session' == "user")) {
+                if (getCookie('session') == "user") {
                     $.ajax({
                         type: "post",
                         url: "/show_collection",
@@ -291,9 +291,9 @@
                                 $(".house_title").eq(i).html(data.house[i].firm_name);
                                 //$(".address").eq(i).html(data.house[i].address);
                                 $(".house_type").eq(i).html(data.house[i].house_type);
-                                $(".unit-price").eq(i).html(data.house[i].average_price+"元/㎡");
+                                $(".unit-price").eq(i).html(data.house[i].average_price + "元/㎡");
                                 $(".total_price").eq(i).html(data.house[i].total_price);
-                                $(".area").eq(i).html(data.house[i].area+"㎡");
+                                $(".area").eq(i).html(data.house[i].area + "㎡");
                                 $(".floor").eq(i).html(data.house[i].height);
                                 //$(".direction").eq(i).html(data.house[i].direction);
                                 $(".house_id").eq(i).html(data.house[i].id);
@@ -310,7 +310,7 @@
                             }
                         }
                     });
-                } else if (getCookie('session' == "admin")) {
+                } else if (getCookie('session') == "admin") {
                     $.ajax({
                         type: "post",
                         url: "/admin_show_collection",
@@ -325,9 +325,9 @@
                                 $(".house_title").eq(i).html(data.house[i].firm_name);
                                 //$(".address").eq(i).html(data.house[i].address);
                                 $(".house_type").eq(i).html(data.house[i].house_type);
-                                $(".unit-price").eq(i).html(data.house[i].average_price+"元/㎡");
+                                $(".unit-price").eq(i).html(data.house[i].average_price + "元/㎡");
                                 $(".total_price").eq(i).html(data.house[i].total_price);
-                                $(".area").eq(i).html(data.house[i].area+"㎡");
+                                $(".area").eq(i).html(data.house[i].area + "㎡");
                                 $(".floor").eq(i).html(data.house[i].height);
                                 //$(".direction").eq(i).html(data.house[i].direction);
                                 $(".house_id").eq(i).html(data.house[i].id);

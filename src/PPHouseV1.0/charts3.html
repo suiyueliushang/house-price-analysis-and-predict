@@ -100,7 +100,7 @@
                         <a href="login.html"> <i class="icon-interface-windows"></i>Login page </a>
                     </li>
                     <li id="admin_li" style="display: none">
-                        <a href="admin_page_1.html"> <i class="icon-interface-windows"></i>Admin page </a>
+                        <a href="admin_page.html"> <i class="icon-interface-windows"></i>Admin page </a>
                     </li>
                 </ul><span class="heading">Extras</span>
                 <ul class="list-unstyled">
@@ -140,8 +140,8 @@
                                     <th width="20%"></th>
                                     <td width="20%"><img src="img/home_02.png" width="90%" height="40%"></td>
                                     <td width="20%" id="img_2"><img src="img/home_03.png" width="90%" height="40%"></td>
-                                    <td width="20%"><img src="img/home_04.png" width="90%" height="40%"></td>
-                                    <td width="20%"><img src="img/home_05.png" width="90%" height="40%"></td>
+                                    <td width="20%" id="img_3"><img src="img/home_04.png" width="90%" height="40%"></td>
+                                    <td width="20%" id="img_4"><img src="img/home_05.png" width="90%" height="40%"></td>
                                 </tr>
                                 <tr>
                                     <th witdh="20%">房源名:</th>
@@ -320,6 +320,13 @@
             //img_2.style.backgroundImage ="url(img/home_04.png)";//
             var house_list = JSON.parse(sessionStorage.getItem("house_list"));
             var len_house = house_list.length;
+            if(len_house==2) {
+                img_3.innerHTML = "";
+                img_4.innerHTML = "";
+            }
+            if(len_house==3) {
+                img_4.innerHTML = "";
+            }
             var house = new Array(4);
             for (var j = 0; j < 4; j++) {
                 house[j] = new Array(20);

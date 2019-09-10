@@ -66,18 +66,17 @@ function selecCountry6(obj) {
     }
 }
 
-var house_type = new Array(18);
 //用户预测房价
 function forecast() {
 
-
+    var house_type = new Array(18);
     prov = provice[current6.prov6].name
     city = provice[current6.prov6]["city"][current6.city6].name
     myselect = document.getElementById('country6');
     index = myselect.selectedIndex;
     country = myselect.options[index].text;
 
-    xiaoqu = $('#xiaoqu').val();
+    confidence = $('#confidence').val();
     for_year = $('#for_year').val();
     for_month = $('#for_month').val();
 
@@ -85,11 +84,11 @@ function forecast() {
     for (var i = 0; i < 18; i++) {
         var h_t = "#checkbox" + i.toString();
         house_type[i] = $(h_t);
-        if ($(house_type[1]).prop("checked") == true) {
-            house_type[i] = 0;
-        } else {
-            house_type[i] = 1;
-        }
+        /*  if ($(house_type[1]).prop("checked") == true) {
+              house_type[i] = 0;
+          } else {
+              house_type[i] = 1;
+          }*/
 
     }
     $.ajax({
@@ -100,10 +99,10 @@ function forecast() {
             'prov': prov,
             'city': city,
             'country': country,
-            'xiaoqu': xiaoqu,
+            'confidence': confidence,
             'for_year': for_year,
             'for_month': for_month,
-            'house_type[0]': house_type[0],
+            /*'house_type[0]': house_type[0],
             'house_type[1]': house_type[1],
             'house_type[2]': house_type[2],
             'house_type[3]': house_type[3],
@@ -121,6 +120,7 @@ function forecast() {
             'house_type[15]': house_type[15],
             'house_type[16]': house_type[16],
             'house_type[17]': house_type[17],
+            */
         },
 
         datatype: "json",
@@ -153,10 +153,10 @@ function forecast() {
                             document.getElementById(temp).style.display = "";
                             for (var j = 3; j <= 12; j = j + 3) {
                                 temp = "y" + i.toString() + "m" + j.toString();
-                                document.getElementById(temp).innerText = data.fore[i * 4 + Math.floor(j / 3) - 1];
+                                document.getElementById(temp).innerText = data.first[i * 4 + Math.floor(j / 3) - 1];
 
                                 time[index] = i.toString() + "年" + j.toString() + "月";
-                                price[index] = Number(data.fore[i * 4 + Math.floor(j / 3) - 1]);
+                                price[index] = Number(data.first[i * 4 + Math.floor(j / 3) - 1]);
                                 index++;
                             }
                         }
@@ -165,10 +165,10 @@ function forecast() {
                             document.getElementById(temp).style.display = "";
                             for (var j = 3; j <= Number(for_month); j = j + 3) {
                                 temp = "y" + i.toString() + "m" + j.toString();
-                                document.getElementById(temp).innerText = data.fore[(for_year) * 4 + Math.floor(j / 3) - 1];
+                                document.getElementById(temp).innerText = data.first[(for_year) * 4 + Math.floor(j / 3) - 1];
 
                                 time[index] = i.toString() + "年" + j.toString() + "月";
-                                price[index] = Number(data.fore[(for_year) * 4 + Math.floor(j / 3) - 1]);
+                                price[index] = Number(data.first[(for_year) * 4 + Math.floor(j / 3) - 1]);
                                 index++;
                             }
                         }
@@ -179,6 +179,12 @@ function forecast() {
 
                             'use strict';
 
+                            var price_2 = new Array();
+                            var price_3 = new Array();
+                            for (var i = 0; i < Number((for_year) * 4 + Number(for_month)); i++) {
+                                price_2[i] = data.second[i];
+                                price_3[i] = data.third[i];
+                            }
                             var LINECHART7 = $('#lineChart7');
                             var myLineChart7 = new Chart(LINECHART7, {
                                 type: 'line',
@@ -197,35 +203,82 @@ function forecast() {
                                             }
                                         }]
                                     },
-                                    legend: { labels: { fontColor: "#777", fontSize: 12, }, display: false }
+                                    legend: { labels: { fontColor: "#777", fontSize: 12, }, display: true }
                                 },
 
 
                                 data: {
                                     labels: time,
                                     datasets: [{
-                                        label: "用户",
-                                        fill: true,
-                                        lineTension: 0,
-                                        backgroundColor: "transparent",
-                                        borderColor: '#6ccef0',
-                                        pointBorderColor: '#59c2e6',
-                                        pointHoverBackgroundColor: '#59c2e6',
-                                        borderCapStyle: 'butt',
-                                        borderDash: [],
-                                        borderDashOffset: 0.0,
-                                        borderJoinStyle: 'miter',
-                                        borderWidth: 3,
-                                        pointBackgroundColor: "#59c2e6",
-                                        pointBorderWidth: 0,
-                                        pointHoverRadius: 4,
-                                        pointHoverBorderColor: "#fff",
-                                        pointHoverBorderWidth: 0,
-                                        pointRadius: 4,
-                                        pointHitRadius: 0,
-                                        data: price,
-                                        spanGaps: false
-                                    }]
+                                            label: "预测准线",
+                                            fill: true,
+                                            lineTension: 0,
+                                            backgroundColor: "transparent",
+                                            borderColor: '#FF8C00',
+                                            pointBorderColor: '#FF8C00',
+                                            pointHoverBackgroundColor: ' #FFFFFF',
+                                            borderCapStyle: 'butt',
+                                            borderDash: [],
+                                            borderDashOffset: 0.0,
+                                            borderJoinStyle: 'miter',
+                                            borderWidth: 3,
+                                            pointBackgroundColor: " #FFFFFF",
+                                            pointBorderWidth: 0,
+                                            pointHoverRadius: 4,
+                                            pointHoverBorderColor: "#FF8C00",
+                                            pointHoverBorderWidth: 0,
+                                            pointRadius: 4,
+                                            pointHitRadius: 0,
+                                            data: price,
+                                            spanGaps: false
+                                        },
+                                        {
+                                            label: "预测下限",
+                                            fill: true,
+                                            lineTension: 0,
+                                            backgroundColor: "transparent",
+                                            borderColor: '  #90EE90 ',
+                                            pointBorderColor: ' #90EE90  ',
+                                            pointHoverBackgroundColor: '#FFFFFF',
+                                            borderCapStyle: 'butt',
+                                            borderDash: [],
+                                            borderDashOffset: 0.0,
+                                            borderJoinStyle: 'miter',
+                                            borderWidth: 3,
+                                            pointBackgroundColor: "#FFFFFF",
+                                            pointBorderWidth: 0,
+                                            pointHoverRadius: 4,
+                                            pointHoverBorderColor: "  #90EE90 ",
+                                            pointHoverBorderWidth: 0,
+                                            pointRadius: 4,
+                                            pointHitRadius: 0,
+                                            data: price_2,
+                                            spanGaps: false
+                                        },
+                                        {
+                                            label: "预测上限",
+                                            fill: true,
+                                            lineTension: 0,
+                                            backgroundColor: "transparent",
+                                            borderColor: ' #FF6347 ',
+                                            pointBorderColor: ' #FF6347 ',
+                                            pointHoverBackgroundColor: '#FFFFFF',
+                                            borderCapStyle: 'butt',
+                                            borderDash: [],
+                                            borderDashOffset: 0.0,
+                                            borderJoinStyle: 'miter',
+                                            borderWidth: 3,
+                                            pointBackgroundColor: " #FFFFFF ",
+                                            pointBorderWidth: 0,
+                                            pointHoverRadius: 4,
+                                            pointHoverBorderColor: "#FF6347",
+                                            pointHoverBorderWidth: 0,
+                                            pointRadius: 4,
+                                            pointHitRadius: 0,
+                                            data: price_3,
+                                            spanGaps: false
+                                        }
+                                    ]
                                 }
                             });
                         })
@@ -235,7 +288,6 @@ function forecast() {
                     {
                         document.getElementById("forecast_div").style.display = "none";
                     }
-
                     alert("未查到您输入的小区或楼盘");
                     break;
                 default:

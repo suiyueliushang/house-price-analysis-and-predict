@@ -1,9 +1,8 @@
-
 from django.shortcuts import render
 from .models import Visitor,New_user,New_user_number,Visitor_number,City,House,User,Admin,District_price,City_price
 from django.http import HttpResponse
 from django.http import JsonResponse
-from . import test
+from . import test,model
 import random
 import json
 from django.db.models import Q
@@ -11,6 +10,7 @@ import datetime
 import pytz
 import traceback
 import re
+import base64
 
 code_dict1={'17714209247':'7777','15057190316':'7777','15305197816':'7777'}
 code_dict2={'17714209247':'3333','15057190316':'7777','15305197816':'7777'}
@@ -161,7 +161,7 @@ def get_auth_code(request):
     print(request)
     print(str(_phone_number))
     users=User.objects.all()
-    print(users[3].user_phone)
+
     try:
         user=User.objects.filter(user_phone=str(_phone_number))[0]
     except:
@@ -191,9 +191,12 @@ def sign_up(request):
 
                 now=datetime.datetime.now()
                 now=now.replace(tzinfo=None)
-                user_sign_up=New_user(time=now,user_name=_reg_user_name,user_phone=_phone_number)
-                user_sign_up.save()
-
+                try:
+                    user_s=User.objects.get(user_name=_reg_user_name)
+                    return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+                except:
+                    user_sign_up=New_user(time=now,user_name=_reg_user_name,user_phone=_phone_number)
+                    user_sign_up.save()
                 try:
                     user_num1=New_user_number.objects.get(time=now.date())
                     user_num1.number+=1
@@ -271,6 +274,24 @@ def change_password(request):
     except:
         return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
 
+def admin_change_password(request):
+    _user_name=request.POST.get('change_user_name')
+    _old_password=request.POST.get('change_password_1')
+    print(_user_name,_old_password)
+    _new_password=request.POST.get('change_password_2')
+    _cookie=request.COOKIES.get('key')
+    try:
+        admin=Admin.objects.filter(Q(admin_name=_user_name)&Q(password=_old_password))[0]
+        if admin.session_id == _cookie:
+            admin.password=_new_password
+            admin.save()
+            return HttpResponse(json.dumps({'is_success':'0'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+        else:
+            return HttpResponse(json.dumps({'is_success':'1'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        traceback.print_exc()
+        return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 def query_prices(request):
     '''
     用户点击城市,地区,价格区间来显示该地区的房源
@@ -316,8 +337,8 @@ def query_prices(request):
             price=(_min_price+_max_price)/2*10000
             area=(_min_area+_max_area)/2
             average=price/area;
-            _min_average=average-2000
-            _max_average=average+2000
+            _min_average=average+2000
+            _max_average=average+5000
             print(_min_average)
             print(_max_average)
 
@@ -339,6 +360,8 @@ def query_prices(request):
                 if int(houses[i].average_price)> int(_min_average) and int(houses[i].average_price)< int(_max_average):
                     print(i,houses[i].average_price)
                     if _district:
+                        print(_district)
+                        print(houses[i].district)
                         if _district==houses[i].district:
                             if len(area_list)>0:
                                 house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':huxing_list[0],'average_price':houses[i].average_price,'total_price':total_price_list[0],'area':area_list[0],'height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
@@ -680,6 +703,52 @@ def show_collection(request):
         result={'is_success':'1','house':[]}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
+
+def admin_show_collection(request):
+    '''
+    用户显示收藏夹内容
+    return list
+    '''
+    _session_id=request.COOKIES.get('key')
+    print(_session_id)
+    admin=Admin.objects.filter(session_id=_session_id)[0]
+    collections=admin.collection.split(';')
+    print(collections)
+    l=len(collections)
+    house_collections=[]
+    try:
+        for i in range(1,l):
+            house=House.objects.get(id=int(collections[i]))
+            if house.area:
+                area_list=house.area.split(';')
+            else:
+                area_list=['无']
+            if house.total_price:
+                total_price_list=house.total_price.split(';')
+            else:
+                total_price_list=['无']
+            if house.house_type:
+                huxing_list=house.area.split(';')
+            else:
+                huxing_list=['无']
+            if house.direction:
+                direction_list=house.area.split(';')
+            else:
+                direction_list=['无']
+            #house_house={'id':house.id,'address':house.address,'firm_name':house.firm_name,'house_type':huxing_list[0],'average_price':house.average_price,'total_price':total_price_list,
+                        #'area':area_list[0],'height':house.height,'new':house.new,'elevator':house.elevator,'zhuangxiu':house.zhuangxiu,'date':str(house.date),
+                        #'district':house.district,'direction':direction_list,'huxing_jiegou':house.huxing_jiegou,'jianzhuleixing':house.jianzhuleixing,'nianxian':house.nianxian,
+                        #'tihu_bili':house.tihu_bili,'zhuangxiu':house.zhuangxiu,'kaipan_shijian':house.kaipan_shijian,'city':house.city}
+            
+            house_house={'id':house.id,'firm_name':house.address,'house_type':huxing_list[0],'average_price':house.average_price,'total_price':total_price_list[0],'area':area_list[0],'height':house.height,'new':house.new,'elevator':house.elevator,'zhuangxiu':house.zhuangxiu}
+            house_collections.append(house_house)           
+        result={'is_success':'0','house':house_collections}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        traceback.print_exc()
+        result={'is_success':'1','house':[]}
+        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
 def admin_sign_in(request):
     '''
     管理员通过用户名密码登录
@@ -906,7 +975,7 @@ def add_district_price(request):
     #try:
         #admin=Admin.objects.filter(session_id=_session_id)
     _city=request.POST.get('city')
-    _district=request.POST.get('contry')
+    _district=request.POST.get('country')
     _district_average=request.POST.get('admin_change_house')
     _year=request.POST.get('time')
     _month=request.POST.get('month')
@@ -914,6 +983,7 @@ def add_district_price(request):
         try:
             district=District_price(district=_district,district_average=_district_average,date=_year+'-'+_month+'-1')
             district.save()
+            print(1)
             result={'is_success':'0'}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         except:
@@ -933,55 +1003,67 @@ def add_district_price(request):
 def delete_district_price(request):
 
     #_session_id=request.Cookie.get('key')
-    _id=request.POST.get(_id)
+    #_id=request.POST.get(_id)
     #try:
     #    admin=Admin.objects.filter(session_id=_session_id)
-
-    _year=request.POST.get('year')
+    _year=request.POST.get('time')
     _month=int(request.POST.get('month'))
-    _district=request.POST.get('district')
+    _district=request.POST.get('country')
     _city=request.POST.get('city')
+    print(_year,_month,_district,_city)
     if _district:
         try:
-            district_price=District_price.objects.filter(district=_district)[0]
-            year=district_price.date.split('-')[0]
-            if _month:
-                month=int(district_price.date.split('-')[1])
-                if _year==year and _month==month:
-                    district_price.delete()
-                    result={'is_success':'0'}
-                    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-            else:
-                if _year==year:
-                    district_price.delete()
-                    result={'is_success':'0'}
-                    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+            district_s=_district.split('区')[0]
+            print(district_s)
+            district_prices=District_price.objects.filter(district=district_s)   
+            for district_price in district_prices:
+                year=str(district_price.date).split('-')[0]
+                if _month:
+                    month=int(str(district_price.date).split('-')[1])
+                    if _year==year and _month==month:
+                        district_price.delete()
+                        result={'is_success':'0'}
+                        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+                else:
+                    if _year==year:
+                        district_price.delete()
+                        result={'is_success':'0'}
+                        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+            result={'is_success':'1'}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         except:
+            traceback.print_exc()
             result={'is_success':'1'}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     else:
         try:
-            city_price=City_price.objects.filter(city=_city)[0]
-            year=city_price.date.split('-')[0]
-            if _month:
-                month=int(city_price.date.split('-')[1])
-                if _year==year and _month==month:
-                    city_price.delete()
-                    result={'is_success':'0'}
-                    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
-            else:
-                if _year==year:
-                    city_price.delete()
-                    result={'is_success':'0'}
-                    return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+            city_s=_city.split('市')[0]
+            print(city_s)
+            city_prices=City_price.objects.filter(city=city_s)[0]
+            for city_price in city_prices:
+                year=str(city_price.date).split('-')[0]
+                if _month:
+                    month=int(city_price.date.split('-')[1])
+                    if _year==year and _month==month:
+                        city_price.delete()
+                        result={'is_success':'0'}
+                        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+                else:
+                    if _year==year:
+                        city_price.delete()
+                        result={'is_success':'0'}
+                        return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+            result={'is_success':'1'}
+            return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         except:
+            traceback.print_exc()
             result={'is_success':'1'}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
 
 
 def add_city_price(request):
     #_session_id=request.Cookie.get('key')
-    _id=request.POST.get(_id)
+    #_id=request.POST.get(_id)
     #try:
      #   admin=Admin.objects.filter(session_id=_session_id)
 
@@ -1124,7 +1206,9 @@ def search_member(request):
     _search_phone=request.POST.get('search_phone')
     try:
         user=User.objects.filter(Q(user_phone=_search_phone)|Q(user_name=_search_phone))[0]
-        user_user={'user_name':user.user_name,'id':user.session_id,'user_phone':user.user_phone}
+        time_s=str(Visitor.objects.filter(Q(user_phone=_search_phone)|Q(user_name=_search_phone))[0].time).split('.')[0]
+        print(time_s)
+        user_user={'user_name':user.user_name,'user_phone':user.user_phone,'time':time_s}
         result={'is_success':'0','user':user_user}
         return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
     except:
@@ -1136,7 +1220,11 @@ def add_users(request):
     _user_name=request.POST.get('add_user')
     _user_phone=request.POST.get('add_phone')
     _password=request.POST.get('add_password')
-    u=User(user_name=_user_name,user_phone=_user_phone,password=_password,session_id='123')
+    try:
+        user_s=User.objects.filter(_user_name)[0]
+        return HttpResponse(json.dumps({'is_success':'2'},ensure_ascii=False),content_type="application/json,charset=utf-8")
+    except:
+        u=User(user_name=_user_name,user_phone=_user_phone,password=_password,session_id='123')
     try:
         u.save()
         return HttpResponse(json.dumps({'is_success':'0'},ensure_ascii=False),content_type="application/json,charset=utf-8")
@@ -1160,11 +1248,65 @@ def delete_users(request):
 def house_forecast(request):
     _year=int(request.POST.get('for_year'))
     _month=int(request.POST.get('for_month'))
+    _district=request.POST.get('country')
+    _confidence=float(request.POST.get('confidence'))
     len=_year*4+_month/3
     print(len)
-    forecast=[0]*int(len)
-    for i in range(0,int(len)):
-        forecast[i]=int(23486*(1.02**i))
-    result={'is_success':'0','fore':forecast}
+    
+    district1=_district.split('区')[0]
+    print(district1)
+    district_price=District_price.objects.filter(district=district1)
+    dis_dis={}
+    dis_dis_dis={}
+    for district_1 in district_price:
+        year=str(district_1.date).split('-')[0]
+        month=str(district_1.date).split('-')[1]
+        date=int(year+month)
+        dis_dis[date]=district_1.district_average
+        if int(year)>2018:
+            dis_dis_dis[date]=district_1.district_average
+    keys=sorted(dis_dis)
+    values=[]
+    print(keys)
+    for key in keys:
+        values.append(dis_dis[key])
+    print(values)
+    
+    forecast=model.price_forecast(values,int(len)*3,_confidence)
+    print(forecast)
+
+    print(type(forecast))
+    forecast_ss=forecast.to_json()
+    forecast_s=json.loads(forecast_ss)
+    print(forecast_s)
+    first=[]
+    second=[]
+    third=[]
+    dic_first=list(forecast_s['0'].values())
+    dic_second=list(forecast_s['1'].values())
+    dic_third=list(forecast_s['2'].values())
+    for i in range(0,int(len)*3):
+        if i % 3 ==0:
+            first.append(int(dic_first[i]))
+            second.append(int(dic_second[i]))
+            third.append(int(dic_third[i]))
+    result={'is_success':'0','first':first,'second':second,'third':third}
     return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
+
+    '''
+    keys_keys=sorted(dis_dis_dis)
+    values_values=[]
+    print(keys_keys)
+    for key in keys:
+        values.append(dis_dis[key])
+    print(values)
+    '''
+
+    #for i in range(0,int(len)):
+    #    forecast[i]=int(23486*(1.02**i))
+
+    #f = open('C:\\Users\\asus\\Desktop\\tank\\resources\\tank_dead.png', 'rb')
+    #re=f.read()
+    #result = base64.b64encode(re)
+    #return HttpResponse(result, content_type='image/png')
     
