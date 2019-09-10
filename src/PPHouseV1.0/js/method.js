@@ -228,7 +228,7 @@ function selecCountry1(obj) {
 }
 
 
-
+/*选择城市之后的处理函数*/ 
 function deal_4(obj) {
     current4.city4 = obj.options[obj.selectedIndex].value;
     if (current4.city4 != null) {
@@ -464,7 +464,7 @@ function showAddr1() {
     });
 }
 
-
+/*显示某一城市不同地区的房价*/
 function showAddr4() {
     var myselect = document.getElementById('time_4');
     var index = myselect.selectedIndex;

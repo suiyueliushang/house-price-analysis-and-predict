@@ -129,7 +129,7 @@
                 <div class="col-lg-8">
                     <div class="line-chart-example card">
                         <div class="card-body">
-                            <div style="float:left"><img src="img/home_03.png" height="100%" width="90%" float:left></div>
+                            <div style="float:left" id="di_1"><!--<img src="img/home_03.png" height="100%" width="90%" float:left>--></div>
                             <div style="float:right">
                                 <p style="font-size: 20px" id="p_name"></p><br>
                                 <p style="font-size: 20px" id="p_type"></p><br>
@@ -241,6 +241,9 @@
         window.onload = function() {
             var house_info = new Array("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
             var id_name = getParams("id");
+            var pa =getParams("img");
+            alert(pa);
+            di_1.style.backgroundImage ="url(pa)";
             $.ajax({
                 type: "POST", //
                 url: "/detail_info", //
