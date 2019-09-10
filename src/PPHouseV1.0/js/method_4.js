@@ -203,14 +203,14 @@ function forecast() {
                                             }
                                         }]
                                     },
-                                    legend: { labels: { fontColor: "#777", fontSize: 12, }, display: false }
+                                    legend: { labels: { fontColor: "#777", fontSize: 12, }, display: true }
                                 },
 
 
                                 data: {
                                     labels: time,
                                     datasets: [{
-                                            label: "",
+                                            label: "预测准线",
                                             fill: true,
                                             lineTension: 0,
                                             backgroundColor: "transparent",
@@ -225,7 +225,7 @@ function forecast() {
                                             pointBackgroundColor: " #FFFFFF",
                                             pointBorderWidth: 0,
                                             pointHoverRadius: 4,
-                                            pointHoverBorderColor: "#fff",
+                                            pointHoverBorderColor: "#FF6347",
                                             pointHoverBorderWidth: 0,
                                             pointRadius: 4,
                                             pointHitRadius: 0,
@@ -233,22 +233,22 @@ function forecast() {
                                             spanGaps: false
                                         },
                                         {
-                                            label: "",
+                                            label: "预测界限",
                                             fill: true,
                                             lineTension: 0,
                                             backgroundColor: "transparent",
-                                            borderColor: '#6ccef0',
-                                            pointBorderColor: '#59c2e6',
-                                            pointHoverBackgroundColor: '#59c2e6',
+                                            borderColor: ' #FF8C00 ',
+                                            pointBorderColor: ' #FF8C00 ',
+                                            pointHoverBackgroundColor: '#FFFFFF',
                                             borderCapStyle: 'butt',
                                             borderDash: [],
                                             borderDashOffset: 0.0,
                                             borderJoinStyle: 'miter',
                                             borderWidth: 3,
-                                            pointBackgroundColor: "#59c2e6",
+                                            pointBackgroundColor: "#FFFFFF",
                                             pointBorderWidth: 0,
                                             pointHoverRadius: 4,
-                                            pointHoverBorderColor: "#fff",
+                                            pointHoverBorderColor: " #FF8C00 ",
                                             pointHoverBorderWidth: 0,
                                             pointRadius: 4,
                                             pointHitRadius: 0,
@@ -256,22 +256,22 @@ function forecast() {
                                             spanGaps: false
                                         },
                                         {
-                                            label: "",
+                                            label: "预测界限",
                                             fill: true,
                                             lineTension: 0,
                                             backgroundColor: "transparent",
-                                            borderColor: '#6ccef0',
-                                            pointBorderColor: '#59c2e6',
-                                            pointHoverBackgroundColor: '#59c2e6',
+                                            borderColor: ' #FF8C00 ',
+                                            pointBorderColor: ' #FF8C00 ',
+                                            pointHoverBackgroundColor: '#FFFFFF',
                                             borderCapStyle: 'butt',
                                             borderDash: [],
                                             borderDashOffset: 0.0,
                                             borderJoinStyle: 'miter',
                                             borderWidth: 3,
-                                            pointBackgroundColor: "#59c2e6",
+                                            pointBackgroundColor: " #FFFFFF ",
                                             pointBorderWidth: 0,
                                             pointHoverRadius: 4,
-                                            pointHoverBorderColor: "#fff",
+                                            pointHoverBorderColor: " #FF8C00 ",
                                             pointHoverBorderWidth: 0,
                                             pointRadius: 4,
                                             pointHitRadius: 0,
@@ -288,7 +288,6 @@ function forecast() {
                     {
                         document.getElementById("forecast_div").style.display = "none";
                     }
-
                     alert("未查到您输入的小区或楼盘");
                     break;
                 default:
