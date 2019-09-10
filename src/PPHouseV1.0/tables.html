@@ -693,7 +693,7 @@
                                 $(".sale-left ul").empty();
                                 for (var i = 0; i < data.houses.length; i++) {
                                     $(".sale-left ul").append(a);
-                                    $(".img_container").eq(i).attr("src","h"+i+1);
+                                    $(".img_container").eq(i).attr("src","full/h"+i+".jpg");
                                     $(".house_title").eq(i).html(data.houses[i].firm_name);
                                     //$(".address").eq(i).html(data.houses[i].address);
                                     $(".house_type").eq(i).html(data.houses[i].house_type);
@@ -703,7 +703,7 @@
                                     $(".floor").eq(i).html(data.houses[i].height);
                                     //$(".direction").eq(i).html(data.houses[i].direction);
                                     $(".house_id").eq(i).html(data.houses[i].id);
-                                    $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id);
+                                    $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id +"&img="+ $(".img_container").eq(i).attr("src"));
                                     if (data.houses[i].new) {
                                         $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
                                     }
@@ -717,12 +717,12 @@
                                 if(data.houses.length = 0){
                                     $("#result").html("抱歉！暂时没有该地区的房源！");
                                 }
-                                if(data.houses.length < 21){
+                                    $("#Pagination").pagination(data.page_num);
+                                /*if(data.houses.length < 20){
                                     $("#Pagination").pagination(1);
                                 }
                                 else{
-                                    $("#Pagination").pagination(data.page_num);
-                                }
+                                }*/
                             });
                         }
                     });
