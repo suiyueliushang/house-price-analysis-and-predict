@@ -152,10 +152,10 @@ function forecast() {
                             document.getElementById(temp).style.display = "";
                             for (var j = 3; j <= 12; j = j + 3) {
                                 temp = "y" + i.toString() + "m" + j.toString();
-                                document.getElementById(temp).innerText = data.fore[i * 4 + Math.floor(j / 3) - 1];
+                                document.getElementById(temp).innerText = data.first[i * 4 + Math.floor(j / 3) - 1];
 
                                 time[index] = i.toString() + "年" + j.toString() + "月";
-                                price[index] = Number(data.fore[i * 4 + Math.floor(j / 3) - 1]);
+                                price[index] = Number(data.first[i * 4 + Math.floor(j / 3) - 1]);
                                 index++;
                             }
                         }
@@ -164,10 +164,10 @@ function forecast() {
                             document.getElementById(temp).style.display = "";
                             for (var j = 3; j <= Number(for_month); j = j + 3) {
                                 temp = "y" + i.toString() + "m" + j.toString();
-                                document.getElementById(temp).innerText = data.fore[(for_year) * 4 + Math.floor(j / 3) - 1];
+                                document.getElementById(temp).innerText = data.first[(for_year) * 4 + Math.floor(j / 3) - 1];
 
                                 time[index] = i.toString() + "年" + j.toString() + "月";
-                                price[index] = Number(data.fore[(for_year) * 4 + Math.floor(j / 3) - 1]);
+                                price[index] = Number(data.first[(for_year) * 4 + Math.floor(j / 3) - 1]);
                                 index++;
                             }
                         }
@@ -178,6 +178,12 @@ function forecast() {
 
                             'use strict';
 
+                            var price_2 = new Array();
+                            var price_3 = new Array();
+                            for (var i = 0; i < Number((for_year) * 4 + Number(for_month)); i++) {
+                                price_2[i] = data.second[i];
+                                price_3[i] = data.third[i];
+                            }
                             var LINECHART7 = $('#lineChart7');
                             var myLineChart7 = new Chart(LINECHART7, {
                                 type: 'line',
@@ -203,28 +209,75 @@ function forecast() {
                                 data: {
                                     labels: time,
                                     datasets: [{
-                                        label: "用户",
-                                        fill: true,
-                                        lineTension: 0,
-                                        backgroundColor: "transparent",
-                                        borderColor: '#6ccef0',
-                                        pointBorderColor: '#59c2e6',
-                                        pointHoverBackgroundColor: '#59c2e6',
-                                        borderCapStyle: 'butt',
-                                        borderDash: [],
-                                        borderDashOffset: 0.0,
-                                        borderJoinStyle: 'miter',
-                                        borderWidth: 3,
-                                        pointBackgroundColor: "#59c2e6",
-                                        pointBorderWidth: 0,
-                                        pointHoverRadius: 4,
-                                        pointHoverBorderColor: "#fff",
-                                        pointHoverBorderWidth: 0,
-                                        pointRadius: 4,
-                                        pointHitRadius: 0,
-                                        data: price,
-                                        spanGaps: false
-                                    }]
+                                            label: "",
+                                            fill: true,
+                                            lineTension: 0,
+                                            backgroundColor: "transparent",
+                                            borderColor: '#6ccef0',
+                                            pointBorderColor: '#FF0000',
+                                            pointHoverBackgroundColor: '#FF0000',
+                                            borderCapStyle: 'butt',
+                                            borderDash: [],
+                                            borderDashOffset: 0.0,
+                                            borderJoinStyle: 'miter',
+                                            borderWidth: 3,
+                                            pointBackgroundColor: "#FF0000",
+                                            pointBorderWidth: 0,
+                                            pointHoverRadius: 4,
+                                            pointHoverBorderColor: "#fff",
+                                            pointHoverBorderWidth: 0,
+                                            pointRadius: 4,
+                                            pointHitRadius: 0,
+                                            data: price,
+                                            spanGaps: false
+                                        },
+                                        {
+                                            label: "",
+                                            fill: true,
+                                            lineTension: 0,
+                                            backgroundColor: "transparent",
+                                            borderColor: '#6ccef0',
+                                            pointBorderColor: '#59c2e6',
+                                            pointHoverBackgroundColor: '#59c2e6',
+                                            borderCapStyle: 'butt',
+                                            borderDash: [],
+                                            borderDashOffset: 0.0,
+                                            borderJoinStyle: 'miter',
+                                            borderWidth: 3,
+                                            pointBackgroundColor: "#59c2e6",
+                                            pointBorderWidth: 0,
+                                            pointHoverRadius: 4,
+                                            pointHoverBorderColor: "#fff",
+                                            pointHoverBorderWidth: 0,
+                                            pointRadius: 4,
+                                            pointHitRadius: 0,
+                                            data: price_2,
+                                            spanGaps: false
+                                        },
+                                        {
+                                            label: "",
+                                            fill: true,
+                                            lineTension: 0,
+                                            backgroundColor: "transparent",
+                                            borderColor: '#6ccef0',
+                                            pointBorderColor: '#59c2e6',
+                                            pointHoverBackgroundColor: '#59c2e6',
+                                            borderCapStyle: 'butt',
+                                            borderDash: [],
+                                            borderDashOffset: 0.0,
+                                            borderJoinStyle: 'miter',
+                                            borderWidth: 3,
+                                            pointBackgroundColor: "#59c2e6",
+                                            pointBorderWidth: 0,
+                                            pointHoverRadius: 4,
+                                            pointHoverBorderColor: "#fff",
+                                            pointHoverBorderWidth: 0,
+                                            pointRadius: 4,
+                                            pointHitRadius: 0,
+                                            data: price_3,
+                                            spanGaps: false
+                                        }
+                                    ]
                                 }
                             });
                         })
