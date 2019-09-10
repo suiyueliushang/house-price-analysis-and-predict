@@ -155,6 +155,7 @@
       var goPage = $(".page-go input").val()-1; //跳转页数
       if(goPage > -1 && goPage < allPage){
 		opts.current_page = goPage;
+      	$("#Pagination").pagination(allPage,opts);
 		
 		var min_price = 0;
 		var max_price = 10000000;
@@ -227,19 +228,10 @@
 			},
 			success:function(data) {
 				$(document).ready(function(){
-					for (var i = 0; i < 20; i++) {
-						$(".house_title").eq(i).html("");
-						$(".house_type").eq(i).html("");
-						$(".unit-price").eq(i).html("");
-						$(".total_price").eq(i).html("");
-						$(".area").eq(i).html("");
-						$(".floor").eq(i).html("");
-						$(".house_id").eq(i).html("");
-						$(".list-item .house_title").eq(i).attr("href","#");
-						$(".list-item .tags-bottom").eq(i).empty();
-					}
-
+					var a = '<li class="list-item"><div class="item"><lable style="display: none" class="house_id"></lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="#" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" id="ave_price"></span></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">关注</button></div><div class="delete_checkbox" style="display: none"><input type="checkbox"></div></li>';
+					$(".sale-left ul").empty();
 					for (var i = 0; i < data.houses.length; i++) {
+						$(".sale-left ul").append(a);
 						$(".house_title").eq(i).html(data.houses[i].firm_name);
 						//$(".address").eq(i).html(data.houses[i].address);
 						$(".house_type").eq(i).html(data.houses[i].house_type);
@@ -263,7 +255,6 @@
 				});
 			}
 		});
-      	$("#Pagination").pagination(allPage,opts);
 		window.scrollTo(0,0);
       }else {
       	$("#Pagination").pagination(allPage);
@@ -352,19 +343,10 @@
 				},
 				success:function(data) {
 					$(document).ready(function(){
-						for (var i = 0; i < 20; i++) {
-							$(".house_title").eq(i).html("");
-							$(".house_type").eq(i).html("");
-							$(".unit-price").eq(i).html("");
-							$(".total_price").eq(i).html("");
-							$(".area").eq(i).html("");
-							$(".floor").eq(i).html("");
-							$(".house_id").eq(i).html("");
-							$(".list-item .house_title").eq(i).attr("href","#");
-							$(".list-item .tags-bottom").eq(i).empty();
-						}
-
+						var a = '<li class="list-item"><div class="item"><lable style="display: none" class="house_id"></lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="#" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" id="ave_price"></span></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">关注</button></div><div class="delete_checkbox" style="display: none"><input type="checkbox"></div></li>';
+						$(".sale-left ul").empty();
 						for (var i = 0; i < data.houses.length; i++) {
+							$(".sale-left ul").append(a);
 							$(".house_title").eq(i).html(data.houses[i].firm_name);
 							//$(".address").eq(i).html(data.houses[i].address);
 							$(".house_type").eq(i).html(data.houses[i].house_type);

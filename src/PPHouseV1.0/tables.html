@@ -32,7 +32,6 @@
 
     <style>
         /* 排序栏 */
-        
         .sortby {
             color: #666;
             padding-left: 20px;
@@ -77,8 +76,8 @@
             color: #e54b00;
             text-decoration: underline
         }
+
         /* 城市选择按钮 */
-        
         .city {
             display: inline-block;
             *display: inline;
@@ -283,7 +282,6 @@
             border: 1px solid #ddd
         }
     </style>
-
 </head>
 
 <body>
@@ -506,682 +504,23 @@
                         </span>
                     </div>
 
+                    <!-- 动态加载房源 -->
                     <ul id="houselist-mod-new" class="houselist-mod houselist-mod-new">
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-                        <li class="list-item">
-                            <div class="item">
-                                <lable style="display: none" class="house_id"></lable>
-                                <div class="item-img">
-                                    <img src="#" width="180" height="135" />
-                                </div>
-                                <div class="house-details">
-                                    <div class="house-title">
-                                        <a class="house_title" title="" href="#" target="_blank" id="house_title"></a>
-                                    </div>
-                                    <div class="details-item">
-                                        <span class="house_type" id="house_type"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="area" id="area"></span>
-                                        <em class="spe-lines">|</em>
-                                        <span class="floor"></span>
-                                    </div>
-                                    <div class="tags-bottom"></div>
-                                </div>
-                                <div class="pro-price">
-                                    <span class="price-det"><strong class="total_price" id="total_price"></strong>万</span>
-                                    <span class="unit-price" id="ave_price"></span>
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <button class="add_to_compare">加入对比</button>
-                                <button class="add_to_collection">关注</button>
-                            </div>
-                            <div class="delete_checkbox" style="display: none">
-                                <input type="checkbox">
-                            </div>
-                        </li>
-
-
                     </ul>
 
                     <!-- 分页 -->
                     <div class="pages">
                         <div id="Pagination"></div>
+                        <!-- 跳页
                         <div class="searchPage">
-                            <span class="page-sum">共<strong class="allPage" id="allPage">15</strong>页</span>
+                            <span class="page-sum">共<strong class="allPage" id="allPage">1</strong>页</span>
                             <span class="page-go">跳转<input type="text">页</span>
                             <a href="javascript:;" class="page-btn">GO</a>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
 
-
+                <!-- 对比房源 -->
                 <div class="compare">
                     <a href="charts3.html" class="compare_smt">立即对比&nbsp;&nbsp;(<strong class="compare_num">0</strong>)</a>
                     <!--<div class="compare_content"></div>-->
@@ -1229,7 +568,7 @@
     </script>
     <script>
         $(document).ready(function() {
-            $("#Pagination").pagination("15");
+            $("#Pagination").pagination(1);
         });
     </script>
     <script>
@@ -1346,19 +685,10 @@
                                         }]
                                     }
                                 });
-                                for (var i = 0; i < 20; i++) {
-                                    $(".house_title").eq(i).html("");
-                                    $(".house_type").eq(i).html("");
-                                    $(".unit-price").eq(i).html("");
-                                    $(".total_price").eq(i).html("");
-                                    $(".area").eq(i).html("");
-                                    $(".floor").eq(i).html("");
-                                    $(".house_id").eq(i).html("");
-                                    $(".list-item .house_title").eq(i).attr("href","#");
-                                    $(".list-item .tags-bottom").eq(i).empty();
-                                }
-
+                                var a = '<li class="list-item"><div class="item"><lable style="display: none" class="house_id"></lable><div class="item-img"><img src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="#" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" id="ave_price"></span></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">关注</button></div><div class="delete_checkbox" style="display: none"><input type="checkbox"></div></li>';
+                                $(".sale-left ul").empty();
                                 for (var i = 0; i < data.houses.length; i++) {
+                                    $(".sale-left ul").append(a);
                                     $(".house_title").eq(i).html(data.houses[i].firm_name);
                                     //$(".address").eq(i).html(data.houses[i].address);
                                     $(".house_type").eq(i).html(data.houses[i].house_type);
@@ -1379,8 +709,12 @@
                                         $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
                                     }
                                 }
-                                $("#Pagination").pagination(data.page_num);
-                                $("#allPage").html(data.page_num);
+                                if(data.houses.length < 21){
+                                    $("#Pagination").pagination(1);
+                                }
+                                else{
+                                    $("#Pagination").pagination(data.page_num);
+                                }
                             });
                         }
                     });
@@ -1388,7 +722,7 @@
             });
 
         })
-        if (getCookie('session') == "user") {
+        if (getCookie('session') == "admin") {
             $(".delete_container").attr("style", "display: inline-block");
             $(".delete_checkbox").attr("style", "display: block");
         }
