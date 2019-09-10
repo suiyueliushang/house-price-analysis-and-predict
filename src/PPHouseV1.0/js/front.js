@@ -507,6 +507,7 @@ $("#sign_up").click(function() {
                                                     break;
                                                 case '2':
                                                     document.getElementById('wrong_box').innerText = '用户名已存在';
+                                                    break;
                                                 default:
                                                     document.getElementById('wrong_box').innerText = '未知错误';
                                             }
