@@ -844,6 +844,12 @@ $("#admin_add").click(function() {
                 case '0':
                     document.getElementById("add_info").innerText = "注册成功";
                     break;
+                case '1':
+                    document.getElementById("add_info").innerText = "注册失败";
+                    break;
+                case '2':
+                    document.getElementById("add_info").innerText = "用户名已存在";
+                    break;
                 default:
                     alert("未知错误");
 
