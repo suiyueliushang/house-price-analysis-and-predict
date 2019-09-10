@@ -339,8 +339,6 @@ Vcity.CitySelector.prototype = {
      * */
 
     linkEvent:function(){
-        var date = new Date;
-        var houses;
         var links = Vcity._m.$('a',this.hotCity);
         var that = this;
         var current_city;
@@ -357,29 +355,13 @@ Vcity.CitySelector.prototype = {
                 that.button.innerHTML = this.innerHTML;
                 current_city = this.innerHTML;
 
-                var opts = $.extend({
-                    items_per_page:1,
-                    num_display_entries:4,
-                    current_page:0,
-                    num_edge_entries:1,
-                    link_to:"#",
-                    prev_text:"<i></i>上一页",
-                    next_text:"下一页 <i></i>",
-                    ellipse_text:"...",
-                    prev_show_always:true,
-                    next_show_always:true,
-                    renderer:"defaultRenderer",
-                    show_if_single_page:false,
-                    load_first_page:false,
-                    callback:function(){return false;}
-                },opts||{});
-                
                 $(".load").remove();
                 if (current_city != null) {
                     var districts = citylist[citylist.findIndex(city_index)].district.length;
                     for (var n = 0; n < districts; n++) {
                         $(".select1 .select-all").after('<dd class="load"><a href="#">'+citylist[citylist.findIndex(city_index)].district[n]+'</a></dd>');
                     }
+                    $("#select1 .select-all").addClass("selected");
                 }
 
                 $(document).ready(function(){
@@ -398,6 +380,20 @@ Vcity.CitySelector.prototype = {
                     });
                 });
 
+                if ($("#selectA").length>0) {
+                    $("#selectA").remove();
+                    $("#select1 .select-all").addClass("selected").siblings().removeClass("selected");
+                }
+                if ($("#selectB").length>0) {
+                    $("#selectB").remove();
+                    $("#select2 .select-all").addClass("selected").siblings().removeClass("selected");
+                }
+                if ($("#selectC").length>0) {
+                    $("#selectC").remove();
+                    $("#select3 .select-all").addClass("selected").siblings().removeClass("selected");
+                }
+                $("#smit").attr("style","display:none");
+
                 var region_price = new Array(12);
                 $.ajax({
                     type: "post",
@@ -413,6 +409,7 @@ Vcity.CitySelector.prototype = {
                         alert("Connection error");
                     },
                     success(data){
+                        $(".line_area").html(current_city);
                         $("#lineChartExample4").remove();
                         $("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
                         $(document).ready(function() {
@@ -473,21 +470,23 @@ Vcity.CitySelector.prototype = {
                             for (var i = 0; i < 20; i++) {
                                 $(".house_title").eq(i).html("");
                                 $(".house_type").eq(i).html("");
-                                $(".ave_price").eq(i).html("");
+                                $(".unit-price").eq(i).html("");
                                 $(".total_price").eq(i).html("");
                                 $(".area").eq(i).html("");
                                 $(".floor").eq(i).html("");
                                 $(".house_id").eq(i).html("");
                                 $(".list-item .house_title").eq(i).attr("href","#");
                                 $(".list-item .tags-bottom").eq(i).empty();
-        
+                            }
+
+                            for (var i = 0; i < data.houses.length; i++) {
                                 $(".house_title").eq(i).html(data.houses[i].firm_name);
                                 //$(".address").eq(i).html(data.houses[i].address);
                                 $(".house_type").eq(i).html(data.houses[i].house_type);
-                                $(".ave_price").eq(i).html(data.houses[i].average_price);
+                                $(".unit-price").eq(i).html(data.houses[i].average_price+"元/㎡");
                                 $(".total_price").eq(i).html(data.houses[i].total_price);
-                                $(".area").eq(i).html(data.houses[i].area);
-                                $(".floor").eq(i).html(data.houses[i].heigth);
+                                $(".area").eq(i).html(data.houses[i].area+"㎡");
+                                $(".floor").eq(i).html(data.houses[i].height);
                                 //$(".direction").eq(i).html(data.houses[i].direction);
                                 $(".house_id").eq(i).html(data.houses[i].id);
                                 $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id);
