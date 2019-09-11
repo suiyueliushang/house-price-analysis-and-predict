@@ -257,6 +257,9 @@ function showAddr() {
     addrShow.value = time0_name + '-' + provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name + '-' + provice[current.prov]["city"][current.city].districtAndCounty[current.country];
     region_1 = provice[current.prov]["city"][current.city].districtAndCounty[current.country];
     var region_name = provice[current.prov]["city"][current.city].districtAndCounty[current.country];
+    /*与后台交互数据
+    author:suyu
+    time: 9.2*/
     $.ajax({
         type: "POST", //
         url: "/contrast_district", //
@@ -370,6 +373,9 @@ function showAddr1() {
     addrShow1.value = time1_name + '-' + provice[current1.prov1].name + '-' + provice[current1.prov1]["city"][current1.city1].name + '-' + provice[current1.prov1]["city"][current1.city1].districtAndCounty[current1.country1];
     region_2 = provice[current1.prov1]["city"][current1.city1].districtAndCounty[current1.country1];
     var region_name = provice[current1.prov1]["city"][current1.city1].districtAndCounty[current1.country1];
+    /*与后台交互数据
+    author:suyu
+    time: 9.2 */
     $.ajax({
         type: "POST", //
         url: "/contrast_district", //
@@ -487,6 +493,9 @@ function showAddr4() {
     var city_name = provice[current4.prov4]["city"][current4.city4].name;
     city_region = new Array();
     price4 = new Array();
+    /*与后台交互数据
+    author: suyu
+    time: 9.4*/
     $.ajax({
         type: "POST", //
         url: "/district_in_city", //

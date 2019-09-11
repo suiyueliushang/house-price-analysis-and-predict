@@ -138,10 +138,10 @@
                             <table class="font1" width="100%" height="300px">
                                 <tr>
                                     <th width="20%"></th>
-                                    <td width="20%" ><img src="#" width="90%" height="40%" id="img_1"></td>
-                                    <td width="20%" ><img src="#" width="90%" height="40%" id="img_2"></td>
-                                    <td width="20%" ><img src="#" width="90%" height="40%" id="img_3"></td>
-                                    <td width="20%" ><img src="#" width="90%" height="40%" id="img_4"></td>
+                                    <td width="20%" style="display: none"><img src="#" width="90%" height="40%" id="img_1"></td>
+                                    <td width="20%" style="display: none"><img src="#" width="90%" height="40%" id="img_2"></td>
+                                    <td width="20%" style="display: none"><img src="#" width="90%" height="40%" id="img_3"></td>
+                                    <td width="20%" style="display: none"><img src="#" width="90%" height="40%" id="img_4"></td>
                                 </tr>
                                 <tr>
                                     <th witdh="20%">房源名:</th>
@@ -321,19 +321,30 @@
             var house_list = JSON.parse(sessionStorage.getItem("house_list"));
             var len_house = house_list.length;
             var img_list = JSON.parse(sessionStorage.getItem("house_img"));
+            alert(img_list[0]);
             if(len_house==1) {
+                document.getElementById("img_1").style.display = "";
                 $("#img_1").attr("src",img_list[0]);
             }
             if(len_house==2) {
+                document.getElementById("img_1").style.display = "";
+                document.getElementById("img_2").style.display = "";
                 $("#img_1").attr("src",img_list[0]);
                 $("#img_2").attr("src",img_list[1]);
             }
             if(len_house==3) {
+                document.getElementById("img_1").style.display = "";
+                document.getElementById("img_2").style.display = "";
+                document.getElementById("img_3").style.display = "";
                 $("#img_1").attr("src",img_list[0]);
                 $("#img_2").attr("src",img_list[1]);
                 $("#img_3").attr("src",img_list[2]);
             }
             if(len_house==4) {
+                document.getElementById("img_1").style.display = "";
+                document.getElementById("img_2").style.display = "";
+                document.getElementById("img_3").style.display = "";
+                document.getElementById("img_4").style.display = "";
                 $("#img_1").attr("src",img_list[0]);
                 $("#img_2").attr("src",img_list[1]);
                 $("#img_3").attr("src",img_list[2]);
