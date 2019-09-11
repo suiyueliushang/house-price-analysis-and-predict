@@ -227,7 +227,7 @@
 
                             <!-- 对比链接 -->
                             <div class="compare">
-                                <a href="charts3.html" class="compare_smt">立即对比&nbsp;&nbsp;(<strong class="compare_num">0</strong>)</a>
+                                <a href="charts3.html" target="_blank" class="compare_smt">立即对比&nbsp;&nbsp;(<strong class="compare_num">0</strong>)</a>
                                 <!--<div class="compare_content"></div>-->
                             </div>
                             <!-- Inline Form-->
@@ -274,6 +274,7 @@
                 var a = '<li class="list-item"><div class="item"><lable style="display:none" class="house_id"></lable><div class="item-img"><img class="img_container" src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="#" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" id="ave_price"></span></div></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">已关注</button></div></li>';
 
                 sessionStorage.removeItem("house_list");
+                sessionStorage.removeItem("house_img");
                 $(".compare .compare_num").html("0");
 
                 if (getCookie('session') == "user") {

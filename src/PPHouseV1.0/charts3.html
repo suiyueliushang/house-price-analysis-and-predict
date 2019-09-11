@@ -321,7 +321,6 @@
             var house_list = JSON.parse(sessionStorage.getItem("house_list"));
             var len_house = house_list.length;
             var img_list = JSON.parse(sessionStorage.getItem("house_img"));
-            alert(img_list[0]);
             if(len_house==1) {
                 document.getElementById("t_1").style.display = "";
                 $("#img_1").attr("src",img_list[0]);

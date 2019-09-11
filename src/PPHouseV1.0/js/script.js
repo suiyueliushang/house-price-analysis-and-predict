@@ -247,10 +247,16 @@ $(document).ready(function(){
 							}
 						}
 					}
-					if(data.houses.length < 21){
+					if(data.houses.length == 0){
+						$("#result").html("抱歉！暂时没有该地区的房源！");
+						$("#Pagination").pagination(1);
+					}
+					if(data.houses.length < 20){
+						$("#result").html("为您找到以下房源");
 						$("#Pagination").pagination(1);
 					}
 					else{
+						$("#result").html("为您找到以下房源");
 						$("#Pagination").pagination(data.page_num);
 					}
 				});
@@ -321,17 +327,24 @@ $(document).on("click",".add_to_compare",function(){
 	if($(this).html()=="加入对比"){
 		if(!sessionStorage.getItem("house_list")){
 			var house_list = [$(this).parent(".actions").siblings(".item").children(".house_id").html()];
+			var house_img = [$(this).parent(".actions").siblings(".item").children(".item-img").children(".img_container").attr("src")];
 			sessionStorage.setItem("house_list",JSON.stringify(house_list));
+			sessionStorage.setItem("house_img",JSON.stringify(house_img));
 			$(".compare .compare_num").html("1");
+			$(this).html("已加入对比");
 		}else{
 			var house_list = JSON.parse(sessionStorage.getItem("house_list"));
+			var house_img = JSON.parse(sessionStorage.getItem("house_img"));
 			if(house_list.length>3){
 				alert("最多支持4个房源对比！");
 			}
 			else{
 				house_list.push($(this).parent(".actions").siblings(".item").children(".house_id").html());
+				house_img.push($(this).parent(".actions").siblings(".item").children(".item-img").children(".img_container").attr("src"));
 				sessionStorage.removeItem("house_list");
 				sessionStorage.setItem("house_list",JSON.stringify(house_list));
+				sessionStorage.removeItem("house_img");
+				sessionStorage.setItem("house_img",JSON.stringify(house_img));
 				$(".compare .compare_num").html(house_list.length);
 				$(this).html("已加入对比");
 			}
@@ -340,9 +353,14 @@ $(document).on("click",".add_to_compare",function(){
 	else{
 		var house_list = JSON.parse(sessionStorage.getItem("house_list"));
 		var a = house_list.indexOf($(this).parent(".actions").siblings(".item").children(".house_id").html());
+		var house_img = JSON.parse(sessionStorage.getItem("house_img"));
+		var b = house_img.indexOf($(this).parent(".actions").siblings(".item").children(".item-img").children(".img_container").attr("src"));
 		house_list.splice(a,1);
+		house_img.splice(b,1);
 		sessionStorage.removeItem("house_list");
 		sessionStorage.setItem("house_list",JSON.stringify(house_list));
+		sessionStorage.removeItem("house_img");
+		sessionStorage.setItem("house_img",JSON.stringify(house_img));
 		if(house_list.length>0){
 			$(".compare .compare_num").html(house_list.length);
 		}else{
