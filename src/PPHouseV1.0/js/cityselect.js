@@ -481,7 +481,7 @@ Vcity.CitySelector.prototype = {
                                 $(".floor").eq(i).html(data.houses[i].height);
                                 //$(".direction").eq(i).html(data.houses[i].direction);
                                 $(".house_id").eq(i).html(data.houses[i].id);
-                                $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id);
+                                $(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id +"&img="+ $(".img_container").eq(i).attr("src"));
                                 if (data.houses[i].new) {
                                     $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
                                 }
@@ -492,10 +492,16 @@ Vcity.CitySelector.prototype = {
                                     $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
                                 }
                             }
-                            if(data.houses.length < 21){
+                            if(data.houses.length == 0){
+                                $("#result").html("抱歉！暂时没有该地区的房源！");
+                                $("#Pagination").pagination(1);
+                            }
+                            if(data.houses.length < 20){
+                                $("#result").html("为您找到以下房源");
                                 $("#Pagination").pagination(1);
                             }
                             else{
+                                $("#result").html("为您找到以下房源");
                                 $("#Pagination").pagination(data.page_num);
                             }
                         });

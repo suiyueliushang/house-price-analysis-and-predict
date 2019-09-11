@@ -345,7 +345,8 @@ def query_prices(request):
             _page_num=int(length_1/20+1)
             start=(_page-1)*20
             end=(_page-1)*20+20
-            for i in range(start,min(len(houses),end)):
+            count=0
+            for i in range(start,len(houses)):
                 if houses[i].area and houses[i].total_price and houses[i].huxing_jiegou and houses[i].direction:
                     area_list=houses[i].area.split(';')
                     total_price_list=houses[i].total_price.split(';')
@@ -369,9 +370,15 @@ def query_prices(request):
                                 #,'huxing_jiegou':houses[i].huxing_jiegou,'jianzhuleixing':houses[i].jianzhuleixing,'new':houses[i].new,'nianxian':houses[i].nianxian,
                                 #'tihu_bili':houses[i].tihu_bili,'zhuangxiu':houses[i].zhuangxiu,'kaipan_shijian':houses[i].kaipan_shijian,'city':houses[i].city}
                                 housess.append(house_house)
+                                count+=1
+                                if count>19:
+                                    break;
                             else:
                                 house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':'','average_price':houses[i].average_price,'total_price':'','area':'','height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
                                 housess.append(house_house)
+                                count+=1
+                                if count>19:
+                                    break;
                     else:
                         if len(area_list)>0:
                             house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':huxing_list[0],'average_price':houses[i].average_price,'total_price':total_price_list[0],'area':area_list[0],'height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
@@ -379,9 +386,15 @@ def query_prices(request):
                             #,'huxing_jiegou':houses[i].huxing_jiegou,'jianzhuleixing':houses[i].jianzhuleixing,'new':houses[i].new,'nianxian':houses[i].nianxian,
                             #'tihu_bili':houses[i].tihu_bili,'zhuangxiu':houses[i].zhuangxiu,'kaipan_shijian':houses[i].kaipan_shijian,'city':houses[i].city}
                             housess.append(house_house)
+                            count+=1
+                            if count>19:
+                                break;
                         else:
                             house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':'','average_price':houses[i].average_price,'total_price':'','area':'','height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
                             housess.append(house_house)
+                            count+=1
+                            if count>19:
+                                break;
                 else:
                     pass
             city1=City_price.objects.filter(city=_city)
@@ -396,7 +409,6 @@ def query_prices(request):
                     month=int(str(city.date).split('-')[1])
                     if month==10 or month==11 or month ==12:
                         city_city[month-10]=city.city_average
-            _page_num=int(len(housess/20+1))
             result={'page_num':_page_num,'houses':housess,'one':city_city[0],'two':city_city[1],'three':city_city[2],'four':city_city[3],'five':city_city[4],'six':city_city[5],'seven':city_city[6],'eight':city_city[7],'nine':city_city[8],'ten':city_city[9],'eleven':city_city[10],'twelve':city_city[11]}
             return HttpResponse(json.dumps(result,ensure_ascii=False),content_type="application/json,charset=utf-8")
         else:
@@ -406,7 +418,8 @@ def query_prices(request):
             end=(_page-1)*20+20
             house_s=list(houses)
             housess=[]
-            for i in range(start,min(len(houses),end)):
+            count=0
+            for i in range(start,len(houses)):
                 if houses[i].area and houses[i].total_price and houses[i].huxing_jiegou and houses[i].direction:
                         area_list=houses[i].area.split(';')
                         total_price_list=houses[i].total_price.split(';')
@@ -425,18 +438,30 @@ def query_prices(request):
                             #,'huxing_jiegou':houses[i].huxing_jiegou,'jianzhuleixing':houses[i].jianzhuleixing,'nianxian':houses[i].nianxian,
                             #'tihu_bili':houses[i].tihu_bili,'zhuangxiu':houses[i].zhuangxiu,'kaipan_shijian':houses[i].kaipan_shijian,'city':houses[i].city}
                             housess.append(house_house)
+                            count+=1
+                            if count>19:
+                                break;
                         else:
                             house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':'','average_price':houses[i].average_price,'total_price':'','area':'','height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
                             housess.append(house_house)
+                            count+=1
+                            if count>19:
+                                break;
                 else:
                     if len(area_list)>0:
                         house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':huxing_list[0],'average_price':houses[i].average_price,'total_price':total_price_list[0],'area':area_list[0],'height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}    #,'date':str(houses[i].date),'district':houses[i].district,'direction':direction_list,'elevator':houses[i].elevator
                         # ,'huxing_jiegou':houses[i].huxing_jiegou,'jianzhuleixing':houses[i].jianzhuleixing,'nianxian':houses[i].nianxian,
                             #'tihu_bili':houses[i].tihu_bili,'zhuangxiu':houses[i].zhuangxiu,'kaipan_shijian':houses[i].kaipan_shijian,'city':houses[i].city}
                         housess.append(house_house)
+                        count+=1
+                        if count>19:
+                            break;
                     else:
                         house_house={'id':houses[i].id,'firm_name':houses[i].address,'house_type':'','average_price':houses[i].average_price,'total_price':'','area':'','height':houses[i].height,'new':houses[i].new,'elevator':houses[i].elevator,'zhuangxiu':houses[i].zhuangxiu}
                         housess.append(house_house)
+                        count+=1
+                        if count>19:
+                            break;
                 #city,district,month,_min_price,_min_area,page
                 #id,firm_name,address,house_type,average_price,total_price,area,height
             city1=City_price.objects.filter(city=_city)

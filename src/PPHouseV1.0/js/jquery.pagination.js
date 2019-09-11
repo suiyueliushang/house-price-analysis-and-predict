@@ -242,7 +242,7 @@
 						$(".floor").eq(i).html(data.houses[i].height);
 						//$(".direction").eq(i).html(data.houses[i].direction);
 						$(".house_id").eq(i).html(data.houses[i].id);
-						$(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id);
+						$(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id +"&img="+ $(".img_container").eq(i).attr("src"));
 						if (data.houses[i].new) {
 							$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
 						}
@@ -358,7 +358,7 @@
 							$(".floor").eq(i).html(data.houses[i].height);
 							//$(".direction").eq(i).html(data.houses[i].direction);
 							$(".house_id").eq(i).html(data.houses[i].id);
-							$(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id);
+							$(".list-item .house_title").eq(i).attr("href", "house.html?id=" + data.houses[i].id +"&img="+ $(".img_container").eq(i).attr("src"));
 							if (data.houses[i].new) {
 								$(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-1">新房</span>');
 							}
