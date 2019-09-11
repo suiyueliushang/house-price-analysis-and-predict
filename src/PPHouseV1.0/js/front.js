@@ -173,17 +173,28 @@ $(document).ready(function() {
     });
 
 });
-
-//设置cookie
+/*date:2019.8.19
+  author:丁玟月
+  function:设置cookie
+  参数:c_name:cookie属性名
+       value:属性值
+       expiredays:有效期,单位为天
+  setCookie('name', 'zzyn', 1); // cookie过期时间为1天。
+*/
 function setCookie(c_name, value, expiredays) {
     var exdate = new Date();
     exdate.setDate(exdate.getDate() + expiredays);
     document.cookie = c_name + "=" + escape(value) +
         ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
 }
-//setCookie('name', 'zzyn', 1); // cookie过期时间为1天。
 
 
+
+/*date:2019.8.19
+  author:丁玟月
+  function:获取cookie
+  参数:c_name:cookie属性名
+*/
 function getCookie(c_name) {
     if (document.cookie.length > 0) {
         c_start = document.cookie.indexOf(c_name + "=");
@@ -201,10 +212,20 @@ function getCookie(c_name) {
     return "";
 }
 
+/*date:2019.8.19
+  author:丁玟月
+  function:删除cookie
+  参数:name:cookie属性名
+*/
 function delCookie(name) {
     setCookie(name, "", -1);
 }
 
+/*date:2019.8.19
+  author:丁玟月
+  function:清空cookie
+  参数:无
+*/
 function clearCookie() {
     var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
     if (keys) {
@@ -213,7 +234,15 @@ function clearCookie() {
     }
 }
 
-//登录数据交互
+
+/*date:2019.8.20
+  author:丁玟月
+  function:登录数据交互
+  参数: user_name:输入的用户名
+        password:输入的密码
+        val:生成的验证码
+        current:输入的验证码
+*/
 $("#login").click(function() {
 
     user_name = $('#user_name').val();
@@ -296,7 +325,17 @@ $("#login").click(function() {
     }
 });
 
-//手机号登录
+
+
+/*date:2019.8.21
+  author:丁玟月
+  function:手机号登录
+  参数: phone_number:输入的手机号
+        phone_code:输入的手机验证码
+        val:生成的验证码
+        current:输入的验证码
+*/
+
 $("#login_by_phone").click(function() {
     phone_number = $('#phone_number').val();
     phone_code = $('#phone_code').val();
@@ -347,7 +386,15 @@ $("#login_by_phone").click(function() {
     }
 });
 
-//管理员登录
+
+/*date:2019.8.23
+  author:丁玟月
+  function:管理员登录
+  参数: admin_name:输入的管理员用户名
+        admin_password:输入的密码
+        val:生成的验证码
+        current:输入的验证码
+*/
 $("#admin_login").click(function() {
 
     admin_name = $('#admin_name').val();
@@ -429,8 +476,11 @@ $("#admin_login").click(function() {
     }
 });
 
-
-//登出
+/*date:2019.8.26
+  author:丁玟月
+  function:登出
+  参数: 无
+*/
 function log_out() {
     //user_name = $('#login_id').val();
     //window.localStorage.removeItem("name");
@@ -450,7 +500,15 @@ $("#log_out_a").click(function() {
     window.location.href = "login.html";
 });
 
-//注册
+/*date:2019.8.26
+  author:丁玟月
+  function:注册
+  参数: phone_number:手机号
+        reg_phone_code:手机号验证码
+        reg_user_name:用户名
+        reg_password:密码
+        reg_password_1:重复输入的密码
+*/
 $("#sign_up").click(function() {
     reg_password = $('#reg_password').val();
     reg_password_1 = $('#reg_password_1').val();
@@ -564,7 +622,11 @@ if (obj) {
 }
 
 
-//手机验证码
+/*date:2019.8.28
+  author:丁玟月
+  function:获取手机号验证码
+  参数: phone_number:手机号
+*/
 $("#get_phone_code").click(function() {
 
     phone_number = $('#phone_number').val();
@@ -607,8 +669,11 @@ $("#get_phone_code").click(function() {
     });
 });
 
-
-//登录和修改密码时获取手机验证码
+/*date:2019.8.28
+  author:丁玟月
+  function:登录和修改密码时获取手机验证码
+  参数: phone_number:手机号
+*/
 $("#get_auth_code").click(function() {
 
     phone_number = $('#phone_number').val();
@@ -647,7 +712,16 @@ $("#get_auth_code").click(function() {
     });
 });
 
-//忘记密码
+
+/*date:2019.8.28
+  author:丁玟月
+  function:忘记密码
+  参数: phone_number:手机号
+        phone_code:手机号验证码
+        user_name:用户名
+        password:密码
+        password_1:重复输入的密码
+*/
 $("#forget_password").click(function() {
     phone_number = $('#phone_number').val();
     phone_code = $('#phone_code').val();
@@ -726,7 +800,11 @@ $("#forget_password").click(function() {
 });
 
 
-//管理员查找用户
+/*date:2019.8.29
+  author:丁玟月
+  function:管理员查找用户
+  参数: search_phone:查找的手机号或用户名
+*/
 $("#admin_search").click(function() {
 
     search_phone = $('#search_phone').val();
@@ -775,7 +853,13 @@ $("#admin_search").click(function() {
     });
 });
 
-//管理员删除用户
+
+/*date:2019.8.30
+  author:丁玟月
+  function:管理员删除用户
+  参数: search_user:查找到的用户名
+        search_phone_number:查找的手机号
+*/
 $("#delete_user").click(function() {
     var search_user = document.getElementById('search_user').innerText;
     var search_phone_number = document.getElementById('search_phone_number').innerText;
@@ -816,7 +900,14 @@ $("#delete_user").click(function() {
 });
 
 
-//管理员注册新用户
+
+/*date:2019.8.31
+  author:丁玟月
+  function:管理员注册新用户
+  参数: add_user:新增用户名
+        add_phone:新增用户手机号
+        add_password:新增用户密码
+*/
 $("#admin_add").click(function() {
     document.getElementById("add_info").innerText = "";
     add_user = $('#add_user').val();
@@ -860,13 +951,21 @@ $("#admin_add").click(function() {
 });
 
 
+
+
+/*date:2019.8.31
+  author:丁玟月
+  function:显示访客人数趋势图
+  参数: num[]:访客数据数组
+        
+*/
 var num = new Array(12);
-//显示访客人数趋势图
+
 function show_visitor() {
 
     $.ajax({
-        type: "POST", //
-        url: "/new_sign_in", //
+        type: "POST",
+        url: "/new_sign_in",
         datatype: "json",
         data: {},
         async: false,
@@ -947,15 +1046,18 @@ function show_visitor() {
 
 
 
-//显示新增用户人数趋势图
-
+/*date:2019.8.31
+  author:丁玟月
+  function:显示新增用户人数趋势图
+  参数: num[]:用户数据数组       
+*/
 var num1 = new Array(12);
 
 function show_user() {
 
     $.ajax({
-        type: "POST", //
-        url: "/new_sign_up", //
+        type: "POST",
+        url: "/new_sign_up",
         datatype: "json",
         data: {},
         async: false,
@@ -1035,12 +1137,17 @@ function show_user() {
     });
 }
 
-//访客表
+/*date:2019.8.31
+  author:丁玟月
+  function:显示访客人数数据表
+  参数: num[]:访客数据数组
+        
+*/
 function show_visitor_table() {
 
     $.ajax({
-        type: "POST", //
-        url: "/new_sign_in_list", //
+        type: "POST",
+        url: "/new_sign_in_list",
         datatype: "json",
         data: {},
         async: false,
@@ -1080,7 +1187,12 @@ function show_visitor_table() {
 
 }
 
-//新增用户表
+/*date:2019.8.31
+  author:丁玟月
+  function:显示用户人数数据表
+  参数: num[]:用户数据数组
+        
+*/
 function show_user_table() {
 
     $.ajax({
@@ -1126,12 +1238,15 @@ function show_user_table() {
     });
 
 }
-//新增用户 new_sign_up_list
-//新增访问 new_sign_in_list
-//new_sign_up1
 
-
-//用户修改密码
+/*date:2019.9.2
+  author:丁玟月
+  function:用户修改密码
+  参数: change_user_name:用户名
+        change_password_1:原来的密码
+        change_password_2:修改后的密码
+        change_password_3:重复输入修改后密码
+*/
 $("#change_password").click(function() {
 
     change_user_name = $('#change_user_name').val();
@@ -1209,6 +1324,12 @@ $("#change_password").click(function() {
     }
 })
 
+
+/*date:2019.9.3
+  author:丁玟月
+  function:管理员状态检测(防止输入url进入管理员界面)
+  参数:无
+*/
 function get_admin_session() {
     $.ajax({
         type: "POST", //提交的方法
@@ -1236,34 +1357,38 @@ function get_admin_session() {
     });
 }
 
-//管理员增加新房源
+/*date:2019.9.4
+  author:丁玟月
+  function:管理员新增新房源
+  参数:见下
+*/
 $("#admin_add_house").click(function() {
 
-    date = $('#date').val();
-    province = $('#province').val();
-    city = $('#city').val();
-    district = $('#district').val();
+    date = $('#date').val(); //日期
+    province = $('#province').val(); //省份
+    city = $('#city').val(); //城市
+    district = $('#district').val(); //区域
 
 
-    address = $('#address').val();
-    firm_name = $('#firm_name').val();
-    house_type = $('#house_type').val();
-    direction = $('#direction').val();
+    address = $('#address').val(); //详细地址
+    firm_name = $('#firm_name').val(); //楼盘名
+    house_type = $('#house_type').val(); //房源类型
+    direction = $('#direction').val(); //朝向
 
-    area = $('#area').val();
-    average_price = $('#average_price').val();
-    total_price = $('#total_price').val();
-    elevator = $('#elevator').val();
+    area = $('#area').val(); //面积
+    average_price = $('#average_price').val(); //平米均价
+    total_price = $('#total_price').val(); //总价
+    elevator = $('#elevator').val(); //有无电梯
 
-    heigth = $('#heigth').val();
-    huxing_jiegou = $('#huxing_jiegou').val();
-    jianzhuleixing = $('#jianzhuleixing').val();
-    new_h = $('#new_h').val();
+    heigth = $('#heigth').val(); //楼层高度
+    huxing_jiegou = $('#huxing_jiegou').val(); //户型结构
+    jianzhuleixing = $('#jianzhuleixing').val(); //建筑类型
+    new_h = $('#new_h').val(); //是否新房
 
-    nianxian = $('#nianxian').val();
-    ti_bili = $('#ti_bili').val();
-    zhuangxiu = $('#zhuangxiu').val();
-    kaiaipan_shijian = $('#kaiaipan_shijian').val();
+    nianxian = $('#nianxian').val(); //年限
+    ti_bili = $('#ti_bili').val(); //梯户比例
+    zhuangxiu = $('#zhuangxiu').val(); //是否精装修
+    kaiaipan_shijian = $('#kaiaipan_shijian').val(); //开盘时间
 
     $.ajax({
         type: "POST", //提交的方法
@@ -1317,7 +1442,11 @@ $("#admin_add_house").click(function() {
     });
 });
 
-//获取管理员身份证明
+/*date:2019.9.4
+  author:丁玟月
+  function:管理员身份证明
+  参数:无
+*/
 function get_admin_session() {
     $.ajax({
         type: "POST", //提交的方法
@@ -1346,6 +1475,12 @@ function get_admin_session() {
     });
 };
 
+
+/*date:2019.9.6
+  author:丁玟月
+  function:检测用户身份，判断是否加载admin_page侧边栏
+  参数:无
+*/
 function check_login_state() {
     if (getCookie('session') == "user") {
         document.getElementById('in_li').style.display = "none";

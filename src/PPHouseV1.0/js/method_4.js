@@ -66,10 +66,19 @@ function selecCountry6(obj) {
     }
 }
 
-//用户预测房价
+/*date:2019.9.6
+  author:丁玟月
+  function:预测房价
+  参数:prov:省份
+       city:城市
+       country: 县区
+       confidence:置信度
+       for_year:预测的年份
+       for_month:预测的月份
+*/
 function forecast() {
 
-    var house_type = new Array(18);
+    //var house_type = new Array(18);
     prov = provice[current6.prov6].name
     city = provice[current6.prov6]["city"][current6.city6].name
     myselect = document.getElementById('country6');
