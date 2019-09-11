@@ -35,7 +35,9 @@ var current3 = {
 
 
 
-/*自动加载省份列表*/
+/*自动加载省份列表
+author: suyu
+time: 8.28*/
 (function showProv2() {
     btn2.disabled = true;
     var len = provice.length;
@@ -74,7 +76,9 @@ var current3 = {
     }
 })();
 
-/*根据所选的省份来显示城市列表*/
+/*根据所选的省份来显示城市列表
+author: suyu
+time: 8.28*/
 function showCity2(obj) {
     var val = obj.options[obj.selectedIndex].value;
     if (val != current2.prov2) {
@@ -133,7 +137,9 @@ function showCountry2(obj) {
         }
     }
 }*/
-/*选择县区之后的处理函数*/
+/*选择县区之后的处理函数
+author: suyu
+time: 8.28*/
 function deal_2(obj) {
     current2.city2 = obj.options[obj.selectedIndex].value;
     if (current2.city2 != null) {
@@ -147,7 +153,9 @@ function deal_3(obj) {
     }
 }
 
-/*点击确定按钮显示用户所选的地址*/
+/*点击确定按钮显示用户所选的地址
+author: suyu
+time: 8.28*/
 function showAddr2 () {
     var myselect=document.getElementById('time_2');
     var index=myselect.selectedIndex;
