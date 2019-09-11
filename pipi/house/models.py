@@ -1,3 +1,4 @@
+#@author:谢佳锋
 from django.db import models
 
 class User(models.Model):

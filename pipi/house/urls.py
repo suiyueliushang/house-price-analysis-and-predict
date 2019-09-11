@@ -21,7 +21,6 @@ urlpatterns = [
     path('user_session',views.user_session),#√
     path('add_house_info',views.add_house_info),#√
     path('search_house_info',views.search_house_info),
-    #path('show_house_info',views.admin_show_house),
     path('delete_house_info',views.delete_house_info),
     path('add_district_price',views.add_district_price),#√
     path('delete_district_price',views.delete_district_price),#√

@@ -1,3 +1,4 @@
+#@author:谢佳锋
 from statsmodels.tsa.arima_model import ARIMA
 import pmdarima as pm
 import pandas as pd
