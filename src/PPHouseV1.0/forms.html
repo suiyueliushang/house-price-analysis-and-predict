@@ -1,3 +1,7 @@
+<!--  最后修改时间:2019.9.9
+      author:丁玟月
+      function:房价预测
+-->
 <!DOCTYPE html>
 <html>
 
@@ -55,11 +59,11 @@
                         <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
                             <li style="padding: 0px 10px 0px"><a href="">地区</a></li>
                             <li style="padding: 0px 10px 0px"><a href="">语言</a></li>
-                            <li style="padding: 0px 10px 0px"><a href="register.html" style="width:auto;">注册</a><a>/</a><a href="login.html" style="width:auto;">登录</a></li>
-                            <li style="padding: 0px 10px 0px"><a href="">联系我们</a></li>
+                            <li id="in_li" style="padding: 0px 10px 0px;display:none"><a href=" register.html " style="width:auto; ">注册</a><a>/</a><a href="login.html " style="width:auto; ">登录</a></li>
+                            <li style="padding: 0px 10px 0px "><a href=" ">联系我们</a></li>
                             <!-- Logout    -->
-                            <li class="nav-item">
-                                <a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a>
+                            <li id="out_li" class="nav-item ">
+                                <a href="javascript:void(0);" class="nav-link logout " οnclick="log_out()" id="log_out_a"> <span class="d-none d-sm-inline ">Logout</span><i class="fa fa-sign-out "></i></a>
                             </li>
                         </ul>
                     </div>
@@ -71,10 +75,9 @@
             <nav class="side-navbar">
                 <!-- Sidebar Header-->
                 <div class="sidebar-header d-flex align-items-center">
-                    <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
-                        <h1 class="h4">UserName</h1>
-                        <p>City</p>
+                        <h1 class="h5" style="color: gray">Welcome!</h1>
+                        <h1 class="h4" id="login_id">UserName</h1>
                     </div>
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
@@ -86,13 +89,20 @@
                         <a href="tables.html"> <i class="icon-grid"></i>房价查询 </a>
                     </li>
                     <li>
-                        <a href="charts.html"> <i class="fa fa-bar-chart"></i>房价对比 </a>
+                        <a href="#charts_page" aria-expanded="ture" data-toggle="collapse"> <i class="icon-interface-windows"></i>房价对比 </a>
+                        <ul id="charts_page" class="collapse list-unstyled ">
+                            <li><a href="charts.html">区域对比</a></li>
+                            <li><a href="charts2.html">城市对比</a></li>
+                        </ul>
                     </li>
                     <li class="active">
                         <a href="forms.html"> <i class="icon-padnote"></i>房价预测 </a>
                     </li>
                     <li>
-                        <a href="login.html"> <i class="icon-interface-windows"></i>Login page </a>
+                        <a href="user_page.html"> <i class="icon-user"></i>个人中心</a>
+                    </li>
+                    <li id="admin_li" style="display: none">
+                        <a href="admin_page.html"> <i class="icon-interface-windows"></i>Admin page </a>
                     </li>
                 </ul><span class="heading">Extras</span>
                 <ul class="list-unstyled">
@@ -114,14 +124,14 @@
                 <!-- Page Header-->
                 <header class="page-header">
                     <div class="container-fluid">
-                        <h2 class="no-margin-bottom">Forms</h2>
+                        <h2 class="no-margin-bottom">房价预测</h2>
                     </div>
                 </header>
                 <!-- Breadcrumb-->
                 <div class="breadcrumb-holder container-fluid">
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.html">PPHouse</a></li>
-                        <li class="breadcrumb-item active">Forms </li>
+                        <li class="breadcrumb-item active">房价预测</li>
                     </ul>
                 </div>
                 <!-- Forms Section-->
@@ -129,7 +139,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <!-- Basic Form-->
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
                                 <div class="card">
                                     <div class="card-close">
                                         <div class="dropdown">
@@ -141,67 +151,146 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Basic Form</h3>
+                                        <h3 class="h4">房价预测</h3>
                                     </div>
                                     <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet consectetur.</p>
+                                        <p>选择您想要预测的城市区域:</p>
+                                        <form class="form-inline">
+
+                                            <div class="form-group">
+                                                <!--省份选择-->
+                                                <select id="prov6" class="form-control mb-3" onchange="showCity6(this)">
+                                                            <option>=请选择省份=</option>
+                                                        </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <!--城市选择-->
+                                                <select id="city6" class="form-control mb-3" onchange="showCountry6(this)">
+                                                                <option>=请选择城市=</option>
+                                                        </select>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <!--县区选择-->
+                                                <select id="country6" class="form-control mb-3" onchange="selecCountry6(this)">
+                                                                <option>=请选择县区=</option>
+                                                </select>
+                                            </div>
+                                        </form>
+
+                                        <!--人工预测
                                         <form>
                                             <div class="form-group">
-                                                <label class="form-control-label">Email</label>
-                                                <input type="email" placeholder="Email Address" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="form-control-label">Password</label>
-                                                <input type="password" placeholder="Password" class="form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="submit" value="Signin" class="btn btn-primary">
+                                                <div class="col-md-3">
+                                                    <input type="text" placeholder="输入想搜索的小区或楼盘名" class="form-control" id="xiaoqu"></input>
+                                                </div>
                                             </div>
                                         </form>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Horizontal Form-->
-                            <div class="col-lg-6">
-                                <div class="card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table" style="border:none">
+                                                <tbody>
+                                                    <tr>
+                                                        <td> <input id="checkbox1" type="checkbox" value="餐饮" class="checkbox-template">
+                                                            <label for="checkbox1">餐饮</label></td>
+                                                        <td> <input id="checkbox2" type="checkbox" value="购物" class="checkbox-template">
+                                                            <label for="checkbox2">购物</label></td>
+                                                        <td> <input id="checkbox3" type="checkbox" value="生活" class="checkbox-template">
+                                                            <label for="checkbox3">生活</label></td>
+                                                        <td> <input id="checkbox4" type="checkbox" value="小学" class="checkbox-template">
+                                                            <label for="checkbox4">小学</label></td>
+                                                        <td> <input id="checkbox5" type="checkbox" value="中学" class="checkbox-template">
+                                                            <label for="checkbox5">中学</label></td>
+                                                        <td> <input id="checkbox6" type="checkbox" value="住宿" class="checkbox-template">
+                                                            <label for="checkbox6">住宿</label></td>
+                                                        <td> <input id="checkbox7" type="checkbox" value="工厂" class="checkbox-template">
+                                                            <label for="checkbox7">工厂</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <input id="checkbox8" type="checkbox" value="幼儿园" class="checkbox-template">
+                                                            <label for="checkbox8">幼儿园</label></td>
+                                                        <td> <input id="checkbox9" type="checkbox" value="体育休闲" class="checkbox-template">
+                                                            <label for="checkbox9">体育休闲</label></td>
+                                                        <td> <input id="checkbox10" type="checkbox" value="医疗保健" class="checkbox-template">
+                                                            <label for="checkbox10">医疗保健</label></td>
+                                                        <td> <input id="checkbox11" type="checkbox" value="风景名胜" class="checkbox-template">
+                                                            <label for="checkbox11">风景名胜</label></td>
+                                                        <td> <input id="checkbox12" type="checkbox" value="商务住宅" class="checkbox-template">
+                                                            <label for="checkbox12">商务住宅</label></td>
+                                                        <td> <input id="checkbox13" type="checkbox" value="科教文化" class="checkbox-template">
+                                                            <label for="checkbox13">科教文化</label></td>
+                                                        <td> <input id="checkbox14" type="checkbox" value="高等院校" class="checkbox-template">
+                                                            <label for="checkbox14">高等院校</label></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> <input id="checkbox15" type="checkbox" value="交通设施" class="checkbox-template">
+                                                            <label for="checkbox15">交通设施</label></td>
+                                                        <td> <input id="checkbox16" type="checkbox" value="金融保险" class="checkbox-template">
+                                                            <label for="checkbox16">金融保险</label></td>
+                                                        <td> <input id="checkbox17" type="checkbox" value="公司企业" class="checkbox-template">
+                                                            <label for="checkbox17">公司企业</label></td>
+                                                        <td> <input id="checkbox18" type="checkbox" value="政府机构及社会团体" class="checkbox-template">
+                                                            <label for="checkbox18">政府机构</label></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Horizontal Form</h3>
-                                    </div>
-                                    <div class="card-body">
-                                        <p>Lorem ipsum dolor sit amet consectetur.</p>
-                                        <form class="form-horizontal">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Email</label>
-                                                <div class="col-sm-9">
-                                                    <input id="inputHorizontalSuccess" type="email" placeholder="Email Address" class="form-control form-control-success"><small class="form-text">Example help text that remains unchanged.</small>
+                                        -->
+                                        <form class="form-inline">
+                                            <div class="form-group">您想预测</div>
+                                            <div class="form-group">
+                                                <div class="col-sm-1">
+                                                    <select id="for_year" name="account" class="form-control mb-3">
+                                                            <option>0</option>
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                            <option>3</option>
+                                                            <option>4</option>
+                                                            <option>5</option>
+                                                            <option>6</option>
+                                                            <option>7</option>
+                                                            <option>8</option>
+                                                            <option>9</option>                                                
+                                                         </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Password</label>
-                                                <div class="col-sm-9">
-                                                    <input id="inputHorizontalWarning" type="password" placeholder="Pasword" class="form-control form-control-warning"><small class="form-text">Example help text that remains unchanged.</small>
+                                            <div class="form-group">年</div>
+                                            <div class="form-group">
+                                                <div class="col-sm-1">
+                                                    <select id="for_month" name="account" class="form-control mb-3">
+                                                    <option>0</option>
+                                                    <option>3</option>
+                                                    <option>6</option>
+                                                    <option>9</option>
+                                                    <option>12</option>
+                                                 </select>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-9 offset-sm-3">
-                                                    <input type="submit" value="Signin" class="btn btn-primary">
-                                                </div>
-                                            </div>
+                                            <div class="form-group">月后的房价</div>
                                         </form>
+                                        <form class="form-inline">
+                                            <div class="form-group">
+                                                <div class="col-md-3">
+                                                    <input type="text" placeholder="设定您需要的置信度(默认0.95)" class="form-control" id="confidence"></input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div style="color:sienna">
+                                                    Tips:置信度的输入值在0~1之间，值越大，给出的预测范围越大。
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        <br>
+                                        <div class="form-group">
+                                            <button id="btn6" type="button" onClick="forecast()" class="btn btn-primary">开始预测</button><br>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
-                            <!-- Inline Form-->
-                            <div class="col-lg-8">
+                            <!-- 折线图 -->
+                            <div class="col-lg-12" id="forecast_line" style="display: none">
                                 <div class="card">
                                     <div class="card-close">
                                         <div class="dropdown">
@@ -213,400 +302,116 @@
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Inline Form</h3>
+                                        <h3 class="h4">预测结果——折线图</h3>
                                     </div>
-                                    <div class="card-body">
-                                        <form class="form-inline">
-                                            <div class="form-group">
-                                                <label for="inlineFormInput" class="sr-only">Name</label>
-                                                <input id="inlineFormInput" type="text" placeholder="Jane Doe" class="mr-3 form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="inlineFormInputGroup" class="sr-only">Username</label>
-                                                <input id="inlineFormInputGroup" type="text" placeholder="Username" class="mr-3 form-control">
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                            </div>
-                                        </form>
+
+                                    <div class="card-body" id="line_1">
+                                        <canvas id="lineChart7"></canvas>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Modal Form-->
-                            <div class="col-lg-4">
+                            <!-- 数据 -->
+                            <div class="col-lg-12" id="forecast_div" style="display: none">
                                 <div class="card">
                                     <div class="card-close">
                                         <div class="dropdown">
-                                            <button type="button" id="closeCard4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard4" class="dropdown-menu dropdown-menu-right has-shadow">
+                                            <button type="button" id="closeCard2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                                            <div aria-labelledby="closeCard2" class="dropdown-menu dropdown-menu-right has-shadow">
                                                 <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
                                                 <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">Modal Form</h3>
-                                    </div>
-                                    <div class="card-body text-center">
-                                        <button type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary">Form in simple modal </button>
-                                        <!-- Modal-->
-                                        <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" class="modal fade text-left">
-                                            <div role="document" class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 id="exampleModalLabel" class="modal-title">Signin Modal</h4>
-                                                        <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <p>Lorem ipsum dolor sit amet consectetur.</p>
-                                                        <form>
-                                                            <div class="form-group">
-                                                                <label>Email</label>
-                                                                <input type="email" placeholder="Email Address" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Password</label>
-                                                                <input type="password" placeholder="Password" class="form-control">
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="submit" value="Signin" class="btn btn-primary">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" data-dismiss="modal" class="btn btn-secondary">Close</button>
-                                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Form Elements -->
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-close">
-                                        <div class="dropdown">
-                                            <button type="button" id="closeCard5" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                                            <div aria-labelledby="closeCard5" class="dropdown-menu dropdown-menu-right has-shadow">
-                                                <a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a>
-                                                <a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-header d-flex align-items-center">
-                                        <h3 class="h4">All form elements</h3>
+                                        <h3 class="h4">预测结果——数据</h3>
                                     </div>
                                     <div class="card-body">
-                                        <form class="form-horizontal">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Normal</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Help text</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control"><small class="help-block-none">A block of help text that breaks onto a new line and may extend beyond one line.</small>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Password</label>
-                                                <div class="col-sm-9">
-                                                    <input type="password" name="password" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Placeholder</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" placeholder="placeholder" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Disabled</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" disabled="" placeholder="Disabled input here..." class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Checkboxes and radios <br><small class="text-primary">Normal Bootstrap elements</small></label>
-                                                <div class="col-sm-9">
-                                                    <div>
-                                                        <input id="option" type="checkbox" value="">
-                                                        <label for="option">Option one is this and that—be sure to include why it's great</label>
-                                                    </div>
-                                                    <div>
-                                                        <input id="optionsRadios1" type="radio" checked="" value="option1" name="optionsRadios">
-                                                        <label for="optionsRadios1">Option one is this and that be sure to include why it's great</label>
-                                                    </div>
-                                                    <div>
-                                                        <input id="optionsRadios2" type="radio" value="option2" name="optionsRadios">
-                                                        <label for="optionsRadios2">Option two can be something else and selecting it will deselect option one</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Inline checkboxes</label>
-                                                <div class="col-sm-9">
-                                                    <label class="checkbox-inline">
-                              <input id="inlineCheckbox1" type="checkbox" value="option1"> a
-                            </label>
-                                                    <label class="checkbox-inline">
-                              <input id="inlineCheckbox2" type="checkbox" value="option2"> b
-                            </label>
-                                                    <label class="checkbox-inline">
-                              <input id="inlineCheckbox3" type="checkbox" value="option3"> c
-                            </label>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Checkboxes &amp; radios <br><small class="text-primary">Custom elements</small></label>
-                                                <div class="col-sm-9">
-                                                    <div class="i-checks">
-                                                        <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
-                                                        <label for="checkboxCustom1">Option one</label>
-                                                    </div>
-                                                    <div class="i-checks">
-                                                        <input id="checkboxCustom2" type="checkbox" value="" checked="" class="checkbox-template">
-                                                        <label for="checkboxCustom2">Option two checked</label>
-                                                    </div>
-                                                    <div class="i-checks">
-                                                        <input id="checkboxCustom" type="checkbox" value="" disabled="" checked="" class="checkbox-template">
-                                                        <label for="checkboxCustom">Option three checked and disabled</label>
-                                                    </div>
-                                                    <div class="i-checks">
-                                                        <input id="checkboxCustom3" type="checkbox" value="" disabled="" class="checkbox-template">
-                                                        <label for="checkboxCustom3">Option four disabled</label>
-                                                    </div>
-                                                    <div class="i-checks">
-                                                        <input id="radioCustom1" type="radio" value="option1" name="a" class="radio-template">
-                                                        <label for="radioCustom1">Option one</label>
-                                                    </div>
-                                                    <div class="i-checks">
-                                                        <input id="radioCustom2" type="radio" checked="" value="option2" name="a" class="radio-template">
-                                                        <label for="radioCustom2">Option two checked</label>
-                                                    </div>
-                                                    <div class="i-checks">
-                                                        <input id="radioCustom3" type="radio" disabled="" checked="" value="option2" class="radio-template">
-                                                        <label for="radioCustom3">Option three checked and disabled</label>
-                                                    </div>
-                                                    <div class="i-checks">
-                                                        <input id="radioCustom4" type="radio" disabled="" name="a" class="radio-template">
-                                                        <label for="radioCustom4">Option four disabled</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Select</label>
-                                                <div class="col-sm-9">
-                                                    <select name="account" class="form-control mb-3">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                            </select>
-                                                </div>
-                                                <div class="col-sm-9 offset-sm-3">
-                                                    <select multiple="" class="form-control">
-                              <option>option 1</option>
-                              <option>option 2</option>
-                              <option>option 3</option>
-                              <option>option 4</option>
-                            </select>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label for="fileInput" class="col-sm-3 form-control-label">File input</label>
-                                                <div class="col-sm-9">
-                                                    <input id="fileInput" type="file" class="form-control-file">
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row has-success">
-                                                <label class="col-sm-3 form-control-label">Input with success</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control is-valid">
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row has-danger">
-                                                <label class="col-sm-3 form-control-label">Input with error</label>
-                                                <div class="col-sm-9">
-                                                    <input type="text" class="form-control is-invalid">
-                                                    <div class="invalid-feedback">Please provide your name.</div>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Control sizing</label>
-                                                <div class="col-sm-9">
-                                                    <div class="form-group">
-                                                        <input type="text" placeholder=".input-lg" class="form-control form-control-lg">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" placeholder="Default input" class="form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <input type="text" placeholder=".input-sm" class="form-control form-control-sm">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Column sizing</label>
-                                                <div class="col-sm-9">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <input type="text" placeholder=".col-md-3" class="form-control">
-                                                        </div>
-                                                        <div class="col-md-4">
-                                                            <input type="text" placeholder=".col-md-4" class="form-control">
-                                                        </div>
-                                                        <div class="col-md-5">
-                                                            <input type="text" placeholder=".col-md-5" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="line"> </div>
-                                            <div class="row">
-                                                <label class="col-sm-3 form-control-label">Material Inputs</label>
-                                                <div class="col-sm-9">
-                                                    <div class="form-group-material">
-                                                        <input id="register-username" type="text" name="registerUsername" required class="input-material">
-                                                        <label for="register-username" class="label-material">Username</label>
-                                                    </div>
-                                                    <div class="form-group-material">
-                                                        <input id="register-email" type="email" name="registerEmail" required class="input-material">
-                                                        <label for="register-email" class="label-material">Email Address      </label>
-                                                    </div>
-                                                    <div class="form-group-material">
-                                                        <input id="register-password" type="password" name="registerPassword" required class="input-material">
-                                                        <label for="register-password" class="label-material">Password     </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Input groups</label>
-                                                <div class="col-sm-9">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend"><span class="input-group-text">@</span></div>
-                                                            <input type="text" placeholder="Username" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control">
-                                                            <div class="input-group-append"><span class="input-group-text">.00</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                                                            <input type="text" class="form-control">
-                                                            <div class="input-group-append"><span class="input-group-text">.00</span></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <input type="checkbox">
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <input type="checkbox" class="checkbox-template">
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <input type="radio">
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text">
-                                                                    <input type="radio" class="radio-template">
-                                                                </div>
-                                                            </div>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">Button addons</label>
-                                                <div class="col-sm-9">
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <button type="button" class="btn btn-primary">Go!</button>
-                                                            </div>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="input-group">
-                                                            <input type="text" class="form-control">
-                                                            <div class="input-group-append">
-                                                                <button type="button" class="btn btn-primary">Go!</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 form-control-label">With dropdowns</label>
-                                                <div class="col-sm-9">
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <button data-toggle="dropdown" type="button" class="btn btn-outline-secondary dropdown-toggle">Action <span class="caret"></span></button>
-                                                            <div class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
-                                                                <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
-                                                            </div>
-                                                        </div>
-                                                        <input type="text" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="line"></div>
-                                            <div class="form-group row">
-                                                <div class="col-sm-4 offset-sm-3">
-                                                    <button type="submit" class="btn btn-secondary">Cancel</button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>3个月后</th>
+                                                        <th>6个月后</th>
+                                                        <th>9个月后</th>
+                                                        <th>12个月后</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr id="year_0" style="display: none">
+                                                        <th scope="row">0年</th>
+                                                        <td id="y0m3"></td>
+                                                        <td id="y0m6"></td>
+                                                        <td id="y0m9"></td>
+                                                        <td id="y0m12"></td>
+                                                    </tr>
+                                                    <tr id="year_1" style="display: none">
+                                                        <th scope="row">1年</th>
+                                                        <td id="y1m3">5%</td>
+                                                        <td id="y1m6">10%</td>
+                                                        <td id="y1m9">5%</td>
+                                                        <td id="y1m12">10%</td>
+                                                    </tr>
+                                                    <tr id="year_2" style="display: none">
+                                                        <th scope="row">2年</th>
+                                                        <td id="y2m3"></td>
+                                                        <td id="y2m6"></td>
+                                                        <td id="y2m9"></td>
+                                                        <td id="y2m12"></td>
+                                                    </tr>
+                                                    <tr id="year_3" style="display: none">
+                                                        <th scope="row">3年</th>
+                                                        <td id="y3m3"></td>
+                                                        <td id="y3m6"></td>
+                                                        <td id="y3m9"></td>
+                                                        <td id="y3m12"></td>
+                                                    </tr>
+                                                    <tr id="year_4" style="display: none">
+                                                        <th scope="row">4年</th>
+                                                        <td id="y4m3"></td>
+                                                        <td id="y4m6"></td>
+                                                        <td id="y4m9"></td>
+                                                        <td id="y4m12"></td>
+                                                    </tr>
+                                                    <tr id="year_5" style="display: none">
+                                                        <th scope="row">5年</th>
+                                                        <td id="y5m3"></td>
+                                                        <td id="y5m6"></td>
+                                                        <td id="y5m9"></td>
+                                                        <td id="y5m12"></td>
+                                                    </tr>
+                                                    <tr id="year_6" style="display: none">
+                                                        <th scope="row">6年</th>
+                                                        <td id="y6m3"></td>
+                                                        <td id="y6m6"></td>
+                                                        <td id="y6m9"></td>
+                                                        <td id="y6m12"></td>
+                                                    </tr>
+                                                    <tr id="year_7" style="display: none">
+                                                        <th scope="row">7年</th>
+                                                        <td id="y7m3"></td>
+                                                        <td id="y7m6"></td>
+                                                        <td id="y7m9"></td>
+                                                        <td id="y7m12"></td>
+                                                    </tr>
+                                                    <tr id="year_8" style="display: none">
+                                                        <th scope="row">8年</th>
+                                                        <td id="y8m3"></td>
+                                                        <td id="y8m6"></td>
+                                                        <td id="y8m9"></td>
+                                                        <td id="y8m12"></td>
+                                                    </tr>
+                                                    <tr id="year_9" style="display: none">
+                                                        <th scope="row">9年</th>
+                                                        <td id="y9m3"></td>
+                                                        <td id="y9m6"></td>
+                                                        <td id="y9m9"></td>
+                                                        <td id="y9m12"></td>
+                                                    </tr>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -618,11 +423,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Copyright &copy; 2019.Company name All rights reserved.<a target="_blank" href="http://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
-                            </div>
-                            <div class="col-sm-6 text-right">
-                                <p></p>
-                                <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+                                <p>Copyright &copy; 2019.PP House All rights reserved.</p>
                             </div>
                         </div>
                     </div>
@@ -631,6 +432,8 @@
         </div>
     </div>
     <!-- JavaScript files-->
+    <script src="js/city.js"></script>
+    <script src="js/method_4.js"></script>
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/popper.js/umd/popper.min.js">
     </script>
@@ -641,6 +444,13 @@
     <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
     <!-- Main File-->
     <script src="js/front.js"></script>
+
+    <script>
+        document.getElementById('login_id').innerText = getCookie('name');
+        console.log(window.localStorage.getItem("name"));
+        check_login_state();
+    </script>
+
 </body>
 
 </html>
