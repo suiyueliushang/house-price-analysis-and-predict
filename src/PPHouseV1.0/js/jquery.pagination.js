@@ -1,15 +1,16 @@
 /**
- * This jQuery plugin displays pagination links inside the selected elements.
- * 
- * This plugin needs at least jQuery 1.4.2
- *
- * @param {int} maxentries Number of entries to paginate
- * @param {Object} opts Several options (see README for documentation)
- * @return {Object} jQuery Object
+ * 房价查询界面的分页脚本，包括跳页
+ * 该脚本需要JQuery 1.4.2版本以上
+ * @author 71117419 蒋亚琪
+ * @version 1.0
+ * @param {int} maxentries 可访问的总页数
+ * @param {Object} opts 一些设置
+ * @return {Object} jQuery对象
  */
+
  (function($){
 	/**
-	 * @class Class for calculating pagination values
+	 * @class 计算页码值
 	 */
 	$.PaginationCalculator = function(maxentries, opts) {
 		this.maxentries = maxentries;
@@ -18,16 +19,16 @@
 	
 	$.extend($.PaginationCalculator.prototype, {
 		/**
-		 * Calculate the maximum number of pages
+		 * 计算总页数
 		 * @method
 		 * @returns {Number}
 		 */
 		numPages:function() {
 			return Math.ceil(this.maxentries/this.opts.items_per_page);
 		},
+
 		/**
-		 * Calculate start and end point of pagination links depending on 
-		 * current_page and num_display_entries.
+		 * 计算首页和尾页
 		 * @returns {Array}
 		 */
 		getInterval:function(current_page)  {
@@ -40,11 +41,11 @@
 		}
 	});
 	
-	// Initialize jQuery object container for pagination renderers
+	// 为分页渲染器初始化jQuery对象容器
 	$.PaginationRenderers = {}
 	
 	/**
-	 * @class Default renderer for rendering pagination links
+	 * @class 默认渲染器
 	 */
 	$.PaginationRenderers.defaultRenderer = function(maxentries, opts) {
 		this.maxentries = maxentries;
@@ -53,15 +54,15 @@
 	}
 	$.extend($.PaginationRenderers.defaultRenderer.prototype, {
 		/**
-		 * Helper function for generating a single link (or a span tag if it's the current page)
-		 * @param {Number} page_id The page id for the new item
+		 * 用于生成单个链接的辅助函数（如果是当前页面，则为span标记）
+		 * @param {Number} page_id 新项目的页面ID
 		 * @param {Number} current_page 
-		 * @param {Object} appendopts Options for the new item: text and classes
-		 * @returns {jQuery} jQuery object containing the link
+		 * @param {Object} appendopts 新项目的选项：文本和类
+		 * @returns {jQuery} 包含链接的jQuery对象
 		 */
 		createLink:function(page_id, current_page, appendopts){
 			var lnk, np = this.pc.numPages();
-			page_id = page_id<0?0:(page_id<np?page_id:np-1); // Normalize page id to sane value
+			page_id = page_id<0?0:(page_id<np?page_id:np-1); // 将页面ID标准化为合理值
 			appendopts = $.extend({text:page_id+1, classes:""}, appendopts||{});
 			if(page_id == current_page){
 				lnk = $("<a class='current'>" + appendopts.text + "</a>");
@@ -75,7 +76,7 @@
 			lnk.data('page_id', page_id);
 			return lnk;
 		},
-		// Generate a range of numeric links 
+		// 生成一系列数字链接 
 		appendRange:function(container, current_page, start, end, opts) {
 			var i;
 			for(i=start; i<end; i++) {
@@ -88,11 +89,12 @@
 				np = this.pc.numPages(),
 				fragment = $("<div class='pagination'></div>");
 			
-			// Generate "Previous"-Link
+			// 生成“上一页”链接
 			if(this.opts.prev_text && (current_page > 0 || this.opts.prev_show_always)){
 				fragment.append(this.createLink(current_page-1, current_page, {text:this.opts.prev_text, classes:"prev"}));
 			}
-			// Generate starting points
+
+			// 生成首页链接
 			if (interval.start > 0 && this.opts.num_edge_entries > 0)
 			{
 				end = Math.min(this.opts.num_edge_entries, interval.start);
@@ -102,9 +104,11 @@
 					$("<span class='pagination-break'>"+this.opts.ellipse_text+"</span>").appendTo(fragment);
 				}
 			}
-			// Generate interval links
+
+			// 生成间隔
 			this.appendRange(fragment, current_page, interval.start, interval.end);
-			// Generate ending points
+			
+			// 生成尾页链接
 			if (interval.end < np && this.opts.num_edge_entries > 0)
 			{
 				if(np-this.opts.num_edge_entries > interval.end && this.opts.ellipse_text)
@@ -115,7 +119,8 @@
 				this.appendRange(fragment, current_page, begin, np, {classes:'ep'});
 				
 			}
-			// Generate "Next"-Link
+
+			// 生成“下一页”链接
 			if(this.opts.next_text && (current_page < np-1 || this.opts.next_show_always)){
 				fragment.append(this.createLink(current_page+1, current_page, {text:this.opts.next_text, classes:"next"}));
 			}
@@ -124,10 +129,10 @@
 		}
 	});
 	
-	// Extend jQuery
+	// 扩展jQuery
 	$.fn.pagination = function(maxentries, opts){
 		
-		// Initialize options with default values
+		// 初始化默认值
 		opts = $.extend({
 			items_per_page:1,
 			num_display_entries:4,
@@ -148,7 +153,7 @@
 		var containers = this,
 			renderer, links, current_page;
 
-		//goto
+		//跳页事件
     $(".page-btn").one("click",function(){
 		var allPage = $(".allPage").text();
     	//console.log(allPage);
@@ -157,6 +162,7 @@
 		opts.current_page = goPage;
       	$("#Pagination").pagination(allPage,opts);
 		
+		/* 保存筛选条件 */
 		var min_price = 0;
 		var max_price = 10000000;
 		var min_area = 0;
@@ -208,6 +214,7 @@
 			}
 		}
 		city = $("#citySelect").html();
+		/* 数据请求 */
 		$.ajax({
 			type:"POST",
 			url:"/query_prices",
@@ -228,6 +235,7 @@
 			},
 			success:function(data) {
 				$(document).ready(function(){
+					/* 动态加载房源 */
 					var a = '<li class="list-item"><div class="item"><lable style="display: none" class="house_id"></lable><div class="item-img"><img class="img_container" src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="#" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" id="ave_price"></span></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">关注</button></div><div class="delete_checkbox" style="display: none"><input type="checkbox"></div></li>';
 					$(".sale-left ul").empty();
 					for (var i = 0; i < data.houses.length; i++) {
@@ -265,14 +273,15 @@
     });
 		
 		/**
-		 * This is the event handling function for the pagination links. 
-		 * @param {int} page_id The new page number
+		 * 分页链接事件处理
+		 * @param {int} page_id
 		 */
 		function paginationClickHandler(evt){
 			var links, 
 				new_current_page = $(evt.target).data('page_id'),
 				continuePropagation = selectPage(new_current_page);
-				
+			
+			/* 保留筛选条件 */
 			var min_price = 0;
 			var max_price = 10000000;
 			var min_area = 0;
@@ -324,6 +333,7 @@
 				}
 			}
 			city = $("#citySelect").html();
+			/* 请求数据 */
 			$.ajax({
 				type:"POST",
 				url:"/query_prices",
@@ -344,6 +354,7 @@
 				},
 				success:function(data) {
 					$(document).ready(function(){
+						/* 动态加载房源 */
 						var a = '<li class="list-item"><div class="item"><lable style="display: none" class="house_id"></lable><div class="item-img"><img class="img_container" src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="#" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" id="ave_price"></span></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">关注</button></div><div class="delete_checkbox" style="display: none"><input type="checkbox"></div></li>';
 						$(".sale-left ul").empty();
 						for (var i = 0; i < data.houses.length; i++) {
@@ -380,28 +391,25 @@
 		}
 		
 		/**
-		 * This is a utility function for the internal event handlers. 
-		 * It sets the new current page on the pagination container objects, 
-		 * generates a new HTMl fragment for the pagination links and calls
-		 * the callback function.
+		 * 处理内部事件，在分页容器对象上设置新的当前页面，为分页链接生成新的HTMl片段并调用回调函数。
 		 */
 		function selectPage(new_current_page) {
-			// update the link display of a all containers
+			// 更新所有容器的链接显示
 			containers.data('current_page', new_current_page);
 			links = renderer.getLinks(new_current_page, paginationClickHandler);
 			containers.empty();
 			links.appendTo(containers);
-			// call the callback and propagate the event if it does not return false
+			// 如果没有返回false，则调用回调函数并传播该事件
 			var continuePropagation = opts.callback(new_current_page, containers);
 			return continuePropagation;
 		}
 		
-		// -----------------------------------
-		// Initialize containers
-		// -----------------------------------
-                current_page = parseInt(opts.current_page);
+		/**
+		 * 初始化容器
+		 */
+        current_page = parseInt(opts.current_page);
 		containers.data('current_page', current_page);
-		// Create a sane value for maxentries and items_per_page
+		// 为maxentries和items_per_page创建一个合理的值
 		maxentries = (!maxentries || maxentries < 0)?1:maxentries;
 		opts.items_per_page = (!opts.items_per_page || opts.items_per_page < 0)?1:opts.items_per_page;
 		
@@ -411,7 +419,7 @@
 		}
 		renderer = new $.PaginationRenderers[opts.renderer](maxentries, opts);
 		
-		// Attach control events to the DOM elements
+		// 将控制事件附加到DOM元素
 		var pc = new $.PaginationCalculator(maxentries, opts);
 		var np = pc.numPages();
 		containers.bind('setPage', {numPages:np}, function(evt, page_id) { 
@@ -434,16 +442,16 @@
 				return false;
 		});
 		
-		// When all initialisation is done, draw the links
+		// 添加链接
 		links = renderer.getLinks(current_page, paginationClickHandler);
 		containers.empty();
 		if(np > 1 || opts.show_if_single_page) {
 			links.appendTo(containers);
 		}
-		// call callback function
+		// 调用回调函数
 		if(opts.load_first_page) {
 			opts.callback(current_page, containers);
 		}
-	} // End of $.fn.pagination block
+	}
 	
 })(jQuery);

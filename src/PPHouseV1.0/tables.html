@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!--
+    房价查询页面，
+    包括全国所有城市选择、多条件筛选房源、动态加载房源、分页、加入对比、关注、管理员批量删除房源等
+    @author 71117419 蒋亚琪
+    @version 1.0
+-->
 <html>
 
 <head>
@@ -382,6 +388,7 @@
                     <div class="container-fluid">
                         <h2 class="no-margin-bottom">
                             房价查询
+                            <!-- 城市选择按钮 -->
                             <button class="city" id="citySelect"></button>
                         </h2>
                     </div>
@@ -476,7 +483,7 @@
 
 
 
-                <!-- 折线图-->
+                <!-- 地区房价走势折线图-->
                 <div class="col-lg-8">
                     <div class="line-chart-example card">
                         <div class="card-header d-flex align-items-center">
@@ -564,6 +571,7 @@
 
 
     <script>
+        /* 对城市选择按钮生成js实例 */
         document.getElementById('login_id').innerText = getCookie('name');
         check_login_state();
         var test = new Vcity.CitySelector({
@@ -571,6 +579,7 @@
         });
     </script>
     <script>
+        /* 初始化分页 */
         $(document).ready(function() {
             $("#Pagination").pagination(1);
         });
@@ -582,23 +591,19 @@
             }
         }
 
-        function f2() {
-            if (document.getElementsByClassName("compare_num") < 2) {
-                $(".compare_smt").attr("href", "javascript:return false;");
-            }
-        }
-
+        /* 刷新页面时清空对比栏内容 */
         sessionStorage.removeItem("house_list");
         sessionStorage.removeItem("house_img");
         $(".compare .compare_num").html("0");
-        //document.getElementsByClassName("compare_num").addEventListener("change",f2);
+
         $(function() {
-            //获取城市ajax
             $.ajax({
+                //根据用户访问的IP地址获取用户所在城市（调用百度地图API）
                 url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',
                 type: 'POST',
                 dataType: 'jsonp',
                 success: function(data) {
+                    /* 渲染城市按钮、区/县条件选择栏 */
                     $('#citySelect').html(data.content.address_detail.city);
                     var districts = citylist[citylist.findIndex(f)].district.length;
                     for (var n = 0; n < districts; n++) {
@@ -619,6 +624,7 @@
                     });
                     city = $('#citySelect').html();
                     $(".line_area").html(city);
+                    /* 请求房源数据 */
                     $.ajax({
                         type: "post",
                         url: "/query_prices",
@@ -633,6 +639,7 @@
                             alert("Connection error");
                         },
                         success(data) {
+                            /* 绘制该市房价走势折线图 */
                             $("#lineChartExample4").remove();
                             $("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
                             $(document).ready(function() {
@@ -690,6 +697,7 @@
                                         }]
                                     }
                                 });
+                                /* 动态加载具体房源信息 */
                                 var a = '<li class="list-item"><div class="item"><lable style="display: none" class="house_id"></lable><div class="item-img"><img class="img_container" src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="#" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" id="ave_price"></span></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">关注</button></div><div class="delete_checkbox" style="display: none"><input type="checkbox"></div></li>';
                                 $(".sale-left ul").empty();
                                 for (var i = 0; i < data.houses.length; i++) {
@@ -715,6 +723,7 @@
                                         $(".list-item .tags-bottom").eq(i).append('<span class="item-tags tag-3">精装</span>');
                                     }
                                 }
+                                /* 根据数据数量加载分页 */
                                 if(data.houses.length == 0){
                                     $("#result").html("抱歉！暂时没有该地区的房源！");
                                     $("#Pagination").pagination(1);
@@ -734,9 +743,12 @@
             });
 
         })
+        /* 加载管理员房源删除功能 */
         if (getCookie('session') == "admin") {
-            $(".delete_container").attr("style", "display: inline-block");
-            $(".delete_checkbox").attr("style", "display: block");
+            $(document).ready(function(){
+                $(".delete_container").attr("style", "display: inline-block");
+                $(".delete_checkbox").attr("style", "display: block");
+            });
         }
     </script>
 
