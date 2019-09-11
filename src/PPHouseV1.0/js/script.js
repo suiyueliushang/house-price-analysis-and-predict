@@ -1,5 +1,13 @@
+/**
+ * 房价查询页面的条件筛选脚本，
+ * 以及加入/删除对比事件、加入/删除关注事件、管理员登录下房价查询页面的房源批量删除checkbox事件
+ * @author 71117419 蒋亚琪
+ * @version 1.0
+ */
+
+/* 条件筛选 */
 $(document).ready(function(){
-							
+	/* 区/县点击事件 */						
 	$("#select1 dd").click(function () {
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
@@ -14,6 +22,7 @@ $(document).ready(function(){
 		}
 	});
 	
+	/* 房价区间点击事件 */
 	$("#select2 dd").click(function () {
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
@@ -28,6 +37,7 @@ $(document).ready(function(){
 		}
 	});
 	
+	/* 面积区间点击事件 */
 	$("#select3 dd").click(function () {
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
@@ -42,6 +52,7 @@ $(document).ready(function(){
 		}
 	});
 
+	/* 户型点击事件 */
 	$("#select4 dd").click(function () {
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
@@ -55,7 +66,8 @@ $(document).ready(function(){
 			}
 		}
 	});
-	
+
+	/* 已选条件点击事件 */
 	$("#selectA").live("click", function () {
 		$(this).remove();
 		$("#select1 .select-all").addClass("selected").siblings().removeClass("selected");
@@ -76,6 +88,7 @@ $(document).ready(function(){
 		$("#select4 .select-all").addClass("selected").siblings().removeClass("selected");
 	});
 	
+	/* 提交按钮是否显示 */
 	$(".select dd").live("click", function () {
 		if ($(".select-result dd").length > 1) {
 			$(".select-no").hide();
@@ -86,8 +99,9 @@ $(document).ready(function(){
 		}
 	});
 
+	/* 提交按钮事件 */
 	$("#smit").click(function(){
-
+		/* 保存筛选条件 */
 		var min_price = 0;
 		var max_price = 10000000;
 		var min_area = 0;
@@ -142,8 +156,8 @@ $(document).ready(function(){
 		/*if($("#selectD").length > 0){
 			var house_type = $("#selectD a").html();
 		}*/
-
 		city = $("#citySelect").html();
+		/* 请求数据 */
 		$.ajax({
 			type:"POST",
 			url:"/query_prices",
@@ -163,6 +177,7 @@ $(document).ready(function(){
 				alert("Connection error");
 			},
 			success:function(data) {
+				/* 绘制该地区房价走势曲线 */
 				$("#lineChartExample4").remove();
 				$("#line_chart").append('<canvas id="lineChartExample4"></canvas>');
 				$(document).ready(function() {
@@ -220,6 +235,7 @@ $(document).ready(function(){
 							}]
 						}
 					});
+					/* 动态加载房源信息 */
 					var a = '<li class="list-item"><div class="item"><lable style="display: none" class="house_id"></lable><div class="item-img"><img class="img_container" src="#" width="180" height="135" /></div><div class="house-details"><div class="house-title"><a class="house_title" title="" href="#" target="_blank" id="house_title"></a></div><div class="details-item"><span class="house_type" id="house_type"></span><em class="spe-lines">|</em><span class="area" id="area"></span><em class="spe-lines">|</em><span class="floor"></span></div><div class="tags-bottom"></div></div><div class="pro-price"><span class="price-det"><strong class="total_price" id="total_price"></strong>万</span><span class="unit-price" id="ave_price"></span></div></div><div class="actions"><button class="add_to_compare">加入对比</button><button class="add_to_collection">关注</button></div><div class="delete_checkbox" style="display: none"><input type="checkbox"></div></li>';
 					$(".sale-left ul").empty();
 					for (var i = 0; i < data.houses.length; i++) {
@@ -264,7 +280,9 @@ $(document).ready(function(){
 		});
 	});
 
-	/*$("#pricerange_search").click(function(){
+	/*
+	/* 自定义价格区间提交按钮
+	$("#pricerange_search").click(function(){
 		$("#from_price").css("color","#f60");
 		$("#to_price").css("color","#f60");
 		$(this).hide();
@@ -272,6 +290,7 @@ $(document).ready(function(){
 
 	});
 
+	/* 自定义面积区间提交按钮
 	$("#arearange_search").click(function(){
 		$("#from_area").css("color","#f60");
 		$("#to_area").css("color","#f60");
@@ -279,7 +298,7 @@ $(document).ready(function(){
 		$("#select3 .selected").removeClass("selected");
 	});
 
-
+	/* 自定义价格/面积输入框事件
 	$("#from_price").focus(function(){
 		$("#pricerange_search").show();
 	});
@@ -312,6 +331,7 @@ $(document).ready(function(){
 		$("#arearange_search").hide();
 	});*/
 	
+	/* 排序栏点击事件 */
 	$(".sort-con a").click(function(){
 		$(this).addClass("active").siblings().removeClass("active");
 	});
