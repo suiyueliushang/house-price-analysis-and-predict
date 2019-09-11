@@ -1,6 +1,15 @@
 //****************针对第一种方式的具体js实现部分******************//
 //****************所使用的数据是city.js******************//
 
+/**
+ * 实现选择框拉取省 市
+ * 点击按钮传送数据
+ * 服务器返回数据生成折线图
+ * 
+ * @author: 71117418 苏雨
+ * 
+ */
+
 /*根据id获取对象*/
 function $(str) {
     return document.getElementById(str);
@@ -35,9 +44,7 @@ var current3 = {
 
 
 
-/*自动加载省份列表
-author: suyu
-time: 8.28*/
+/*自动加载省份列表*/
 (function showProv2() {
     btn2.disabled = true;
     var len = provice.length;
@@ -76,9 +83,7 @@ time: 8.28*/
     }
 })();
 
-/*根据所选的省份来显示城市列表
-author: suyu
-time: 8.28*/
+/*根据所选的省份来显示城市列表*/
 function showCity2(obj) {
     var val = obj.options[obj.selectedIndex].value;
     if (val != current2.prov2) {
@@ -137,9 +142,7 @@ function showCountry2(obj) {
         }
     }
 }*/
-/*选择县区之后的处理函数
-author: suyu
-time: 8.28*/
+/*选择县区之后的处理函数*/
 function deal_2(obj) {
     current2.city2 = obj.options[obj.selectedIndex].value;
     if (current2.city2 != null) {
@@ -153,9 +156,7 @@ function deal_3(obj) {
     }
 }
 
-/*点击确定按钮显示用户所选的地址
-author: suyu
-time: 8.28*/
+/*点击确定按钮显示用户所选的地址*/
 function showAddr2 () {
     var myselect=document.getElementById('time_2');
     var index=myselect.selectedIndex;
@@ -163,6 +164,7 @@ function showAddr2 () {
     addrShow2.value = time2_name + '-' + provice[current2.prov2].name + '-' + provice[current2.prov2]["city"][current2.city2].name;
     city_1=provice[current2.prov2]["city"][current2.city2].name;
     var city_name=provice[current2.prov2]["city"][current2.city2].name;
+    /*与后台交互数据*/
     $.ajax({
 		type:"POST",//
         url:"/contrast_city",//
@@ -276,6 +278,7 @@ function showAddr3() {
     addrShow3.value = time3_name + '-' + provice[current3.prov3].name + '-' + provice[current3.prov3]["city"][current3.city3].name;
     city_2=provice[current3.prov3]["city"][current3.city3].name;
     var city_name=provice[current3.prov3]["city"][current3.city3].name;
+    /*与后台交互数据*/
     $.ajax({
 		type:"POST",//
         url:"/contrast_city",//

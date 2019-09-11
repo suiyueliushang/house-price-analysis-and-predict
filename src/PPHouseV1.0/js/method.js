@@ -1,6 +1,15 @@
 //****************针对第一种方式的具体js实现部分******************//
 //****************所使用的数据是city.js******************//
 
+/**
+ * 实现选择框拉取省 市 区
+ * 点击按钮传送数据
+ * 服务器返回数据生成折线图
+ * 
+ * @author: 71117418 苏雨
+ * 
+ */
+
 /*根据id获取对象*/
 function $(str) {
     return document.getElementById(str);
@@ -49,9 +58,7 @@ var current4 = {
 };
 
 
-/*自动加载省份列表
-author: suyu
-time:8.26*/
+/*自动加载省份列表*/
 (function showProv() {
     btn.disabled = true;
     var len = provice.length;
@@ -110,9 +117,7 @@ time:8.26*/
 })();
 
 
-/*根据所选的省份来显示城市列表
-author: suyu
-time:8.26*/
+/*根据所选的省份来显示城市列表*/
 function showCity(obj) {
     var val = obj.options[obj.selectedIndex].value;
     if (val != current.prov) {
@@ -175,9 +180,7 @@ function showCity4(obj) {
 
 
 
-/*根据所选的城市来显示县区列表
-author: suyu
-time: 8.26*/
+/*根据所选的城市来显示县区列表*/
 function showCountry(obj) {
     var val = obj.options[obj.selectedIndex].value;
     current.city = val;
@@ -218,9 +221,7 @@ function showCountry1(obj) {
 
 
 
-/*选择县区之后的处理函数
-author: suyu
-time: 8.26*/
+/*选择县区之后的处理函数*/
 function selecCountry(obj) {
     current.country = obj.options[obj.selectedIndex].value;
     if ((current.city != null) && (current.country != null)) {
@@ -236,9 +237,7 @@ function selecCountry1(obj) {
 }
 
 
-/*选择城市之后的处理函数
-author: suyu
-time :8.29*/ 
+/*选择城市之后的处理函数*/ 
 function deal_4(obj) {
     current4.city4 = obj.options[obj.selectedIndex].value;
     if (current4.city4 != null) {
@@ -247,9 +246,7 @@ function deal_4(obj) {
 
 }
 
-/*点击确定按钮显示用户所选的地址
-author: suyu
-time: 8.26*/
+/*点击确定按钮显示用户所选的地址*/
 function showAddr() {
     var myselect = document.getElementById('time_0');
     var index = myselect.selectedIndex;
@@ -257,9 +254,7 @@ function showAddr() {
     addrShow.value = time0_name + '-' + provice[current.prov].name + '-' + provice[current.prov]["city"][current.city].name + '-' + provice[current.prov]["city"][current.city].districtAndCounty[current.country];
     region_1 = provice[current.prov]["city"][current.city].districtAndCounty[current.country];
     var region_name = provice[current.prov]["city"][current.city].districtAndCounty[current.country];
-    /*与后台交互数据
-    author:suyu
-    time: 9.2*/
+    /*与后台交互数据*/
     $.ajax({
         type: "POST", //
         url: "/contrast_district", //
@@ -373,9 +368,7 @@ function showAddr1() {
     addrShow1.value = time1_name + '-' + provice[current1.prov1].name + '-' + provice[current1.prov1]["city"][current1.city1].name + '-' + provice[current1.prov1]["city"][current1.city1].districtAndCounty[current1.country1];
     region_2 = provice[current1.prov1]["city"][current1.city1].districtAndCounty[current1.country1];
     var region_name = provice[current1.prov1]["city"][current1.city1].districtAndCounty[current1.country1];
-    /*与后台交互数据
-    author:suyu
-    time: 9.2 */
+    /*与后台交互数据*/
     $.ajax({
         type: "POST", //
         url: "/contrast_district", //
@@ -482,9 +475,7 @@ function showAddr1() {
     });
 }
 
-/*显示某一城市不同地区的房价
-author: suyu
-time: 8.29*/
+/*显示某一城市不同地区的房价*/
 function showAddr4() {
     var myselect = document.getElementById('time_4');
     var index = myselect.selectedIndex;
@@ -493,9 +484,7 @@ function showAddr4() {
     var city_name = provice[current4.prov4]["city"][current4.city4].name;
     city_region = new Array();
     price4 = new Array();
-    /*与后台交互数据
-    author: suyu
-    time: 9.4*/
+    /*与后台交互数据*/
     $.ajax({
         type: "POST", //
         url: "/district_in_city", //

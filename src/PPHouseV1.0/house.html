@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 
+<!--房源具体查看的界面
+    由房源查看界面选择房源进入
+
+    author: 71117418 苏雨-->
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -228,6 +233,12 @@
     <!-- Main File-->
     <script src="js/front.js"></script>
     <script>
+        /**
+         * 接受查看房源界面的图片和id
+         * 发送id给服务器端 返回详细信息
+         * 
+         * @author: 71117418 苏雨
+        */
         document.getElementById('login_id').innerText = getCookie('name');
 
         function getParams(key) {
