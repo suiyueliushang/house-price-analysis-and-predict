@@ -3,7 +3,7 @@
 
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.request import CommonRequest
-client = AcsClient('LTAImWfgwRu4yXRP', 'qw0ROe7DDjWNA5REYtd5O9SC2UPJwj', 'default')
+client = AcsClient('********', '***********************', 'default')
 
 def auth_code(phonenumber,code):
     request = CommonRequest()
